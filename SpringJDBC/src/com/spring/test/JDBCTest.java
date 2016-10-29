@@ -15,7 +15,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.spring.entity.Dept;
 
@@ -113,5 +115,15 @@ public class JDBCTest {
 		map.put("dname", "管理部");
 		map.put("loc", "金华");
 		npjt.update(sql, map);
+	}
+	/**
+	 * 使用SqlParameterSource类与实体类对应，此时参数命名需与实体类属性名对应
+	 * SqlParameterSource sps = new BeanPropertySqlParameterSource(对象)
+	 */
+	@Test
+	public void testNamedParameterJDBCTemplateByEntity(){
+		String sql="insert into dept values (:deptno,:dname,:loc)";//此处参数命名需与实体类属性名相同
+		SqlParameterSource sps=new BeanPropertySqlParameterSource(new Dept(88, "业务部", "北京"));
+		npjt.update(sql, sps);
 	}
 }
