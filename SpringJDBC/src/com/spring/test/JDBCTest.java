@@ -1,5 +1,6 @@
 package com.spring.test;
 
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.spring.entity.Dept;
+import com.spring.entity.Emp;
 
 public class JDBCTest {
 
@@ -61,6 +63,9 @@ public class JDBCTest {
 		delList.add(new Integer[]{40});
 		jt.batchUpdate("delete dept where deptno>?",delList);
 	}
+	/**
+	 * 查询单条数据，与实体类对应
+	 */
 	@Test
 	public void testQueryForObject(){
 		String sql="select deptno,dname,loc from dept where deptno=?";
@@ -68,4 +73,30 @@ public class JDBCTest {
 		Dept d=jt.queryForObject(sql,rm,20);
 		System.err.println(d);
 	}
+	/**
+	 * 查询结果集，与实体类的集合对应
+	 */
+	@Test
+	public void testQueryForList(){
+		String sql="select * from dept where deptno>?";
+		RowMapper<Dept> re=new BeanPropertyRowMapper<Dept>(Dept.class);
+		List<Dept> dept=jt.query(sql, re,20);
+		System.out.println(dept);
+	}
+	/**
+	 * 获取单列的值，或做统计查询
+	 */
+	@Test
+	public void testQueryColumnOrCount(){
+		//获取统计信息
+		String sql="select count(empno) from emp";
+		Long l=jt.queryForObject(sql, Long.class);
+		System.err.println(l);
+		//获取单列信息
+		String sql4Date="select hiredate from emp";
+		RowMapper<Date> re=new BeanPropertyRowMapper<Date>(Date.class);
+		List<Date> d=jt.query(sql4Date, re);
+		System.err.println(d);
+	}
+	
 }
