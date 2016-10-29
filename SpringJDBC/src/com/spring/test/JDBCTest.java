@@ -1,9 +1,11 @@
 package com.spring.test;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -13,17 +15,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.spring.entity.Dept;
-import com.spring.entity.Emp;
 
 public class JDBCTest {
 
 	private ApplicationContext ctx=null;
 	private JdbcTemplate jt=null;
+	private NamedParameterJdbcTemplate npjt=null;
 	{
 		ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
 		jt=(JdbcTemplate) ctx.getBean("jdbcTemplate");
+		npjt=(NamedParameterJdbcTemplate) ctx.getBean(NamedParameterJdbcTemplate.class);
 	}
 	@Test
 	public void dataSourceTest() {
@@ -36,17 +40,17 @@ public class JDBCTest {
 			e.printStackTrace();
 		}
 	}
-	@Test
+//	@Test
 	public void JdbcTemplateTest(){
 		JdbcTemplate j=(JdbcTemplate) ctx.getBean("jdbcTemplate");
 		System.err.println(j);
 	}
-	@Test
+//	@Test
 	public void updateTest(){
 		String sqlUpdate="update emp set ename=? where empno=?";
 		jt.update(sqlUpdate,"SMITH",7369);
 	}
-	@Test
+//	@Test
 	public void testBatchUpdate(){
 		//批量修改
 		String[] s=new String[]{"update emp set ename='SMITH1' where empno=7369","update emp set ename='SMITH' where empno=7369"};
@@ -66,7 +70,7 @@ public class JDBCTest {
 	/**
 	 * 查询单条数据，与实体类对应
 	 */
-	@Test
+//	@Test
 	public void testQueryForObject(){
 		String sql="select deptno,dname,loc from dept where deptno=?";
 		RowMapper<Dept> rm=new BeanPropertyRowMapper<Dept>(Dept.class);
@@ -76,7 +80,7 @@ public class JDBCTest {
 	/**
 	 * 查询结果集，与实体类的集合对应
 	 */
-	@Test
+//	@Test
 	public void testQueryForList(){
 		String sql="select * from dept where deptno>?";
 		RowMapper<Dept> re=new BeanPropertyRowMapper<Dept>(Dept.class);
@@ -86,7 +90,7 @@ public class JDBCTest {
 	/**
 	 * 获取单列的值，或做统计查询
 	 */
-	@Test
+//	@Test
 	public void testQueryColumnOrCount(){
 		//获取统计信息
 		String sql="select count(empno) from emp";
@@ -98,5 +102,16 @@ public class JDBCTest {
 		List<Date> d=jt.query(sql4Date, re);
 		System.err.println(d);
 	}
-	
+	/**
+	 * NamedParameterJDBCTemplate用法测试，以update为例
+	 */
+	@Test
+	public void testNamedParameterJDBCTemplate(){
+		String sql="insert into dept values (:deptno,:dname,:loc)";//此处参数是可以自由命名的
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("deptno", 94);
+		map.put("dname", "管理部");
+		map.put("loc", "金华");
+		npjt.update(sql, map);
+	}
 }
