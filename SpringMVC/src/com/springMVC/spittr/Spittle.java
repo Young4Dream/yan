@@ -4,8 +4,13 @@ import java.util.Date;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 @Component
+@Primary
+@Order(value=1)
 public class Spittle {
 	private final Long id;
 	private final String message;
@@ -22,6 +27,14 @@ public class Spittle {
 		this.time = time;
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+	public Spittle() {
+		super();
+		this.id =(long) 1;
+		this.message = "";
+		this.time = new Date();
+		this.latitude = (double) 1;
+		this.longitude = (double) 1;
 	}
 	public Double getLatitude() {
 		return latitude;

@@ -6,7 +6,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
 import com.springMVC.spittr.Spittle;
-import com.springMVC.spittr.config.RootConfig;
 import com.springMVC.spittr.data.SpittleRepository;
 
 import static org.hamcrest.Matchers.*;
@@ -28,7 +27,7 @@ public class SpringMVCTest {
 	public void test() throws Exception {
 		HomeController homeController=new HomeController();
 		MockMvc mockMvc=standaloneSetup(homeController).build();
-		mockMvc.perform(get("/home/a"))//对"/"执行get请求
+		mockMvc.perform(get("/"))//对"/"执行get请求
 				.andExpect(view().name("home"));//断言视图名为home
 	}
 	@Test

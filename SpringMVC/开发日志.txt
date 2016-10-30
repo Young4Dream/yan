@@ -7,5 +7,5 @@
 7.Model类型其实是一个Map，它会传递给视图，这样数据就能够渲染到客户端了，当调用model.addAttribute()方法并且不指定key的时候，那么key会根据值得对象类型推断确定，如果是List<Book>，则会默认为bookList，以后可能会用ModelAndView类型，此处先不追究了。
 8.如果想显式声明key的话，也可以自行指定，model.addAttribute("key",Object obj)
 9.如果希望使用非Spring类型，也可以用Map来代替Model，model.addAttribute()变更为model.put()即可，原理参见https://zhidao.baidu.com/question/564038740.html
-10.
+10.有有参构造方法时，一定一定要给对应bean的类中添加无参构造方法！！！！！！！！！！！！！！！！！！否则启动时会报no default constructor found 异常
 	

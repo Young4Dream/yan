@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 声明为一个控制器
  */
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomeController {
 
 	/**
 	 * 处理对“/”的GET请求，并且定义视图名
 	 */
-	@RequestMapping(method=GET,value="/a")
+	@RequestMapping(method=GET)
 	public String home(){
 		return "home";
 	}

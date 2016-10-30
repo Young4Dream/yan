@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration//由getServletConfigClasses方法返回，定义了DispatcherServlet应用上下文中的bean
 @EnableWebMvc//启用SpringMVC
-@ComponentScan(basePackages="com.springMVC.spittr.web")//启用组件扫描
+@ComponentScan(basePackages="com.springMVC.spittr")//启用组件扫描
 /**
  * 配置静态资源处理
  * 需要手动重写configureDefaultServletHandling方法
@@ -29,7 +29,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public ViewResolver viewResolver(){
 		InternalResourceViewResolver resolver=new InternalResourceViewResolver();
-		resolver.setPrefix("/WebContent/WEB-INF/views/");
+		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		resolver.setExposeContextBeansAsAttributes(true);
 		return resolver;
