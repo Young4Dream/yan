@@ -57,7 +57,7 @@ public class SpringMVCTest {
 	 * @return
 	 */
 	private List<Spittle> createSpittleList(int i) {
-		List<Spittle> spittleList=new ArrayList<>();
+		List<Spittle> spittleList=new ArrayList();
 		for(int k=0;k<i;k++){
 			spittleList.add(new Spittle("spittle"+i,new Date()));
 		}

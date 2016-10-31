@@ -1,8 +1,7 @@
 package com.springMVC.spittr.web;
 
 import org.springframework.stereotype.Controller;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMapping;import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * 声明为一个控制器
