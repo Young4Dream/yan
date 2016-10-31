@@ -9,3 +9,4 @@
 9.如果希望使用非Spring类型，也可以用Map来代替Model，model.addAttribute()变更为model.put()即可，原理参见https://zhidao.baidu.com/question/564038740.html
 10.有有参构造方法时，一定一定要给对应bean的类中添加无参构造方法！！！！！！！！！！！！！！！！！！否则启动时会报no default constructor found 异常
 11.当java文件出现此错误：The type javax.servlet.ServletException cannot be resolved. It is indirectly referenced from required .class files，只需要添加tomcat的lib目录中的servlet-api.jar即可
+12.fn:length()是jstl函数，返回字符串长度或集合中元素的数量。

@@ -17,7 +17,7 @@ public class SpittleController {
 	}
 	@RequestMapping(method=GET)
 	public String spittles(Model model){
-		model.addAttribute("spittleList",spittleRepository.findSpittle(Long.MAX_VALUE, 20));
+		model.addAttribute("spittleList",spittleRepository.findSpittle(Long.MAX_VALUE, (Integer) null));
 		return "spittles";//java.lang.AssertionError: Model attribute 'spittleList' does not exist
 
 //		model.addAttribute(spittleRepository.findSpittle(Long.MAX_VALUE, 20));
