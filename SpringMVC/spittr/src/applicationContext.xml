@@ -21,7 +21,6 @@
 	http://www.springframework.org/schema/jee/spring-jee.xsd
 	http://www.springframework.org/schema/conditional 
 	http://www.springframework.org/schema/conditional/spring-conditional.xsd">
-	<context:annotation-config></context:annotation-config>
 	<!-- 导入配置文件 -->
 	<context:property-placeholder location="classpath:dataSource.properties"/>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
