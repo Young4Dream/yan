@@ -1,0 +1,23 @@
+-- 创建表SPITTLE
+create table SPITTLE
+(
+  ID         NUMBER,
+  MESSAGE    VARCHAR2(200),
+  TIME       DATE,
+  LATITUDE   NUMBER,
+  LONGTITUDE NUMBER
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on column SPITTLE.LATITUDE
+  is '经度';
+comment on column SPITTLE.LONGTITUDE
+  is '纬度';
