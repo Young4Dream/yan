@@ -6,6 +6,6 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name></display-name>	
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>/WEB-INF/views/spittles.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
