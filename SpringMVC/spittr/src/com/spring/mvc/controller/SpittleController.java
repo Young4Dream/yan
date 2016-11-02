@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.mvc.dao.SpittleDao;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/s")
 public class SpittleController {
 	@Autowired
 	private SpittleDao spittleDao;
