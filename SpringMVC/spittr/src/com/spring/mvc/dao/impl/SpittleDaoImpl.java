@@ -1,5 +1,10 @@
 package com.spring.mvc.dao.impl;
-
+/**
+ * name:SpittleDaoImpl
+ * @author yan
+ * discreption:定义SPITTLE表的增删改查操作
+ * modify: 2016-11-02
+ */
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,19 +61,21 @@ public class SpittleDaoImpl implements SpittleDao{
 		paramMap.put("time", s.getTime());
 		paramMap.put("latitude", s.getLatitude());
 		paramMap.put("longitude", s.getLongitude());
-		return 0;
+		try {
+			return DBHelper.npjt.update(sql, paramMap);
+		} catch (DataAccessException e) {
+			return -1;
+		}
 	}
 
 	@Override
 	public int delete(int id) {
-		String sql="delete spittle set where id=:id";
-		Map<String, Object> paramMap=new HashMap<String, Object>();
-		paramMap.put("id", s.getId());
-		paramMap.put("message", s.getMessage());
-		paramMap.put("time", s.getTime());
-		paramMap.put("latitude", s.getLatitude());
-		paramMap.put("longitude", s.getLongitude());
-		return 0;
+		try {
+			String sql="delete spittle where id=?";
+			return DBHelper.jt.update(sql, id);
+		} catch (DataAccessException e) {
+			return -1;
+		}
 	}
 
 }
