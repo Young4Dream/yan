@@ -11,16 +11,15 @@ import org.springframework.stereotype.Component;
 @Primary
 @Order(value=1)
 public class Spittle {
-	private final Long id;
-	private final String message;
-	private final Date time;
+	private Long id;
+	private String message;
+	private Date time;
 	private Double latitude;//纬度
 	private Double longitude;//经度
 	public Spittle(String message, Date time) {
 		this(null,message,time,null,null);
 	}
 	public Spittle(Long id,String message, Date time, Double latitude, Double longitude) {
-		super();
 		this.id =id;
 		this.message = message;
 		this.time = time;
@@ -29,11 +28,6 @@ public class Spittle {
 	}
 	public Spittle() {
 		super();
-		this.id =(long) 1;
-		this.message = "";
-		this.time = new Date();
-		this.latitude = (double) 1;
-		this.longitude = (double) 1;
 	}
 	public Double getLatitude() {
 		return latitude;

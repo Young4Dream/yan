@@ -15,5 +15,5 @@ import org.springframework.context.annotation.ImportResource;
 @ComponentScan("com.spring")//扫描com.spring中所有带有Component或repository等标记的实现类，用以生成bean
 @EnableAspectJAutoProxy//使AOP生效
 @Import({WebAppInitializer.class,WebConfig.class})
-//@ImportResource(locations={"classpath:applicationContext.xml"})
+//@ImportResource(locations={"classpath:/WEB-INF/Spring-servlet.xml"})
 public class RootConfig {}

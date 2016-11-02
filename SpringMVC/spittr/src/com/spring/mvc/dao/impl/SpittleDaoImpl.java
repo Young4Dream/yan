@@ -30,7 +30,7 @@ public class SpittleDaoImpl implements SpittleDao{
 	@Override
 	public List<Spittle> findAll() {
 		String sql="select * from spittle";
-		BeanPropertyRowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
+		RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
 		List<Spittle> list = DBHelper.jt.query(sql, rowMapper);
 		return list;
 	}

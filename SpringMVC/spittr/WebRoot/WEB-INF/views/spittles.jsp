@@ -21,8 +21,8 @@
       <h1>Recent Spittles</h1>
       <ul class="spittleList">
         <c:forEach items="${spittleList}" var="spittle" >
-          <li id="spittle_<c:out value="spittle.id"/>">
-            <div class="spittleMessage"><c:out value="${spittle.message}" /></div>
+          <li id="spittle_<c:out value="${spittle.id}"/>">
+            <div class="spittleMessage"><a href="/spittle/one?id=${spittle.id}"><c:out value="${spittle.message}" /></a></div>
             <div>
               <span class="spittleTime"><c:out value="${spittle.time}" /></span>
               <span class="spittleLocation">(<c:out value="${spittle.latitude}" />, <c:out value="${spittle.longitude}" />)</span>
