@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.mvc.dao.SpittleDao;
 
 @Controller
-@RequestMapping("/s")
+@RequestMapping("/spittle")
 public class SpittleController {
 	@Autowired
 	private SpittleDao spittleDao;
@@ -16,7 +16,8 @@ public class SpittleController {
 	public ModelAndView spittles(){
 		ModelAndView mv=new ModelAndView();
 		Object o=spittleDao.findAll();
-		mv.addObject("spittlesList", o);
+		System.out.println(o);
+		mv.addObject("spittleList", o);
 		mv.setViewName("spittles");
 		return mv;
 	}
