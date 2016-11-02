@@ -24,6 +24,7 @@
 	<!-- 导入配置文件 -->
 	<context:property-placeholder location="classpath:dataSource.properties"/>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<bean class="com.spring.mvc.config.RootConfig"></bean>
 	<bean id="dataSourceLocal" name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
         <!-- 指定连接数据库的驱动-->
         <property name="driverClass" value="${jdbc.driverClassName}"/>  
@@ -57,4 +58,15 @@
     <bean id="namedParameterJDBCTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
     	<constructor-arg><ref bean="dataSourceLocal"/></constructor-arg>
     </bean>
+    <bean id="dBHelper" class="com.spring.mvc.jdbc.DBHelper"></bean>
+    <aop:config>
+    	<aop:pointcut expression="execution(* com.spring.mvc.dao.*.*(..))" id="daoAspect"/>
+    	<aop:aspect ref="dBHelper">
+    		<aop:before method="getConnection" pointcut-ref="daoAspect"/>
+    		<!-- <aop:before method=""/>
+    		<aop:after method=""/>
+    		<aop:after-returning method=""/>
+    		<aop:after-throwing method=""/> -->
+    	</aop:aspect>
+    </aop:config>
 </beans>
