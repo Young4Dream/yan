@@ -47,6 +47,7 @@ public class Spittle {
 		this.longitude = longitude;
 	}
 	public long getId() {
+		System.err.println("调用get方法");
 		return id;
 	}
 	public String getMessage() {
@@ -55,12 +56,12 @@ public class Spittle {
 	public Date getTime() {
 		return time;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this,obj,new String[]{"id","time"});
-	}
-	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this,new String[]{"id","time"});
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		return EqualsBuilder.reflectionEquals(this,obj,new String[]{"id","time"});
+//	}
+//	@Override
+//	public int hashCode() {
+//		return HashCodeBuilder.reflectionHashCode(this,new String[]{"id","time"});
+//	}
 }

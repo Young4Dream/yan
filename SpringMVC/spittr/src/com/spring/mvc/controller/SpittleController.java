@@ -19,8 +19,8 @@ public class SpittleController {
 	private SpittleDao spittleDao;
 	@RequestMapping(value="list",method=RequestMethod.GET)
 	public ModelAndView spittles(){
-		Connection conn=DBHelper.getConnection();
-		System.out.println(conn);
+//		Connection conn=DBHelper.getConnection();
+		System.out.println(DBHelper.ctx);
 		ModelAndView mv=new ModelAndView();
 		Object o=spittleDao.findAll();
 		System.out.println(o);

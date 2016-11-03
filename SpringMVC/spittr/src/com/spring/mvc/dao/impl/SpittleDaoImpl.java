@@ -9,8 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +21,8 @@ import com.spring.mvc.jdbc.DBHelper;
 import com.spring.mvc.pojo.Spittle;
 @Repository
 public class SpittleDaoImpl implements SpittleDao{
+	@Autowired
+	private JdbcTemplate jt;
 	@Override
 	public Spittle findById(int id) {
 		String sql="select * from spittle where id=?";
@@ -31,7 +35,7 @@ public class SpittleDaoImpl implements SpittleDao{
 	public List<Spittle> findAll() {
 		String sql="select * from spittle";
 		RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
-		List<Spittle> list = DBHelper.jt.query(sql, rowMapper);
+		List<Spittle> list = jt.query(sql, rowMapper);
 		return list;
 	}
 

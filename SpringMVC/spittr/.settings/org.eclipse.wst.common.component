@@ -3,6 +3,7 @@
     <wb-module deploy-name="spittr">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
         <property name="context-root" value="/spittr"/>
         <property name="java-output-path" value="/spittr/WebRoot/WEB-INF/classes"/>
     </wb-module>
