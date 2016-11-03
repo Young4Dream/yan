@@ -28,7 +28,7 @@
 	<context:component-scan base-package="com.spring.mvc"></context:component-scan>
 	<context:property-placeholder location="classpath:dataSource.properties"/>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
-	<bean id="dataSource" name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
         <!-- 指定连接数据库的驱动-->
         <property name="driverClass" value="${jdbc.driverClassName}"/>  
         <!-- 指定连接数据库的URL-->  
@@ -55,10 +55,18 @@
     </bean>  
     <!-- 配置jdbcTemplate -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-    	<property name="dataSource" ref="dataSource"></property>
+    	<!-- <property name="dataSource" ref="dataSource"></property> -->
+    	<constructor-arg name="dataSource" ref="dataSource"/>
     </bean>  
     <!-- 配置NamedParameterJDBCTemplate -->
   <bean id="namedParameterJDBCTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
     	<constructor-arg><ref bean="dataSource"/></constructor-arg>
   </bean>
+<!--   <bean id="spittle" class="com.spring.mvc.pojo.Spittle">
+  		<property name="id"><null/></property>
+  		<property name="message"><null/></property>
+  		<property name="time"><null/></property>
+  		<property name="latitude"><null/></property>
+  		<property name="longtitude"><null/></property>
+  </bean> -->
 </beans>

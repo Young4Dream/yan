@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -15,12 +16,14 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class DBHelper implements ApplicationContextAware{
 	
+	public static Logger log;
 	public static ApplicationContext ctx;
 	public static DataSource ds;
 	public static JdbcTemplate jt;
 	public static NamedParameterJdbcTemplate npjt;
 	{
-		DBHelper.ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		log=Logger.getLogger(DBHelper.class);
+		ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 		jt=(JdbcTemplate) ctx.getBean("jdbcTemplate");
 		npjt=(NamedParameterJdbcTemplate) ctx.getBean(NamedParameterJdbcTemplate.class);
 	}
@@ -36,7 +39,7 @@ public class DBHelper implements ApplicationContextAware{
 	 */
 	public static synchronized Connection getConnection(){
 		try {
-			ComboPooledDataSource cds=(ComboPooledDataSource) ctx.getBean("dataSourceLocal");
+			ComboPooledDataSource cds=(ComboPooledDataSource) ctx.getBean("dataSource");
 			return cds.getConnection();
 		} catch (SQLException e) {
 			return null;

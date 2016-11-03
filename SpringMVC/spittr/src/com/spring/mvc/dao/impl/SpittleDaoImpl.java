@@ -33,10 +33,23 @@ public class SpittleDaoImpl implements SpittleDao{
 
 	@Override
 	public List<Spittle> findAll() {
-		String sql="select * from spittle";
-		RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
-		List<Spittle> list = jt.query(sql, rowMapper);
-		return list;
+		List<Spittle> list;
+		try {
+			String sql="select * from spittle";
+			RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
+			list = jt.query(sql, rowMapper);
+			return list;
+		} catch (DataAccessException e) {
+			return null;
+		}
+	}
+
+	public JdbcTemplate getJt() {
+		return jt;
+	}
+
+	public void setJt(JdbcTemplate jt) {
+		this.jt = jt;
 	}
 
 	@Override
