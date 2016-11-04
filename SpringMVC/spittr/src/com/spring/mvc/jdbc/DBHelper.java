@@ -3,34 +3,15 @@ package com.spring.mvc.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.apache.log4j.Logger;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-public class DBHelper implements ApplicationContextAware{
+public class DBHelper{
 	
 	public static Logger log;
 	public static ApplicationContext ctx;
-	public static DataSource ds;
-	public static JdbcTemplate jt;
-	public static NamedParameterJdbcTemplate npjt;
 	{
 		log=Logger.getLogger(DBHelper.class);
-		ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-		jt=(JdbcTemplate) ctx.getBean("jdbcTemplate");
-		npjt=(NamedParameterJdbcTemplate) ctx.getBean(NamedParameterJdbcTemplate.class);
-	}
-	@Override
-	public void setApplicationContext(ApplicationContext arg0)
-			throws BeansException {
-		ctx=arg0;
 	}
 	public DBHelper(){
 	}
@@ -44,5 +25,17 @@ public class DBHelper implements ApplicationContextAware{
 		} catch (SQLException e) {
 			return null;
 		}
+	}
+	public static Logger getLog() {
+		return log;
+	}
+	public static void setLog(Logger log) {
+		DBHelper.log = log;
+	}
+	public static ApplicationContext getCtx() {
+		return ctx;
+	}
+	public static void setCtx(ApplicationContext ctx) {
+		DBHelper.ctx = ctx;
 	}
 }

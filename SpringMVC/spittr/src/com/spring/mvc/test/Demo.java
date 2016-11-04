@@ -3,15 +3,15 @@ package com.spring.mvc.test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.spring.mvc.jdbc.DBHelper;
 
 public class Demo {
-
 	@Test
 	public void test() {
-		ApplicationContext ctx =new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-		assertNotNull(ctx);
+//		ApplicationContext ctx =new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		assertNotNull(DBHelper.getCtx());
+		assertNotNull(DBHelper.getConnection());
+		assertNotNull(DBHelper.getLog());
 	}
 
 }

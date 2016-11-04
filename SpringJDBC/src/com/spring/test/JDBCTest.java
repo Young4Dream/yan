@@ -72,7 +72,7 @@ public class JDBCTest {
 	/**
 	 * 查询单条数据，与实体类对应
 	 */
-//	@Test
+	@Test
 	public void testQueryForObject(){
 		String sql="select deptno,dname,loc from dept where deptno=?";
 		RowMapper<Dept> rm=new BeanPropertyRowMapper<Dept>(Dept.class);
@@ -82,7 +82,7 @@ public class JDBCTest {
 	/**
 	 * 查询结果集，与实体类的集合对应
 	 */
-//	@Test
+	@Test
 	public void testQueryForList(){
 		String sql="select * from dept where deptno>?";
 		RowMapper<Dept> re=new BeanPropertyRowMapper<Dept>(Dept.class);
@@ -107,7 +107,7 @@ public class JDBCTest {
 	/**
 	 * NamedParameterJDBCTemplate用法测试，以update为例
 	 */
-	@Test
+//	@Test
 	public void testNamedParameterJDBCTemplate(){
 		String sql="insert into dept values (:deptno,:dname,:loc)";//此处参数是可以自由命名的
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -120,7 +120,7 @@ public class JDBCTest {
 	 * 使用SqlParameterSource类与实体类对应，此时参数命名需与实体类属性名对应
 	 * SqlParameterSource sps = new BeanPropertySqlParameterSource(对象)
 	 */
-	@Test
+//	@Test
 	public void testNamedParameterJDBCTemplateByEntity(){
 		String sql="insert into dept values (:deptno,:dname,:loc)";//此处参数命名需与实体类属性名相同
 		SqlParameterSource sps=new BeanPropertySqlParameterSource(new Dept(88, "业务部", "北京"));

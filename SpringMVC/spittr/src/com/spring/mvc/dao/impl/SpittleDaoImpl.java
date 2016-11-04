@@ -5,6 +5,7 @@ package com.spring.mvc.dao.impl;
  * discreption:定义SPITTLE表的增删改查操作
  * modify: 2016-11-02
  */
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,30 +15,34 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mvc.dao.SpittleDao;
-import com.spring.mvc.jdbc.DBHelper;
 import com.spring.mvc.pojo.Spittle;
 @Repository
 public class SpittleDaoImpl implements SpittleDao{
-	@Autowired
+	
 	private JdbcTemplate jt;
+//	@Autowired
+	private NamedParameterJdbcTemplate npjt;
 	@Override
 	public Spittle findById(int id) {
 		String sql="select * from spittle where id=?";
 		RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
-		Spittle spittle=DBHelper.jt.queryForObject(sql, rowMapper, id);
+		Spittle spittle=jt.queryForObject(sql, rowMapper, id);
 		return spittle;
 	}
 
 	@Override
 	public List<Spittle> findAll() {
-		List<Spittle> list;
+		List<Spittle> list=new ArrayList<Spittle>();
 		try {
-			String sql="select * from spittle";
+			String sql="select id,message,time,latitude,longitude from spittle";
 			RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
 			list = jt.query(sql, rowMapper);
+			System.out.println("进入com.spring.mvc.dao.impl.SpittleDaoImpl，自动注入的jt："+jt);
+			System.out.println("进入com.spring.mvc.dao.impl.SpittleDaoImpl，查询结果为："+list);
 			return list;
 		} catch (DataAccessException e) {
 			return null;
@@ -47,7 +52,7 @@ public class SpittleDaoImpl implements SpittleDao{
 	public JdbcTemplate getJt() {
 		return jt;
 	}
-
+	@Autowired
 	public void setJt(JdbcTemplate jt) {
 		this.jt = jt;
 	}
@@ -62,7 +67,7 @@ public class SpittleDaoImpl implements SpittleDao{
 		paramMap.put("latitude", s.getLatitude());
 		paramMap.put("longitude", s.getLongitude());
 		try {
-			int i=DBHelper.npjt.update(sql, paramMap);
+			int i=npjt.update(sql, paramMap);
 			return i;
 		} catch (DataAccessException e) {
 			return -1;
@@ -79,7 +84,7 @@ public class SpittleDaoImpl implements SpittleDao{
 		paramMap.put("latitude", s.getLatitude());
 		paramMap.put("longitude", s.getLongitude());
 		try {
-			return DBHelper.npjt.update(sql, paramMap);
+			return npjt.update(sql, paramMap);
 		} catch (DataAccessException e) {
 			return -1;
 		}
@@ -89,7 +94,7 @@ public class SpittleDaoImpl implements SpittleDao{
 	public int delete(int id) {
 		try {
 			String sql="delete spittle where id=?";
-			return DBHelper.jt.update(sql, id);
+			return jt.update(sql, id);
 		} catch (DataAccessException e) {
 			return -1;
 		}
