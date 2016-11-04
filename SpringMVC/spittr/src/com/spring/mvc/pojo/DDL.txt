@@ -5,7 +5,7 @@ create table SPITTLE
   MESSAGE    VARCHAR2(200),
   TIME       DATE,
   LATITUDE   NUMBER,
-  LONGTITUDE NUMBER
+  LONGITUDE NUMBER
 )
 tablespace USERS
   pctfree 10
