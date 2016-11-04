@@ -10,3 +10,6 @@
 10.有有参构造方法时，一定一定要给对应bean的类中添加无参构造方法！！！！！！！！！！！！！！！！！！否则启动时会报no default constructor found 异常
 11.当java文件出现此错误：The type javax.servlet.ServletException cannot be resolved. It is indirectly referenced from required .class files，只需要添加tomcat的lib目录中的servlet-api.jar即可
 12.fn:length()是jstl函数，返回字符串长度或集合中元素的数量。
+13.<mvc:annotation-driven/>相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter。即解决了@Controller注解的使用前提配置。 
+14.<context:annotation-config/>是对包进行扫描，实现注释驱动Bean定义，同时将bean自动注入容器中使用。即解决了@Controller标识的类的bean的注入和使用。 
+15.配置如果没有<mvc:annotation-driven/>，那么所有的Controller可能就没有解析，所有当有请求时候都没有匹配的处理请求类，就都去<mvc:default-servlet-handler/>即default servlet处理了。添加上<mvc:annotation-driven/>后，相应的do请求被Controller处理，而静态资源因为没有相应的Controller就会被default servlet处理。总之没有相应的Controller就会被default servlet处理就ok了。
