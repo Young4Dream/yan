@@ -13,3 +13,10 @@
 13.<mvc:annotation-driven/>相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter。即解决了@Controller注解的使用前提配置。 
 14.<context:annotation-config/>是对包进行扫描，实现注释驱动Bean定义，同时将bean自动注入容器中使用。即解决了@Controller标识的类的bean的注入和使用。 
 15.配置如果没有<mvc:annotation-driven/>，那么所有的Controller可能就没有解析，所有当有请求时候都没有匹配的处理请求类，就都去<mvc:default-servlet-handler/>即default servlet处理了。添加上<mvc:annotation-driven/>后，相应的do请求被Controller处理，而静态资源因为没有相应的Controller就会被default servlet处理。总之没有相应的Controller就会被default servlet处理就ok了。
+16.插入的sql语句最好写全，不然会因为顺序不对而错位：
+	String sql="insert into spitter(id,firstname,lastname,username,password,email) values(" +
+					"seq_spitter.nextval,:firstname,:lastname,:username,:password,:email" +
+					")";
+17.跳转个人信息页面时报：Mapped class was not specified异常。
+		原因：没传Spitter.class进去。
+		解决：rowMapper=new BeanPropertyRowMapper<Spitter>(Spitter.class);
