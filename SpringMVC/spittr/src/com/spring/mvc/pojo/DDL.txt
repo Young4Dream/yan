@@ -48,3 +48,30 @@ insert into spittle values(23,'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW',sysdate,43.16,8
 insert into spittle values(24,'XXXXXXXXXXXXXXXXXXXXXXX',sysdate,160.2,66.46);
 insert into spittle values(25,'YYYYYYYYYYYYYYYYY',sysdate,31.4,162.18);
 insert into spittle values(26,'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ',sysdate,54.68,114.79);
+--创建spitter序列
+CREATE SEQUENCE seq_spitter  --序列名
+INCREMENT BY 1   -- 每次加几个  
+START WITH 1       -- 从1开始计数  
+NOMAXVALUE        -- 不设置最大值  
+NOCYCLE               -- 一直累加，不循环  
+CACHE 10;
+--创建spitter表
+create table SPITTER
+(
+  ID        NUMBER not null,
+  FIRSTNAME VARCHAR2(10),
+  LASTNAME  VARCHAR2(10),
+  USERNAME  VARCHAR2(20),
+  PASSWORD  VARCHAR2(20),
+  EMAIL     VARCHAR2(30)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
