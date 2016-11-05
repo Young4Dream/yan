@@ -76,13 +76,15 @@ public class SpittleDaoImpl implements SpittleDao{
 
 	@Override
 	public int add(Spittle s) {
-		String sql="insert into spittle values (:id,:message,:time,:latitude,:longtitude)";
+		String sql="insert into spittle values (:id,:message,:time,:latitude,:longitude)";
 		Map<String, Object> paramMap=new HashMap<String, Object>();
 		paramMap.put("id", s.getId());
 		paramMap.put("message", s.getMessage());
 		paramMap.put("time", s.getTime());
 		paramMap.put("latitude", s.getLatitude());
 		paramMap.put("longitude", s.getLongitude());
+		System.out.println(paramMap.toString());
+		System.out.println(s);
 		try {
 			return npjt.update(sql, paramMap);
 		} catch (DataAccessException e) {
