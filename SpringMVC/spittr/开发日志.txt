@@ -35,4 +35,5 @@
 			在页面上加上
 			<jsp:useBean id="command"  class="com.ztenc.proj.bean.AFRFOAP" scope="request" ></jsp:useBean>
 			红色部分填上你的绑定类
-
+	public String register(@Valid @ModelAttribute("spitter") Spitter spitter,BindingResult errors){
+19.BindingResult和Errors同样可以起到校验的效果，它们同位于org.springframework.validation包中

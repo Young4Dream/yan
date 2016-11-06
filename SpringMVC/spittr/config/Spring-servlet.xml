@@ -21,6 +21,7 @@
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/views/"></property>
 			<property name="suffix" value=".jsp"></property>
+			<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
 		</bean>
 	<!-- 	 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
     <property name="cacheSeconds" value="0" />  

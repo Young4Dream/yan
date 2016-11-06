@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Spitter {
 	private Integer id;
 	@NotNull
-	@Size(max=20,min=4,message="adf")
+	@Size(max=20,min=4,message="{firstName.message}")
 	private String firstName;
 	@NotNull
 	@Size(max=20,min=4,message="{lastName.message}")

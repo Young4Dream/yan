@@ -5,7 +5,7 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
  %> 
-<jsp:useBean id="command"  class="com.spring.mvc.pojo.Spitter" scope="request" ></jsp:useBean>
+<jsp:useBean id="spitte"  class="com.spring.mvc.pojo.Spitter" scope="request" ></jsp:useBean>
 <html>
   <head>
     <title>Spitter</title>
@@ -15,7 +15,7 @@
   <body>
     <h1>Register</h1>
 
-    <sf:form method="POST" modelAttribute="command">
+    <sf:form method="POST" modelAttribute="spitte">
       First Name: <sf:input type="text" path="firstName" /><sf:errors path="firstName" cssClass="errors"/><br/>
       Last Name: <sf:input type="text" path="lastName" /><sf:errors path="lastName" cssClass="errors"/><br/>
       Email: <sf:input type="email" path="email" /><sf:errors path="email" cssClass="errors"/><br/>
