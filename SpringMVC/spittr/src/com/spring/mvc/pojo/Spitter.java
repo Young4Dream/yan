@@ -9,19 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Spitter {
 	private Integer id;
 	@NotNull
-	@Size(max=20,min=6)
+	@Size(max=20,min=4,message="adf")
 	private String firstName;
 	@NotNull
-	@Size(max=20,min=6)
+	@Size(max=20,min=4,message="{lastName.message}")
 	private String lastName;
 	@NotNull
-	@Size(max=20,min=6)
+	@Size(max=20,min=4,message="{email.message}")
 	private String email;
 	@NotNull
-	@Size(max=20,min=6)
+	@Size(max=20,min=4,message="{username.message}")
 	private String username;
 	@NotNull
-	@Size(max=20,min=6)
+	@Size(max=20,min=4,message="{password.message}")
 	private String password;
 	/**
 	 * Constructor with no parameters

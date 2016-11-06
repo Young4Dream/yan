@@ -25,6 +25,28 @@
 	<!-- 	 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
     <property name="cacheSeconds" value="0" />  
  </bean> -->
- <!-- 添加访问静态资源的功能 -->
+     <!-- 资源文件：messages.properties -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 验证器 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    
+    <!-- 自定义数据类型转换器 
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.my.controller.converter.IntConverter" />
+                <bean class="com.my.controller.converter.DateConverter" />
+            </list>
+        </property>
+    </bean>
+  添加访问静态资源的功能 -->
  <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 </beans>

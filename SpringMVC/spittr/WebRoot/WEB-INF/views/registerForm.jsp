@@ -1,5 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ page session="false" %>
+<%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+ %> 
+<jsp:useBean id="command"  class="com.spring.mvc.pojo.Spitter" scope="request" ></jsp:useBean>
 <html>
   <head>
     <title>Spitter</title>
@@ -9,13 +15,13 @@
   <body>
     <h1>Register</h1>
 
-    <form method="POST">
-      First Name: <input type="text" name="firstName" /><br/>
-      Last Name: <input type="text" name="lastName" /><br/>
-      Email: <input type="email" name="email" /><br/>
-      Username: <input type="text" name="username" /><br/>
-      Password: <input type="password" name="password" /><br/>
+    <sf:form method="POST" modelAttribute="command">
+      First Name: <sf:input type="text" path="firstName" /><sf:errors path="firstName" cssClass="errors"/><br/>
+      Last Name: <sf:input type="text" path="lastName" /><sf:errors path="lastName" cssClass="errors"/><br/>
+      Email: <sf:input type="email" path="email" /><sf:errors path="email" cssClass="errors"/><br/>
+      Username: <sf:input type="text" path="username" /><sf:errors path="username" cssClass="errors"/><br/>
+      Password: <sf:input type="password" path="password" /><sf:errors path="password" cssClass="errors"/><br/>
       <input type="submit" value="Register" />
-    </form>
+    </sf:form>
   </body>
 </html>

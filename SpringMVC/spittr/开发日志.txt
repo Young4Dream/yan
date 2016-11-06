@@ -20,3 +20,19 @@
 17.跳转个人信息页面时报：Mapped class was not specified异常。
 		原因：没传Spitter.class进去。
 		解决：rowMapper=new BeanPropertyRowMapper<Spitter>(Spitter.class);
+18.当你开发一个项目，如果你选择的是spring MVC 框架，而你在前台使用spring的标签时，那么你有可能出现在这个情况。
+			javax.servlet.jsp.JspTagException: Neither BindingResult nor plain target object for bean name 'command' available as request attribute
+			方法：1为抛出异常原因，2为异常解决方法。
+			1.    原因：   进入spring：bind标签源码你可以看到
+			Object target = requestContext.getModelObject(beanName);
+			   if (target == null) {
+			    throw new IllegalStateException("Neither BindingResult nor plain target object for bean name '" +
+			      beanName + "' available as request attribute");
+			   }
+			beanName=    <spring:bind path="command.spjg">的绿色部分
+			如果你是直接对某个页面进行请求，那么request中还没command这个对象
+			2.
+			在页面上加上
+			<jsp:useBean id="command"  class="com.ztenc.proj.bean.AFRFOAP" scope="request" ></jsp:useBean>
+			红色部分填上你的绑定类
+
