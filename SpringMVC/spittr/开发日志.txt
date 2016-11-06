@@ -37,3 +37,9 @@
 			红色部分填上你的绑定类
 	public String register(@Valid @ModelAttribute("spitter") Spitter spitter,BindingResult errors){
 19.BindingResult和Errors同样可以起到校验的效果，它们同位于org.springframework.validation包中
+20.实现国际化：
+	1.使用spring的<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>中的<s:message/>实现；
+	2.配置信息源：ResourceBundleMessageSource或ReloadableResourceBundleMessageSource，分别以A和B代称
+		A方案是在根路径下配置，名字与配置的BeanName有关，如：BeanName="a"，那么在根路径下新建a.properties文件；
+		B方案是在整个系统中配置，可用classpath或file来修饰
+	3.使用方法：<s:message code="key"/>
