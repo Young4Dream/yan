@@ -110,6 +110,12 @@
       <artifactId>weld-osgi-bundle</artifactId>
       <version>1.0.1-SP3</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-jsp</artifactId>
+    <version>3.0.7</version>
+</dependency>
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 <dependency>
     <groupId>org.hibernate</groupId>
