@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Maven_spittr"
+  id="myeclipse.1478502269022"
+  context-root="/Maven_spittr"
+  j2ee-spec="6.0"
+  archive="Maven_spittr.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

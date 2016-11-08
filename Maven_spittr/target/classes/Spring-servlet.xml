@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       <!--  <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+        <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean> -->
+	
+	<mvc:annotation-driven/>
+	<!-- <context:annotation-config />  -->
+	<context:component-scan base-package="com.spring.mvc.controller"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> 
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/views/"></property>
+			<property name="suffix" value=".jsp"></property>
+			<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		</bean>
+	<!-- 	 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="cacheSeconds" value="0" />  
+ </bean> -->
+     <!-- 资源文件：messages.properties -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 验证器 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    
+    <!-- 自定义数据类型转换器 
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.my.controller.converter.IntConverter" />
+                <bean class="com.my.controller.converter.DateConverter" />
+            </list>
+        </property>
+    </bean>
+  添加访问静态资源的功能 -->
+ <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+</beans>
