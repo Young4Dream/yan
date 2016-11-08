@@ -3,7 +3,7 @@
   type="WEB"
   name="Maven_spittr"
   id="myeclipse.1478502269022"
-  context-root="/Maven_spittr"
+  context-root="/MavenTest"
   j2ee-spec="6.0"
   archive="Maven_spittr.war">
   <attributes>

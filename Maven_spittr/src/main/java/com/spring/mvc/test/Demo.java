@@ -13,5 +13,4 @@ public class Demo {
 		assertNotNull(DBHelper.getConnection());
 		assertNotNull(DBHelper.getLog());
 	}
-
 }

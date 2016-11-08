@@ -2,7 +2,10 @@ package com.spring.mvc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +18,41 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+
 import com.spring.mvc.dao.impl.SpitterDaoImpl;
 import com.spring.mvc.pojo.Spitter;
 
 @Controller
 @RequestMapping("/spitter")
 public class SpitterController {
+	@Autowired CookieLocaleResolver resolver; 
+    
+    //@Autowired SessionLocaleResolver resolver; 
+      
+    /** 
+     * 语言切换 
+     */
+    @RequestMapping("language") 
+    public ModelAndView language(HttpServletRequest request,HttpServletResponse response,String language){ 
+          
+        language=language.toLowerCase(); 
+        if(language==null||language.equals("")){ 
+            return new ModelAndView("redirect:/"); 
+        }else{ 
+            if(language.equals("zh_cn")){ 
+                resolver.setLocale(request, response, Locale.CHINA ); 
+            }else if(language.equals("en")){ 
+                resolver.setLocale(request, response, Locale.ENGLISH ); 
+            }else{ 
+                resolver.setLocale(request, response, Locale.CHINA ); 
+            } 
+        } 
+          
+        return new ModelAndView("redirect:/"); 
+    } 
+
 	@Autowired
 	private SpitterDaoImpl spitterDaoImpl;
 	/**
