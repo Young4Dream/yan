@@ -25,6 +25,18 @@
       <artifactId>javax.ejb</artifactId>
       <version>3.0.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14 -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-jdk14</artifactId>
+    <version>1.7.21</version>
+</dependency>
+ <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.21</version>
+</dependency>
     <dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>javax.enterprise.deploy</artifactId>
@@ -75,6 +87,12 @@
       <artifactId>javax.servlet.jsp.jstl</artifactId>
       <version>3.0.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-jsp</artifactId>
+    <version>3.0.7</version>
+</dependency>
     <dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>javax.transaction</artifactId>
