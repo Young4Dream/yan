@@ -116,6 +116,14 @@
     <artifactId>c3p0</artifactId>
     <version>0.9.1.2</version>
 </dependency>
+
+<!-- 添加连接Oracle的jar包 -->
+<!-- https://mvnrepository.com/artifact/ojdbc/ojdbc -->
+<dependency>
+    <groupId>ojdbc</groupId>
+    <artifactId>ojdbc</artifactId>
+    <version>14-10gR3</version>
+</dependency>
     <!-- Spring4.3.3 -->
    <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 <dependency>
@@ -153,7 +161,24 @@
     <artifactId>spring-aop</artifactId>
     <version>4.3.3.RELEASE</version>
 </dependency>
-
+<!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+<dependency>
+    <groupId>aopalliance</groupId>
+    <artifactId>aopalliance</artifactId>
+    <version>1.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjrt</artifactId>
+    <version>1.8.9</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.8.9</version>
+</dependency>
 <!-- Junit -->
 <!-- https://mvnrepository.com/artifact/junit/junit -->
 <dependency>
