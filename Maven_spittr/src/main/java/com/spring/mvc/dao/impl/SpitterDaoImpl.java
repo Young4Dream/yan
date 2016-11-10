@@ -32,13 +32,14 @@ public class SpitterDaoImpl implements SpitterDao{
 	@Override
 	public int update(Spitter s) {
 		String sql="update spitter set firstname" +
-				"=:firstname,lastname=:lastname,email=:email,username=:username,password=:password where id=:id";
+				"=:firstname,lastname=:lastname,email=:email,username=:username,password=:password,loc_img=:loc_img where id=:id";
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("firstname", s.getFirstName());
 		map.put("lastname", s.getLastName());
 		map.put("email", s.getEmail());
 		map.put("username", s.getUsername());
 		map.put("password", s.getPassword());
+		map.put("loc_img", s.getLoc_img());
 		try {
 			npjt.update(sql, map);
 			return 1;
@@ -53,7 +54,7 @@ public class SpitterDaoImpl implements SpitterDao{
 	@Override
 	public int add(Spitter s) {
 		String sql="insert into spitter(id,firstname,lastname,username,password,email) values(" +
-				"seq_spitter.nextval,:firstname,:lastname,:username,:password,:email" +
+				"seq_spitter.nextval,:firstname,:lastname,:username,:password,:email,:loc_img" +
 				")";
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("firstname", s.getFirstName());
@@ -61,6 +62,7 @@ public class SpitterDaoImpl implements SpitterDao{
 		map.put("email", s.getEmail());
 		map.put("username", s.getUsername());
 		map.put("password", s.getPassword());
+		map.put("loc_img", s.getLoc_img());
 		try {
 			int i=npjt.update(sql, map);
 			return i;
