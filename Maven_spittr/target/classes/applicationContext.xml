@@ -76,7 +76,7 @@
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
         <property name="basename"> 
             <!-- 定义消息资源文件的相对路径 -->
-            <value>messages/message</value> 
+            <value>messages</value> 
         </property> 
     </bean> 
 <!--        验证器
