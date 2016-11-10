@@ -161,6 +161,7 @@
     <artifactId>spring-aop</artifactId>
     <version>4.3.3.RELEASE</version>
 </dependency>
+<!-- 与spring-aop相关的jar包 -->
 <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
 <dependency>
     <groupId>aopalliance</groupId>
