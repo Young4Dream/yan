@@ -101,4 +101,6 @@
     </bean>
      <!-- 配置tiles3所需的bean -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"></bean>
+    <!-- 配置上传文件所需bean -->
+    <bean id="commonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 </beans>
