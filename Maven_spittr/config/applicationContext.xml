@@ -79,6 +79,10 @@
             <value>messages/message</value> 
         </property> 
     </bean> 
+<!--        验证器
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean> -->
     <!-- 基于Cookie的本地化解析器 -->
      <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> 
        <property name="cookieMaxAge" value="604800"/> 
@@ -87,10 +91,6 @@
      </bean> 
     <!-- 基于Session的本地化解析器 -->
     <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />--> 
-    
-      <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="messages"></property>
-    </bean>
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
     <property name="definitions">
     	<list>

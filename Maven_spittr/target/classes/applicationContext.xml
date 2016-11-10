@@ -72,8 +72,32 @@
   		<property name="time"><null/></property>
   		<property name="latitude"><null/></property>
   		<property name="longtitude"><null/></property>
-  </bean> -->
-      <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="messages"></property>
+  </bean> --><!-- 配置国际化资源文件路径 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+        <property name="basename"> 
+            <!-- 定义消息资源文件的相对路径 -->
+            <value>messages/message</value> 
+        </property> 
+    </bean> 
+<!--        验证器
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean> -->
+    <!-- 基于Cookie的本地化解析器 -->
+     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> 
+       <property name="cookieMaxAge" value="604800"/> 
+       <property name="defaultLocale" value="zh_CN"/> 
+       <property name="cookieName" value="Language"></property> 
+     </bean> 
+    <!-- 基于Session的本地化解析器 -->
+    <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />--> 
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <property name="definitions">
+    	<list>
+    		<value>/WEB-INF/layout/tiles.xml</value>
+    		<value>/WEB-INF/views/**/tiles.xml</value>
+    	</list>
+    </property>
     </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"></bean>
 </beans>
