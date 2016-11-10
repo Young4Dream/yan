@@ -23,6 +23,24 @@ public class Spitter {
 	@NotNull
 	@Size(max=20,min=4,message="{password.message}")
 	private String password;
+	private String loc_img;
+	public String getLoc_img() {
+		return loc_img;
+	}
+	public void setLoc_img(String loc_img) {
+		this.loc_img = loc_img;
+	}
+	public Spitter(Integer id, String firstName, String lastName, String email,
+			String username, String password, String loc_img) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.loc_img = loc_img;
+	}
 	/**
 	 * Constructor with no parameters
 	 */
