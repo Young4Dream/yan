@@ -56,22 +56,25 @@ NOMAXVALUE        -- 不设置最大值
 NOCYCLE               -- 一直累加，不循环  
 CACHE 10;
 --创建spitter表
-create table SPITTER
+CREATE TABLE SPITTER
 (
-  ID        NUMBER not null,
+  ID        NUMBER NOT NULL,
   FIRSTNAME VARCHAR2(10),
   LASTNAME  VARCHAR2(10),
   USERNAME  VARCHAR2(20),
   PASSWORD  VARCHAR2(20),
-  EMAIL     VARCHAR2(30)
+  EMAIL     VARCHAR2(30),
+  LOC_IMG   VARCHAR2(100)
 )
-tablespace USERS
-  pctfree 10
-  initrans 1
-  maxtrans 255
-  storage
+TABLESPACE USERS
+  PCTFREE 10
+  INITRANS 1
+  MAXTRANS 255
+  STORAGE
   (
-    initial 64K
-    minextents 1
-    maxextents unlimited
+    INITIAL 64K
+    MINEXTENTS 1
+    MAXEXTENTS UNLIMITED
   );
+COMMENT ON COLUMN SPITTER.LOC_IMG
+  IS '存放用户头像路径';

@@ -21,7 +21,6 @@
       Email: <sf:input type="email" path="email" /><sf:errors path="email" cssClass="errors"/><br/>
       Username: <sf:input type="text" path="username" /><sf:errors path="username" cssClass="errors"/><br/>
       Password: <sf:input type="password" path="password" /><sf:errors path="password" cssClass="errors"/><br/>
-      <input type="file" path="loc_img" accept="image/jpeg,image/jpg,image/png,image/gif"/><br/>
       <input type="submit" value="Register" />
     </sf:form>
   </body>

@@ -1,14 +1,12 @@
 package com.spring.mvc.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +18,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -39,6 +34,8 @@ public class SpitterController {
 	CommonsMultipartResolver multipartResolver;
 	@Autowired
     HttpServletRequest request;
+	@Autowired
+	HttpSession session;
     //@Autowired SessionLocaleResolver resolver; 
       
     /** 
@@ -92,31 +89,14 @@ public class SpitterController {
 			System.out.println("属性验证未通过");
 			return "registerForm";
 		}
-		/**
-		 * 处理文件请求
-		 */
-		//判断是否为空
-		if(file.isEmpty()){
-			System.out.println("未上传头像！");
-		}else{
-			//定义上传位置
-			String filePath=request.getSession().getServletContext().getRealPath("/")+"WEB-INF/userfile/" +
-					file.getOriginalFilename();
-			try {
-				//转存文件
-				file.transferTo(new File(filePath));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			String name=file.getName();
-			System.out.println(name);
-			String contentType=file.getContentType();
-			System.out.println(contentType);
-			String locFileName=null;
-			spitter.setLoc_img(locFileName);
-		}
 		spitter.setLoc_img("null");
-		spitterDaoImpl.add(spitter);
+		try {
+			spitterDaoImpl.add(spitter);
+			session.setAttribute("user", spitter);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:/spitter/"+spitter.getUsername();
 	}
 //	@RequestMapping(value="/register",method=RequestMethod.POST)
