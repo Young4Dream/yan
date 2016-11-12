@@ -16,7 +16,7 @@ String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + r
     	$(document).ready(
     	function(){
     		var loc_img='${spitter.loc_img}';
-    		if($(loc_img).equals('null')){
+    		if(loc_img==('null')){
     		$("#form1").show();
     		$("#img").hide();
     		}else{
@@ -36,7 +36,7 @@ String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + r
     	<input type="submit" value="提交"/>&nbsp;&nbsp;&nbsp;&nbsp;
     	<input type="reset" value="重置">
     </sf:form>
-</div>
-    <img id="img" src='${spitter.loc_img}'>
+</div><hr>
+    <img id="img" src='${spitter.loc_img}' width="200px">
   </body>
 </html>
