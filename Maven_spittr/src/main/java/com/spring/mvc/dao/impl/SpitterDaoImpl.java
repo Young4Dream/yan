@@ -58,7 +58,6 @@ public class SpitterDaoImpl implements SpitterDao{
 				"seq_spitter.nextval,:firstname,:lastname,:username,:password,:email,:loc_img" +
 				")";
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("id", s.getId());
 		map.put("firstname", s.getFirstName());
 		map.put("lastname", s.getLastName());
 		map.put("email", s.getEmail());
