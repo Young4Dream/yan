@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import com.spring.mvc.dao.impl.SpitterDaoImpl;
 import com.spring.mvc.pojo.Spitter;
@@ -36,6 +34,7 @@ private HttpSession session;
 		//判断是否为空
 		if(file.isEmpty()){
 			System.out.println("未上传头像！");
+			return "redirect:/spitter/"+spitter.getUsername();
 		}else{
 			//定义上传位置
 			String filePath=request.getSession().getServletContext().getRealPath("/")+"WEB-INF/userfile/" +
@@ -60,7 +59,7 @@ private HttpSession session;
 				}
 			} catch (Exception e) {
 			}
+			return "redirect:/spitter/"+spitter.getUsername();
 		}
-		return "redirect:/spitter/"+spitter.getUsername();
 	}
 }
