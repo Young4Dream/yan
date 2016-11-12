@@ -60,7 +60,7 @@ private HttpSession session;
 				}
 				return "redirect:/spitter/"+username;
 			} catch (Exception e) {
-				return null;
+				return "home";
 			}
 			
 		}
