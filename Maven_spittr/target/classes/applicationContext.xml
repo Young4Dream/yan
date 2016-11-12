@@ -62,27 +62,13 @@
   <bean id="namedParameterJDBCTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
     	<constructor-arg><ref bean="dataSource"/></constructor-arg>
   </bean>
-  <bean class="com.spring.mvc.jdbc.DBHelper">
-  	<!-- <property name="log"></property>
-  	<property name="ctx"></property> -->
-  </bean>
-<!--   <bean id="spittle" class="com.spring.mvc.pojo.Spittle">
-  		<property name="id"><null/></property>
-  		<property name="message"><null/></property>
-  		<property name="time"><null/></property>
-  		<property name="latitude"><null/></property>
-  		<property name="longtitude"><null/></property>
-  </bean> --><!-- 配置国际化资源文件路径 -->
+  <bean class="com.spring.mvc.jdbc.DBHelper"></bean>
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
         <property name="basename"> 
             <!-- 定义消息资源文件的相对路径 -->
             <value>messages</value> 
         </property> 
     </bean> 
-<!--        验证器
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-        <property name="validationMessageSource" ref="messageSource"/>
-    </bean> -->
     <!-- 基于Cookie的本地化解析器 -->
      <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> 
        <property name="cookieMaxAge" value="604800"/> 
@@ -90,7 +76,6 @@
        <property name="cookieName" value="Language"></property> 
      </bean> 
     <!-- 基于Session的本地化解析器 -->
-    <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />--> 
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
     <property name="definitions">
     	<list>
@@ -99,8 +84,14 @@
     	</list>
     </property>
     </bean>
-     <!-- 配置tiles3所需的bean -->
+     <!-- tiles3 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"></bean>
-    <!-- 配置上传文件所需bean -->
-    <bean id="commonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+     <!-- 上传文件 -->
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="uploadTempDir" value="WEB-INF/userfile"></property>
+        <property name="defaultEncoding" value="UTF-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>  
+        <property name="maxInMemorySize" value="40960"></property>
+        <property name="maxUploadSizePerFile" value="20480000"></property>
+   </bean> 
 </beans>

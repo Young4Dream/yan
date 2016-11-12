@@ -93,8 +93,10 @@ public class SpitterController {
 		try {
 			spitterDaoImpl.add(spitter);
 			session.setAttribute("user", spitter);
+			if(session.getAttribute("user") !=null){
+				System.out.println("session属性添加成功："+(Spitter)session.getAttribute("user"));
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "redirect:/spitter/"+spitter.getUsername();

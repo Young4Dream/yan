@@ -53,7 +53,7 @@ public class SpitterDaoImpl implements SpitterDao{
  */
 	@Override
 	public int add(Spitter s) {
-		String sql="insert into spitter(id,firstname,lastname,username,password,email) values(" +
+		String sql="insert into spitter(id,firstname,lastname,username,password,email,loc_img) values(" +
 				"seq_spitter.nextval,:firstname,:lastname,:username,:password,:email,:loc_img" +
 				")";
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -64,6 +64,11 @@ public class SpitterDaoImpl implements SpitterDao{
 		map.put("password", s.getPassword());
 		map.put("loc_img", s.getLoc_img());
 		try {
+			System.out.println("开始添加Spitter数据");
+			for(Map.Entry<String, Object> entry:map.entrySet()){
+				System.out.println(entry.getKey()+"-->"+entry.getValue());
+			}
+			System.out.println("sql:"+sql);
 			int i=npjt.update(sql, map);
 			return i;
 		} catch (DataAccessException e) {

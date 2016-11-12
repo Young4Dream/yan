@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import com.spring.mvc.dao.impl.SpitterDaoImpl;
 import com.spring.mvc.pojo.Spitter;
@@ -21,15 +22,14 @@ private SpitterDaoImpl spitterDaoImpl;
 private HttpServletRequest request;
 @Autowired
 private HttpSession session;
-@Autowired
-Spitter spitter;
 	/**
 	 * 上传文件
 	 * @param file
 	 * @return
 	 */
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
-	public String register(@RequestParam("file") MultipartFile file){
+	public String register(MultipartFile file){
+		Spitter spitter=new Spitter();
 		/**
 		 * 处理文件请求
 		 */
@@ -44,15 +44,21 @@ Spitter spitter;
 				//转存文件
 				file.transferTo(new File(filePath));
 				String name=file.getName();
-				System.out.println(name);
+				System.out.println("file.getName():"+name);
 				String contentType=file.getContentType();
-				System.out.println(contentType);
-				spitter = spitterDaoImpl.findByUsername((String)session.getAttribute("username"));
-				spitter.setLoc_img(filePath);
-				spitterDaoImpl.update(spitter);
-				session.setAttribute("user", spitter);
+				System.out.println("file.getContentType():"+contentType);
+				System.out.println("filePath"+filePath);
+				spitter = (Spitter) session.getAttribute("user");
+				String username=spitter.getUsername();
+				if(!username.equals("") || username!=null){
+					System.out.println("通过session属性获取用户名："+username);
+					spitter=spitterDaoImpl.findByUsername(username);
+					System.out.println("通过findByUsername获取的id："+spitter.getId());
+					spitter.setLoc_img(filePath);
+					spitterDaoImpl.update(spitter);
+					session.setAttribute("user", spitter);
+				}
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 		return "redirect:/spitter/"+spitter.getUsername();

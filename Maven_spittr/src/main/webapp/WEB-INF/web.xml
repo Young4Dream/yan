@@ -27,6 +27,13 @@
   		<param-value>classpath:Spring-servlet.xml</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
+	<!-- 如果是使用基于servlet的multipart处理上传文件，那么需要在web.xml中配置 
+  	<multipart-config>
+  		<location>D:\apache-tomcat-7.0.65\webapps\Maven_spittr\upload</location>
+  		<max-file-size>2097152</max-file-size>
+  		<max-request-size>87897</max-request-size>
+  		<file-size-threshold>0</file-size-threshold>
+  	</multipart-config>-->
   	</servlet>
   	<servlet-mapping>
   		<servlet-name>Spring</servlet-name>

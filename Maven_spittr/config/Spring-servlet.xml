@@ -20,12 +20,7 @@
 			<property name="suffix" value=".jsp"></property>
 			<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
 		</bean>
-		    <!-- 配置上传文件所需的bean -->
-   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-        <property name="defaultEncoding" value="UTF-8"></property>   
-        <property name="maxUploadSize" value="10485760000"></property>  
-        <property name="maxInMemorySize" value="40960"></property>  
-   </bean> 
+		 
 	<!--添加访问静态资源的功能 -->
- <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+ <mvc:resources location="/" mapping="/**"></mvc:resources>
 </beans>

@@ -12,7 +12,7 @@
     	$(document).ready(
     	function(){
     		var loc_img='${session.getAttribute("img")}';
-    		if(loc_img.equals('') || loc_img == null){
+    		if(loc_img.equals('') || loc_img == 'null'){
     		$("#form").hide();
     		$("#img").show();
     		}else{
