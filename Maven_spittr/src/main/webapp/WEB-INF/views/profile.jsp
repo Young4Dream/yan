@@ -11,12 +11,12 @@ String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + r
   <head>
     <title>Spitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />" >
-    <script type="text/javascript" src="/WEB-INF/js/jQuery/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="<%=path %>/js/jQuery/jquery-1.8.2.js"></script>
     <script type="text/javascript">
     	$(document).ready(
     	function(){
     		var loc_img='${spitter.loc_img}';
-    		if(loc_img.equals('') || loc_img == 'null'){
+    		if($(loc_img).equals('null')){
     		$("#form1").show();
     		$("#img").hide();
     		}else{
