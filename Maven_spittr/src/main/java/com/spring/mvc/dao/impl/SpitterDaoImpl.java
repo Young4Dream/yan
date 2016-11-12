@@ -89,7 +89,7 @@ public class SpitterDaoImpl implements SpitterDao{
 	}
 	@Override
 	public Spitter findByUsername(String username) {
-		String sql="select id,firstname,lastname,email,loc_img from spitter where username=?";
+		String sql="select * from spitter where username=?";
 		RowMapper<Spitter> rowMapper;
 		rowMapper=new BeanPropertyRowMapper<Spitter>(Spitter.class);
 		Spitter s;
