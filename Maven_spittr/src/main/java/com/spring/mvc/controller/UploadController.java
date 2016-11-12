@@ -55,7 +55,7 @@ private HttpSession session;
 					System.out.println("通过session属性获取用户名："+username);
 					spitter=spitterDaoImpl.findByUsername(username);
 					System.out.println("通过findByUsername获取的id："+spitter.getId());
-					spitter.setLoc_img(request.getSession().getServletContext().getContextPath()+"/"+file.getOriginalFilename());
+					spitter.setLoc_img(request.getSession().getServletContext().getContextPath()+"/"+"WEB-INF/userfile/"+file.getOriginalFilename());
 					spitterDaoImpl.update(spitter);
 					session.setAttribute("user", spitter);
 					session.setAttribute("img", spitter.getLoc_img());
