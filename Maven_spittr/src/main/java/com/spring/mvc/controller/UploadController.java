@@ -27,15 +27,16 @@ private HttpSession session;
 	 */
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	public String register(MultipartFile file){
-		Spitter spitter=new Spitter();
 		/**
 		 * 处理文件请求
 		 */
 		//判断是否为空
 		if(file.isEmpty()){
+			Spitter s=(Spitter) session.getAttribute("user");
 			System.out.println("未上传头像！");
-			return "redirect:/spitter/"+spitter.getUsername();
+			return "redirect:/spitter/"+s.getUsername();
 		}else{
+			Spitter spitter=new Spitter();
 			//定义上传位置
 			String filePath=request.getSession().getServletContext().getRealPath("/")+"WEB-INF/userfile/" +
 					file.getOriginalFilename();
