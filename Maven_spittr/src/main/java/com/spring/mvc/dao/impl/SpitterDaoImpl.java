@@ -34,6 +34,7 @@ public class SpitterDaoImpl implements SpitterDao{
 		String sql="update spitter set firstname" +
 				"=:firstname,lastname=:lastname,email=:email,username=:username,password=:password,loc_img=:loc_img where id=:id";
 		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("id", s.getId());
 		map.put("firstname", s.getFirstName());
 		map.put("lastname", s.getLastName());
 		map.put("email", s.getEmail());
@@ -57,6 +58,7 @@ public class SpitterDaoImpl implements SpitterDao{
 				"seq_spitter.nextval,:firstname,:lastname,:username,:password,:email,:loc_img" +
 				")";
 		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("id", s.getId());
 		map.put("firstname", s.getFirstName());
 		map.put("lastname", s.getLastName());
 		map.put("email", s.getEmail());
@@ -86,7 +88,6 @@ public class SpitterDaoImpl implements SpitterDao{
 			return -1;
 		}
 	}
-
 	@Override
 	public Spitter findByUsername(String username) {
 		String sql="select id,firstname,lastname,email,loc_img from spitter where username=?";
