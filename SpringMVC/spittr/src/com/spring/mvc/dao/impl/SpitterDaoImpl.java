@@ -34,6 +34,7 @@ public class SpitterDaoImpl implements SpitterDao{
 		String sql="update spitter set firstname" +
 				"=:firstname,lastname=:lastname,email=:email,username=:username,password=:password where id=:id";
 		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("id", s.getId());
 		map.put("firstname", s.getFirstName());
 		map.put("lastname", s.getLastName());
 		map.put("email", s.getEmail());
