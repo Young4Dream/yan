@@ -92,6 +92,6 @@
         <property name="defaultEncoding" value="UTF-8"></property>   
         <property name="maxUploadSize" value="10485760000"></property>  
         <property name="maxInMemorySize" value="40960"></property>
-        <property name="maxUploadSizePerFile" value="20480000"></property>
+        <property name="maxUploadSizePerFile" value="204800000"></property>
    </bean> 
 </beans>

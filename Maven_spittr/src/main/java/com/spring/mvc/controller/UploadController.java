@@ -39,7 +39,7 @@ private HttpSession session;
 		}else{
 			Spitter spitter=new Spitter();
 			//定义上传位置
-			String filePath=request.getSession().getServletContext().getRealPath("/")+"WEB-INF\\userfile\\" +
+			String filePath=request.getSession().getServletContext().getRealPath("/")+"\\userfile\\" +
 					file.getOriginalFilename();
 			try {
 				//转存文件
