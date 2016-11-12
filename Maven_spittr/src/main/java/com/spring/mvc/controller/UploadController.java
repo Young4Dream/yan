@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +27,7 @@ private HttpSession session;
 	 * @return
 	 */
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
-	public String register(MultipartFile file){
+	public String register(MultipartFile file,Model model){
 		/**
 		 * 处理文件请求
 		 */
@@ -57,6 +58,8 @@ private HttpSession session;
 					spitter.setLoc_img(filePath);
 					spitterDaoImpl.update(spitter);
 					session.setAttribute("user", spitter);
+					session.setAttribute("img", spitter.getLoc_img());
+					model.addAttribute("spitter", spitter);
 				}
 				return "redirect:/spitter/"+username;
 			} catch (Exception e) {
