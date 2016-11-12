@@ -65,7 +65,6 @@ private HttpSession session;
 			} catch (Exception e) {
 				return "home";
 			}
-			
 		}
 	}
 }

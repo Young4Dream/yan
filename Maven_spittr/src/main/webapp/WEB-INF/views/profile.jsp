@@ -3,11 +3,15 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setCharacterEncoding("UTF-8"); %>
 <%@ page session="false" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
+%>
 <html>
   <head>
     <title>Spitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />" >
-    <script type="text/javascript" src="WEB-INF/js/jQuery/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/WEB-INF/js/jQuery/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(
     	function(){
