@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -40,6 +41,9 @@ public class SpitterDaoImpl implements SpitterDao{
 		map.put("email", s.getEmail());
 		map.put("username", s.getUsername());
 		map.put("password", s.getPassword());
+		for(Entry<String, Object> entry:map.entrySet()){
+			System.out.println(entry.getKey()+"-->"+entry.getValue());
+		}
 		try {
 			npjt.update(sql, map);
 			return 1;

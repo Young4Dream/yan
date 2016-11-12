@@ -4,8 +4,6 @@ package com.spring.mvc.pojo;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class Spitter {
 	private Integer id;
 	@NotNull
@@ -55,7 +53,6 @@ public class Spitter {
 	 * @param username
 	 * @param password
 	 */
-	@Autowired
 	public Spitter(String firstName, String lastName, String email,
 			String username, String password) {
 		super();
