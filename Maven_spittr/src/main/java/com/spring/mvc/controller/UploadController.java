@@ -58,9 +58,11 @@ private HttpSession session;
 					spitterDaoImpl.update(spitter);
 					session.setAttribute("user", spitter);
 				}
+				return "redirect:/spitter/"+username;
 			} catch (Exception e) {
+				return null;
 			}
-			return "redirect:/spitter/"+spitter.getUsername();
+			
 		}
 	}
 }
