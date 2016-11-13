@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.spring.mvc.dao.SpittleDao;
 import com.spring.mvc.pojo.Spittle;
+import com.spring.mvc.web.SpittleNotFoundException;
 
 @Controller
 @RequestMapping("/spittle")
@@ -45,7 +46,11 @@ public class SpittleController {
 	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public String spittle(@PathVariable("id")int id,Model model){
-		model.addAttribute("spittle", spittleDao.findById(id));
+		Spittle spittle=spittleDao.findById(id);
+		if(spittle==null){
+			throw new SpittleNotFoundException();
+		}
+		model.addAttribute("spittle", spittle);
 		return "spittle";
 	}
 	/**

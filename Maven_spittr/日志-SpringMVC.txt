@@ -43,3 +43,5 @@
 		A方案是在根路径下配置，名字与配置的BeanName有关，如：BeanName="a"，那么在根路径下新建a.properties文件；
 		B方案是在整个系统中配置，可用classpath或file来修饰
 	3.使用方法：<s:message code="key"/>
+21.Multipart文件上传见xmind文件
+22.处理异常
