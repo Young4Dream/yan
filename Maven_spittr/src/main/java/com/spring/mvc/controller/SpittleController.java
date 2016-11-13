@@ -46,8 +46,10 @@ public class SpittleController {
 	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public String spittle(@PathVariable("id")int id,Model model){
-		Spittle spittle=spittleDao.findById(id);
-		if(spittle==null){
+		Spittle spittle;
+		try {
+			spittle = spittleDao.findById(id);
+		} catch (Exception e) {
 			throw new SpittleNotFoundException();
 		}
 		model.addAttribute("spittle", spittle);

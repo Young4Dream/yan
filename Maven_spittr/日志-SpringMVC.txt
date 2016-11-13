@@ -45,3 +45,20 @@
 	3.使用方法：<s:message code="key"/>
 21.Multipart文件上传见xmind文件
 22.处理异常
+	1.创建处理某类异常的类，让其继承RuntimeException
+	public class SpittleNotFoundException extends RuntimeException{}
+	2.添加@ResponseStatus注解，标明对应的HttpStatus的值，并自定义reason
+	@ResponseStatus(value=HttpStatus.NOT_FOUND,reason="Spittle Not Found")
+	3.例子：在（controller或Dao层都行）相关方法中加入try-catch块即可：
+		try {
+			spittle = jt.queryForObject(sql, rowMapper, id);
+		} catch (Exception e) {
+			throw new SpittleNotFoundException();
+		}
+	4.当出现错误时显示信息如下：
+	HTTP Status 404 - Spittle Not Found
+	type Status report
+	message Spittle Not Found
+	description The requested resource is not available.
+	Apache Tomcat/7.0.65
+

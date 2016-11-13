@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 //import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
 import com.spring.mvc.dao.impl.SpitterDaoImpl;
 import com.spring.mvc.pojo.Spitter;
+import com.spring.mvc.web.DuplicateSpitterException;
 
 @Controller
 @RequestMapping("/spitter")
@@ -134,5 +136,9 @@ public class SpitterController {
 	}
 	public void setSpitterDaoImpl(SpitterDaoImpl spitterDaoImpl) {
 		this.spitterDaoImpl = spitterDaoImpl;
+	}
+	@ExceptionHandler(value=DuplicateSpitterException.class)
+	public String handleDuplicateSpitter(){
+		return "error/error";
 	}
 }

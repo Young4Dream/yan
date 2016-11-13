@@ -20,7 +20,6 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.mvc.dao.SpittleDao;
 import com.spring.mvc.pojo.Spittle;
-import com.spring.mvc.web.SpittleNotFoundException;
 @Repository
 public class SpittleDaoImpl implements SpittleDao{
 	
@@ -31,12 +30,7 @@ public class SpittleDaoImpl implements SpittleDao{
 	public Spittle findById(int id) {
 		String sql="select * from spittle where id=?";
 		RowMapper<Spittle> rowMapper=new BeanPropertyRowMapper<Spittle>(Spittle.class);
-		Spittle spittle;
-		try {
-			spittle = jt.queryForObject(sql, rowMapper, id);
-		} catch (Exception e) {
-			throw new SpittleNotFoundException();
-		}
+		Spittle spittle=jt.queryForObject(sql, rowMapper, id);
 		return spittle;
 	}
 
