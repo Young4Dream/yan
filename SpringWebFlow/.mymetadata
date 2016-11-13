@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="SpringWebFlow"
+  id="myeclipse.1479032980390"
+  context-root="/SpringWebFlow"
+  j2ee-spec="6.0"
+  archive="SpringWebFlow.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
