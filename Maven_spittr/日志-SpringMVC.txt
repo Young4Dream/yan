@@ -45,20 +45,57 @@
 	3.使用方法：<s:message code="key"/>
 21.Multipart文件上传见xmind文件
 22.处理异常
-	1.创建处理某类异常的类，让其继承RuntimeException
-	public class SpittleNotFoundException extends RuntimeException{}
-	2.添加@ResponseStatus注解，标明对应的HttpStatus的值，并自定义reason
-	@ResponseStatus(value=HttpStatus.NOT_FOUND,reason="Spittle Not Found")
-	3.例子：在（controller或Dao层都行）相关方法中加入try-catch块即可：
-		try {
-			spittle = jt.queryForObject(sql, rowMapper, id);
-		} catch (Exception e) {
-			throw new SpittleNotFoundException();
-		}
-	4.当出现错误时显示信息如下：
-	HTTP Status 404 - Spittle Not Found
-	type Status report
-	message Spittle Not Found
-	description The requested resource is not available.
-	Apache Tomcat/7.0.65
+	22.1对于能转换成HttpStatus的异常
+		1.创建处理某类异常的类，让其继承RuntimeException
+		public class SpittleNotFoundException extends RuntimeException{}
+		2.添加@ResponseStatus注解，标明对应的HttpStatus的值，并自定义reason
+		@ResponseStatus(value=HttpStatus.NOT_FOUND,reason="Spittle Not Found")
+		3.例子：在（controller或Dao层都行）相关方法中加入try-catch块即可：
+			try {
+				spittle = jt.queryForObject(sql, rowMapper, id);
+			} catch (Exception e) {
+				throw new SpittleNotFoundException();
+			}
+		4.当出现错误时显示信息如下：
+		HTTP Status 404 - Spittle Not Found
+		type Status report
+		message Spittle Not Found
+		description The requested resource is not available.
+		Apache Tomcat/7.0.65
+	22.2对于无对应HttpStatus的异常：比如重复插入数据
+		1.创建处理异常的类
+		public class DuplicateSpitterException extends RuntimeException{}
+		2.在controller层新增方法，表示当此类中有抛出自定义异常DuplicateSpitterException时，指定对应的逻辑视图名
+			@ExceptionHandler(value=DuplicateSpitterException.class)
+			public String handleDuplicateSpitter(){
+			return "error/error";
+			}
+		3.@ExceptionHandler的作用就是监听DuplicateSpitterException，只要抛出DuplicateSpitterException类的异常便会转向相应的视图
+		4.这种方式可以处理同一个Controller类中抛出的DuplicateSpitterException异常
+	22.3处理全局异常
+		1.创建一个定义全局异常的类：public class APPWideException extends RuntimeException{}
+		2.创建一个专门处理全局异常的类，它其实是一个Controller，并且在其类上添加@ControllerAdvice，这样就可以监听所有Controller层抛出的异常
+		3.在APPWideExceptionController中定义全局异常的处理方法，指定逻辑视图
+		4.如果@ControllerAdvice监听到的异常在此类中有定义的处理方法，则会照此规则执行，如定义了APPWideException.class，捕捉到则执行error/appError处理
+		package com.spring.mvc.controller;
 
+		import org.springframework.web.bind.annotation.ControllerAdvice;
+		import org.springframework.web.bind.annotation.ExceptionHandler;
+
+		import com.spring.mvc.web.APPWideException;
+
+		@ControllerAdvice
+		public class APPWideExceptionController {
+			@ExceptionHandler(value=APPWideException.class)
+			public String appWideExceptionHandler(){
+			return "error/appError";
+			}
+		}
+23.跨重定向请求数据
+	23.1可以使用redirect:/spitter/{username},前提是：model.addAttribute("username",spitter.getUsername());
+	23.2如果有多余参数，如model.addAttribute("id",spitter.getId());,那么会变为.../spitter/yan?id=***;
+	23.3使用model.addFlashAttribute("spitter",spitter)可以传递除String和数字类型外的数据，作用域为重定向完成为止，比session短。
+	
+
+		
+		
