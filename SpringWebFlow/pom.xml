@@ -161,6 +161,12 @@
     <artifactId>spring-aop</artifactId>
     <version>4.3.3.RELEASE</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.webflow/spring-webflow -->
+<dependency>
+    <groupId>org.springframework.webflow</groupId>
+    <artifactId>spring-webflow</artifactId>
+    <version>2.4.4.RELEASE</version>
+</dependency>
 <!-- 与spring-aop相关的jar包 -->
 <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
 <dependency>
