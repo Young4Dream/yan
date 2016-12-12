@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 属性 -->
+<properties resource="dataSource.properties">
+	<property name="driver" value="com.mysql.jdbc.Driver"/>
+	<property name="url" value="jdbc:mysql://localhost:3306/mysql"/>
+	<property name="username" value="root"/>
+	<property name="password" value="mysql"/>
+</properties>
+<!-- 设置 -->
+<settings><setting name="" value=""/></settings>
+<!-- 定义别名 -->
+<typeAliases/>
+<!-- 类型处理器 -->
+<typeHandlers/>
+<!-- 对象工厂 -->
+<objectFactory type=""/>
+<!-- 插件 -->
+<plugins><plugin interceptor=""></plugin></plugins>
+<!-- 配置环境 -->
+<environments default="">
+<!-- 环境变量 -->
+<environment id="">
+<!-- 事务管理器 -->
+<transactionManager type=""/>
+<!-- 数据源 -->
+<dataSource type="">
+<property name="driver" value="${driver}"/>
+<property name="url" value="${url}"/>
+<property name="username" value="${username}"/>
+<property name="password" value="${password}"/>
+</dataSource>
+</environment>
+</environments>
+<!-- 数据库厂商标识 -->
+<databaseIdProvider type=""/>
+<!-- 映射器 -->
+<mappers><mapper resource=""/></mappers>
+</configuration>

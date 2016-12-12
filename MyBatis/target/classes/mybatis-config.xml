@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<properties resource="jdbc.properties"/>
+<settings><setting name="logImpl" value="LOG4J"></setting></settings>
+<!-- 定义别名 -->
+<typeAliases>
+	<package name="com.yan.po"/>
+</typeAliases>
+ <typeHandlers>
+<!-- <typeHandler handler="com.yan.typeHandler.IStringTypeHandler" 
+javaType="String" jdbcType="VARCHAR"/> -->
+<package name="com.yan.typeHandler"/>
+</typeHandlers>
+<!-- <objectFactory type="com.yan.objectFactory.IObjectFactory">
+property元素选填，内容也是自定义
+	<property name="a" value="b"/>
+</objectFactory> -->
+<!-- 定义数据库信息，默认使用development数据库构建环境 -->
+<environments default="development">
+<environment id="development">
+<!-- 可选参数为
+	JDBC-在独立编码中常常使用
+	MANAGED-采用容器方式管理事务，在JNDI数据源中使用
+	自定义-适用于特殊应用
+-->
+<transactionManager type="JDBC"/>
+<!-- 
+	UNPOOLED-非连接池，使用MyBatis提供的org.apache.ibatis.datasource.unpooled.UnpooledDataSource实现
+	POOLED-连接池，使用MyBatis提供的org.apache.ibatis.datasource.pooled.PooledDataSource实现
+	JNDI-使用org.apache.ibatis.datasource.jndi.JndiDataSourceFactory实现
+	自定义-全类名：<dataSource type="com.yan.dataSource.IDataSource"> 
+-->
+<dataSource type="POOLED">
+	<property name="driver" value="${driver}"/>
+	<property name="url" value="${url}"/>
+	<property name="username" value="${username}"/>
+	<property name="password" value="${password}"/>
+</dataSource>
+</environment>
+</environments>
+<databaseIdProvider type="com.yan.databaseID.IDatabaseIDProvider">
+	<property name="SQL Server" value="sqlserver"/>
+	<property name="MySQL" value="mysql"/>
+	<property name="DB2" value="db2"/>
+	<property name="Oracle" value="oracle"/>
+	<property name="PostgreSQL" value="postgresql"/>
+</databaseIdProvider>
+<mappers>
+<!-- <mapper resource="com/yan/mapper/RoleMapper.xml"/> -->
+<mapper class="com.yan.dao.RoleMapper"/>
+<!-- <mapper url="file:///java/com/yan/mapper/RoleMapper.xml"/> -->
+<!-- <package name="com.yan.dao"></package> -->
+</mappers>
+</configuration>
