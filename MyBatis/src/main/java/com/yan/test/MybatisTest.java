@@ -22,12 +22,13 @@ public static void main(String[] args) {
 //		roleMapper.insert(role);
 //		sqlSession.commit();
 		Role r =new Role();
-//		Map<String, Object> map=new HashMap<String, Object>();
-//		map.put("id", 1);
-//		map.put("roleName", "超级管理员");
-//		r=roleMapper.selectByUnionKey(map);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("id", 1);
+		map.put("roleName", "超级管理员");
 		r=roleMapper.selectByPrimaryKey(1);
-		System.out.println(r);
+		System.out.println("通过id:"+r);
+		r=roleMapper.selectByUnionKey(map);
+		System.out.println("通过map:"+r);
 	}catch(Exception e){
 		System.err.println("异常："+e.getMessage());
 		sqlSession.rollback();
@@ -35,6 +36,7 @@ public static void main(String[] args) {
 		if(sqlSession!=null){
 			sqlSession.close();
 		}
+		System.exit(0);
 	}
 }
 }

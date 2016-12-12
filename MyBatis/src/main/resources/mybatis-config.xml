@@ -49,8 +49,8 @@ property元素选填，内容也是自定义
 	<property name="PostgreSQL" value="postgresql"/>
 </databaseIdProvider>
 <mappers>
-<!-- <mapper resource="com/yan/mapper/RoleMapper.xml"/> -->
-<mapper class="com.yan.dao.RoleMapper"/>
+<mapper resource="com/yan/mapper/RoleMapper.xml"/>
+<!-- <mapper class="com.yan.dao.RoleMapper"/> -->
 <!-- <mapper url="file:///java/com/yan/mapper/RoleMapper.xml"/> -->
 <!-- <package name="com.yan.dao"></package> -->
 </mappers>

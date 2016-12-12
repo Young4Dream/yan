@@ -13,7 +13,7 @@ public interface RoleMapper {
 
     Role selectByPrimaryKey(Integer id);
 
-    /*Role selectByUnionKey(Map<String,Object> map);*/
+    Role selectByUnionKey(Map<String,Object> map);
     
     int updateByPrimaryKeySelective(Role record);
 

@@ -8,20 +8,20 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, rolename, note
-  </sql>
+  </sql> 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from role
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <!-- <select id="selectByUnionKey" resultMap="BaseResultMap" parameterType="java.util.Map">
+  <select id="selectByUnionKey" resultMap="BaseResultMap" parameterType="java.util.Map">
     select 
     <include refid="Base_Column_List" />
     from role
     where id = #{id} 
 		  and roleName = #{roleName}
-  </select> -->
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from role
     where id = #{id,jdbcType=INTEGER}
