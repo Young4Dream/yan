@@ -15,7 +15,14 @@
     from role
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByUnionKey" resultMap="BaseResultMap" parameterType="java.util.Map">
+  <!-- <select id="selectByUnionKey" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where id = #{id} 
+		  and roleName = #{roleName}
+  </select> -->
+  <select id="selectByUnionKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from role
