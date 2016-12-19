@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yan.dao.mapper.EmpMapper" >
-  <resultMap id="BaseResultMap" type="com.yan.pojo.Emp" >
+  <resultMap id="BaseResultMap" type="com.yan.po.Emp" >
     <id column="EMPNO" property="empno" jdbcType="DECIMAL" />
     <result column="ENAME" property="ename" jdbcType="VARCHAR" />
     <result column="JOB" property="job" jdbcType="VARCHAR" />
@@ -11,6 +11,22 @@
     <result column="COMM" property="comm" jdbcType="DECIMAL" />
     <result column="DEPTNO" property="deptno" jdbcType="DECIMAL" />
   </resultMap>
+  <resultMap id="BaseResultMap1" type="com.yan.po.Emp" >
+    <id column="EMPNO" property="empno" jdbcType="DECIMAL" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="MGR" property="mgr" jdbcType="DECIMAL" />
+    <result column="HIREDATE" property="hiredate" jdbcType="DATE" />
+    <result column="SAL" property="sal" jdbcType="DECIMAL" />
+    <result column="COMM" property="comm" jdbcType="DECIMAL" />
+    <result column="DEPTNO" property="deptno" jdbcType="DECIMAL" />
+    <association property="dept" column="deptno" select="com.yan.dao.mapper.DeptMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <select id="findByAss" resultMap="BaseResultMap1" parameterType="short">
+  	select a.ename,a.job,a.mgr,a.hiredate,a.sal,a.comm,a.deptno
+  	from emp a,dept b
+  	where a.deptno=b.deptno and a.empno=#{empno}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -72,7 +88,7 @@
   <sql id="Base_Column_List" >
     EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.pojo.EmpExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.po.EmpExample" >
     select
     <if test="distinct" >
       distinct
@@ -96,13 +112,13 @@
     delete from SCOTT.EMP
     where EMPNO = #{empno,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.yan.pojo.EmpExample" >
+  <delete id="deleteByExample" parameterType="com.yan.po.EmpExample" >
     delete from SCOTT.EMP
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.yan.pojo.Emp" >
+  <insert id="insert" parameterType="com.yan.po.Emp" >
     insert into SCOTT.EMP (EMPNO, ENAME, JOB, 
       MGR, HIREDATE, SAL, COMM, 
       DEPTNO)
@@ -110,7 +126,7 @@
       #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL}, 
       #{deptno,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.yan.pojo.Emp" >
+  <insert id="insertSelective" parameterType="com.yan.po.Emp" >
     insert into SCOTT.EMP
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="empno != null" >
@@ -165,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.yan.pojo.EmpExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.yan.po.EmpExample" resultType="java.lang.Integer" >
     select count(*) from SCOTT.EMP
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -217,7 +233,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yan.pojo.Emp" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.yan.po.Emp" >
     update SCOTT.EMP
     <set >
       <if test="ename != null" >
@@ -244,7 +260,7 @@
     </set>
     where EMPNO = #{empno,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yan.pojo.Emp" >
+  <update id="updateByPrimaryKey" parameterType="com.yan.po.Emp" >
     update SCOTT.EMP
     set ENAME = #{ename,jdbcType=VARCHAR},
       JOB = #{job,jdbcType=VARCHAR},

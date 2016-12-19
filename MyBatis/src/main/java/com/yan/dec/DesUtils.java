@@ -1,8 +1,15 @@
 package com.yan.dec;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.security.Key;
 import java.security.Security;
+import java.util.Properties;
+
 import javax.crypto.Cipher;
+
+import org.apache.ibatis.io.Resources;
 
 /**
  * DES加密和解密工具,可以对字符串进行加密和解密操作  。 
@@ -167,10 +174,10 @@ public class DesUtils {
    * main方法  。
    * @author 刘尧兴
    * @param args
-  
+  */
   public static void main(String[] args) {
     try {
-    	String jdbcProperty="jdbc.properties";
+    	String jdbcProperty="orcl-jdbc.properties";
 		InputStream cfgStream=null;
 		Reader cfgReader=null;
 		InputStream proStream=null;
@@ -185,7 +192,7 @@ public class DesUtils {
 		String encPassword=p.getProperty("password");
 		DesUtils des;
 		try {
-			des = new DesUtils("tsd");
+			des = new DesUtils("yan");
 			String decUsername=des.decrypt(encUsername);
 					String decPassword=des.decrypt(encPassword);
 					System.out.println(decUsername+decPassword);
@@ -194,14 +201,14 @@ public class DesUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-      String username = "root";
-      String password = "mysql";
-      des = new DesUtils("tsd");//自定义密钥   
+      String username = "scott";
+      String password = "orcl";
+      des = new DesUtils("yan");//自定义密钥   
      System.out.println(des.encrypt(username));
      System.out.println(des.encrypt(password));
     }
     catch (Exception e) {
       e.printStackTrace();
     }
-  } */
+  } 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yan.dao.mapper.BonusMapper" >
-  <resultMap id="BaseResultMap" type="com.yan.pojo.Bonus" >
+  <resultMap id="BaseResultMap" type="com.yan.po.Bonus" >
     <result column="ENAME" property="ename" jdbcType="VARCHAR" />
     <result column="JOB" property="job" jdbcType="VARCHAR" />
     <result column="SAL" property="sal" jdbcType="DECIMAL" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     ENAME, JOB, SAL, COMM
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.pojo.BonusExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.po.BonusExample" >
     select
     <if test="distinct" >
       distinct
@@ -82,19 +82,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.yan.pojo.BonusExample" >
+  <delete id="deleteByExample" parameterType="com.yan.po.BonusExample" >
     delete from SCOTT.BONUS
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.yan.pojo.Bonus" >
+  <insert id="insert" parameterType="com.yan.po.Bonus" >
     insert into SCOTT.BONUS (ENAME, JOB, SAL, 
       COMM)
     values (#{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{sal,jdbcType=DECIMAL}, 
       #{comm,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.yan.pojo.Bonus" >
+  <insert id="insertSelective" parameterType="com.yan.po.Bonus" >
     insert into SCOTT.BONUS
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="ename != null" >
@@ -125,7 +125,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.yan.pojo.BonusExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.yan.po.BonusExample" resultType="java.lang.Integer" >
     select count(*) from SCOTT.BONUS
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

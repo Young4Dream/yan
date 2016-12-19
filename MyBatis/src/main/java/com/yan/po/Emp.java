@@ -19,8 +19,18 @@ public class Emp {
     private BigDecimal comm;
 
     private Short deptno;
+    
+    private Dept dept;
+    
+    public Dept getDept() {
+		return dept;
+	}
 
-    public Short getEmpno() {
+	public void setDept(Dept dept) {
+		this.dept = dept;
+	}
+
+	public Short getEmpno() {
         return empno;
     }
 

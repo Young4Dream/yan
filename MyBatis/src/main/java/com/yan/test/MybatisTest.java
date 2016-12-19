@@ -1,44 +1,22 @@
 package com.yan.test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 
-import com.yan.dao.RoleMapper;
-import com.yan.po.Role;
-import com.yan.util.SqlSessionFactoryUtil;
+import com.yan.dao.mapper.EmpMapper;
+import com.yan.po.Emp;
+import com.yan.util.OrclSqlSessionFactoryUtil;
 
 public class MybatisTest {
 public static void main(String[] args) {
 	SqlSession sqlSession=null;
-	try{
-		sqlSession = SqlSessionFactoryUtil.openSqlSession();
-		RoleMapper roleMapper=sqlSession.getMapper(RoleMapper.class);
-		Role role =new Role();
-//		role.setId(2);
-		role.setRoleName("管理员");
-		role.setNote("yyr");
-		roleMapper.insert(role);
-		sqlSession.commit();
-		Role r =new Role();
-//		Map<String, Object> map=new HashMap<String, Object>();
-//		map.put("id", 1);
-//		map.put("roleName", "超级管理员");
-//		r=roleMapper.selectByUnionKey(map);
-//		System.out.println("通过map:"+r);
-		r=roleMapper.selectByPrimaryKey(8);
-		System.out.println("通过id:"+r);
-		r=roleMapper.selectByUnionKey("超级管理员", 8);
-		System.out.println("通过@注解:"+r);
-	}catch(Exception e){
-		System.err.println("异常："+e.getMessage());
-		sqlSession.rollback();
-	}finally{
-		if(sqlSession!=null){
-			sqlSession.close();
-		}
-		System.exit(0);
-	}
-}
-}
+	sqlSession=OrclSqlSessionFactoryUtil.openSqlSession();
+	EmpMapper empMapper=sqlSession.getMapper(com.yan.dao.mapper.EmpMapper.class);
+	Emp emp=new Emp();
+	emp=empMapper.selectByPrimaryKey((short)7369);
+	System.out.println(emp.getEname());
+	emp=empMapper.findByAss((short)7369);
+	/*取得部门名称*/
+	System.out.println(emp.getDept().getDname());
+	/*取得部门位置*/
+	System.out.println(emp.getDept().getLoc());
+}}

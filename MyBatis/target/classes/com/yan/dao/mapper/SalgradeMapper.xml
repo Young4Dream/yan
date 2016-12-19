@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yan.dao.mapper.SalgradeMapper" >
-  <resultMap id="BaseResultMap" type="com.yan.pojo.Salgrade" >
+  <resultMap id="BaseResultMap" type="com.yan.po.Salgrade" >
     <result column="GRADE" property="grade" jdbcType="DECIMAL" />
     <result column="LOSAL" property="losal" jdbcType="DECIMAL" />
     <result column="HISAL" property="hisal" jdbcType="DECIMAL" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     GRADE, LOSAL, HISAL
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.pojo.SalgradeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.po.SalgradeExample" >
     select
     <if test="distinct" >
       distinct
@@ -81,19 +81,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.yan.pojo.SalgradeExample" >
+  <delete id="deleteByExample" parameterType="com.yan.po.SalgradeExample" >
     delete from SCOTT.SALGRADE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.yan.pojo.Salgrade" >
+  <insert id="insert" parameterType="com.yan.po.Salgrade" >
     insert into SCOTT.SALGRADE (GRADE, LOSAL, HISAL
       )
     values (#{grade,jdbcType=DECIMAL}, #{losal,jdbcType=DECIMAL}, #{hisal,jdbcType=DECIMAL}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.yan.pojo.Salgrade" >
+  <insert id="insertSelective" parameterType="com.yan.po.Salgrade" >
     insert into SCOTT.SALGRADE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="grade != null" >
@@ -118,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.yan.pojo.SalgradeExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.yan.po.SalgradeExample" resultType="java.lang.Integer" >
     select count(*) from SCOTT.SALGRADE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

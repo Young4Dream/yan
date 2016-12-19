@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yan.dao.mapper.DeptMapper">
-  <resultMap id="BaseResultMap" type="com.yan.po.Dept">
-    <id column="DEPTNO" jdbcType="DECIMAL" property="deptno" />
-    <result column="DNAME" jdbcType="VARCHAR" property="dname" />
-    <result column="LOC" jdbcType="VARCHAR" property="loc" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yan.dao.mapper.DeptMapper" >
+  <resultMap id="BaseResultMap" type="com.yan.po.Dept" >
+    <id column="DEPTNO" property="deptno" jdbcType="DECIMAL" />
+    <result column="DNAME" property="dname" jdbcType="VARCHAR" />
+    <result column="LOC" property="loc" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -35,25 +35,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -64,292 +64,115 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     DEPTNO, DNAME, LOC
   </sql>
-  <select id="selectByExample" parameterType="com.yan.po.DeptExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yan.po.DeptExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from SCOTT.DEPT
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
     select 
     <include refid="Base_Column_List" />
     from SCOTT.DEPT
     where DEPTNO = #{deptno,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
     delete from SCOTT.DEPT
     where DEPTNO = #{deptno,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.yan.po.DeptExample">
+  <delete id="deleteByExample" parameterType="com.yan.po.DeptExample" >
     delete from SCOTT.DEPT
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.yan.po.Dept">
+  <insert id="insert" parameterType="com.yan.po.Dept" >
     insert into SCOTT.DEPT (DEPTNO, DNAME, LOC
       )
     values (#{deptno,jdbcType=DECIMAL}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.yan.po.Dept">
+  <insert id="insertSelective" parameterType="com.yan.po.Dept" >
     insert into SCOTT.DEPT
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="deptno != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptno != null" >
         DEPTNO,
       </if>
-      <if test="dname != null">
+      <if test="dname != null" >
         DNAME,
       </if>
-      <if test="loc != null">
+      <if test="loc != null" >
         LOC,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="deptno != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptno != null" >
         #{deptno,jdbcType=DECIMAL},
       </if>
-      <if test="dname != null">
+      <if test="dname != null" >
         #{dname,jdbcType=VARCHAR},
       </if>
-      <if test="loc != null">
+      <if test="loc != null" >
         #{loc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.yan.po.DeptExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.yan.po.DeptExample" resultType="java.lang.Integer" >
     select count(*) from SCOTT.DEPT
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update SCOTT.DEPT
-    <set>
-      <if test="record.deptno != null">
+    <set >
+      <if test="record.deptno != null" >
         DEPTNO = #{record.deptno,jdbcType=DECIMAL},
       </if>
-      <if test="record.dname != null">
+      <if test="record.dname != null" >
         DNAME = #{record.dname,jdbcType=VARCHAR},
       </if>
-      <if test="record.loc != null">
+      <if test="record.loc != null" >
         LOC = #{record.loc,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update SCOTT.DEPT
     set DEPTNO = #{record.deptno,jdbcType=DECIMAL},
       DNAME = #{record.dname,jdbcType=VARCHAR},
       LOC = #{record.loc,jdbcType=VARCHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yan.po.Dept">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yan.po.Dept" >
     update SCOTT.DEPT
-    <set>
-      <if test="dname != null">
+    <set >
+      <if test="dname != null" >
         DNAME = #{dname,jdbcType=VARCHAR},
       </if>
-      <if test="loc != null">
+      <if test="loc != null" >
         LOC = #{loc,jdbcType=VARCHAR},
       </if>
     </set>
     where DEPTNO = #{deptno,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yan.po.Dept">
-    update SCOTT.DEPT
-    set DNAME = #{dname,jdbcType=VARCHAR},
-      LOC = #{loc,jdbcType=VARCHAR}
-    where DEPTNO = #{deptno,jdbcType=DECIMAL}
-  </update>
-  <resultMap id="BaseResultMap" type="com.yan.pojo.Dept">
-    <id column="DEPTNO" jdbcType="DECIMAL" property="deptno" />
-    <result column="DNAME" jdbcType="VARCHAR" property="dname" />
-    <result column="LOC" jdbcType="VARCHAR" property="loc" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    DEPTNO, DNAME, LOC
-  </sql>
-  <select id="selectByExample" parameterType="com.yan.pojo.DeptExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from SCOTT.DEPT
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from SCOTT.DEPT
-    where DEPTNO = #{deptno,jdbcType=DECIMAL}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
-    delete from SCOTT.DEPT
-    where DEPTNO = #{deptno,jdbcType=DECIMAL}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.yan.pojo.DeptExample">
-    delete from SCOTT.DEPT
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.yan.pojo.Dept">
-    insert into SCOTT.DEPT (DEPTNO, DNAME, LOC
-      )
-    values (#{deptno,jdbcType=DECIMAL}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.yan.pojo.Dept">
-    insert into SCOTT.DEPT
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="deptno != null">
-        DEPTNO,
-      </if>
-      <if test="dname != null">
-        DNAME,
-      </if>
-      <if test="loc != null">
-        LOC,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="deptno != null">
-        #{deptno,jdbcType=DECIMAL},
-      </if>
-      <if test="dname != null">
-        #{dname,jdbcType=VARCHAR},
-      </if>
-      <if test="loc != null">
-        #{loc,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.yan.pojo.DeptExample" resultType="java.lang.Integer">
-    select count(*) from SCOTT.DEPT
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update SCOTT.DEPT
-    <set>
-      <if test="record.deptno != null">
-        DEPTNO = #{record.deptno,jdbcType=DECIMAL},
-      </if>
-      <if test="record.dname != null">
-        DNAME = #{record.dname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.loc != null">
-        LOC = #{record.loc,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update SCOTT.DEPT
-    set DEPTNO = #{record.deptno,jdbcType=DECIMAL},
-      DNAME = #{record.dname,jdbcType=VARCHAR},
-      LOC = #{record.loc,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yan.pojo.Dept">
-    update SCOTT.DEPT
-    <set>
-      <if test="dname != null">
-        DNAME = #{dname,jdbcType=VARCHAR},
-      </if>
-      <if test="loc != null">
-        LOC = #{loc,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where DEPTNO = #{deptno,jdbcType=DECIMAL}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yan.pojo.Dept">
+  <update id="updateByPrimaryKey" parameterType="com.yan.po.Dept" >
     update SCOTT.DEPT
     set DNAME = #{dname,jdbcType=VARCHAR},
       LOC = #{loc,jdbcType=VARCHAR}

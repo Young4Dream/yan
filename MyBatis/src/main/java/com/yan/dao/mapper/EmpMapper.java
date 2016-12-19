@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EmpMapper {
+	
+	Emp findByAss(short empno);
     int countByExample(EmpExample example);
 
     int deleteByExample(EmpExample example);
@@ -18,7 +20,7 @@ public interface EmpMapper {
 
     List<Emp> selectByExample(EmpExample example);
 
-    Emp selectByPrimaryKey(Short empno);
+    Emp selectByPrimaryKey(short i);
 
     int updateByExampleSelective(@Param("record") Emp record, @Param("example") EmpExample example);
 
