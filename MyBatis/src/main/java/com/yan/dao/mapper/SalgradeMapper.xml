@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.dao.mapper.SalgradeMapper">
+  <resultMap id="BaseResultMap" type="com.yan.po.Salgrade">
+    <result column="GRADE" jdbcType="DECIMAL" property="grade" />
+    <result column="LOSAL" jdbcType="DECIMAL" property="losal" />
+    <result column="HISAL" jdbcType="DECIMAL" property="hisal" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    GRADE, LOSAL, HISAL
+  </sql>
+  <select id="selectByExample" parameterType="com.yan.po.SalgradeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SCOTT.SALGRADE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yan.po.SalgradeExample">
+    delete from SCOTT.SALGRADE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yan.po.Salgrade">
+    insert into SCOTT.SALGRADE (GRADE, LOSAL, HISAL
+      )
+    values (#{grade,jdbcType=DECIMAL}, #{losal,jdbcType=DECIMAL}, #{hisal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yan.po.Salgrade">
+    insert into SCOTT.SALGRADE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="grade != null">
+        GRADE,
+      </if>
+      <if test="losal != null">
+        LOSAL,
+      </if>
+      <if test="hisal != null">
+        HISAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="grade != null">
+        #{grade,jdbcType=DECIMAL},
+      </if>
+      <if test="losal != null">
+        #{losal,jdbcType=DECIMAL},
+      </if>
+      <if test="hisal != null">
+        #{hisal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yan.po.SalgradeExample" resultType="java.lang.Integer">
+    select count(*) from SCOTT.SALGRADE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SCOTT.SALGRADE
+    <set>
+      <if test="record.grade != null">
+        GRADE = #{record.grade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.losal != null">
+        LOSAL = #{record.losal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hisal != null">
+        HISAL = #{record.hisal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SCOTT.SALGRADE
+    set GRADE = #{record.grade,jdbcType=DECIMAL},
+      LOSAL = #{record.losal,jdbcType=DECIMAL},
+      HISAL = #{record.hisal,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.yan.pojo.Salgrade">
+    <result column="GRADE" jdbcType="DECIMAL" property="grade" />
+    <result column="LOSAL" jdbcType="DECIMAL" property="losal" />
+    <result column="HISAL" jdbcType="DECIMAL" property="hisal" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    GRADE, LOSAL, HISAL
+  </sql>
+  <select id="selectByExample" parameterType="com.yan.pojo.SalgradeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SCOTT.SALGRADE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yan.pojo.SalgradeExample">
+    delete from SCOTT.SALGRADE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yan.pojo.Salgrade">
+    insert into SCOTT.SALGRADE (GRADE, LOSAL, HISAL
+      )
+    values (#{grade,jdbcType=DECIMAL}, #{losal,jdbcType=DECIMAL}, #{hisal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yan.pojo.Salgrade">
+    insert into SCOTT.SALGRADE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="grade != null">
+        GRADE,
+      </if>
+      <if test="losal != null">
+        LOSAL,
+      </if>
+      <if test="hisal != null">
+        HISAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="grade != null">
+        #{grade,jdbcType=DECIMAL},
+      </if>
+      <if test="losal != null">
+        #{losal,jdbcType=DECIMAL},
+      </if>
+      <if test="hisal != null">
+        #{hisal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yan.pojo.SalgradeExample" resultType="java.lang.Integer">
+    select count(*) from SCOTT.SALGRADE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SCOTT.SALGRADE
+    <set>
+      <if test="record.grade != null">
+        GRADE = #{record.grade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.losal != null">
+        LOSAL = #{record.losal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hisal != null">
+        HISAL = #{record.hisal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SCOTT.SALGRADE
+    set GRADE = #{record.grade,jdbcType=DECIMAL},
+      LOSAL = #{record.losal,jdbcType=DECIMAL},
+      HISAL = #{record.hisal,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.dao.mapper.BonusMapper">
+  <resultMap id="BaseResultMap" type="com.yan.po.Bonus">
+    <result column="ENAME" jdbcType="VARCHAR" property="ename" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="SAL" jdbcType="DECIMAL" property="sal" />
+    <result column="COMM" jdbcType="DECIMAL" property="comm" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ENAME, JOB, SAL, COMM
+  </sql>
+  <select id="selectByExample" parameterType="com.yan.po.BonusExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SCOTT.BONUS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yan.po.BonusExample">
+    delete from SCOTT.BONUS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yan.po.Bonus">
+    insert into SCOTT.BONUS (ENAME, JOB, SAL, 
+      COMM)
+    values (#{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{sal,jdbcType=DECIMAL}, 
+      #{comm,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yan.po.Bonus">
+    insert into SCOTT.BONUS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ename != null">
+        ENAME,
+      </if>
+      <if test="job != null">
+        JOB,
+      </if>
+      <if test="sal != null">
+        SAL,
+      </if>
+      <if test="comm != null">
+        COMM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="sal != null">
+        #{sal,jdbcType=DECIMAL},
+      </if>
+      <if test="comm != null">
+        #{comm,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yan.po.BonusExample" resultType="java.lang.Integer">
+    select count(*) from SCOTT.BONUS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SCOTT.BONUS
+    <set>
+      <if test="record.ename != null">
+        ENAME = #{record.ename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null">
+        JOB = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sal != null">
+        SAL = #{record.sal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.comm != null">
+        COMM = #{record.comm,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SCOTT.BONUS
+    set ENAME = #{record.ename,jdbcType=VARCHAR},
+      JOB = #{record.job,jdbcType=VARCHAR},
+      SAL = #{record.sal,jdbcType=DECIMAL},
+      COMM = #{record.comm,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.yan.pojo.Bonus">
+    <result column="ENAME" jdbcType="VARCHAR" property="ename" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="SAL" jdbcType="DECIMAL" property="sal" />
+    <result column="COMM" jdbcType="DECIMAL" property="comm" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ENAME, JOB, SAL, COMM
+  </sql>
+  <select id="selectByExample" parameterType="com.yan.pojo.BonusExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SCOTT.BONUS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yan.pojo.BonusExample">
+    delete from SCOTT.BONUS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yan.pojo.Bonus">
+    insert into SCOTT.BONUS (ENAME, JOB, SAL, 
+      COMM)
+    values (#{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{sal,jdbcType=DECIMAL}, 
+      #{comm,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yan.pojo.Bonus">
+    insert into SCOTT.BONUS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ename != null">
+        ENAME,
+      </if>
+      <if test="job != null">
+        JOB,
+      </if>
+      <if test="sal != null">
+        SAL,
+      </if>
+      <if test="comm != null">
+        COMM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="sal != null">
+        #{sal,jdbcType=DECIMAL},
+      </if>
+      <if test="comm != null">
+        #{comm,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yan.pojo.BonusExample" resultType="java.lang.Integer">
+    select count(*) from SCOTT.BONUS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SCOTT.BONUS
+    <set>
+      <if test="record.ename != null">
+        ENAME = #{record.ename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null">
+        JOB = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sal != null">
+        SAL = #{record.sal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.comm != null">
+        COMM = #{record.comm,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SCOTT.BONUS
+    set ENAME = #{record.ename,jdbcType=VARCHAR},
+      JOB = #{record.job,jdbcType=VARCHAR},
+      SAL = #{record.sal,jdbcType=DECIMAL},
+      COMM = #{record.comm,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

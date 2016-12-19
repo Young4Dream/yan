@@ -15,7 +15,7 @@ public interface RoleMapper {
 
     Role selectByPrimaryKey(Integer id);
 
-    /*Role selectByUnionKey(Map<String,Object> map);*/
+//  Role selectByUnionKey(Map<String,Object> map);
     Role selectByUnionKey(@Param("roleName") String roleName,@Param("id") Integer id);
     
     int updateByPrimaryKeySelective(Role record);

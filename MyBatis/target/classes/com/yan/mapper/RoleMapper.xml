@@ -15,6 +15,19 @@
     from role
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <resultMap type="" id="">
+  	<constructor>
+  		<idArg/>
+  		<arg/>
+  	</constructor>
+  	<id/>
+  	<result/>
+  	<association property=""></association>
+  	<collection property=""></collection>
+  	<discriminator javaType="">
+  		<case value=""></case>
+  	</discriminator>
+  </resultMap>
   <!-- <select id="selectByUnionKey" resultMap="BaseResultMap" parameterType="java.util.Map">
     select 
     <include refid="Base_Column_List" />
@@ -33,7 +46,22 @@
     delete from role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yan.po.Role" >
+<!--   <insert id="insert" parameterType="com.yan.po.Role" >
+    insert into role (id, rolename, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
+  </insert> 
+  <insert id="insert" parameterType="com.yan.po.Role" keyProperty="id" useGeneratedKeys="true">
+    insert into role (id, rolename, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>-->
+  <insert id="insert" parameterType="com.yan.po.Role">
+  <selectKey keyProperty="id" resultType="int" order="BEFORE">
+  	select if(max(id) is null,1,max(id)+2) as id from role
+  </selectKey>
     insert into role (id, rolename, note
       )
     values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}

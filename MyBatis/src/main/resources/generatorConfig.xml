@@ -14,7 +14,7 @@
     <javaModelGenerator targetPackage="com.yan.po" targetProject="MyBatis/src/main/java" />
     <!-- 生成的映射文件报名和位置 --> 
     <sqlMapGenerator targetPackage="com.yan.mapper" targetProject="MyBatis/src/main/java" />
-    <!-- 生成DAO的包名和位置 --> 
+    <!-- 生成DAO的包名和位置 -->
     <javaClientGenerator targetPackage="com.yan.dao" targetProject="MyBatis/src/main/java" type="XMLMAPPER" />
     <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) --> 
     <table schema="mysql" tableName="role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false"  
@@ -23,5 +23,6 @@
       <columnOverride column="rolename" property="roleName" />
       <columnOverride column="note" property="note"/>
     </table>
+    <table tableName=""></table>
   </context>
 </generatorConfiguration>
