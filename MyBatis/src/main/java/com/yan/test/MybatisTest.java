@@ -1,6 +1,8 @@
 package com.yan.test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
@@ -64,4 +66,16 @@ public static void main(String[] args) {
     emp = new Emp();
     emp = empMapper.selectByDynParamsChoose(emp);
     System.out.println(emp.getEname());
+    /**
+     * 动态SQL-foreach
+     */
+//    short[] deptnos=new short[]{10,30};
+    List<Short> deptnos = new ArrayList<Short>();
+    List<Emp> empList=new ArrayList<Emp>();
+    deptnos.add((short) 10);
+    deptnos.add((short) 30);
+    empList=empMapper.selectByDynParamsForeach(deptnos);
+    for(Emp e:empList){
+    	System.out.println(e.getEname());
+    }
 }}

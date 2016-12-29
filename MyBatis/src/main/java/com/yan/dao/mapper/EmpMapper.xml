@@ -60,7 +60,16 @@
   		</otherwise>
   	</choose>
   </select> -->
-  
+  <!-- collection指集合类名，数组则为array
+  	List则为list或collection，
+  	Map类型参考  	https://my.oschina.net/linuxred/blog/38802
+   -->
+  <select id="selectByDynParamsForeach" resultType="emp" >
+  	select * from emp where deptno in
+	<foreach collection="collection" index="index" item="item" open="(" close=")" separator=",">
+		#{item}
+	</foreach>
+  </select>
   <!-- #### EMP表的所有列 ##### -->
     <sql id="Base_Column_List" >
     EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO

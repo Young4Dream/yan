@@ -1,5 +1,7 @@
 package com.yan.dao.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.yan.po.Emp;
@@ -33,4 +35,9 @@ public interface EmpMapper {
      * @return
      */
     Emp selectByDynParamsChoose(Emp emp);
+    /**
+     * 通过foreach获取部门id在一定范围内的员工信息
+     * 除了例子中的数组类型参数，也可以遍历List、Set、Map等集合
+     */
+    List<Emp> selectByDynParamsForeach(List<Short> deptnos);
 }
