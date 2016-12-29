@@ -23,6 +23,14 @@ public interface EmpMapper {
      * 如果empno为空，那么以ename字段进行模糊查询
      * @return
      */
-    Emp selectByDynParams(Emp emp);
-    
+    Emp selectByDynParamsIf(Emp emp);
+    /**
+     * 通过JavaBean、动态choose获取员工信息
+     * 若empno不为空，则只以empno为准查询
+     * 若empno为空但ename不为空，则以ename为准模糊查询
+     * 否则只取第一行记录
+     * @param emp
+     * @return
+     */
+    Emp selectByDynParamsChoose(Emp emp);
 }

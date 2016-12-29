@@ -43,10 +43,25 @@ public static void main(String[] args) {
         System.out.println(e.getEname());
     }
     /**
-     * if:根据条件动态查询
+     * 动态SQL-if
      */
-    Emp emp1 = new Emp("SCOTT");
-    emp1=empMapper.selectByDynParams(emp1);
+    emp = new Emp("SCOTT");
+    emp=empMapper.selectByDynParamsIf(emp);
     System.out.println("================以下语句通过动态SQL生成================");
-    System.out.println(emp1.getEname()+"的工作是："+emp1.getJob());
+    System.out.println(emp.getEname()+"的工作是："+emp.getJob());
+    /**
+     * 动态SQL-choose
+     */
+    System.out.println("=========empno\\ename 均不为空,但ename是错误的==========");
+    emp = new Emp((short) 7369,"HAHA");
+    emp = empMapper.selectByDynParamsChoose(emp);
+    System.out.println(emp.getEname());
+    System.out.println("=========empno为空，ename不为空==========");
+    emp = new Emp(null,"ADAMS");
+    emp = empMapper.selectByDynParamsChoose(emp);
+    System.out.println(emp.getHiredate());
+    System.out.println("=========没有参数==========");
+    emp = new Emp();
+    emp = empMapper.selectByDynParamsChoose(emp);
+    System.out.println(emp.getEname());
 }}

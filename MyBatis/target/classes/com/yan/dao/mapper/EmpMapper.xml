@@ -16,8 +16,9 @@
     from SCOTT.EMP
     where EMPNO = #{empno,jdbcType=DECIMAL}
   </select>
-  <!-- if:根据条件生成动态SQL -->
-  <select id="selectByDynParams" resultMap="BaseResultMap" parameterType="com.yan.po.Emp">
+  <!-- 动态SQL -->
+  	<!-- if -->
+  <select id="selectByDynParamsIf" resultMap="BaseResultMap" parameterType="com.yan.po.Emp">
   	select 
   		<include refid="Base_Column_List"/>
   		from emp where 1=1
@@ -27,25 +28,23 @@
   	<if test="ename != null and ename != ''">
   		and ename like ('%'||#{ename}||'%') 
   	</if>
-  	<if test="job != null and job != ''">
-  		and job=#{job}
-  	</if>
-  	<if test="mgr != null and mgr != ''">
-  		and mgr=#{mgr}
-  	</if>
-  	<if test="hiredate != null and hiredate != ''">
-  		and hireDate=#{hiredate}
-  	</if>
-  	<if test="sal != null and sal != ''">
-  		and sal=#{sal}
-  	</if>
-  	<if test="comm != null and comm != ''">
-  		and comm=#{comm}
-  	</if>
-  	<if test="deptno != null and deptno != ''">
-  		and deptno=#{deptno}
-  	</if>
   </select>
+  <!-- choose、when、otherwise -->
+  <select id="selectByDynParamsChoose" resultMap="BaseResultMap" parameterType="com.yan.po.Emp">
+  	select * from emp where 1=1
+  	<choose>
+  		<when test="empno != null and empno != ''">
+  			and empno = #{empno}
+  		</when>
+  		<when test="empno == null and ename != null and ename != ''">
+  			and ename like ('%'||#{ename}||'%') 
+  		</when>
+  		<otherwise>
+  			and rownum = 1
+  		</otherwise>
+  	</choose>
+  </select>
+  
   <!-- #### EMP表的所有列 ##### -->
     <sql id="Base_Column_List" >
     EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO

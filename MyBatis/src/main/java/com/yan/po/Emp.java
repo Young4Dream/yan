@@ -8,6 +8,11 @@ public class Emp {
 		super();
 		this.ename = ename;
 	}
+    public Emp(Short empno,String ename) {
+		super();
+		this.empno=empno;
+		this.ename = ename;
+	}
 
 	public Emp() {
 		super();
