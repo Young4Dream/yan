@@ -1,5 +1,6 @@
 package com.yan.dao.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -40,4 +41,8 @@ public interface EmpMapper {
      * 除了例子中的数组类型参数，也可以遍历List、Set、Map等集合
      */
     List<Emp> selectByDynParamsForeach(List<Short> deptnos);
+    /**
+     * 通过bind元素预处理参数来查询员工信息
+     */
+    Emp selectByDynParamsBind(@Param("ename") String ename,@Param("sal")BigDecimal sal );
 }

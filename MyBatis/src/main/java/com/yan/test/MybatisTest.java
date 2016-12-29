@@ -1,5 +1,6 @@
 package com.yan.test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -78,4 +79,10 @@ public static void main(String[] args) {
     for(Emp e:empList){
     	System.out.println(e.getEname());
     }
+    /**
+     * 动态SQL-bind
+     */
+    BigDecimal bd = new BigDecimal(4000.00);
+    emp = empMapper.selectByDynParamsBind("KING",bd);
+    System.out.println(emp.getJob());
 }}

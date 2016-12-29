@@ -70,6 +70,15 @@
 		#{item}
 	</foreach>
   </select>
+  <select id="selectByDynParamsBind" resultType="emp">
+  	<bind name="p_ename" value="'%'+ename+'%'"/>
+  	<bind name="p_sal" value="sal+1000.00"/>
+  	select * from emp 
+  	<trim prefix="where" prefixOverrides="and">
+  		and ename like (#{p_ename})
+  	</trim>
+  		and sal = #{p_sal}
+  </select>
   <!-- #### EMP表的所有列 ##### -->
     <sql id="Base_Column_List" >
     EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
