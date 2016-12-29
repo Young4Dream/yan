@@ -1,13 +1,31 @@
 package com.yan.po;
 
+import java.util.Set;
+
 public class Dept {
     private Short deptno;
 
     private String dname;
 
     private String loc;
+    
+    private Set<Emp> emps;
 
-    public Short getDeptno() {
+    /**
+	 * @return the emps
+	 */
+	public Set<Emp> getEmps() {
+		return emps;
+	}
+
+	/**
+	 * @param emps the emps to set
+	 */
+	public void setEmps(Set<Emp> emps) {
+		this.emps = emps;
+	}
+
+	public Short getDeptno() {
         return deptno;
     }
 

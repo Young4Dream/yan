@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeptMapper {
+	
+	Dept findEmpsByDname(String dname);
     int countByExample(DeptExample example);
 
     int deleteByExample(DeptExample example);
