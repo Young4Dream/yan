@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yan.dao.mapper.EmpMapper" >
+  
+  <!-- association级联查询 -->
+  <select id="findByAss" resultMap="BaseResultMap1" parameterType="short">
+  	select a.ename,a.job,a.mgr,a.hiredate,a.sal,a.comm,a.deptno
+  	from emp a,dept b
+  	where a.deptno=b.deptno and a.empno=#{empno}
+  </select>
+  
+  <!-- 根据ID：empno查询 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from SCOTT.EMP
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </select>
+  <!-- if:根据条件生成动态SQL -->
+  <select id="selectByDynParams" resultMap="BaseResultMap" parameterType="com.yan.po.Emp">
+  	select 
+  		<include refid="Base_Column_List"/>
+  		from emp where 1=1
+  	<if test="empno != null and empno != ''">
+  		and empno=#{empno,jdbcType=DECIMAL}
+  	</if>
+  	<if test="ename != null and ename != ''">
+  		and ename like ('%'||#{ename}||'%') 
+  	</if>
+  	<if test="job != null and job != ''">
+  		and job=#{job}
+  	</if>
+  	<if test="mgr != null and mgr != ''">
+  		and mgr=#{mgr}
+  	</if>
+  	<if test="hiredate != null and hiredate != ''">
+  		and hireDate=#{hiredate}
+  	</if>
+  	<if test="sal != null and sal != ''">
+  		and sal=#{sal}
+  	</if>
+  	<if test="comm != null and comm != ''">
+  		and comm=#{comm}
+  	</if>
+  	<if test="deptno != null and deptno != ''">
+  		and deptno=#{deptno}
+  	</if>
+  </select>
+  <!-- #### EMP表的所有列 ##### -->
+    <sql id="Base_Column_List" >
+    EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+  </sql>
+  
+  <!-- 普通结果集映射 -->
   <resultMap id="BaseResultMap" type="com.yan.po.Emp" >
     <id column="EMPNO" property="empno" jdbcType="DECIMAL" />
     <result column="ENAME" property="ename" jdbcType="VARCHAR" />
@@ -11,6 +62,8 @@
     <result column="COMM" property="comm" jdbcType="DECIMAL" />
     <result column="DEPTNO" property="deptno" jdbcType="DECIMAL" />
   </resultMap>
+  
+  <!-- association级联结果集映射 -->
   <resultMap id="BaseResultMap1" type="com.yan.po.Emp" >
     <id column="EMPNO" property="empno" jdbcType="DECIMAL" />
     <result column="ENAME" property="ename" jdbcType="VARCHAR" />
@@ -22,18 +75,4 @@
     <result column="DEPTNO" property="deptno" jdbcType="DECIMAL" />
     <association property="dept" column="deptno" select="com.yan.dao.mapper.DeptMapper.selectByPrimaryKey"></association>
   </resultMap>
-  <select id="findByAss" resultMap="BaseResultMap1" parameterType="short">
-  	select a.ename,a.job,a.mgr,a.hiredate,a.sal,a.comm,a.deptno
-  	from emp a,dept b
-  	where a.deptno=b.deptno and a.empno=#{empno}
-  </select>
-  <sql id="Base_Column_List" >
-    EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
-    select 
-    <include refid="Base_Column_List" />
-    from SCOTT.EMP
-    where EMPNO = #{empno,jdbcType=DECIMAL}
-  </select>
 </mapper>

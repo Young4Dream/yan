@@ -4,7 +4,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Emp {
-    private Short empno;
+    public Emp( String ename) {
+		super();
+		this.ename = ename;
+	}
+
+	public Emp() {
+		super();
+	}
+
+	private Short empno;
 
     private String ename;
 
