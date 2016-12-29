@@ -31,6 +31,22 @@
   </select>
   <!-- choose、when、otherwise -->
   <select id="selectByDynParamsChoose" resultMap="BaseResultMap" parameterType="com.yan.po.Emp">
+  	select * from emp 
+  	<trim prefix="where" prefixOverrides="and" suffixOverrides=",">
+  	<choose>
+  		<when test="empno != null and empno != ''">
+  			and empno = #{empno},
+  		</when>
+  		<when test="empno == null and ename != null and ename != ''">
+  			and ename like ('%'||#{ename}||'%') 
+  		</when>
+  		<otherwise>
+  			and rownum = 1
+  		</otherwise>
+  	</choose>
+  	</trim>
+  </select>
+<!--   <select id="selectByDynParamsChoose" resultMap="BaseResultMap" parameterType="com.yan.po.Emp">
   	select * from emp where 1=1
   	<choose>
   		<when test="empno != null and empno != ''">
@@ -43,7 +59,7 @@
   			and rownum = 1
   		</otherwise>
   	</choose>
-  </select>
+  </select> -->
   
   <!-- #### EMP表的所有列 ##### -->
     <sql id="Base_Column_List" >
