@@ -54,9 +54,7 @@ property元素选填，内容也是自定义
 <!-- <mapper url="file:///java/com/yan/mapper/RoleMapper.xml"/> -->
 <!-- <package name="com.yan.dao"></package> -->
 <mapper resource="com/yan/dao/mapper/EmpMapper.xml"/>
-<mapper resource="com/yan/dao/mapper/BonusMapper.xml"/>
 <mapper resource="com/yan/dao/mapper/DeptMapper.xml"/>
-<mapper resource="com/yan/dao/mapper/SalgradeMapper.xml"/>
 <!-- <mapper resource="com/yan/dao/mapper/EmpDeptMapper.xml"/> -->
 </mappers>
 </configuration>
