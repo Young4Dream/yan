@@ -21,7 +21,7 @@ import com.yan.po.EmpExample.Criteria;
 import com.yan.util.OrclSqlSessionFactoryUtil;
 
 public class MybatisTest {
-@SuppressWarnings({ })
+@SuppressWarnings({"deprecation" })
 public static void main(String[] args) throws ParseException {
 	SqlSession sqlSession=null;
 	sqlSession=OrclSqlSessionFactoryUtil.openSqlSession();
