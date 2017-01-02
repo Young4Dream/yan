@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<settings>
+	<!-- 使用Log4J输出日志 -->
+	<setting name="logImpl" value="LOG4J"/>
+	<!-- 配置全局的映射器启用或禁用缓存 -->
+	<setting name="cacheEnabled" value="false"/>
+	<setting name="lazyLoadingEnabled" value="true"/>
+	<setting name="defaultStatementTimeout" value="30000"/>
+</settings>
+<!-- 定义别名 -->
+<typeAliases>
+	<package name="com.yan.ssm.pojo"/>
+</typeAliases>
+<mappers>
+<mapper resource="com/yan/dao/mapper/EmpMapper.xml"/>
+<mapper resource="com/yan/dao/mapper/DeptMapper.xml"/>
+</mappers>
+</configuration>
