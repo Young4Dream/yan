@@ -1,7 +1,11 @@
 package com.yan.test;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,10 +16,13 @@ import com.yan.dao.mapper.DeptMapper;
 import com.yan.dao.mapper.EmpMapper;
 import com.yan.po.Dept;
 import com.yan.po.Emp;
+import com.yan.po.EmpExample;
+import com.yan.po.EmpExample.Criteria;
 import com.yan.util.OrclSqlSessionFactoryUtil;
 
 public class MybatisTest {
-public static void main(String[] args) {
+@SuppressWarnings({ })
+public static void main(String[] args) throws ParseException {
 	SqlSession sqlSession=null;
 	sqlSession=OrclSqlSessionFactoryUtil.openSqlSession();
 	EmpMapper empMapper=sqlSession.getMapper(com.yan.dao.mapper.EmpMapper.class);
@@ -85,4 +92,21 @@ public static void main(String[] args) {
     BigDecimal bd = new BigDecimal(4000.00);
     emp = empMapper.selectByDynParamsBind("KING",bd);
     System.out.println(emp.getJob());
+    /**
+     * 通过example方式获取对象
+     */
+    EmpExample empExample=new EmpExample();  
+    Criteria empCriteria=empExample.createCriteria(); 
+    DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+    DateFormat formatter = DateFormat.getDateInstance();
+    Date begin=df.parse("1972-02-19");
+    Date end=formatter.parse("1982-02-19");
+    empCriteria.andHiredateBetween(begin, end);  
+    empExample.setOrderByClause("deptno desc");  
+    empExample.setDistinct(false); 
+    empList=empMapper.selectByExample(empExample);
+    System.out.println(begin.toLocaleString()+"到"+end.toLocaleString()+"的在职人员有：");
+    for(int i=0;i<empList.size();i++){
+    	System.out.println(empList.get(i).getEname()+empList.get(i).getDeptno());
+    }
 }}

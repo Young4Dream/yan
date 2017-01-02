@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yan.po.Emp;
+import com.yan.po.EmpExample;
 
 public interface EmpMapper {
 	/**
@@ -45,4 +46,8 @@ public interface EmpMapper {
      * 通过bind元素预处理参数来查询员工信息
      */
     Emp selectByDynParamsBind(@Param("ename") String ename,@Param("sal")BigDecimal sal );
+    /**
+     * 通过自动生成的模板查询
+     */
+    List<Emp> selectByExample(EmpExample example);
 }
