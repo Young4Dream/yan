@@ -14,6 +14,14 @@
 	<mvc:annotation-driven/>
 	<!-- <context:annotation-config />  -->
 	<context:component-scan base-package="com.yan.ssm.controller"/>
+<!-- 	<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+	            <value>text/html; charset=UTF-8</value>
+	            <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+	</bean> -->
 	<!-- 配置json转换器 -->
 	<bean id="jsonMessageConverters" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes">
@@ -25,14 +33,16 @@
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<ref/>
+				<!-- JSON视图拦截器，碰到ResponseBody会触发 -->
+				<ref bean="jsonMessageConverters"/>
 			</list>
 		</property>
 	</bean> 
+	
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/views/"></property>
 			<property name="suffix" value=".jsp"></property>
-			<!-- <property name="viewClass" value="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></property> -->
+			<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
 		</bean>
 	<!--添加访问静态资源的功能 -->
  <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>

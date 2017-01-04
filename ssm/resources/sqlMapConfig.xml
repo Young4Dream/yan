@@ -15,8 +15,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <typeAliases>
 	<package name="com.yan.ssm.pojo"/>
 </typeAliases>
+
 <mappers>
-<mapper resource="com/yan/dao/mapper/EmpMapper.xml"/>
-<mapper resource="com/yan/dao/mapper/DeptMapper.xml"/>
+<mapper resource="com/yan/ssm/dao/mapper/EmpMapper.xml"/>
+<mapper resource="com/yan/ssm/dao/mapper/DeptMapper.xml"/>
 </mappers>
 </configuration>
