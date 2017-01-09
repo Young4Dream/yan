@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidOperatorTrunkMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidOperatorTrunk">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OP_ID" jdbcType="VARCHAR" property="opId" />
+    <result column="TRUNK_NO" jdbcType="VARCHAR" property="trunkNo" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="SOURCE_NAME" jdbcType="VARCHAR" property="sourceName" />
+    <result column="OP_NAME" jdbcType="VARCHAR" property="opName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OP_ID, TRUNK_NO, REMARK, SOURCE_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_operator_trunk
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByOpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_operator_trunk
+    where OP_ID = #{opId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,(select name from sid_operator WHERE ID=OP_ID) AS OP_NAME
+    from sid_operator_trunk
+    where 1=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_operator_trunk
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByOpId" parameterType="java.lang.String">
+    delete from sid_operator_trunk
+    where OP_ID = #{opId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidOperatorTrunk">
+    insert into sid_operator_trunk (ID, OP_ID, TRUNK_NO, REMARK,
+    	SOURCE_NAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{opId,jdbcType=VARCHAR}, #{trunkNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+    	#{sourceName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidOperatorTrunk">
+    insert into sid_operator_trunk
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="opId != null">
+        OP_ID,
+      </if>
+      <if test="trunkNo != null">
+        TRUNK_NO,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="sourceName != null">
+        SOURCE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="opId != null">
+        #{opId,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkNo != null">
+        #{trunkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceName != null">
+        #{sourceName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidOperatorTrunk">
+    update sid_operator_trunk
+    <set>
+      <if test="opId != null">
+        OP_ID = #{opId,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkNo != null">
+        TRUNK_NO = #{trunkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkNo != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceName != null">
+        SOURCE_NAME = #{sourceName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidOperatorTrunk">
+    update sid_operator_trunk
+    set OP_ID = #{opId,jdbcType=VARCHAR},
+      TRUNK_NO = #{trunkNo,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      SOURCE_NAME = #{sourceName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

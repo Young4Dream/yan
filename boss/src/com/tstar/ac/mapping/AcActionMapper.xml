@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ac.dao.AcActionMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ac.model.AcAction">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="BUSINESS_KEY" jdbcType="VARCHAR" property="businessKey" />
+    <result column="BUSINESS_TYPE" jdbcType="VARCHAR" property="businessType" />
+    <result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="OSS_KEY" jdbcType="VARCHAR" property="ossKey" />
+    <result column="PARMS" jdbcType="VARCHAR" property="parms" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="RETRY" jdbcType="INTEGER" property="retry" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="OSS_KEY_NAME" jdbcType="VARCHAR" property="ossKeyName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, BUSINESS_KEY, BUSINESS_TYPE, JOB_ID, OSS_KEY, PARMS, STATUS, RETRY, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from ac_action
+    where 1=1 
+    <if test="status != null">
+      and STATUS=#{status}
+    </if>
+    <if test="ossKey != null">
+      and OSS_KEY=#{ossKey}
+    </if>
+    <if test="businessType != null">
+      and BUSINESS_TYPE=#{businessType}
+    </if>
+    <if test="businessKey != null">
+      and BUSINESS_KEY like concat(#{businessKey}, '%')
+    </if>
+  </select>
+  
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,(select NAME from ref_oss_key where ref_oss_key.ID=OSS_KEY) AS OSS_KEY_NAME
+    from ac_action
+    where 1=1 
+    <if test="status != null">
+      and STATUS=#{status}
+    </if>
+    <if test="ossKey != null">
+      and OSS_KEY=#{ossKey}
+    </if>
+    <if test="businessType != null">
+      and BUSINESS_TYPE=#{businessType}
+    </if>
+    <if test="businessKey != null">
+      and BUSINESS_KEY like concat(#{businessKey}, '%')
+    </if>
+    order by CREATE_TIME desc
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="selectTopByStatus" parameterType="int" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_action
+    where STATUS = #{0}
+    order by CREATE_TIME
+    limit 0, 1
+  </select>
+  
+  <select id="selectTopRunnable" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_action
+    where 1=1
+    and (
+    	STATUS = 2 or
+    	(STATUS = 98 and retry &lt; 3)
+    )
+    order by CREATE_TIME
+    limit 0, 1
+  </select>
+  
+  <update id="updateStatusByJobId">
+    update ac_action
+    set 
+      STATUS = #{1}
+    where JOB_ID = #{0}
+  </update>
+  
+  <update id="updateStatusByPrimaryKey" parameterType="com.tstar.ac.model.AcAction">
+    update ac_action
+    set 
+      STATUS = 1,
+      RETRY = 0
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByInstanceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_action
+    where JOB_ID = #{instanceId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_action
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ac_action
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ac.model.AcAction">
+    insert into ac_action (ID, USER_ID, BUSINESS_KEY, 
+      BUSINESS_TYPE, JOB_ID, OSS_KEY, 
+      PARMS, STATUS, RETRY, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{businessKey,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR}, #{ossKey,jdbcType=VARCHAR}, 
+      #{parms,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{retry,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ac.model.AcAction">
+    insert into ac_action
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY,
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="ossKey != null">
+        OSS_KEY,
+      </if>
+      <if test="parms != null">
+        PARMS,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="retry != null">
+        RETRY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="ossKey != null">
+        #{ossKey,jdbcType=VARCHAR},
+      </if>
+      <if test="parms != null">
+        #{parms,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retry != null">
+        #{retry,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ac.model.AcAction">
+    update ac_action
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null">
+        JOB_ID = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="ossKey != null">
+        OSS_KEY = #{ossKey,jdbcType=VARCHAR},
+      </if>
+      <if test="parms != null">
+        PARMS = #{parms,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retry != null">
+        RETRY = #{retry,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ac.model.AcAction">
+    update ac_action
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      JOB_ID = #{jobId,jdbcType=VARCHAR},
+      OSS_KEY = #{ossKey,jdbcType=VARCHAR},
+      PARMS = #{parms,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      RETRY = #{retry,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

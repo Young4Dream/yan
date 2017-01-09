@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResReportMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResReport">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="REPORT_KEY" jdbcType="VARCHAR" property="reportKey" />
+    <result column="REPORT_NAME" jdbcType="VARCHAR" property="reportName" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, REPORT_KEY, REPORT_NAME, FILE_NAME, CREATOR, CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from res_report
+    where 1=1
+    <if test="reportKey != null">
+      REPORT_KEY like concat('%', #{reportKey}, '%')
+    </if>
+    <if test="reportName != null">
+      REPORT_NAME like concat('%', #{reportName}, '%')
+    </if>
+  </select>
+  
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_report
+    where 1=1
+    <if test="reportKey != null">
+      REPORT_KEY like concat('%', #{reportKey}, '%')
+    </if>
+    <if test="reportName != null">
+      REPORT_NAME like concat('%', #{reportName}, '%')
+    </if>
+    order by CREATE_TIME desc
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="selectByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_report
+    where REPORT_KEY = #{key,jdbcType=VARCHAR}
+    limit 0, 1
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_report
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_report
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResReport">
+    insert into res_report (ID, REPORT_KEY, REPORT_NAME, 
+      FILE_NAME, CREATOR, CREATE_TIME, 
+      UPDATE_TIME, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{reportKey,jdbcType=VARCHAR}, #{reportName,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResReport">
+    insert into res_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="reportKey != null">
+        REPORT_KEY,
+      </if>
+      <if test="reportName != null">
+        REPORT_NAME,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="reportKey != null">
+        #{reportKey,jdbcType=VARCHAR},
+      </if>
+      <if test="reportName != null">
+        #{reportName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResReport">
+    update res_report
+    <set>
+      <if test="reportKey != null">
+        REPORT_KEY = #{reportKey,jdbcType=VARCHAR},
+      </if>
+      <if test="reportName != null">
+        REPORT_NAME = #{reportName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResReport">
+    update res_report
+    set REPORT_KEY = #{reportKey,jdbcType=VARCHAR},
+      REPORT_NAME = #{reportName,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

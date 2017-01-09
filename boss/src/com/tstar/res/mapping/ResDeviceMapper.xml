@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResDeviceMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResDevice">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DEVICE_TYPE_ID" jdbcType="VARCHAR" property="deviceTypeId" />
+    <result column="MANUFACTURER" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="DEVICE_MODEL" jdbcType="VARCHAR" property="deviceModel" />
+    <result column="INSTALL_DATE" jdbcType="TIMESTAMP" property="installDate" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="START_PORT_CODE" jdbcType="VARCHAR" property="startPortCode" />
+    <result column="END_PORT_CODE" jdbcType="VARCHAR" property="endPortCode" />
+    <result column="PORT_DESC" jdbcType="VARCHAR" property="portDesc" />
+    <result column="PORT_TOTAL" jdbcType="INTEGER" property="portTotal" />
+    <result column="RES_DEPT" jdbcType="VARCHAR" property="resDept" />
+    <result column="CTRL_IP" jdbcType="VARCHAR" property="ctrlIp" />
+    <result column="CTRL_PROTOCOL" jdbcType="VARCHAR" property="ctrlProtocol" />
+    <result column="CTRL_USER_NAME" jdbcType="VARCHAR" property="ctrlUserName" />
+    <result column="CTRL_PWD" jdbcType="VARCHAR" property="ctrlPwd" />
+    <result column="CTRL_ADV_USER_NAME" jdbcType="VARCHAR" property="ctrlAdvUserName" />
+    <result column="CTRL_ADV_PWD" jdbcType="VARCHAR" property="ctrlAdvPwd" />
+    <result column="DATA_IP" jdbcType="VARCHAR" property="dataIp" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DEVICE_CODE, NAME, DEVICE_TYPE_ID, MANUFACTURER, 
+    DEVICE_MODEL, INSTALL_DATE, ADDRESS, START_PORT_CODE, END_PORT_CODE, PORT_DESC, PORT_TOTAL, 
+    RES_DEPT, CTRL_IP, CTRL_PROTOCOL, CTRL_USER_NAME, CTRL_PWD, CTRL_ADV_USER_NAME, CTRL_ADV_PWD, 
+    DATA_IP, REMARK
+  </sql>
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from res_device
+    where 1=1
+    <if test="deviceCode != null and deviceCode != ''">
+    	and DEVICE_CODE LIKE concat(#{deviceCode}, '%')
+    </if>
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device
+    where 1=1
+    <if test="deviceCode != null and deviceCode != ''">
+    	and DEVICE_CODE LIKE concat(#{deviceCode}, '%')
+    </if>
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    limit #{start}, #{length}
+  </select>
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device
+    where DEVICE_CODE = #{0}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_device
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResDevice">
+    insert into res_device (ID, DEVICE_CODE, NAME, 
+      DEVICE_TYPE_ID, 
+      MANUFACTURER, DEVICE_MODEL, INSTALL_DATE, 
+      ADDRESS, START_PORT_CODE, END_PORT_CODE, 
+      PORT_DESC, PORT_TOTAL, RES_DEPT, 
+      CTRL_IP, CTRL_PROTOCOL, CTRL_USER_NAME, 
+      CTRL_PWD, CTRL_ADV_USER_NAME, CTRL_ADV_PWD, 
+      DATA_IP, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{deviceCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{deviceTypeId,jdbcType=VARCHAR}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{deviceModel,jdbcType=VARCHAR}, #{installDate,jdbcType=TIMESTAMP}, 
+      #{address,jdbcType=VARCHAR}, #{startPortCode,jdbcType=VARCHAR}, #{endPortCode,jdbcType=VARCHAR}, 
+      #{portDesc,jdbcType=VARCHAR}, #{portTotal,jdbcType=INTEGER}, #{resDept,jdbcType=VARCHAR}, 
+      #{ctrlIp,jdbcType=VARCHAR}, #{ctrlProtocol,jdbcType=VARCHAR}, #{ctrlUserName,jdbcType=VARCHAR}, 
+      #{ctrlPwd,jdbcType=VARCHAR}, #{ctrlAdvUserName,jdbcType=VARCHAR}, #{ctrlAdvPwd,jdbcType=VARCHAR}, 
+      #{dataIp,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResDevice">
+    insert into res_device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="deviceTypeId != null">
+        DEVICE_TYPE_ID,
+      </if>
+      <if test="manufacturer != null">
+        MANUFACTURER,
+      </if>
+      <if test="deviceModel != null">
+        DEVICE_MODEL,
+      </if>
+      <if test="installDate != null">
+        INSTALL_DATE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="startPortCode != null">
+        START_PORT_CODE,
+      </if>
+      <if test="endPortCode != null">
+        END_PORT_CODE,
+      </if>
+      <if test="portDesc != null">
+        PORT_DESC,
+      </if>
+      <if test="portTotal != null">
+        PORT_TOTAL,
+      </if>
+      <if test="resDept != null">
+        RES_DEPT,
+      </if>
+      <if test="ctrlIp != null">
+        CTRL_IP,
+      </if>
+      <if test="ctrlProtocol != null">
+        CTRL_PROTOCOL,
+      </if>
+      <if test="ctrlUserName != null">
+        CTRL_USER_NAME,
+      </if>
+      <if test="ctrlPwd != null">
+        CTRL_PWD,
+      </if>
+      <if test="ctrlAdvUserName != null">
+        CTRL_ADV_USER_NAME,
+      </if>
+      <if test="ctrlAdvPwd != null">
+        CTRL_ADV_PWD,
+      </if>
+      <if test="dataIp != null">
+        DATA_IP,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeId != null">
+        #{deviceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="installDate != null">
+        #{installDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startPortCode != null">
+        #{startPortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endPortCode != null">
+        #{endPortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portDesc != null">
+        #{portDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="portTotal != null">
+        #{portTotal,jdbcType=INTEGER},
+      </if>
+      <if test="resDept != null">
+        #{resDept,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlIp != null">
+        #{ctrlIp,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlProtocol != null">
+        #{ctrlProtocol,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlUserName != null">
+        #{ctrlUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlPwd != null">
+        #{ctrlPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlAdvUserName != null">
+        #{ctrlAdvUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlAdvPwd != null">
+        #{ctrlAdvPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="dataIp != null">
+        #{dataIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResDevice">
+    update res_device
+    <set>
+      <if test="deviceCode != null">
+        DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeId != null">
+        DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        MANUFACTURER = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        DEVICE_MODEL = #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="installDate != null">
+        INSTALL_DATE = #{installDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startPortCode != null">
+        START_PORT_CODE = #{startPortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endPortCode != null">
+        END_PORT_CODE = #{endPortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portDesc != null">
+        PORT_DESC = #{portDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="portTotal != null">
+        PORT_TOTAL = #{portTotal,jdbcType=INTEGER},
+      </if>
+      <if test="resDept != null">
+        RES_DEPT = #{resDept,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlIp != null">
+        CTRL_IP = #{ctrlIp,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlProtocol != null">
+        CTRL_PROTOCOL = #{ctrlProtocol,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlUserName != null">
+        CTRL_USER_NAME = #{ctrlUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlPwd != null">
+        CTRL_PWD = #{ctrlPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlAdvUserName != null">
+        CTRL_ADV_USER_NAME = #{ctrlAdvUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlAdvPwd != null">
+        CTRL_ADV_PWD = #{ctrlAdvPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="dataIp != null">
+        DATA_IP = #{dataIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResDevice">
+    update res_device
+    set DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=VARCHAR},
+      MANUFACTURER = #{manufacturer,jdbcType=VARCHAR},
+      DEVICE_MODEL = #{deviceModel,jdbcType=VARCHAR},
+      INSTALL_DATE = #{installDate,jdbcType=TIMESTAMP},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      START_PORT_CODE = #{startPortCode,jdbcType=VARCHAR},
+      END_PORT_CODE = #{endPortCode,jdbcType=VARCHAR},
+      PORT_DESC = #{portDesc,jdbcType=VARCHAR},
+      PORT_TOTAL = #{portTotal,jdbcType=INTEGER},
+      RES_DEPT = #{resDept,jdbcType=VARCHAR},
+      CTRL_IP = #{ctrlIp,jdbcType=VARCHAR},
+      CTRL_PROTOCOL = #{ctrlProtocol,jdbcType=VARCHAR},
+      CTRL_USER_NAME = #{ctrlUserName,jdbcType=VARCHAR},
+      CTRL_PWD = #{ctrlPwd,jdbcType=VARCHAR},
+      CTRL_ADV_USER_NAME = #{ctrlAdvUserName,jdbcType=VARCHAR},
+      CTRL_ADV_PWD = #{ctrlAdvPwd,jdbcType=VARCHAR},
+      DATA_IP = #{dataIp,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

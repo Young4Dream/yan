@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.SysSequencePolicyMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.SysSequencePolicy">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="POLICY_KEY" jdbcType="VARCHAR" property="policyKey" />
+    <result column="POLICY_NAME" jdbcType="VARCHAR" property="policyName" />
+    <result column="POLICY_EXP" jdbcType="VARCHAR" property="policyExp" />
+    <result column="CURR_PREFIX" jdbcType="VARCHAR" property="currPrefix" />
+    <result column="CURR_SEQ" jdbcType="VARCHAR" property="currSeq" />
+    <result column="BUFFER_SIZE" jdbcType="INTEGER" property="bufferSize" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, POLICY_KEY, POLICY_NAME, POLICY_EXP, CURR_PREFIX, CURR_SEQ, BUFFER_SIZE, REMARK
+  </sql>
+  <select id="selectByPolicyKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sequence_policy
+    where POLICY_KEY = #{0}
+    limit 0, 1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sequence_policy
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_sequence_policy
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.SysSequencePolicy">
+    insert into sys_sequence_policy (ID, POLICY_KEY, POLICY_NAME, 
+      POLICY_EXP, CURR_PREFIX, CURR_SEQ, 
+      BUFFER_SIZE, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{policyKey,jdbcType=VARCHAR}, #{policyName,jdbcType=VARCHAR}, 
+      #{policyExp,jdbcType=VARCHAR}, #{currPrefix,jdbcType=VARCHAR}, #{currSeq,jdbcType=VARCHAR}, 
+      #{bufferSize,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.SysSequencePolicy">
+    insert into sys_sequence_policy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="policyKey != null">
+        POLICY_KEY,
+      </if>
+      <if test="policyName != null">
+        POLICY_NAME,
+      </if>
+      <if test="policyExp != null">
+        POLICY_EXP,
+      </if>
+      <if test="currPrefix != null">
+        CURR_PREFIX,
+      </if>
+      <if test="currSeq != null">
+        CURR_SEQ,
+      </if>
+      <if test="bufferSize != null">
+        BUFFER_SIZE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="policyKey != null">
+        #{policyKey,jdbcType=VARCHAR},
+      </if>
+      <if test="policyName != null">
+        #{policyName,jdbcType=VARCHAR},
+      </if>
+      <if test="policyExp != null">
+        #{policyExp,jdbcType=VARCHAR},
+      </if>
+      <if test="currPrefix != null">
+        #{currPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="currSeq != null">
+        #{currSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="bufferSize != null">
+        #{bufferSize,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.SysSequencePolicy">
+    update sys_sequence_policy
+    <set>
+      <if test="policyKey != null">
+        POLICY_KEY = #{policyKey,jdbcType=VARCHAR},
+      </if>
+      <if test="policyName != null">
+        POLICY_NAME = #{policyName,jdbcType=VARCHAR},
+      </if>
+      <if test="policyExp != null">
+        POLICY_EXP = #{policyExp,jdbcType=VARCHAR},
+      </if>
+      <if test="currPrefix != null">
+        CURR_PREFIX = #{currPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="currSeq != null">
+        CURR_SEQ = #{currSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="bufferSize != null">
+        BUFFER_SIZE = #{bufferSize,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.SysSequencePolicy">
+    update sys_sequence_policy
+    set POLICY_KEY = #{policyKey,jdbcType=VARCHAR},
+      POLICY_NAME = #{policyName,jdbcType=VARCHAR},
+      POLICY_EXP = #{policyExp,jdbcType=VARCHAR},
+      CURR_PREFIX = #{currPrefix,jdbcType=VARCHAR},
+      CURR_SEQ = #{currSeq,jdbcType=VARCHAR},
+      BUFFER_SIZE = #{bufferSize,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidPlanRateMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidPlanRate">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PLAN_ID" jdbcType="VARCHAR" property="planId" />
+    <result column="RATE_ID" jdbcType="VARCHAR" property="rateId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="RATE_NAME" jdbcType="VARCHAR" property="rateName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PLAN_ID, RATE_ID, CREATE_TIME, UPDATE_TIME, REMARK,
+    (select NAME from sid_rate where ID=RATE_ID) AS RATE_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_plan_rate
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPlanId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_plan_rate
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_plan_rate
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidPlanRate">
+    insert into sid_plan_rate (ID, PLAN_ID, RATE_ID, 
+      CREATE_TIME, UPDATE_TIME, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{planId,jdbcType=VARCHAR}, #{rateId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidPlanRate">
+    insert into sid_plan_rate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="planId != null">
+        PLAN_ID,
+      </if>
+      <if test="rateId != null">
+        RATE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidPlanRate">
+    update sid_plan_rate
+    <set>
+      <if test="planId != null">
+        PLAN_ID = #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        RATE_ID = #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidPlanRate">
+    update sid_plan_rate
+    set PLAN_ID = #{planId,jdbcType=VARCHAR},
+      RATE_ID = #{rateId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

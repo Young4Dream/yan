@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidServiceCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidServiceCategory">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ABBR" jdbcType="VARCHAR" property="abbr" />
+    <result column="B_TYPE" jdbcType="VARCHAR" property="busType" />
+    <result column="METER" jdbcType="VARCHAR" property="meter" />
+    <result column="METER_NAME" jdbcType="VARCHAR" property="meterName" />
+    <result column="B_TYPE_DESC" jdbcType="VARCHAR" property="busTypeDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, ABBR, B_TYPE, METER, METER_NAME,
+    (select NAME from ref_business_type where ref_business_type.ID=B_TYPE) AS B_TYPE_DESC
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_service_category
+  </select>
+  <select id="selectByAbbr" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_service_category
+    where ABBR = #{abbr,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_service_category
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_service_category
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidServiceCategory">
+    insert into sid_service_category (ID, NAME, ABBR, B_TYPE, 
+      METER, METER_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{abbr,jdbcType=VARCHAR}, #{busType,jdbcType=VARCHAR}, 
+      #{meter,jdbcType=VARCHAR}, #{meterName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidServiceCategory">
+    insert into sid_service_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="abbr != null">
+        ABBR,
+      </if>
+      <if test="busType != null">
+        B_TYPE,
+      </if>
+      <if test="meter != null">
+        METER,
+      </if>
+      <if test="meterName != null">
+        METER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="abbr != null">
+        #{abbr,jdbcType=VARCHAR},
+      </if>
+      <if test="busType != null">
+        #{busType,jdbcType=VARCHAR},
+      </if>
+      <if test="meter != null">
+        #{meter,jdbcType=VARCHAR},
+      </if>
+      <if test="meterName != null">
+        #{meterName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidServiceCategory">
+    update sid_service_category
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="abbr != null">
+        ABBR = #{abbr,jdbcType=VARCHAR},
+      </if>
+      <if test="busType != null">
+        B_TYPE = #{busType,jdbcType=VARCHAR},
+      </if>
+      <if test="meter != null">
+        METER = #{meter,jdbcType=VARCHAR},
+      </if>
+      <if test="meterName != null">
+        METER_NAME = #{meterName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidServiceCategory">
+    update sid_service_category
+    set NAME = #{name,jdbcType=VARCHAR},
+      ABBR = #{abbr,jdbcType=VARCHAR},	
+      B_TYPE = #{busType,jdbcType=VARCHAR},
+      METER = #{meter,jdbcType=VARCHAR},
+      METER_NAME = #{meterName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.SysSequencePoolMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.SysSequencePool">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="POLICY_KEY" jdbcType="VARCHAR" property="policyKey" />
+    <result column="CURR_PREFIX" jdbcType="VARCHAR" property="currPrefix" />
+    <result column="CURR_VAL" jdbcType="VARCHAR" property="currVal" />
+    <result column="LOCKED" jdbcType="INTEGER" property="locked" />
+    <result column="LOCK_TIME" jdbcType="TIMESTAMP" property="lockTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, POLICY_KEY, CURR_PREFIX, CURR_VAL, LOCKED, LOCK_TIME
+  </sql>
+  <select id="selectTopOneByPolicyKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sequence_pool
+    where POLICY_KEY = #{0}
+    and CURR_PREFIX = #{1}
+    limit 0, 1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sequence_pool
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPolicyKeyAndValue" parameterType="java.lang.String">
+    delete from sys_sequence_pool
+    where POLICY_KEY = #{0}
+    and CURR_VAL = #{1}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_sequence_pool
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.SysSequencePool">
+    insert into sys_sequence_pool (ID, POLICY_KEY, CURR_PREFIX, 
+      CURR_VAL, LOCKED, LOCK_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{policyKey,jdbcType=VARCHAR}, #{currPrefix,jdbcType=VARCHAR}, 
+      #{currVal,jdbcType=VARCHAR}, #{locked,jdbcType=INTEGER}, #{lockTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.SysSequencePool">
+    insert into sys_sequence_pool
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="policyKey != null">
+        POLICY_KEY,
+      </if>
+      <if test="currPrefix != null">
+        CURR_PREFIX,
+      </if>
+      <if test="currVal != null">
+        CURR_VAL,
+      </if>
+      <if test="locked != null">
+        LOCKED,
+      </if>
+      <if test="lockTime != null">
+        LOCK_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="policyKey != null">
+        #{policyKey,jdbcType=VARCHAR},
+      </if>
+      <if test="currPrefix != null">
+        #{currPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="currVal != null">
+        #{currVal,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="lockTime != null">
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.SysSequencePool">
+    update sys_sequence_pool
+    <set>
+      <if test="policyKey != null">
+        POLICY_KEY = #{policyKey,jdbcType=VARCHAR},
+      </if>
+      <if test="currPrefix != null">
+        CURR_PREFIX = #{currPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="currVal != null">
+        CURR_VAL = #{currVal,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        LOCK = #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="lockTime != null">
+        LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.SysSequencePool">
+    update sys_sequence_pool
+    set POLICY_KEY = #{policyKey,jdbcType=VARCHAR},
+      CURR_PREFIX = #{currPrefix,jdbcType=VARCHAR},
+      CURR_VAL = #{currVal,jdbcType=VARCHAR},
+      LOCKED = #{locked,jdbcType=INTEGER},
+      LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="lock" parameterType="java.lang.String">
+    update sys_sequence_pool
+    set LOCKED = 1,
+      LOCK_TIME = NOW()
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="unlock">
+    update sys_sequence_pool
+    set LOCKED = 0
+    where LOCKED = 1
+    and DATE_ADD(LOCK_TIME, INTERVAL 1 DAY) &lt; NOW()
+  </update>
+</mapper>

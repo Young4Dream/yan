@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CrmUserPhoneMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.CrmUserPhone">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PHONE_NO" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="PHONE_ALIAS" jdbcType="VARCHAR" property="phoneAlias" />
+    <result column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+    <result column="PHONE_LEVEL" jdbcType="VARCHAR" property="phoneLevel" />
+    <result column="CONVERT_TIME" jdbcType="TIMESTAMP" property="convertTime" />
+    <result column="CALL_POLICY" jdbcType="VARCHAR" property="callPolicy" />
+    <result column="ADJUST_POLICY" jdbcType="VARCHAR" property="adjustPolicy" />
+    <result column="SECRET_LEVEL" jdbcType="VARCHAR" property="secretLevel" />
+    <result column="PHONE_LEVEL_DESC" jdbcType="VARCHAR" property="phoneLevelDesc" />
+    <result column="CALL_POLICY_DESC" jdbcType="VARCHAR" property="callPolicyDesc" />
+    <result column="ADJUST_POLICY_DESC" jdbcType="VARCHAR" property="adjustPolicyDesc" />
+    <result column="SECRET_LEVEL_DESC" jdbcType="VARCHAR" property="secretLevelDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PHONE_NO, PHONE_ALIAS, DEVICE_CODE, PWD, PHONE_LEVEL, CONVERT_TIME, CALL_POLICY, 
+    ADJUST_POLICY, SECRET_LEVEL,
+    (SELECT NAME FROM ref_call_policy WHERE ref_call_policy.ID=CALL_POLICY) AS CALL_POLICY_DESC,
+    (SELECT NAME FROM ref_adjust_policy WHERE ref_adjust_policy.ID=ADJUST_POLICY) AS ADJUST_POLICY_DESC,
+    (SELECT NAME FROM ref_phone_level WHERE ref_phone_level.ID=PHONE_LEVEL) AS PHONE_LEVEL_DESC,
+    (SELECT NAME FROM ref_security WHERE ref_security.ID=SECRET_LEVEL) AS SECRET_LEVEL_DESC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user_phone
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_user_phone
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.CrmUserPhone">
+    insert into crm_user_phone (ID, PHONE_NO, PHONE_ALIAS, 
+      DEVICE_CODE, PWD, PHONE_LEVEL, 
+      CONVERT_TIME, CALL_POLICY, ADJUST_POLICY, 
+      SECRET_LEVEL)
+    values (#{id,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, #{phoneAlias,jdbcType=VARCHAR}, 
+      #{deviceCode,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{phoneLevel,jdbcType=VARCHAR}, 
+      #{convertTime,jdbcType=TIMESTAMP}, #{callPolicy,jdbcType=VARCHAR}, #{adjustPolicy,jdbcType=VARCHAR}, 
+      #{secretLevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.CrmUserPhone">
+    insert into crm_user_phone
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO,
+      </if>
+      <if test="phoneAlias != null">
+        PHONE_ALIAS,
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE,
+      </if>
+      <if test="pwd != null">
+        PWD,
+      </if>
+      <if test="phoneLevel != null">
+        PHONE_LEVEL,
+      </if>
+      <if test="convertTime != null">
+        CONVERT_TIME,
+      </if>
+      <if test="callPolicy != null">
+        CALL_POLICY,
+      </if>
+      <if test="adjustPolicy != null">
+        ADJUST_POLICY,
+      </if>
+      <if test="secretLevel != null">
+        SECRET_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneAlias != null">
+        #{phoneAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneLevel != null">
+        #{phoneLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="convertTime != null">
+        #{convertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callPolicy != null">
+        #{callPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustPolicy != null">
+        #{adjustPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="secretLevel != null">
+        #{secretLevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.CrmUserPhone">
+    update crm_user_phone
+    <set>
+      <if test="phoneNo != null">
+        PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneAlias != null">
+        PHONE_ALIAS = #{phoneAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneLevel != null">
+        PHONE_LEVEL = #{phoneLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="convertTime != null">
+        CONVERT_TIME = #{convertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callPolicy != null">
+        CALL_POLICY = #{callPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustPolicy != null">
+        ADJUST_POLICY = #{adjustPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="secretLevel != null">
+        SECRET_LEVEL = #{secretLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.CrmUserPhone">
+    update crm_user_phone
+    set PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      PHONE_ALIAS = #{phoneAlias,jdbcType=VARCHAR},
+      DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      PHONE_LEVEL = #{phoneLevel,jdbcType=VARCHAR},
+      CONVERT_TIME = #{convertTime,jdbcType=TIMESTAMP},
+      CALL_POLICY = #{callPolicy,jdbcType=VARCHAR},
+      ADJUST_POLICY = #{adjustPolicy,jdbcType=VARCHAR},
+      SECRET_LEVEL = #{secretLevel,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

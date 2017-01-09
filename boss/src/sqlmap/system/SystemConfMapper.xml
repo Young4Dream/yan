@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tstar.callcenter.dao.admin.SystemConfMapper">
+	<resultMap id="BaseResultMap" type="com.tstar.callcenter.pub.data.ResultMap">
+	</resultMap>
+	<resultMap id="MenuResultMap" type="com.tstar.callcenter.model.autogenerate.MenuInfo">
+	</resultMap>
+
+
+	<select id="selectRoleByPage" resultMap="BaseResultMap"
+		parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		role_id as roleId,
+		role_name as roleName,
+		is_admin as isAdmin,
+		to_char(create_time, 'YYYY-MM-DD HH24:MI:SS') as createTime,
+		to_char(update_time, 'YYYY-MM-DD HH24:MI:SS') as updateTime,
+		remark
+		from t_bs_role_info
+		where 1=1
+		<if test="role_name != null and role_name != '' ">
+			and role_name like '%'||#{role_name}||'%'
+	  		</if>
+		<if test="is_admin != null and is_admin != '0' ">
+			and is_admin=#{is_admin}
+	  	</if>
+
+		ORDER BY update_time DESC,create_time DESC
+
+	</select>
+
+	<select id="selectRoleByCount" resultType="int"
+		parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		count(*)
+		from t_bs_role_info
+		where 1=1
+		<if test="role_name != null and role_name != '' ">
+			and role_name like '%'||#{role_name}||'%'
+	  		</if>
+		<if test="is_admin != null and is_admin != '0' ">
+			and is_admin=#{is_admin}
+	  	</if>
+	</select>
+
+	<select id="selectMenuByRoleId" resultMap="MenuResultMap"
+		parameterType="long">
+		SELECT
+		a.menu_id as menuId,
+		a.menu_name as menuName,
+		a.menu_url as menuUrl,
+		a.parent_id as parentId,
+		a.menu_sort as menuSort,
+		a.menu_ico as menuIco
+		from t_bs_menu_info a,t_bs_menu_role b
+		where 1=1
+		and b.role_id=#{roleId} and a.menu_id=b.menu_id
+		order by a.parent_id,a.menu_sort asc
+  </select>
+
+	<select id="selectMenuIdByRoleId" resultType="java.lang.Long"
+		parameterType="long">
+		select
+		menu_id
+		from t_bs_menu_role
+		where role_id=#{roleId}
+  </select>
+
+	<update id="updateTreeByMenuId" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfo">
+		update t_bs_menu_info
+		set
+		parent_id = #{parentId},
+		menu_sort = #{menuSort},
+		update_time = #{updateTime}
+		where menu_id = #{menuId}
+  </update>
+
+	<select id="selectHasMenuByCount" resultType="int"
+		parameterType="long">
+		select
+		count(*)
+		from t_bs_menu_info
+		where parent_id = #{menuId}
+  </select>
+
+
+	<select id="selectUserByPage" resultMap="BaseResultMap"
+		parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select 
+		a.user_id,
+		a.user_name,
+		a.password,
+		a.role_id,
+		b.role_name,
+		to_char(a.create_time, 'YYYY-MM-DD HH24:MI:SS') as create_time,
+		to_char(a.update_time, 'YYYY-MM-DD HH24:MI:SS') as update_time,
+		a.remark
+		from t_bs_user_info a , t_bs_role_info b
+		where a.role_id = b.role_id
+		<if test="user_name != null and user_name != '' ">
+			and a.user_name like '%'||#{user_name}||'%'
+	  	</if>
+		<if test="role_id != null and role_id != -1 ">
+			and a.role_id=#{role_id}
+	  	</if>
+	  	<!-- 
+	  	<if test="user_id != null and user_id != 1 ">
+            and a.user_id != 1
+        </if>
+	  	 -->
+		ORDER BY a.update_time DESC
+		<!-- 
+		limit #{pageSize} offset #{offset}
+		 -->
+
+	</select>
+
+	<select id="selectUserByCount" resultType="int"
+		parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		count(*)
+		from t_bs_user_info a , t_bs_role_info b
+		where a.role_id = b.role_id
+		<if test="user_name != null and user_name != '' ">
+			and a.user_name like '%'||#{user_name}||'%'
+	  		</if>
+		<if test="role_id != null and role_id != -1 ">
+			and a.role_id=#{role_id}
+	  	</if>
+	  	<!-- 
+	  	<if test="user_id != null and user_id != 1 ">
+            and a.user_id != 1
+        </if>
+	  	 -->
+	</select>
+	
+	
+	<select id="roleSelectList" resultMap="BaseResultMap"
+		parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select role_id,role_name from t_bs_role_info
+	</select>
+	
+	
+	<select id="selectUserCountByRole" resultType="int"
+		parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select count(*)
+		from t_bs_user_info 
+		where role_id = #{role_id}
+	</select>
+	
+	
+	
+	
+</mapper>

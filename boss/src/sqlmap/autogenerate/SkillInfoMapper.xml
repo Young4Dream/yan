@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.SkillInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.SkillInfo" >
+    <id column="SKILL_ID" property="skillId" jdbcType="DECIMAL" />
+    <result column="SKILL_CODE" property="skillCode" jdbcType="VARCHAR" />
+    <result column="SKILL_NAME" property="skillName" jdbcType="VARCHAR" />
+    <result column="SKILL_TYPE" property="skillType" jdbcType="VARCHAR" />
+    <result column="SKILL_DESC" property="skillDesc" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="PARAM" property="param" jdbcType="VARCHAR" />
+    <result column="GROUP_ID" property="groupId" jdbcType="DECIMAL" />
+    <result column="MEMO1" property="memo1" jdbcType="VARCHAR" />
+    <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+    <result column="MEMO3" property="memo3" jdbcType="VARCHAR" />
+    <result column="MEMO4" property="memo4" jdbcType="VARCHAR" />
+    <result column="MEMO5" property="memo5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SKILL_ID, SKILL_CODE, SKILL_NAME, SKILL_TYPE, SKILL_DESC, URL, PARAM, GROUP_ID, MEMO1, 
+    MEMO2, MEMO3, MEMO4, MEMO5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CC_SKILL_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CC_SKILL_INFO
+    where SKILL_ID = #{skillId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_CC_SKILL_INFO
+    where SKILL_ID = #{skillId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfoExample" >
+    delete from T_CC_SKILL_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfo" >
+    <selectKey resultType="long" keyProperty="skillId" order="BEFORE" >
+      select t_cc_skill_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_SKILL_INFO (SKILL_ID, SKILL_CODE, SKILL_NAME, 
+      SKILL_TYPE, SKILL_DESC, URL, 
+      PARAM, GROUP_ID, MEMO1, 
+      MEMO2, MEMO3, MEMO4, 
+      MEMO5)
+    values (#{skillId,jdbcType=DECIMAL}, #{skillCode,jdbcType=VARCHAR}, #{skillName,jdbcType=VARCHAR}, 
+      #{skillType,jdbcType=VARCHAR}, #{skillDesc,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{param,jdbcType=VARCHAR}, #{groupId,jdbcType=DECIMAL}, #{memo1,jdbcType=VARCHAR}, 
+      #{memo2,jdbcType=VARCHAR}, #{memo3,jdbcType=VARCHAR}, #{memo4,jdbcType=VARCHAR}, 
+      #{memo5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfo" >
+    <selectKey resultType="long" keyProperty="skillId" order="BEFORE" >
+      select t_cc_skill_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_SKILL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      SKILL_ID,
+      <if test="skillCode != null" >
+        SKILL_CODE,
+      </if>
+      <if test="skillName != null" >
+        SKILL_NAME,
+      </if>
+      <if test="skillType != null" >
+        SKILL_TYPE,
+      </if>
+      <if test="skillDesc != null" >
+        SKILL_DESC,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="param != null" >
+        PARAM,
+      </if>
+      GROUP_ID,
+      <if test="memo1 != null" >
+        MEMO1,
+      </if>
+      <if test="memo2 != null" >
+        MEMO2,
+      </if>
+      <if test="memo3 != null" >
+        MEMO3,
+      </if>
+      <if test="memo4 != null" >
+        MEMO4,
+      </if>
+      <if test="memo5 != null" >
+        MEMO5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{skillId,jdbcType=DECIMAL},
+      <if test="skillCode != null" >
+        #{skillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skillName != null" >
+        #{skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="skillType != null" >
+        #{skillType,jdbcType=VARCHAR},
+      </if>
+      <if test="skillDesc != null" >
+        #{skillDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null" >
+        #{param,jdbcType=VARCHAR},
+      </if>
+      #{groupId,jdbcType=DECIMAL},
+      <if test="memo1 != null" >
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        #{memo5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_CC_SKILL_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CC_SKILL_INFO
+    <set >
+      <if test="record.skillId != null" >
+        SKILL_ID = #{record.skillId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.skillCode != null" >
+        SKILL_CODE = #{record.skillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skillName != null" >
+        SKILL_NAME = #{record.skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skillType != null" >
+        SKILL_TYPE = #{record.skillType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skillDesc != null" >
+        SKILL_DESC = #{record.skillDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.param != null" >
+        PARAM = #{record.param,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null" >
+        GROUP_ID = #{record.groupId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memo1 != null" >
+        MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo2 != null" >
+        MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo3 != null" >
+        MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo4 != null" >
+        MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo5 != null" >
+        MEMO5 = #{record.memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CC_SKILL_INFO
+    set SKILL_ID = #{record.skillId,jdbcType=DECIMAL},
+      SKILL_CODE = #{record.skillCode,jdbcType=VARCHAR},
+      SKILL_NAME = #{record.skillName,jdbcType=VARCHAR},
+      SKILL_TYPE = #{record.skillType,jdbcType=VARCHAR},
+      SKILL_DESC = #{record.skillDesc,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      PARAM = #{record.param,jdbcType=VARCHAR},
+      GROUP_ID = #{record.groupId,jdbcType=DECIMAL},
+      MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      MEMO5 = #{record.memo5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfo" >
+    update T_CC_SKILL_INFO
+    <set >
+      <if test="skillCode != null" >
+        SKILL_CODE = #{skillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skillName != null" >
+        SKILL_NAME = #{skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="skillType != null" >
+        SKILL_TYPE = #{skillType,jdbcType=VARCHAR},
+      </if>
+      <if test="skillDesc != null" >
+        SKILL_DESC = #{skillDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null" >
+        PARAM = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=DECIMAL},
+      </if>
+      <if test="memo1 != null" >
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        MEMO2 = #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        MEMO3 = #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        MEMO4 = #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        MEMO5 = #{memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SKILL_ID = #{skillId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.SkillInfo" >
+    update T_CC_SKILL_INFO
+    set SKILL_CODE = #{skillCode,jdbcType=VARCHAR},
+      SKILL_NAME = #{skillName,jdbcType=VARCHAR},
+      SKILL_TYPE = #{skillType,jdbcType=VARCHAR},
+      SKILL_DESC = #{skillDesc,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      PARAM = #{param,jdbcType=VARCHAR},
+      GROUP_ID = #{groupId,jdbcType=DECIMAL},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      MEMO2 = #{memo2,jdbcType=VARCHAR},
+      MEMO3 = #{memo3,jdbcType=VARCHAR},
+      MEMO4 = #{memo4,jdbcType=VARCHAR},
+      MEMO5 = #{memo5,jdbcType=VARCHAR}
+    where SKILL_ID = #{skillId,jdbcType=DECIMAL}
+  </update>
+</mapper>

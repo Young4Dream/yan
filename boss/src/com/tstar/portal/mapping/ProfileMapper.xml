@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.ProfileMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.Profile">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SECTION_NAME" jdbcType="VARCHAR" property="sectionName" />
+    <result column="SECTION_ALIAS" jdbcType="VARCHAR" property="sectionAlias" />
+    <result column="SECTION_ORDER" jdbcType="INTEGER" property="sectionOrder" />
+    <result column="PROFILE_NAME" jdbcType="VARCHAR" property="profileName" />
+    <result column="PROFILE_ALIAS" jdbcType="VARCHAR" property="profileAlias" />
+    <result column="PROFILE_ORDER" jdbcType="INTEGER" property="profileOrder" />
+    <result column="PROFILE_VALUE" jdbcType="VARCHAR" property="profileValue" />
+    <result column="VISIBLE" jdbcType="INTEGER" property="visible" />
+    <result column="READONLY" jdbcType="INTEGER" property="readonly" />
+    <result column="PASSWD" jdbcType="INTEGER" property="passwd" />
+    <result column="PATTERN" jdbcType="VARCHAR" property="pattern" />
+    <result column="TIP" jdbcType="VARCHAR" property="tip" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SECTION_NAME, SECTION_ALIAS, SECTION_ORDER, PROFILE_NAME, PROFILE_ALIAS, PROFILE_ORDER, 
+    PROFILE_VALUE, VISIBLE, READONLY, PASSWD, PATTERN, TIP
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_profile
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUk" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_profile
+    where SECTION_NAME = #{0}
+    and PROFILE_NAME = #{1}
+    limit 0, 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_profile
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.Profile">
+    insert into sys_profile (ID, SECTION_NAME, SECTION_ALIAS, 
+      SECTION_ORDER, PROFILE_NAME, PROFILE_ALIAS, 
+      PROFILE_ORDER, PROFILE_VALUE, VISIBLE, 
+      READONLY, PASSWD, PATTERN, 
+      TIP)
+    values (#{id,jdbcType=VARCHAR}, #{sectionName,jdbcType=VARCHAR}, #{sectionAlias,jdbcType=VARCHAR}, 
+      #{sectionOrder,jdbcType=INTEGER}, #{profileName,jdbcType=VARCHAR}, #{profileAlias,jdbcType=VARCHAR}, 
+      #{profileOrder,jdbcType=INTEGER}, #{profileValue,jdbcType=VARCHAR}, #{visible,jdbcType=INTEGER}, 
+      #{readonly,jdbcType=INTEGER}, #{passwd,jdbcType=INTEGER}, #{pattern,jdbcType=VARCHAR}, 
+      #{tip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.Profile">
+    insert into sys_profile
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="sectionName != null">
+        SECTION_NAME,
+      </if>
+      <if test="sectionAlias != null">
+        SECTION_ALIAS,
+      </if>
+      <if test="sectionOrder != null">
+        SECTION_ORDER,
+      </if>
+      <if test="profileName != null">
+        PROFILE_NAME,
+      </if>
+      <if test="profileAlias != null">
+        PROFILE_ALIAS,
+      </if>
+      <if test="profileOrder != null">
+        PROFILE_ORDER,
+      </if>
+      <if test="profileValue != null">
+        PROFILE_VALUE,
+      </if>
+      <if test="visible != null">
+        VISIBLE,
+      </if>
+      <if test="readonly != null">
+        READONLY,
+      </if>
+      <if test="passwd != null">
+        PASSWD,
+      </if>
+      <if test="pattern != null">
+        PATTERN,
+      </if>
+      <if test="tip != null">
+        TIP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionName != null">
+        #{sectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionAlias != null">
+        #{sectionAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionOrder != null">
+        #{sectionOrder,jdbcType=INTEGER},
+      </if>
+      <if test="profileName != null">
+        #{profileName,jdbcType=VARCHAR},
+      </if>
+      <if test="profileAlias != null">
+        #{profileAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="profileOrder != null">
+        #{profileOrder,jdbcType=INTEGER},
+      </if>
+      <if test="profileValue != null">
+        #{profileValue,jdbcType=VARCHAR},
+      </if>
+      <if test="visible != null">
+        #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="readonly != null">
+        #{readonly,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=INTEGER},
+      </if>
+      <if test="pattern != null">
+        #{pattern,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null">
+        #{tip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.Profile">
+    update sys_profile
+    <set>
+      <if test="sectionName != null">
+        SECTION_NAME = #{sectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionAlias != null">
+        SECTION_ALIAS = #{sectionAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionOrder != null">
+        SECTION_ORDER = #{sectionOrder,jdbcType=INTEGER},
+      </if>
+      <if test="profileName != null">
+        PROFILE_NAME = #{profileName,jdbcType=VARCHAR},
+      </if>
+      <if test="profileAlias != null">
+        PROFILE_ALIAS = #{profileAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="profileOrder != null">
+        PROFILE_ORDER = #{profileOrder,jdbcType=INTEGER},
+      </if>
+      <if test="profileValue != null">
+        PROFILE_VALUE = #{profileValue,jdbcType=VARCHAR},
+      </if>
+      <if test="visible != null">
+        VISIBLE = #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="readonly != null">
+        READONLY = #{readonly,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null">
+        PASSWD = #{passwd,jdbcType=INTEGER},
+      </if>
+      <if test="pattern != null">
+        PATTERN = #{pattern,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null">
+        TIP = #{tip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.Profile">
+    update sys_profile
+    set SECTION_NAME = #{sectionName,jdbcType=VARCHAR},
+      SECTION_ALIAS = #{sectionAlias,jdbcType=VARCHAR},
+      SECTION_ORDER = #{sectionOrder,jdbcType=INTEGER},
+      PROFILE_NAME = #{profileName,jdbcType=VARCHAR},
+      PROFILE_ALIAS = #{profileAlias,jdbcType=VARCHAR},
+      PROFILE_ORDER = #{profileOrder,jdbcType=INTEGER},
+      PROFILE_VALUE = #{profileValue,jdbcType=VARCHAR},
+      VISIBLE = #{visible,jdbcType=INTEGER},
+      READONLY = #{readonly,jdbcType=INTEGER},
+      PASSWD = #{passwd,jdbcType=INTEGER},
+      PATTERN = #{pattern,jdbcType=VARCHAR},
+      TIP = #{tip,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

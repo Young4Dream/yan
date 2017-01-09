@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidVoiceConfigItemMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidVoiceConfigItem">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CONFIG_ID" jdbcType="VARCHAR" property="configId" />
+    <result column="CALLER_PREFIX" jdbcType="VARCHAR" property="callerPrefix" />
+    <result column="CALLEE_PREFIX" jdbcType="VARCHAR" property="calleePrefix" />
+    <result column="CALLEE_LOCATION" jdbcType="VARCHAR" property="calleeLocation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CONFIG_ID, CALLER_PREFIX, CALLEE_PREFIX, CALLEE_LOCATION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_voice_config_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectDefaultConfigItem" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_voice_config_item
+    where CALLEE_PREFIX='*'
+    limit 0, 1
+  </select>
+  <select id="selectAllOrderByLen" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_voice_config_item
+    where CALLEE_PREFIX not in('*')
+    order by CHAR_LENGTH(CALLEE_PREFIX) desc
+  </select>
+  <select id="selectByConfigId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_voice_config_item
+    where CONFIG_ID = #{configId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_voice_config_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidVoiceConfigItem">
+    insert into sid_voice_config_item (ID, CONFIG_ID, CALLER_PREFIX, 
+      CALLEE_PREFIX, CALLEE_LOCATION)
+    values (#{id,jdbcType=VARCHAR}, #{configId,jdbcType=VARCHAR}, #{callerPrefix,jdbcType=VARCHAR}, 
+      #{calleePrefix,jdbcType=VARCHAR}, #{calleeLocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidVoiceConfigItem">
+    insert into sid_voice_config_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="configId != null">
+        CONFIG_ID,
+      </if>
+      <if test="callerPrefix != null">
+        CALLER_PREFIX,
+      </if>
+      <if test="calleePrefix != null">
+        CALLEE_PREFIX,
+      </if>
+      <if test="calleeLocation != null">
+        CALLEE_LOCATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="configId != null">
+        #{configId,jdbcType=VARCHAR},
+      </if>
+      <if test="callerPrefix != null">
+        #{callerPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="calleePrefix != null">
+        #{calleePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="calleeLocation != null">
+        #{calleeLocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidVoiceConfigItem">
+    update sid_voice_config_item
+    <set>
+      <if test="configId != null">
+        CONFIG_ID = #{configId,jdbcType=VARCHAR},
+      </if>
+      <if test="callerPrefix != null">
+        CALLER_PREFIX = #{callerPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="calleePrefix != null">
+        CALLEE_PREFIX = #{calleePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="calleeLocation != null">
+        CALLEE_LOCATION = #{calleeLocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidVoiceConfigItem">
+    update sid_voice_config_item
+    set CONFIG_ID = #{configId,jdbcType=VARCHAR},
+      CALLER_PREFIX = #{callerPrefix,jdbcType=VARCHAR},
+      CALLEE_PREFIX = #{calleePrefix,jdbcType=VARCHAR},
+      CALLEE_LOCATION = #{calleeLocation,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

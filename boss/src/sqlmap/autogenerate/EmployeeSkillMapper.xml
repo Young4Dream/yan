@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.EmployeeSkillMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.EmployeeSkill" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="EMPLOYEE_ID" property="employeeId" jdbcType="DECIMAL" />
+    <result column="SKILL_ID" property="skillId" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="NUM1" property="num1" jdbcType="DECIMAL" />
+    <result column="NUM2" property="num2" jdbcType="DECIMAL" />
+    <result column="NUM3" property="num3" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, EMPLOYEE_ID, SKILL_ID, REMARK, NUM1, NUM2, NUM3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CC_EMPLOYEE_SKILL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CC_EMPLOYEE_SKILL
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_CC_EMPLOYEE_SKILL
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkillExample" >
+    delete from T_CC_EMPLOYEE_SKILL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkill" >
+    <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+      select t_cc_employee_skill_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_EMPLOYEE_SKILL (ID, EMPLOYEE_ID, SKILL_ID, 
+      REMARK, NUM1, NUM2, 
+      NUM3)
+    values (#{id,jdbcType=DECIMAL}, #{employeeId,jdbcType=DECIMAL}, #{skillId,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{num1,jdbcType=DECIMAL}, #{num2,jdbcType=DECIMAL}, 
+      #{num3,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkill" >
+    <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+      select t_cc_employee_skill_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_EMPLOYEE_SKILL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      EMPLOYEE_ID,
+      SKILL_ID,
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      NUM1,
+      NUM2,
+      NUM3,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=DECIMAL},
+      #{employeeId,jdbcType=DECIMAL},
+      #{skillId,jdbcType=DECIMAL},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      #{num1,jdbcType=DECIMAL},
+      #{num2,jdbcType=DECIMAL},
+      #{num3,jdbcType=DECIMAL},
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkillExample" resultType="java.lang.Integer" >
+    select count(*) from T_CC_EMPLOYEE_SKILL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CC_EMPLOYEE_SKILL
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.employeeId != null" >
+        EMPLOYEE_ID = #{record.employeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.skillId != null" >
+        SKILL_ID = #{record.skillId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num1 != null" >
+        NUM1 = #{record.num1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num2 != null" >
+        NUM2 = #{record.num2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num3 != null" >
+        NUM3 = #{record.num3,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CC_EMPLOYEE_SKILL
+    set ID = #{record.id,jdbcType=DECIMAL},
+      EMPLOYEE_ID = #{record.employeeId,jdbcType=DECIMAL},
+      SKILL_ID = #{record.skillId,jdbcType=DECIMAL},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      NUM1 = #{record.num1,jdbcType=DECIMAL},
+      NUM2 = #{record.num2,jdbcType=DECIMAL},
+      NUM3 = #{record.num3,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkill" >
+    update T_CC_EMPLOYEE_SKILL
+    <set >
+      <if test="employeeId != null" >
+        EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="skillId != null" >
+        SKILL_ID = #{skillId,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="num1 != null" >
+        NUM1 = #{num1,jdbcType=DECIMAL},
+      </if>
+      <if test="num2 != null" >
+        NUM2 = #{num2,jdbcType=DECIMAL},
+      </if>
+      <if test="num3 != null" >
+        NUM3 = #{num3,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeSkill" >
+    update T_CC_EMPLOYEE_SKILL
+    set EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL},
+      SKILL_ID = #{skillId,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      NUM1 = #{num1,jdbcType=DECIMAL},
+      NUM2 = #{num2,jdbcType=DECIMAL},
+      NUM3 = #{num3,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

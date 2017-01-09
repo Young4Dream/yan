@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.action.extension" value="do,action"/>
+    <constant name="struts.serve.static.browserCache" value="false"/>
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <!-- 开发者模式 -->
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.objectFactory" value="spring" />
+   
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+    <constant name="struts.multipart.maxSize" value="999999999" />
+    
+    
+<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest" name="myRequestParser" class="com.tstar.callcenter.pub.tools.RequestParseWrapper" scope="default" optional="true" />
+<constant name="struts.multipart.handler" value="myRequestParser" />
+    
+	<!-- 基础管理 -->
+	<include file="struts-portal.xml"/>
+	
+</struts>

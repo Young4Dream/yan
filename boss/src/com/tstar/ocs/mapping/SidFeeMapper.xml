@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidFeeMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidFee">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="ACCOUNT_ITEM_ID" jdbcType="VARCHAR" property="accountItemId" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ACCOUNT_ITEM_NAME" jdbcType="VARCHAR" property="accountItemName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, PRICE, ACCOUNT_ITEM_ID, REMARK,
+    (select ITEM_NAME from sys_account_item where sys_account_item.ID=ACCOUNT_ITEM_ID) AS ACCOUNT_ITEM_NAME
+  </sql>
+  <select id="countAll" resultType="int">
+    select 
+    count(*)
+    from sid_fee
+    where 1=1
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_fee
+    where 1=1
+    order by NAME
+    limit #{0}, #{1}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_fee
+    where 1=1
+    order by NAME
+  </select>
+  <select id="selectOpFee" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_fee
+    where ID IN (select fee_id from sid_op_fee where OP_ID=#{0})
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_fee
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_fee
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidFee">
+    insert into sid_fee (ID, NAME, PRICE, 
+      ACCOUNT_ITEM_ID, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{accountItemId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidFee">
+    insert into sid_fee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="accountItemId != null">
+        #{accountItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidFee">
+    update sid_fee
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidFee">
+    update sid_fee
+    set NAME = #{name,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResAddressMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResAddress">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="VLAN" jdbcType="VARCHAR" property="vlan" />
+    <result column="ACC_PREFIX" jdbcType="VARCHAR" property="accPrefix" />
+    <result column="BUSINESS_AREA" jdbcType="VARCHAR" property="businessArea" />
+    <result column="USER_AREA" jdbcType="VARCHAR" property="userArea" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENT_ID, NAME, VLAN, ACC_PREFIX, BUSINESS_AREA, USER_AREA
+  </sql>
+
+  <select id="countByParentId" parameterType="java.lang.String" resultType="int">
+    select 
+    count(*)
+    from res_address
+    where PARENT_ID = #{0}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_address
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_address
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_address
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResAddress">
+    insert into res_address (ID, PARENT_ID, NAME, 
+      VLAN, ACC_PREFIX, BUSINESS_AREA,
+      USER_AREA)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{vlan,jdbcType=VARCHAR}, #{accPrefix,jdbcType=VARCHAR}, #{businessArea,jdbcType=VARCHAR},
+      #{userArea,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResAddress">
+    insert into res_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="vlan != null">
+        VLAN,
+      </if>
+      <if test="accPrefix != null">
+        ACC_PREFIX,
+      </if>
+      <if test="businessArea != null">
+        BUSINESS_AREA,
+      </if>
+      <if test="userArea != null">
+        USER_AREA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="vlan != null">
+        #{vlan,jdbcType=VARCHAR},
+      </if>
+      <if test="accPrefix != null">
+        #{accPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="businessArea != null">
+        #{businessArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userArea != null">
+        #{userArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResAddress">
+    update res_address
+    <set>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="vlan != null">
+        VLAN = #{vlan,jdbcType=VARCHAR},
+      </if>
+      <if test="accPrefix != null">
+        ACC_PREFIX = #{accPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="businessArea != null">
+        BUSINESS_AREA = #{businessArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userArea != null">
+        USER_AREA = #{userArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResAddress">
+    update res_address
+    set PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      VLAN = #{vlan,jdbcType=VARCHAR},
+      ACC_PREFIX = #{accPrefix,jdbcType=VARCHAR},
+      BUSINESS_AREA = #{businessArea,jdbcType=VARCHAR},
+      USER_AREA = #{userArea,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

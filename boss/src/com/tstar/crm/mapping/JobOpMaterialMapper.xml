@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.JobOpMaterialMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.JobOpMaterial">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FORM_ID" jdbcType="VARCHAR" property="formId" />
+    <result column="MATERIAL_ID" jdbcType="VARCHAR" property="materialId" />
+    <result column="MATERIAL_NAME" jdbcType="VARCHAR" property="materialName" />
+    <result column="UNIT_NAME" jdbcType="VARCHAR" property="unitName" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="AMOUNT" jdbcType="INTEGER" property="amount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FORM_ID, MATERIAL_ID, MATERIAL_NAME, UNIT_NAME, PRICE, AMOUNT, CREATE_TIME, REMARK
+  </sql>
+  
+  <select id="selectByFormId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_material
+    where FORM_ID = #{formId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_material
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from job_op_material
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.JobOpMaterial">
+    insert into job_op_material (ID, FORM_ID, MATERIAL_ID, 
+      MATERIAL_NAME, UNIT_NAME, PRICE, 
+      AMOUNT, CREATE_TIME, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{formId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, 
+      #{materialName,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.JobOpMaterial">
+    insert into job_op_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="formId != null">
+        FORM_ID,
+      </if>
+      <if test="materialId != null">
+        MATERIAL_ID,
+      </if>
+      <if test="materialName != null">
+        MATERIAL_NAME,
+      </if>
+      <if test="unitName != null">
+        UNIT_NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="formId != null">
+        #{formId,jdbcType=VARCHAR},
+      </if>
+      <if test="materialId != null">
+        #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null">
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.JobOpMaterial">
+    update job_op_material
+    <set>
+      <if test="formId != null">
+        FORM_ID = #{formId,jdbcType=VARCHAR},
+      </if>
+      <if test="materialId != null">
+        MATERIAL_ID = #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null">
+        MATERIAL_NAME = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.JobOpMaterial">
+    update job_op_material
+    set FORM_ID = #{formId,jdbcType=VARCHAR},
+      MATERIAL_ID = #{materialId,jdbcType=VARCHAR},
+      MATERIAL_NAME = #{materialName,jdbcType=VARCHAR},
+      UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

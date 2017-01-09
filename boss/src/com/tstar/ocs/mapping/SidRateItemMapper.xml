@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidRateItemMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidRateItem">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="RATE_ID" jdbcType="VARCHAR" property="rateId" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="BASE_DURATION" jdbcType="INTEGER" property="baseDuration" />
+    <result column="BASE_FEE" jdbcType="DECIMAL" property="baseFee" />
+    <result column="BASE_USAGE" jdbcType="INTEGER" property="baseUsage" />
+    <result column="THRESHOLD" jdbcType="INTEGER" property="threshold" />
+    <result column="ATTACH_PRICE" jdbcType="DECIMAL" property="attachPrice" />
+    <result column="ATTACH_UNIT_COUNT" jdbcType="INTEGER" property="attachUnitCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, RATE_ID, PRICE, BASE_DURATION, BASE_FEE, BASE_USAGE, THRESHOLD, ATTACH_PRICE, ATTACH_UNIT_COUNT
+  </sql>
+  <select id="selectByRateId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_rate_item
+    where RATE_ID = #{rateId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_rate_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_rate_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByRateId" parameterType="java.lang.String">
+    delete from sid_rate_item
+    where RATE_ID = #{rateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidRateItem">
+    insert into sid_rate_item (ID, RATE_ID, PRICE, 
+      BASE_DURATION, BASE_FEE, BASE_USAGE, 
+      THRESHOLD, ATTACH_PRICE, ATTACH_UNIT_COUNT)
+    values (#{id,jdbcType=VARCHAR}, #{rateId,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{baseDuration,jdbcType=INTEGER}, #{baseFee,jdbcType=DECIMAL}, #{baseUsage,jdbcType=INTEGER}, 
+      #{threshold,jdbcType=INTEGER}, #{attachPrice,jdbcType=DECIMAL}, #{attachUnitCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidRateItem">
+    insert into sid_rate_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="rateId != null">
+        RATE_ID,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="baseDuration != null">
+        BASE_DURATION,
+      </if>
+      <if test="baseFee != null">
+        BASE_FEE,
+      </if>
+      <if test="baseUsage != null">
+        BASE_USAGE,
+      </if>
+      <if test="threshold != null">
+        THRESHOLD,
+      </if>
+      <if test="attachPrice != null">
+        ATTACH_PRICE,
+      </if>
+      <if test="attachUnitCount != null">
+        ATTACH_UNIT_COUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="baseDuration != null">
+        #{baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="baseFee != null">
+        #{baseFee,jdbcType=DECIMAL},
+      </if>
+      <if test="baseUsage != null">
+        #{baseUsage,jdbcType=INTEGER},
+      </if>
+      <if test="threshold != null">
+        #{threshold,jdbcType=INTEGER},
+      </if>
+      <if test="attachPrice != null">
+        #{attachPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="attachUnitCount != null">
+        #{attachUnitCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidRateItem">
+    update sid_rate_item
+    <set>
+      <if test="rateId != null">
+        RATE_ID = #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="baseDuration != null">
+        BASE_DURATION = #{baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="baseFee != null">
+        BASE_FEE = #{baseFee,jdbcType=DECIMAL},
+      </if>
+      <if test="baseUsage != null">
+        BASE_USAGE = #{baseUsage,jdbcType=INTEGER},
+      </if>
+      <if test="threshold != null">
+        THRESHOLD = #{threshold,jdbcType=INTEGER},
+      </if>
+      <if test="attachPrice != null">
+        ATTACH_PRICE = #{attachPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="attachUnitCount != null">
+        ATTACH_UNIT_COUNT = #{attachUnitCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidRateItem">
+    update sid_rate_item
+    set RATE_ID = #{rateId,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      BASE_DURATION = #{baseDuration,jdbcType=INTEGER},
+      BASE_FEE = #{baseFee,jdbcType=DECIMAL},
+      BASE_USAGE = #{baseUsage,jdbcType=INTEGER},
+      THRESHOLD = #{threshold,jdbcType=INTEGER},
+      ATTACH_PRICE = #{attachPrice,jdbcType=DECIMAL},
+      ATTACH_UNIT_COUNT = #{attachUnitCount,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

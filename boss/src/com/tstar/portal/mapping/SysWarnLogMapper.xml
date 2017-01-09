@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.SysWarnLogMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.SysWarnLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="WARN_MODULE" jdbcType="VARCHAR" property="warnModule" />
+    <result column="WARN_LEVEL" jdbcType="VARCHAR" property="warnLevel" />
+    <result column="WARN_MSG" jdbcType="VARCHAR" property="warnMsg" />
+    <result column="WARN_TIME" jdbcType="TIMESTAMP" property="warnTime" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="HANDLER" jdbcType="VARCHAR" property="handler" />
+    <result column="HANDLE_TIME" jdbcType="TIMESTAMP" property="handleTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, WARN_MODULE, WARN_LEVEL, WARN_MSG, WARN_TIME, STATUS, HANDLER, HANDLE_TIME
+  </sql>
+
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from sys_warn_log
+    where 1=1
+    <if test="warnModule != null and warnModule != ''">
+      and WARN_MODULE = #{warnModule}
+    </if>
+    <if test="warnLevel != null and warnLevel != ''">
+      and WARN_LEVEL = #{warnLevel}
+    </if>
+    <if test="status != null">
+      and STATUS = #{status}
+    </if>
+  </select>
+  
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_warn_log
+    where 1=1
+    <if test="warnModule != null and warnModule != ''">
+      and WARN_MODULE = #{warnModule}
+    </if>
+    <if test="warnLevel != null and warnLevel != ''">
+      and WARN_LEVEL = #{warnLevel}
+    </if>
+    <if test="status != null">
+      and STATUS = #{status}
+    </if>
+    order by WARN_TIME desc
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="selectTop10" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_warn_log
+    where STATUS IN (0, 1)
+    order by WARN_TIME desc
+    limit 0, 10
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_warn_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_warn_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.SysWarnLog">
+    insert into sys_warn_log (ID, WARN_MODULE, WARN_LEVEL, 
+      WARN_MSG, WARN_TIME, STATUS, 
+      HANDLER, HANDLE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{warnModule,jdbcType=VARCHAR}, #{warnLevel,jdbcType=VARCHAR}, 
+      #{warnMsg,jdbcType=VARCHAR}, #{warnTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{handler,jdbcType=VARCHAR}, #{handleTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.SysWarnLog">
+    insert into sys_warn_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="warnModule != null">
+        WARN_MODULE,
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL,
+      </if>
+      <if test="warnMsg != null">
+        WARN_MSG,
+      </if>
+      <if test="warnTime != null">
+        WARN_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="handler != null">
+        HANDLER,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="warnModule != null">
+        #{warnModule,jdbcType=VARCHAR},
+      </if>
+      <if test="warnLevel != null">
+        #{warnLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="warnMsg != null">
+        #{warnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="warnTime != null">
+        #{warnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handler != null">
+        #{handler,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.SysWarnLog">
+    update sys_warn_log
+    <set>
+      <if test="warnModule != null">
+        WARN_MODULE = #{warnModule,jdbcType=VARCHAR},
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL = #{warnLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="warnMsg != null">
+        WARN_MSG = #{warnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="warnTime != null">
+        WARN_TIME = #{warnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handler != null">
+        HANDLER = #{handler,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.SysWarnLog">
+    update sys_warn_log
+    set WARN_MODULE = #{warnModule,jdbcType=VARCHAR},
+      WARN_LEVEL = #{warnLevel,jdbcType=VARCHAR},
+      WARN_MSG = #{warnMsg,jdbcType=VARCHAR},
+      WARN_TIME = #{warnTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER},
+      HANDLER = #{handler,jdbcType=VARCHAR},
+      HANDLE_TIME = #{handleTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

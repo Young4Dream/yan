@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.JobOpFormMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.JobOpForm">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="JOB_NO" jdbcType="VARCHAR" property="jobNo" />
+    <result column="FORM_TYPE" jdbcType="VARCHAR" property="formType" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="BUSINESS_KEY" jdbcType="VARCHAR" property="businessKey" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PHONE_NO" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="LINKER" jdbcType="VARCHAR" property="linker" />
+    <result column="VIP" jdbcType="VARCHAR" property="vip" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="LINK_PHONE" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="BUSINESS_OP_NAME" jdbcType="VARCHAR" property="businessOpName" />
+    <result column="DISPATCH_TIME" jdbcType="TIMESTAMP" property="dispatchTime" />
+    <result column="PRINT_TIME" jdbcType="TIMESTAMP" property="printTime" />
+    <result column="ROUTE_INFO" jdbcType="VARCHAR" property="routeInfo" />
+    <result column="MEMO1" jdbcType="VARCHAR" property="memo1" />
+    <result column="FEEDBACK_RESULT" jdbcType="VARCHAR" property="feedbackResult" />
+    <result column="PROPOSAL" jdbcType="VARCHAR" property="proposal" />
+    <result column="RECTIFICATION" jdbcType="VARCHAR" property="rectification" />
+    <result column="VISIT_RESULT" jdbcType="VARCHAR" property="visitResult" />
+    <result column="FINISH_TIME" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ASSIGNEE" jdbcType="VARCHAR" property="assignee" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="FORM_TYPE_DESC" jdbcType="VARCHAR" property="formTypeDesc" />
+    <result column="STATUS_DESC" jdbcType="VARCHAR" property="statusDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROCESS_INSTANCE_ID, JOB_NO, FORM_TYPE, USER_ID, BUSINESS_KEY, USER_NAME, PHONE_NO, 
+    DEPARTMENT_NAME, LINKER, VIP, ADDRESS, LINK_PHONE, BUSINESS_OP_NAME, DISPATCH_TIME, 
+    PRINT_TIME, ROUTE_INFO, MEMO1, FEEDBACK_RESULT, PROPOSAL, RECTIFICATION, VISIT_RESULT, 
+    FINISH_TIME, REMARK, ASSIGNEE, STATUS,
+    (select NAME from ref_op_form_type where ref_op_form_type.ID=FORM_TYPE) AS FORM_TYPE_DESC,
+    (select NAME from ref_op_form_status where ref_op_form_status.ID=STATUS) AS STATUS_DESC
+  </sql>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    	count(*)
+    from job_op_form
+    where 1=1
+    <if test="status != null and status != ''">
+    	and status = #{status}
+    </if>
+    <if test="formType != null and formType != ''">
+    	and formType = #{formType}
+    </if>
+    <if test="jobNo != null and jobNo != ''">
+    	and job_no like concat(#{jobNo}, '%') 
+    </if>
+    <if test="assignee != null and assignee != ''">
+    	and assignee like concat(#{assignee}, '%') 
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		business_key like concat(#{fullText}, '%') or
+    		user_name like concat('%', #{fullText}, '%') or
+    		phone_no like concat(#{fullText}, '%')
+    	)
+    </if>
+  </select>
+  
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_form
+    where 1=1
+    <if test="status != null and status != ''">
+    	and status = #{status}
+    </if>
+    <if test="formType != null and formType != ''">
+    	and formType = #{formType}
+    </if>
+    <if test="jobNo != null and jobNo != ''">
+    	and job_no like concat(#{jobNo}, '%') 
+    </if>
+    <if test="assignee != null and assignee != ''">
+    	and assignee like concat(#{assignee}, '%') 
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		business_key like concat(#{fullText}, '%') or
+    		user_name like concat('%', #{fullText}, '%') or
+    		phone_no like concat(#{fullText}, '%')
+    	)
+    </if>
+  </select>
+  
+  <select id="countByInstanceId" parameterType="java.lang.String" resultType="int">
+    select 
+    count(*)
+    from job_op_form
+    where PROCESS_INSTANCE_ID = #{instanceId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByInstanceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_form
+    where PROCESS_INSTANCE_ID = #{id,jdbcType=VARCHAR}
+    limit 0, 1
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_form
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from job_op_form
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.JobOpForm">
+    insert into job_op_form (ID, PROCESS_INSTANCE_ID, JOB_NO, 
+      FORM_TYPE, USER_ID, BUSINESS_KEY, 
+      USER_NAME, PHONE_NO, DEPARTMENT_NAME, 
+      LINKER, VIP, ADDRESS, 
+      LINK_PHONE, BUSINESS_OP_NAME, DISPATCH_TIME, 
+      PRINT_TIME, ROUTE_INFO, MEMO1, 
+      FEEDBACK_RESULT, PROPOSAL, RECTIFICATION, 
+      VISIT_RESULT, FINISH_TIME, REMARK, 
+      ASSIGNEE, STATUS)
+    values (#{id,jdbcType=VARCHAR}, #{processInstanceId,jdbcType=VARCHAR}, #{jobNo,jdbcType=VARCHAR}, 
+      #{formType,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{businessKey,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, 
+      #{linker,jdbcType=VARCHAR}, #{vip,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{linkPhone,jdbcType=VARCHAR}, #{businessOpName,jdbcType=VARCHAR}, #{dispatchTime,jdbcType=TIMESTAMP}, 
+      #{printTime,jdbcType=TIMESTAMP}, #{routeInfo,jdbcType=VARCHAR}, #{memo1,jdbcType=VARCHAR}, 
+      #{feedbackResult,jdbcType=VARCHAR}, #{proposal,jdbcType=VARCHAR}, #{rectification,jdbcType=VARCHAR}, 
+      #{visitResult,jdbcType=VARCHAR}, #{finishTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{assignee,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.JobOpForm">
+    insert into job_op_form
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="jobNo != null">
+        JOB_NO,
+      </if>
+      <if test="formType != null">
+        FORM_TYPE,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO,
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME,
+      </if>
+      <if test="linker != null">
+        LINKER,
+      </if>
+      <if test="vip != null">
+        VIP,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE,
+      </if>
+      <if test="businessOpName != null">
+        BUSINESS_OP_NAME,
+      </if>
+      <if test="dispatchTime != null">
+        DISPATCH_TIME,
+      </if>
+      <if test="printTime != null">
+        PRINT_TIME,
+      </if>
+      <if test="routeInfo != null">
+        ROUTE_INFO,
+      </if>
+      <if test="memo1 != null">
+        MEMO1,
+      </if>
+      <if test="feedbackResult != null">
+        FEEDBACK_RESULT,
+      </if>
+      <if test="proposal != null">
+        PROPOSAL,
+      </if>
+      <if test="rectification != null">
+        RECTIFICATION,
+      </if>
+      <if test="visitResult != null">
+        VISIT_RESULT,
+      </if>
+      <if test="finishTime != null">
+        FINISH_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="assignee != null">
+        ASSIGNEE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNo != null">
+        #{jobNo,jdbcType=VARCHAR},
+      </if>
+      <if test="formType != null">
+        #{formType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="linker != null">
+        #{linker,jdbcType=VARCHAR},
+      </if>
+      <if test="vip != null">
+        #{vip,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpName != null">
+        #{businessOpName,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchTime != null">
+        #{dispatchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="printTime != null">
+        #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="routeInfo != null">
+        #{routeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null">
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackResult != null">
+        #{feedbackResult,jdbcType=VARCHAR},
+      </if>
+      <if test="proposal != null">
+        #{proposal,jdbcType=VARCHAR},
+      </if>
+      <if test="rectification != null">
+        #{rectification,jdbcType=VARCHAR},
+      </if>
+      <if test="visitResult != null">
+        #{visitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null">
+        #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.JobOpForm">
+    update job_op_form
+    <set>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNo != null">
+        JOB_NO = #{jobNo,jdbcType=VARCHAR},
+      </if>
+      <if test="formType != null">
+        FORM_TYPE = #{formType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="linker != null">
+        LINKER = #{linker,jdbcType=VARCHAR},
+      </if>
+      <if test="vip != null">
+        VIP = #{vip,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpName != null">
+        BUSINESS_OP_NAME = #{businessOpName,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchTime != null">
+        DISPATCH_TIME = #{dispatchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="printTime != null">
+        PRINT_TIME = #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="routeInfo != null">
+        ROUTE_INFO = #{routeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null">
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackResult != null">
+        FEEDBACK_RESULT = #{feedbackResult,jdbcType=VARCHAR},
+      </if>
+      <if test="proposal != null">
+        PROPOSAL = #{proposal,jdbcType=VARCHAR},
+      </if>
+      <if test="rectification != null">
+        RECTIFICATION = #{rectification,jdbcType=VARCHAR},
+      </if>
+      <if test="visitResult != null">
+        VISIT_RESULT = #{visitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        FINISH_TIME = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null">
+        ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.JobOpForm">
+    update job_op_form
+    set PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      JOB_NO = #{jobNo,jdbcType=VARCHAR},
+      FORM_TYPE = #{formType,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      LINKER = #{linker,jdbcType=VARCHAR},
+      VIP = #{vip,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      BUSINESS_OP_NAME = #{businessOpName,jdbcType=VARCHAR},
+      DISPATCH_TIME = #{dispatchTime,jdbcType=TIMESTAMP},
+      PRINT_TIME = #{printTime,jdbcType=TIMESTAMP},
+      ROUTE_INFO = #{routeInfo,jdbcType=VARCHAR},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      FEEDBACK_RESULT = #{feedbackResult,jdbcType=VARCHAR},
+      PROPOSAL = #{proposal,jdbcType=VARCHAR},
+      RECTIFICATION = #{rectification,jdbcType=VARCHAR},
+      VISIT_RESULT = #{visitResult,jdbcType=VARCHAR},
+      FINISH_TIME = #{finishTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

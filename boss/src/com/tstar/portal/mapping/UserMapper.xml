@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.User">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="USER_ALIAS" jdbcType="VARCHAR" property="userAlias" />
+    <result column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
+    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="ACL" jdbcType="VARCHAR" property="acl" />
+    <result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="USER_LANG" jdbcType="VARCHAR" property="userLang" />
+    <result column="FAIL_COUNT" jdbcType="INTEGER" property="failCount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <resultMap id="AdvResultMap" type="com.tstar.portal.model.ResultMap">
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_NAME, PASSWORD, USER_ALIAS, DEPT_ID, ROLE_ID, STATUS, ACL, LOGIN_TIME, USER_LANG, 
+    FAIL_COUNT, CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+      count(*)
+    from sys_user
+    where 1=1
+    <if test="userName != null">
+      and USER_NAME like concat('%', #{userName}, '%')
+    </if>
+    <if test="userAlias != null">
+      and USER_ALIAS like concat('%', #{userAlias}, '%')
+    </if>
+  </select>
+
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+      <include refid="Base_Column_List" />,
+      (select DEPT_NAME from sys_dept where sys_dept.ID=DEPT_ID) as DEPT_NAME,
+      (select ROLE_NAME from sys_role where sys_role.ID=ROLE_ID) as ROLE_NAME
+    from sys_user
+    where 1=1
+    <if test="userName != null">
+      and USER_NAME like concat('%', #{userName}, '%')
+    </if>
+    <if test="userAlias != null">
+      and USER_ALIAS like concat('%', #{userAlias}, '%')
+    </if>
+    order by USER_NAME
+    limit #{start}, #{length}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where USER_NAME = #{userName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="AdvResultMap">
+    select 
+    	id as id,
+    	user_name as userName,
+    	user_alias as userAlias,
+    	dept_id as deptId,
+    	(select dept_name from sys_dept where id=dept_id) as deptName,
+    	role_id as roleId,
+    	(select role_name from sys_role where id=role_id) as roleName,
+    	create_time as createTime
+    from sys_user
+    where 1=1
+  </select>
+  <select id="selectByRole" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where role_id in (select id from sys_role where role_name=#{0})
+  </select>
+  <select id="countByRoleId" parameterType="java.lang.String" resultType="int">
+    select 
+    count(*)
+    from sys_user
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.User">
+    insert into sys_user (ID, USER_NAME, PASSWORD, 
+      USER_ALIAS, DEPT_ID, ROLE_ID, 
+      STATUS, ACL, LOGIN_TIME, 
+      USER_LANG, FAIL_COUNT, CREATE_TIME, 
+      UPDATE_TIME, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userAlias,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{acl,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{userLang,jdbcType=VARCHAR}, #{failCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.User">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="userAlias != null">
+        USER_ALIAS,
+      </if>
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="acl != null">
+        ACL,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="userLang != null">
+        USER_LANG,
+      </if>
+      <if test="failCount != null">
+        FAIL_COUNT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userAlias != null">
+        #{userAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="acl != null">
+        #{acl,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userLang != null">
+        #{userLang,jdbcType=VARCHAR},
+      </if>
+      <if test="failCount != null">
+        #{failCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.User">
+    update sys_user
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userAlias != null">
+        USER_ALIAS = #{userAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="acl != null">
+        ACL = #{acl,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userLang != null">
+        USER_LANG = #{userLang,jdbcType=VARCHAR},
+      </if>
+      <if test="failCount != null">
+        FAIL_COUNT = #{failCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.User">
+    update sys_user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      USER_ALIAS = #{userAlias,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      ACL = #{acl,jdbcType=VARCHAR},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      USER_LANG = #{userLang,jdbcType=VARCHAR},
+      FAIL_COUNT = #{failCount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

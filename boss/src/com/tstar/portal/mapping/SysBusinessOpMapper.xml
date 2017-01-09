@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.SysBusinessOpMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.SysBusinessOp">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BUSI_KEY" jdbcType="VARCHAR" property="busiKey" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="MODEL_KEY" jdbcType="VARCHAR" property="modelKey" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BUSI_KEY, NAME, MODEL_KEY, REMARK
+  </sql>
+  <select id="countAll" resultType="int">
+    select 
+    count(*)
+    from sys_business_op
+  </select>
+  <select id="selectByPage" parameterType="int" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_business_op
+    where 1=1
+    order by BUSI_KEY
+    limit #{0}, #{1}
+  </select>
+  <select id="selectByBusiKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_business_op
+    where BUSI_KEY = #{busiKey,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_business_op
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_business_op
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.SysBusinessOp">
+    insert into sys_business_op (ID, BUSI_KEY, NAME, 
+      MODEL_KEY, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{busiKey,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{modelKey,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.SysBusinessOp">
+    insert into sys_business_op
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="busiKey != null">
+        BUSI_KEY,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="modelKey != null">
+        MODEL_KEY,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="busiKey != null">
+        #{busiKey,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelKey != null">
+        #{modelKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.SysBusinessOp">
+    update sys_business_op
+    <set>
+      <if test="busiKey != null">
+        BUSI_KEY = #{busiKey,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelKey != null">
+        MODEL_KEY = #{modelKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.SysBusinessOp">
+    update sys_business_op
+    set BUSI_KEY = #{busiKey,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      MODEL_KEY = #{modelKey,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

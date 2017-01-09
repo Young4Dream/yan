@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.SysSmsOutboxMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.SysSmsOutbox">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SENDER" jdbcType="VARCHAR" property="sender" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="RECIPIENT" jdbcType="VARCHAR" property="recipient" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SENDER, DEPARTMENT_NAME, RECIPIENT, TITLE, CONTENT, STATUS, CREATE_TIME, SEND_TIME
+  </sql>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from sys_sms_outbox
+    where 1=1
+    and SENDER = #{sender}
+    <if test="status != null">
+   	  and STATUS=#{status}
+    </if>
+    <if test="recipient != null">
+   	  and RECIPIENT like concat('%', #{recipient}, '%')
+    </if>
+  </select>
+
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sms_outbox
+    where 1=1
+    and SENDER = #{sender}
+    <if test="status != null">
+   	  and STATUS=#{status}
+    </if>
+    <if test="recipient != null">
+   	  and RECIPIENT like concat('%', #{recipient}, '%')
+    </if>
+    order by CREATE_TIME desc
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sms_outbox
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_sms_outbox
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.SysSmsOutbox">
+    insert into sys_sms_outbox (ID, SENDER, DEPARTMENT_NAME, 
+      RECIPIENT, TITLE, CONTENT, 
+      STATUS, CREATE_TIME, SEND_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, 
+      #{recipient,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.SysSmsOutbox">
+    insert into sys_sms_outbox
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="sender != null">
+        SENDER,
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME,
+      </if>
+      <if test="recipient != null">
+        RECIPIENT,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null">
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null">
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.SysSmsOutbox">
+    update sys_sms_outbox
+    <set>
+      <if test="sender != null">
+        SENDER = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null">
+        RECIPIENT = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.SysSmsOutbox">
+    update sys_sms_outbox
+    set SENDER = #{sender,jdbcType=VARCHAR},
+      DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      RECIPIENT = #{recipient,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

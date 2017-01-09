@@ -1,0 +1,1178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.TelJobMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.TelJob">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="LSH" jdbcType="VARCHAR" property="lsh" />
+    <result column="CARDID" jdbcType="VARCHAR" property="cardid" />
+    <result column="XDH" jdbcType="VARCHAR" property="xdh" />
+    <result column="YDH" jdbcType="VARCHAR" property="ydh" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="BEGINYWAREA" jdbcType="VARCHAR" property="beginywarea" />
+    <result column="YWAREA" jdbcType="VARCHAR" property="ywarea" />
+    <result column="HTH" jdbcType="VARCHAR" property="hth" />
+    <result column="YHTH" jdbcType="VARCHAR" property="yhth" />
+    <result column="TYPEID" jdbcType="DECIMAL" property="typeid" />
+    <result column="IDD" jdbcType="DECIMAL" property="idd" />
+    <result column="SGNR" jdbcType="VARCHAR" property="sgnr" />
+    <result column="SGRQ" jdbcType="DATE" property="sgrq" />
+    <result column="DHLX" jdbcType="VARCHAR" property="dhlx" />
+    <result column="JLRY" jdbcType="VARCHAR" property="jlry" />
+    <result column="XM" jdbcType="VARCHAR" property="xm" />
+    <result column="NXM" jdbcType="VARCHAR" property="nxm" />
+    <result column="BM1" jdbcType="VARCHAR" property="bm1" />
+    <result column="BM2" jdbcType="VARCHAR" property="bm2" />
+    <result column="BM3" jdbcType="VARCHAR" property="bm3" />
+    <result column="BM4" jdbcType="VARCHAR" property="bm4" />
+    <result column="YHXZ" jdbcType="VARCHAR" property="yhxz" />
+    <result column="ZW" jdbcType="VARCHAR" property="zw" />
+    <result column="XDZ" jdbcType="VARCHAR" property="xdz" />
+    <result column="YDZ" jdbcType="VARCHAR" property="ydz" />
+    <result column="ZJLX" jdbcType="VARCHAR" property="zjlx" />
+    <result column="DHGN" jdbcType="VARCHAR" property="dhgn" />
+    <result column="LINKMAN" jdbcType="VARCHAR" property="linkman" />
+    <result column="LXDH" jdbcType="VARCHAR" property="lxdh" />
+    <result column="GZLX" jdbcType="VARCHAR" property="gzlx" />
+    <result column="WXBZ" jdbcType="VARCHAR" property="wxbz" />
+    <result column="WXRY" jdbcType="VARCHAR" property="wxry" />
+    <result column="YJKX" jdbcType="VARCHAR" property="yjkx" />
+    <result column="YJJE" jdbcType="DECIMAL" property="yjje" />
+    <result column="SLBM" jdbcType="VARCHAR" property="slbm" />
+    <result column="ISPAY" jdbcType="VARCHAR" property="ispay" />
+    <result column="PGRQ" jdbcType="DATE" property="pgrq" />
+    <result column="MQBM" jdbcType="VARCHAR" property="mqbm" />
+    <result column="JSBM" jdbcType="VARCHAR" property="jsbm" />
+    <result column="PXGGBJ" jdbcType="CHAR" property="pxggbj" />
+    <result column="CHGGBJ" jdbcType="CHAR" property="chggbj" />
+    <result column="JFGGBJ" jdbcType="CHAR" property="jfggbj" />
+    <result column="WGRQ" jdbcType="DATE" property="wgrq" />
+    <result column="WGBM" jdbcType="VARCHAR" property="wgbm" />
+    <result column="ISCOMPLETE" jdbcType="VARCHAR" property="iscomplete" />
+    <result column="MODUAL" jdbcType="VARCHAR" property="modual" />
+    <result column="PORT" jdbcType="VARCHAR" property="port" />
+    <result column="TYPENUM" jdbcType="VARCHAR" property="typenum" />
+    <result column="SJJE" jdbcType="DECIMAL" property="sjje" />
+    <result column="PAY_FLAG" jdbcType="VARCHAR" property="payFlag" />
+    <result column="VALUE1" jdbcType="VARCHAR" property="value1" />
+    <result column="VALUE2" jdbcType="VARCHAR" property="value2" />
+    <result column="VALUE3" jdbcType="VARCHAR" property="value3" />
+    <result column="VALUE4" jdbcType="VARCHAR" property="value4" />
+    <result column="VALUE5" jdbcType="VARCHAR" property="value5" />
+    <result column="VALUE6" jdbcType="VARCHAR" property="value6" />
+    <result column="VALUE7" jdbcType="VARCHAR" property="value7" />
+    <result column="VALUE8" jdbcType="VARCHAR" property="value8" />
+    <result column="VALUE9" jdbcType="VARCHAR" property="value9" />
+    <result column="VALUE10" jdbcType="VARCHAR" property="value10" />
+    <result column="VALUE11" jdbcType="VARCHAR" property="value11" />
+    <result column="VALUE12" jdbcType="VARCHAR" property="value12" />
+    <result column="VALUE13" jdbcType="VARCHAR" property="value13" />
+    <result column="VALUE14" jdbcType="VARCHAR" property="value14" />
+    <result column="VALUE15" jdbcType="VARCHAR" property="value15" />
+    <result column="VALUE16" jdbcType="VARCHAR" property="value16" />
+    <result column="VALUE17" jdbcType="VARCHAR" property="value17" />
+    <result column="VALUE18" jdbcType="VARCHAR" property="value18" />
+    <result column="VALUE19" jdbcType="VARCHAR" property="value19" />
+    <result column="VALUE20" jdbcType="VARCHAR" property="value20" />
+    <result column="IFCANCEL" jdbcType="VARCHAR" property="ifcancel" />
+    <result column="ISJUDGE" jdbcType="CHAR" property="isjudge" />
+    <result column="DJHWCSJ" jdbcType="DATE" property="djhwcsj" />
+    <result column="DJHSWC" jdbcType="DATE" property="djhswc" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="JIAOFEIDH" jdbcType="VARCHAR" property="jiaofeidh" />
+    <result column="JOBSTATUS" jdbcType="VARCHAR" property="jobstatus" />
+    <result column="IFURGENT" jdbcType="VARCHAR" property="ifurgent" />
+    <result column="REPRINTTIMESOFSF" jdbcType="DECIMAL" property="reprinttimesofsf" />
+    <result column="REPRINTTIMESOFJOB" jdbcType="DECIMAL" property="reprinttimesofjob" />
+    <result column="ZWBZ" jdbcType="VARCHAR" property="zwbz" />
+    <result column="OLDSERVICEAREA" jdbcType="DECIMAL" property="oldservicearea" />
+    <result column="PAUSESSTARTTIME" jdbcType="DATE" property="pausesstarttime" />
+    <result column="PAUSESTOPTIME" jdbcType="DATE" property="pausestoptime" />
+    <result column="YJSTATUS" jdbcType="VARCHAR" property="yjstatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tstar.callcenter.model.autogenerate.TelJobWithBLOBs">
+    <result column="BZ" jdbcType="CLOB" property="bz" />
+    <result column="PGRZ" jdbcType="CLOB" property="pgrz" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, LSH, CARDID, XDH, YDH, AREA, BEGINYWAREA, YWAREA, HTH, YHTH, TYPEID, IDD, SGNR, 
+    SGRQ, DHLX, JLRY, XM, NXM, BM1, BM2, BM3, BM4, YHXZ, ZW, XDZ, YDZ, ZJLX, DHGN, LINKMAN, 
+    LXDH, GZLX, WXBZ, WXRY, YJKX, YJJE, SLBM, ISPAY, PGRQ, MQBM, JSBM, PXGGBJ, CHGGBJ, 
+    JFGGBJ, WGRQ, WGBM, ISCOMPLETE, MODUAL, PORT, TYPENUM, SJJE, PAY_FLAG, VALUE1, VALUE2, 
+    VALUE3, VALUE4, VALUE5, VALUE6, VALUE7, VALUE8, VALUE9, VALUE10, VALUE11, VALUE12, 
+    VALUE13, VALUE14, VALUE15, VALUE16, VALUE17, VALUE18, VALUE19, VALUE20, IFCANCEL, 
+    ISJUDGE, DJHWCSJ, DJHSWC, MOBILE, JIAOFEIDH, JOBSTATUS, IFURGENT, REPRINTTIMESOFSF, 
+    REPRINTTIMESOFJOB, ZWBZ, OLDSERVICEAREA, PAUSESSTARTTIME, PAUSESTOPTIME, YJSTATUS
+  </sql>
+  <sql id="Blob_Column_List">
+    BZ, PGRZ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TELJOB
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TELJOB
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.TelJobWithBLOBs">
+    insert into TELJOB (ID, LSH, CARDID, 
+      XDH, YDH, AREA, BEGINYWAREA, 
+      YWAREA, HTH, YHTH, 
+      TYPEID, IDD, SGNR, 
+      SGRQ, DHLX, JLRY, XM, 
+      NXM, BM1, BM2, BM3, 
+      BM4, YHXZ, ZW, XDZ, 
+      YDZ, ZJLX, DHGN, LINKMAN, 
+      LXDH, GZLX, WXBZ, WXRY, 
+      YJKX, YJJE, SLBM, ISPAY, 
+      PGRQ, MQBM, JSBM, PXGGBJ, 
+      CHGGBJ, JFGGBJ, WGRQ, WGBM, 
+      ISCOMPLETE, MODUAL, PORT, 
+      TYPENUM, SJJE, PAY_FLAG, 
+      VALUE1, VALUE2, VALUE3, 
+      VALUE4, VALUE5, VALUE6, 
+      VALUE7, VALUE8, VALUE9, 
+      VALUE10, VALUE11, VALUE12, 
+      VALUE13, VALUE14, VALUE15, 
+      VALUE16, VALUE17, VALUE18, 
+      VALUE19, VALUE20, IFCANCEL, 
+      ISJUDGE, DJHWCSJ, DJHSWC, MOBILE, 
+      JIAOFEIDH, JOBSTATUS, IFURGENT, 
+      REPRINTTIMESOFSF, REPRINTTIMESOFJOB, ZWBZ, 
+      OLDSERVICEAREA, PAUSESSTARTTIME, PAUSESTOPTIME, 
+      YJSTATUS, BZ, PGRZ)
+    values (#{id,jdbcType=DECIMAL}, #{lsh,jdbcType=VARCHAR}, #{cardid,jdbcType=VARCHAR}, 
+      #{xdh,jdbcType=VARCHAR}, #{ydh,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{beginywarea,jdbcType=VARCHAR}, 
+      #{ywarea,jdbcType=VARCHAR}, #{hth,jdbcType=VARCHAR}, #{yhth,jdbcType=VARCHAR}, 
+      #{typeid,jdbcType=DECIMAL}, #{idd,jdbcType=DECIMAL}, #{sgnr,jdbcType=VARCHAR}, 
+      #{sgrq,jdbcType=DATE}, #{dhlx,jdbcType=VARCHAR}, #{jlry,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
+      #{nxm,jdbcType=VARCHAR}, #{bm1,jdbcType=VARCHAR}, #{bm2,jdbcType=VARCHAR}, #{bm3,jdbcType=VARCHAR}, 
+      #{bm4,jdbcType=VARCHAR}, #{yhxz,jdbcType=VARCHAR}, #{zw,jdbcType=VARCHAR}, #{xdz,jdbcType=VARCHAR}, 
+      #{ydz,jdbcType=VARCHAR}, #{zjlx,jdbcType=VARCHAR}, #{dhgn,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
+      #{lxdh,jdbcType=VARCHAR}, #{gzlx,jdbcType=VARCHAR}, #{wxbz,jdbcType=VARCHAR}, #{wxry,jdbcType=VARCHAR}, 
+      #{yjkx,jdbcType=VARCHAR}, #{yjje,jdbcType=DECIMAL}, #{slbm,jdbcType=VARCHAR}, #{ispay,jdbcType=VARCHAR}, 
+      #{pgrq,jdbcType=DATE}, #{mqbm,jdbcType=VARCHAR}, #{jsbm,jdbcType=VARCHAR}, #{pxggbj,jdbcType=CHAR}, 
+      #{chggbj,jdbcType=CHAR}, #{jfggbj,jdbcType=CHAR}, #{wgrq,jdbcType=DATE}, #{wgbm,jdbcType=VARCHAR}, 
+      #{iscomplete,jdbcType=VARCHAR}, #{modual,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, 
+      #{typenum,jdbcType=VARCHAR}, #{sjje,jdbcType=DECIMAL}, #{payFlag,jdbcType=VARCHAR}, 
+      #{value1,jdbcType=VARCHAR}, #{value2,jdbcType=VARCHAR}, #{value3,jdbcType=VARCHAR}, 
+      #{value4,jdbcType=VARCHAR}, #{value5,jdbcType=VARCHAR}, #{value6,jdbcType=VARCHAR}, 
+      #{value7,jdbcType=VARCHAR}, #{value8,jdbcType=VARCHAR}, #{value9,jdbcType=VARCHAR}, 
+      #{value10,jdbcType=VARCHAR}, #{value11,jdbcType=VARCHAR}, #{value12,jdbcType=VARCHAR}, 
+      #{value13,jdbcType=VARCHAR}, #{value14,jdbcType=VARCHAR}, #{value15,jdbcType=VARCHAR}, 
+      #{value16,jdbcType=VARCHAR}, #{value17,jdbcType=VARCHAR}, #{value18,jdbcType=VARCHAR}, 
+      #{value19,jdbcType=VARCHAR}, #{value20,jdbcType=VARCHAR}, #{ifcancel,jdbcType=VARCHAR}, 
+      #{isjudge,jdbcType=CHAR}, #{djhwcsj,jdbcType=DATE}, #{djhswc,jdbcType=DATE}, #{mobile,jdbcType=VARCHAR}, 
+      #{jiaofeidh,jdbcType=VARCHAR}, #{jobstatus,jdbcType=VARCHAR}, #{ifurgent,jdbcType=VARCHAR}, 
+      #{reprinttimesofsf,jdbcType=DECIMAL}, #{reprinttimesofjob,jdbcType=DECIMAL}, #{zwbz,jdbcType=VARCHAR}, 
+      #{oldservicearea,jdbcType=DECIMAL}, #{pausesstarttime,jdbcType=DATE}, #{pausestoptime,jdbcType=DATE}, 
+      #{yjstatus,jdbcType=VARCHAR}, #{bz,jdbcType=CLOB}, #{pgrz,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.TelJobWithBLOBs">
+    insert into TELJOB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="lsh != null">
+        LSH,
+      </if>
+      <if test="cardid != null">
+        CARDID,
+      </if>
+      <if test="xdh != null">
+        XDH,
+      </if>
+      <if test="ydh != null">
+        YDH,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="beginywarea != null">
+        BEGINYWAREA,
+      </if>
+      <if test="ywarea != null">
+        YWAREA,
+      </if>
+      <if test="hth != null">
+        HTH,
+      </if>
+      <if test="yhth != null">
+        YHTH,
+      </if>
+      <if test="typeid != null">
+        TYPEID,
+      </if>
+      <if test="idd != null">
+        IDD,
+      </if>
+      <if test="sgnr != null">
+        SGNR,
+      </if>
+      <if test="sgrq != null">
+        SGRQ,
+      </if>
+      <if test="dhlx != null">
+        DHLX,
+      </if>
+      <if test="jlry != null">
+        JLRY,
+      </if>
+      <if test="xm != null">
+        XM,
+      </if>
+      <if test="nxm != null">
+        NXM,
+      </if>
+      <if test="bm1 != null">
+        BM1,
+      </if>
+      <if test="bm2 != null">
+        BM2,
+      </if>
+      <if test="bm3 != null">
+        BM3,
+      </if>
+      <if test="bm4 != null">
+        BM4,
+      </if>
+      <if test="yhxz != null">
+        YHXZ,
+      </if>
+      <if test="zw != null">
+        ZW,
+      </if>
+      <if test="xdz != null">
+        XDZ,
+      </if>
+      <if test="ydz != null">
+        YDZ,
+      </if>
+      <if test="zjlx != null">
+        ZJLX,
+      </if>
+      <if test="dhgn != null">
+        DHGN,
+      </if>
+      <if test="linkman != null">
+        LINKMAN,
+      </if>
+      <if test="lxdh != null">
+        LXDH,
+      </if>
+      <if test="gzlx != null">
+        GZLX,
+      </if>
+      <if test="wxbz != null">
+        WXBZ,
+      </if>
+      <if test="wxry != null">
+        WXRY,
+      </if>
+      <if test="yjkx != null">
+        YJKX,
+      </if>
+      <if test="yjje != null">
+        YJJE,
+      </if>
+      <if test="slbm != null">
+        SLBM,
+      </if>
+      <if test="ispay != null">
+        ISPAY,
+      </if>
+      <if test="pgrq != null">
+        PGRQ,
+      </if>
+      <if test="mqbm != null">
+        MQBM,
+      </if>
+      <if test="jsbm != null">
+        JSBM,
+      </if>
+      <if test="pxggbj != null">
+        PXGGBJ,
+      </if>
+      <if test="chggbj != null">
+        CHGGBJ,
+      </if>
+      <if test="jfggbj != null">
+        JFGGBJ,
+      </if>
+      <if test="wgrq != null">
+        WGRQ,
+      </if>
+      <if test="wgbm != null">
+        WGBM,
+      </if>
+      <if test="iscomplete != null">
+        ISCOMPLETE,
+      </if>
+      <if test="modual != null">
+        MODUAL,
+      </if>
+      <if test="port != null">
+        PORT,
+      </if>
+      <if test="typenum != null">
+        TYPENUM,
+      </if>
+      <if test="sjje != null">
+        SJJE,
+      </if>
+      <if test="payFlag != null">
+        PAY_FLAG,
+      </if>
+      <if test="value1 != null">
+        VALUE1,
+      </if>
+      <if test="value2 != null">
+        VALUE2,
+      </if>
+      <if test="value3 != null">
+        VALUE3,
+      </if>
+      <if test="value4 != null">
+        VALUE4,
+      </if>
+      <if test="value5 != null">
+        VALUE5,
+      </if>
+      <if test="value6 != null">
+        VALUE6,
+      </if>
+      <if test="value7 != null">
+        VALUE7,
+      </if>
+      <if test="value8 != null">
+        VALUE8,
+      </if>
+      <if test="value9 != null">
+        VALUE9,
+      </if>
+      <if test="value10 != null">
+        VALUE10,
+      </if>
+      <if test="value11 != null">
+        VALUE11,
+      </if>
+      <if test="value12 != null">
+        VALUE12,
+      </if>
+      <if test="value13 != null">
+        VALUE13,
+      </if>
+      <if test="value14 != null">
+        VALUE14,
+      </if>
+      <if test="value15 != null">
+        VALUE15,
+      </if>
+      <if test="value16 != null">
+        VALUE16,
+      </if>
+      <if test="value17 != null">
+        VALUE17,
+      </if>
+      <if test="value18 != null">
+        VALUE18,
+      </if>
+      <if test="value19 != null">
+        VALUE19,
+      </if>
+      <if test="value20 != null">
+        VALUE20,
+      </if>
+      <if test="ifcancel != null">
+        IFCANCEL,
+      </if>
+      <if test="isjudge != null">
+        ISJUDGE,
+      </if>
+      <if test="djhwcsj != null">
+        DJHWCSJ,
+      </if>
+      <if test="djhswc != null">
+        DJHSWC,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="jiaofeidh != null">
+        JIAOFEIDH,
+      </if>
+      <if test="jobstatus != null">
+        JOBSTATUS,
+      </if>
+      <if test="ifurgent != null">
+        IFURGENT,
+      </if>
+      <if test="reprinttimesofsf != null">
+        REPRINTTIMESOFSF,
+      </if>
+      <if test="reprinttimesofjob != null">
+        REPRINTTIMESOFJOB,
+      </if>
+      <if test="zwbz != null">
+        ZWBZ,
+      </if>
+      <if test="oldservicearea != null">
+        OLDSERVICEAREA,
+      </if>
+      <if test="pausesstarttime != null">
+        PAUSESSTARTTIME,
+      </if>
+      <if test="pausestoptime != null">
+        PAUSESTOPTIME,
+      </if>
+      <if test="yjstatus != null">
+        YJSTATUS,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="pgrz != null">
+        PGRZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="lsh != null">
+        #{lsh,jdbcType=VARCHAR},
+      </if>
+      <if test="cardid != null">
+        #{cardid,jdbcType=VARCHAR},
+      </if>
+      <if test="xdh != null">
+        #{xdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ydh != null">
+        #{ydh,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="beginywarea != null">
+        #{beginywarea,jdbcType=VARCHAR},
+      </if>
+      <if test="ywarea != null">
+        #{ywarea,jdbcType=VARCHAR},
+      </if>
+      <if test="hth != null">
+        #{hth,jdbcType=VARCHAR},
+      </if>
+      <if test="yhth != null">
+        #{yhth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=DECIMAL},
+      </if>
+      <if test="idd != null">
+        #{idd,jdbcType=DECIMAL},
+      </if>
+      <if test="sgnr != null">
+        #{sgnr,jdbcType=VARCHAR},
+      </if>
+      <if test="sgrq != null">
+        #{sgrq,jdbcType=DATE},
+      </if>
+      <if test="dhlx != null">
+        #{dhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="jlry != null">
+        #{jlry,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="nxm != null">
+        #{nxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bm1 != null">
+        #{bm1,jdbcType=VARCHAR},
+      </if>
+      <if test="bm2 != null">
+        #{bm2,jdbcType=VARCHAR},
+      </if>
+      <if test="bm3 != null">
+        #{bm3,jdbcType=VARCHAR},
+      </if>
+      <if test="bm4 != null">
+        #{bm4,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxz != null">
+        #{yhxz,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null">
+        #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="xdz != null">
+        #{xdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ydz != null">
+        #{ydz,jdbcType=VARCHAR},
+      </if>
+      <if test="zjlx != null">
+        #{zjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="dhgn != null">
+        #{dhgn,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="gzlx != null">
+        #{gzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="wxbz != null">
+        #{wxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="wxry != null">
+        #{wxry,jdbcType=VARCHAR},
+      </if>
+      <if test="yjkx != null">
+        #{yjkx,jdbcType=VARCHAR},
+      </if>
+      <if test="yjje != null">
+        #{yjje,jdbcType=DECIMAL},
+      </if>
+      <if test="slbm != null">
+        #{slbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        #{ispay,jdbcType=VARCHAR},
+      </if>
+      <if test="pgrq != null">
+        #{pgrq,jdbcType=DATE},
+      </if>
+      <if test="mqbm != null">
+        #{mqbm,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbm != null">
+        #{jsbm,jdbcType=VARCHAR},
+      </if>
+      <if test="pxggbj != null">
+        #{pxggbj,jdbcType=CHAR},
+      </if>
+      <if test="chggbj != null">
+        #{chggbj,jdbcType=CHAR},
+      </if>
+      <if test="jfggbj != null">
+        #{jfggbj,jdbcType=CHAR},
+      </if>
+      <if test="wgrq != null">
+        #{wgrq,jdbcType=DATE},
+      </if>
+      <if test="wgbm != null">
+        #{wgbm,jdbcType=VARCHAR},
+      </if>
+      <if test="iscomplete != null">
+        #{iscomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="modual != null">
+        #{modual,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="typenum != null">
+        #{typenum,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        #{sjje,jdbcType=DECIMAL},
+      </if>
+      <if test="payFlag != null">
+        #{payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="value1 != null">
+        #{value1,jdbcType=VARCHAR},
+      </if>
+      <if test="value2 != null">
+        #{value2,jdbcType=VARCHAR},
+      </if>
+      <if test="value3 != null">
+        #{value3,jdbcType=VARCHAR},
+      </if>
+      <if test="value4 != null">
+        #{value4,jdbcType=VARCHAR},
+      </if>
+      <if test="value5 != null">
+        #{value5,jdbcType=VARCHAR},
+      </if>
+      <if test="value6 != null">
+        #{value6,jdbcType=VARCHAR},
+      </if>
+      <if test="value7 != null">
+        #{value7,jdbcType=VARCHAR},
+      </if>
+      <if test="value8 != null">
+        #{value8,jdbcType=VARCHAR},
+      </if>
+      <if test="value9 != null">
+        #{value9,jdbcType=VARCHAR},
+      </if>
+      <if test="value10 != null">
+        #{value10,jdbcType=VARCHAR},
+      </if>
+      <if test="value11 != null">
+        #{value11,jdbcType=VARCHAR},
+      </if>
+      <if test="value12 != null">
+        #{value12,jdbcType=VARCHAR},
+      </if>
+      <if test="value13 != null">
+        #{value13,jdbcType=VARCHAR},
+      </if>
+      <if test="value14 != null">
+        #{value14,jdbcType=VARCHAR},
+      </if>
+      <if test="value15 != null">
+        #{value15,jdbcType=VARCHAR},
+      </if>
+      <if test="value16 != null">
+        #{value16,jdbcType=VARCHAR},
+      </if>
+      <if test="value17 != null">
+        #{value17,jdbcType=VARCHAR},
+      </if>
+      <if test="value18 != null">
+        #{value18,jdbcType=VARCHAR},
+      </if>
+      <if test="value19 != null">
+        #{value19,jdbcType=VARCHAR},
+      </if>
+      <if test="value20 != null">
+        #{value20,jdbcType=VARCHAR},
+      </if>
+      <if test="ifcancel != null">
+        #{ifcancel,jdbcType=VARCHAR},
+      </if>
+      <if test="isjudge != null">
+        #{isjudge,jdbcType=CHAR},
+      </if>
+      <if test="djhwcsj != null">
+        #{djhwcsj,jdbcType=DATE},
+      </if>
+      <if test="djhswc != null">
+        #{djhswc,jdbcType=DATE},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="jiaofeidh != null">
+        #{jiaofeidh,jdbcType=VARCHAR},
+      </if>
+      <if test="jobstatus != null">
+        #{jobstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifurgent != null">
+        #{ifurgent,jdbcType=VARCHAR},
+      </if>
+      <if test="reprinttimesofsf != null">
+        #{reprinttimesofsf,jdbcType=DECIMAL},
+      </if>
+      <if test="reprinttimesofjob != null">
+        #{reprinttimesofjob,jdbcType=DECIMAL},
+      </if>
+      <if test="zwbz != null">
+        #{zwbz,jdbcType=VARCHAR},
+      </if>
+      <if test="oldservicearea != null">
+        #{oldservicearea,jdbcType=DECIMAL},
+      </if>
+      <if test="pausesstarttime != null">
+        #{pausesstarttime,jdbcType=DATE},
+      </if>
+      <if test="pausestoptime != null">
+        #{pausestoptime,jdbcType=DATE},
+      </if>
+      <if test="yjstatus != null">
+        #{yjstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=CLOB},
+      </if>
+      <if test="pgrz != null">
+        #{pgrz,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.TelJobWithBLOBs">
+    update TELJOB
+    <set>
+      <if test="lsh != null">
+        LSH = #{lsh,jdbcType=VARCHAR},
+      </if>
+      <if test="cardid != null">
+        CARDID = #{cardid,jdbcType=VARCHAR},
+      </if>
+      <if test="xdh != null">
+        XDH = #{xdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ydh != null">
+        YDH = #{ydh,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="beginywarea != null">
+        BEGINYWAREA = #{beginywarea,jdbcType=VARCHAR},
+      </if>
+      <if test="ywarea != null">
+        YWAREA = #{ywarea,jdbcType=VARCHAR},
+      </if>
+      <if test="hth != null">
+        HTH = #{hth,jdbcType=VARCHAR},
+      </if>
+      <if test="yhth != null">
+        YHTH = #{yhth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        TYPEID = #{typeid,jdbcType=DECIMAL},
+      </if>
+      <if test="idd != null">
+        IDD = #{idd,jdbcType=DECIMAL},
+      </if>
+      <if test="sgnr != null">
+        SGNR = #{sgnr,jdbcType=VARCHAR},
+      </if>
+      <if test="sgrq != null">
+        SGRQ = #{sgrq,jdbcType=DATE},
+      </if>
+      <if test="dhlx != null">
+        DHLX = #{dhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="jlry != null">
+        JLRY = #{jlry,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="nxm != null">
+        NXM = #{nxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bm1 != null">
+        BM1 = #{bm1,jdbcType=VARCHAR},
+      </if>
+      <if test="bm2 != null">
+        BM2 = #{bm2,jdbcType=VARCHAR},
+      </if>
+      <if test="bm3 != null">
+        BM3 = #{bm3,jdbcType=VARCHAR},
+      </if>
+      <if test="bm4 != null">
+        BM4 = #{bm4,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxz != null">
+        YHXZ = #{yhxz,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null">
+        ZW = #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="xdz != null">
+        XDZ = #{xdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ydz != null">
+        YDZ = #{ydz,jdbcType=VARCHAR},
+      </if>
+      <if test="zjlx != null">
+        ZJLX = #{zjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="dhgn != null">
+        DHGN = #{dhgn,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        LINKMAN = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="gzlx != null">
+        GZLX = #{gzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="wxbz != null">
+        WXBZ = #{wxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="wxry != null">
+        WXRY = #{wxry,jdbcType=VARCHAR},
+      </if>
+      <if test="yjkx != null">
+        YJKX = #{yjkx,jdbcType=VARCHAR},
+      </if>
+      <if test="yjje != null">
+        YJJE = #{yjje,jdbcType=DECIMAL},
+      </if>
+      <if test="slbm != null">
+        SLBM = #{slbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        ISPAY = #{ispay,jdbcType=VARCHAR},
+      </if>
+      <if test="pgrq != null">
+        PGRQ = #{pgrq,jdbcType=DATE},
+      </if>
+      <if test="mqbm != null">
+        MQBM = #{mqbm,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbm != null">
+        JSBM = #{jsbm,jdbcType=VARCHAR},
+      </if>
+      <if test="pxggbj != null">
+        PXGGBJ = #{pxggbj,jdbcType=CHAR},
+      </if>
+      <if test="chggbj != null">
+        CHGGBJ = #{chggbj,jdbcType=CHAR},
+      </if>
+      <if test="jfggbj != null">
+        JFGGBJ = #{jfggbj,jdbcType=CHAR},
+      </if>
+      <if test="wgrq != null">
+        WGRQ = #{wgrq,jdbcType=DATE},
+      </if>
+      <if test="wgbm != null">
+        WGBM = #{wgbm,jdbcType=VARCHAR},
+      </if>
+      <if test="iscomplete != null">
+        ISCOMPLETE = #{iscomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="modual != null">
+        MODUAL = #{modual,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        PORT = #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="typenum != null">
+        TYPENUM = #{typenum,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        SJJE = #{sjje,jdbcType=DECIMAL},
+      </if>
+      <if test="payFlag != null">
+        PAY_FLAG = #{payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="value1 != null">
+        VALUE1 = #{value1,jdbcType=VARCHAR},
+      </if>
+      <if test="value2 != null">
+        VALUE2 = #{value2,jdbcType=VARCHAR},
+      </if>
+      <if test="value3 != null">
+        VALUE3 = #{value3,jdbcType=VARCHAR},
+      </if>
+      <if test="value4 != null">
+        VALUE4 = #{value4,jdbcType=VARCHAR},
+      </if>
+      <if test="value5 != null">
+        VALUE5 = #{value5,jdbcType=VARCHAR},
+      </if>
+      <if test="value6 != null">
+        VALUE6 = #{value6,jdbcType=VARCHAR},
+      </if>
+      <if test="value7 != null">
+        VALUE7 = #{value7,jdbcType=VARCHAR},
+      </if>
+      <if test="value8 != null">
+        VALUE8 = #{value8,jdbcType=VARCHAR},
+      </if>
+      <if test="value9 != null">
+        VALUE9 = #{value9,jdbcType=VARCHAR},
+      </if>
+      <if test="value10 != null">
+        VALUE10 = #{value10,jdbcType=VARCHAR},
+      </if>
+      <if test="value11 != null">
+        VALUE11 = #{value11,jdbcType=VARCHAR},
+      </if>
+      <if test="value12 != null">
+        VALUE12 = #{value12,jdbcType=VARCHAR},
+      </if>
+      <if test="value13 != null">
+        VALUE13 = #{value13,jdbcType=VARCHAR},
+      </if>
+      <if test="value14 != null">
+        VALUE14 = #{value14,jdbcType=VARCHAR},
+      </if>
+      <if test="value15 != null">
+        VALUE15 = #{value15,jdbcType=VARCHAR},
+      </if>
+      <if test="value16 != null">
+        VALUE16 = #{value16,jdbcType=VARCHAR},
+      </if>
+      <if test="value17 != null">
+        VALUE17 = #{value17,jdbcType=VARCHAR},
+      </if>
+      <if test="value18 != null">
+        VALUE18 = #{value18,jdbcType=VARCHAR},
+      </if>
+      <if test="value19 != null">
+        VALUE19 = #{value19,jdbcType=VARCHAR},
+      </if>
+      <if test="value20 != null">
+        VALUE20 = #{value20,jdbcType=VARCHAR},
+      </if>
+      <if test="ifcancel != null">
+        IFCANCEL = #{ifcancel,jdbcType=VARCHAR},
+      </if>
+      <if test="isjudge != null">
+        ISJUDGE = #{isjudge,jdbcType=CHAR},
+      </if>
+      <if test="djhwcsj != null">
+        DJHWCSJ = #{djhwcsj,jdbcType=DATE},
+      </if>
+      <if test="djhswc != null">
+        DJHSWC = #{djhswc,jdbcType=DATE},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="jiaofeidh != null">
+        JIAOFEIDH = #{jiaofeidh,jdbcType=VARCHAR},
+      </if>
+      <if test="jobstatus != null">
+        JOBSTATUS = #{jobstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifurgent != null">
+        IFURGENT = #{ifurgent,jdbcType=VARCHAR},
+      </if>
+      <if test="reprinttimesofsf != null">
+        REPRINTTIMESOFSF = #{reprinttimesofsf,jdbcType=DECIMAL},
+      </if>
+      <if test="reprinttimesofjob != null">
+        REPRINTTIMESOFJOB = #{reprinttimesofjob,jdbcType=DECIMAL},
+      </if>
+      <if test="zwbz != null">
+        ZWBZ = #{zwbz,jdbcType=VARCHAR},
+      </if>
+      <if test="oldservicearea != null">
+        OLDSERVICEAREA = #{oldservicearea,jdbcType=DECIMAL},
+      </if>
+      <if test="pausesstarttime != null">
+        PAUSESSTARTTIME = #{pausesstarttime,jdbcType=DATE},
+      </if>
+      <if test="pausestoptime != null">
+        PAUSESTOPTIME = #{pausestoptime,jdbcType=DATE},
+      </if>
+      <if test="yjstatus != null">
+        YJSTATUS = #{yjstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=CLOB},
+      </if>
+      <if test="pgrz != null">
+        PGRZ = #{pgrz,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tstar.callcenter.model.autogenerate.TelJobWithBLOBs">
+    update TELJOB
+    set LSH = #{lsh,jdbcType=VARCHAR},
+      CARDID = #{cardid,jdbcType=VARCHAR},
+      XDH = #{xdh,jdbcType=VARCHAR},
+      YDH = #{ydh,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      BEGINYWAREA = #{beginywarea,jdbcType=VARCHAR},
+      YWAREA = #{ywarea,jdbcType=VARCHAR},
+      HTH = #{hth,jdbcType=VARCHAR},
+      YHTH = #{yhth,jdbcType=VARCHAR},
+      TYPEID = #{typeid,jdbcType=DECIMAL},
+      IDD = #{idd,jdbcType=DECIMAL},
+      SGNR = #{sgnr,jdbcType=VARCHAR},
+      SGRQ = #{sgrq,jdbcType=DATE},
+      DHLX = #{dhlx,jdbcType=VARCHAR},
+      JLRY = #{jlry,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      NXM = #{nxm,jdbcType=VARCHAR},
+      BM1 = #{bm1,jdbcType=VARCHAR},
+      BM2 = #{bm2,jdbcType=VARCHAR},
+      BM3 = #{bm3,jdbcType=VARCHAR},
+      BM4 = #{bm4,jdbcType=VARCHAR},
+      YHXZ = #{yhxz,jdbcType=VARCHAR},
+      ZW = #{zw,jdbcType=VARCHAR},
+      XDZ = #{xdz,jdbcType=VARCHAR},
+      YDZ = #{ydz,jdbcType=VARCHAR},
+      ZJLX = #{zjlx,jdbcType=VARCHAR},
+      DHGN = #{dhgn,jdbcType=VARCHAR},
+      LINKMAN = #{linkman,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      GZLX = #{gzlx,jdbcType=VARCHAR},
+      WXBZ = #{wxbz,jdbcType=VARCHAR},
+      WXRY = #{wxry,jdbcType=VARCHAR},
+      YJKX = #{yjkx,jdbcType=VARCHAR},
+      YJJE = #{yjje,jdbcType=DECIMAL},
+      SLBM = #{slbm,jdbcType=VARCHAR},
+      ISPAY = #{ispay,jdbcType=VARCHAR},
+      PGRQ = #{pgrq,jdbcType=DATE},
+      MQBM = #{mqbm,jdbcType=VARCHAR},
+      JSBM = #{jsbm,jdbcType=VARCHAR},
+      PXGGBJ = #{pxggbj,jdbcType=CHAR},
+      CHGGBJ = #{chggbj,jdbcType=CHAR},
+      JFGGBJ = #{jfggbj,jdbcType=CHAR},
+      WGRQ = #{wgrq,jdbcType=DATE},
+      WGBM = #{wgbm,jdbcType=VARCHAR},
+      ISCOMPLETE = #{iscomplete,jdbcType=VARCHAR},
+      MODUAL = #{modual,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=VARCHAR},
+      TYPENUM = #{typenum,jdbcType=VARCHAR},
+      SJJE = #{sjje,jdbcType=DECIMAL},
+      PAY_FLAG = #{payFlag,jdbcType=VARCHAR},
+      VALUE1 = #{value1,jdbcType=VARCHAR},
+      VALUE2 = #{value2,jdbcType=VARCHAR},
+      VALUE3 = #{value3,jdbcType=VARCHAR},
+      VALUE4 = #{value4,jdbcType=VARCHAR},
+      VALUE5 = #{value5,jdbcType=VARCHAR},
+      VALUE6 = #{value6,jdbcType=VARCHAR},
+      VALUE7 = #{value7,jdbcType=VARCHAR},
+      VALUE8 = #{value8,jdbcType=VARCHAR},
+      VALUE9 = #{value9,jdbcType=VARCHAR},
+      VALUE10 = #{value10,jdbcType=VARCHAR},
+      VALUE11 = #{value11,jdbcType=VARCHAR},
+      VALUE12 = #{value12,jdbcType=VARCHAR},
+      VALUE13 = #{value13,jdbcType=VARCHAR},
+      VALUE14 = #{value14,jdbcType=VARCHAR},
+      VALUE15 = #{value15,jdbcType=VARCHAR},
+      VALUE16 = #{value16,jdbcType=VARCHAR},
+      VALUE17 = #{value17,jdbcType=VARCHAR},
+      VALUE18 = #{value18,jdbcType=VARCHAR},
+      VALUE19 = #{value19,jdbcType=VARCHAR},
+      VALUE20 = #{value20,jdbcType=VARCHAR},
+      IFCANCEL = #{ifcancel,jdbcType=VARCHAR},
+      ISJUDGE = #{isjudge,jdbcType=CHAR},
+      DJHWCSJ = #{djhwcsj,jdbcType=DATE},
+      DJHSWC = #{djhswc,jdbcType=DATE},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      JIAOFEIDH = #{jiaofeidh,jdbcType=VARCHAR},
+      JOBSTATUS = #{jobstatus,jdbcType=VARCHAR},
+      IFURGENT = #{ifurgent,jdbcType=VARCHAR},
+      REPRINTTIMESOFSF = #{reprinttimesofsf,jdbcType=DECIMAL},
+      REPRINTTIMESOFJOB = #{reprinttimesofjob,jdbcType=DECIMAL},
+      ZWBZ = #{zwbz,jdbcType=VARCHAR},
+      OLDSERVICEAREA = #{oldservicearea,jdbcType=DECIMAL},
+      PAUSESSTARTTIME = #{pausesstarttime,jdbcType=DATE},
+      PAUSESTOPTIME = #{pausestoptime,jdbcType=DATE},
+      YJSTATUS = #{yjstatus,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=CLOB},
+      PGRZ = #{pgrz,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.TelJob">
+    update TELJOB
+    set LSH = #{lsh,jdbcType=VARCHAR},
+      CARDID = #{cardid,jdbcType=VARCHAR},
+      XDH = #{xdh,jdbcType=VARCHAR},
+      YDH = #{ydh,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      BEGINYWAREA = #{beginywarea,jdbcType=VARCHAR},
+      YWAREA = #{ywarea,jdbcType=VARCHAR},
+      HTH = #{hth,jdbcType=VARCHAR},
+      YHTH = #{yhth,jdbcType=VARCHAR},
+      TYPEID = #{typeid,jdbcType=DECIMAL},
+      IDD = #{idd,jdbcType=DECIMAL},
+      SGNR = #{sgnr,jdbcType=VARCHAR},
+      SGRQ = #{sgrq,jdbcType=DATE},
+      DHLX = #{dhlx,jdbcType=VARCHAR},
+      JLRY = #{jlry,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      NXM = #{nxm,jdbcType=VARCHAR},
+      BM1 = #{bm1,jdbcType=VARCHAR},
+      BM2 = #{bm2,jdbcType=VARCHAR},
+      BM3 = #{bm3,jdbcType=VARCHAR},
+      BM4 = #{bm4,jdbcType=VARCHAR},
+      YHXZ = #{yhxz,jdbcType=VARCHAR},
+      ZW = #{zw,jdbcType=VARCHAR},
+      XDZ = #{xdz,jdbcType=VARCHAR},
+      YDZ = #{ydz,jdbcType=VARCHAR},
+      ZJLX = #{zjlx,jdbcType=VARCHAR},
+      DHGN = #{dhgn,jdbcType=VARCHAR},
+      LINKMAN = #{linkman,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      GZLX = #{gzlx,jdbcType=VARCHAR},
+      WXBZ = #{wxbz,jdbcType=VARCHAR},
+      WXRY = #{wxry,jdbcType=VARCHAR},
+      YJKX = #{yjkx,jdbcType=VARCHAR},
+      YJJE = #{yjje,jdbcType=DECIMAL},
+      SLBM = #{slbm,jdbcType=VARCHAR},
+      ISPAY = #{ispay,jdbcType=VARCHAR},
+      PGRQ = #{pgrq,jdbcType=DATE},
+      MQBM = #{mqbm,jdbcType=VARCHAR},
+      JSBM = #{jsbm,jdbcType=VARCHAR},
+      PXGGBJ = #{pxggbj,jdbcType=CHAR},
+      CHGGBJ = #{chggbj,jdbcType=CHAR},
+      JFGGBJ = #{jfggbj,jdbcType=CHAR},
+      WGRQ = #{wgrq,jdbcType=DATE},
+      WGBM = #{wgbm,jdbcType=VARCHAR},
+      ISCOMPLETE = #{iscomplete,jdbcType=VARCHAR},
+      MODUAL = #{modual,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=VARCHAR},
+      TYPENUM = #{typenum,jdbcType=VARCHAR},
+      SJJE = #{sjje,jdbcType=DECIMAL},
+      PAY_FLAG = #{payFlag,jdbcType=VARCHAR},
+      VALUE1 = #{value1,jdbcType=VARCHAR},
+      VALUE2 = #{value2,jdbcType=VARCHAR},
+      VALUE3 = #{value3,jdbcType=VARCHAR},
+      VALUE4 = #{value4,jdbcType=VARCHAR},
+      VALUE5 = #{value5,jdbcType=VARCHAR},
+      VALUE6 = #{value6,jdbcType=VARCHAR},
+      VALUE7 = #{value7,jdbcType=VARCHAR},
+      VALUE8 = #{value8,jdbcType=VARCHAR},
+      VALUE9 = #{value9,jdbcType=VARCHAR},
+      VALUE10 = #{value10,jdbcType=VARCHAR},
+      VALUE11 = #{value11,jdbcType=VARCHAR},
+      VALUE12 = #{value12,jdbcType=VARCHAR},
+      VALUE13 = #{value13,jdbcType=VARCHAR},
+      VALUE14 = #{value14,jdbcType=VARCHAR},
+      VALUE15 = #{value15,jdbcType=VARCHAR},
+      VALUE16 = #{value16,jdbcType=VARCHAR},
+      VALUE17 = #{value17,jdbcType=VARCHAR},
+      VALUE18 = #{value18,jdbcType=VARCHAR},
+      VALUE19 = #{value19,jdbcType=VARCHAR},
+      VALUE20 = #{value20,jdbcType=VARCHAR},
+      IFCANCEL = #{ifcancel,jdbcType=VARCHAR},
+      ISJUDGE = #{isjudge,jdbcType=CHAR},
+      DJHWCSJ = #{djhwcsj,jdbcType=DATE},
+      DJHSWC = #{djhswc,jdbcType=DATE},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      JIAOFEIDH = #{jiaofeidh,jdbcType=VARCHAR},
+      JOBSTATUS = #{jobstatus,jdbcType=VARCHAR},
+      IFURGENT = #{ifurgent,jdbcType=VARCHAR},
+      REPRINTTIMESOFSF = #{reprinttimesofsf,jdbcType=DECIMAL},
+      REPRINTTIMESOFJOB = #{reprinttimesofjob,jdbcType=DECIMAL},
+      ZWBZ = #{zwbz,jdbcType=VARCHAR},
+      OLDSERVICEAREA = #{oldservicearea,jdbcType=DECIMAL},
+      PAUSESSTARTTIME = #{pausesstarttime,jdbcType=DATE},
+      PAUSESTOPTIME = #{pausestoptime,jdbcType=DATE},
+      YJSTATUS = #{yjstatus,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+    <resultMap id="TelJobMap" type="com.tstar.callcenter.pub.data.ResultMap">
+    </resultMap>
+    
+    <resultMap id="FaultJobMap" type="com.tstar.callcenter.pub.data.ResultMap">
+    </resultMap>
+  
+	<select id="getTelJobList" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+	      {call p_cc_getTelJobList(
+	                              #{v_QueryStr, jdbcType=VARCHAR, mode=IN},    
+	                              #{v_count, jdbcType=INTEGER, mode=OUT},
+	                              #{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=TelJobMap})}
+	</select>
+	
+	<select id="getFaultJobList" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+          {call p_cc_getTelJobList(
+                                  #{v_QueryStr, jdbcType=VARCHAR, mode=IN},    
+                                  #{v_count, jdbcType=INTEGER, mode=OUT},
+                                  #{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=FaultJobMap})}
+    </select>
+
+</mapper>

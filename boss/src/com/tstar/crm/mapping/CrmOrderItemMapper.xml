@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CrmOrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.CrmOrderItem">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="ITEM_ID" jdbcType="VARCHAR" property="itemId" />
+    <result column="ITEM_NAME" jdbcType="VARCHAR" property="itemName" />
+    <result column="ITEM_TYPE" jdbcType="INTEGER" property="itemType" />
+    <result column="SALE_TYPE" jdbcType="INTEGER" property="saleType" />
+    <result column="TERM" jdbcType="VARCHAR" property="term" />
+    <result column="ITEM_COUNT" jdbcType="INTEGER" property="itemCount" />
+    <result column="ITEM_PRICE" jdbcType="DECIMAL" property="itemPrice" />
+    <result column="OSS_KEY" jdbcType="VARCHAR" property="ossKey" />
+    <result column="EFFECTIVE_TIME" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="DUE_TIME" jdbcType="TIMESTAMP" property="dueTime" />
+    <result column="EXPIRY_TIME" jdbcType="TIMESTAMP" property="expiryTime" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PAY_FLAG" jdbcType="INTEGER" property="payFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORDER_ID, ITEM_ID, ITEM_NAME, ITEM_TYPE, SALE_TYPE, TERM, ITEM_COUNT, ITEM_PRICE, 
+    OSS_KEY, EFFECTIVE_TIME, DUE_TIME, EXPIRY_TIME, STATUS, REMARK, PAY_FLAG
+  </sql>
+  
+  <select id="selectTopBillingItem" parameterType="map" resultType="java.lang.String">
+    select 
+    	ORDER_ID
+    from crm_order_item
+    where STATUS = 2 
+    and (DUE_TIME is null or
+    	DUE_TIME is not null and DUE_TIME &lt; #{dt, jdbcType=TIMESTAMP})
+    limit 0, 50
+  </select>
+  
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_order_item
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_order_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_order_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByOrderId" parameterType="java.lang.String">
+    delete from crm_order_item
+    where ORDER_ID = #{0}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.CrmOrderItem">
+    insert into crm_order_item (ID, ORDER_ID, ITEM_ID, 
+      ITEM_NAME, ITEM_TYPE, SALE_TYPE, 
+      TERM, ITEM_COUNT, ITEM_PRICE, 
+      OSS_KEY, EFFECTIVE_TIME, DUE_TIME, EXPIRY_TIME, 
+      STATUS, REMARK, PAY_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{itemType,jdbcType=INTEGER}, #{saleType,jdbcType=INTEGER}, 
+      #{term,jdbcType=VARCHAR}, #{itemCount,jdbcType=INTEGER}, #{itemPrice,jdbcType=DECIMAL}, 
+      #{ossKey,jdbcType=VARCHAR}, #{effectiveTime,jdbcType=TIMESTAMP}, #{dueTime,jdbcType=TIMESTAMP},  
+      #{expiryTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{payFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.CrmOrderItem">
+    insert into crm_order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="itemId != null">
+        ITEM_ID,
+      </if>
+      <if test="itemName != null">
+        ITEM_NAME,
+      </if>
+      <if test="itemType != null">
+        ITEM_TYPE,
+      </if>
+      <if test="saleType != null">
+        SALE_TYPE,
+      </if>
+      <if test="term != null">
+        TERM,
+      </if>
+      <if test="itemCount != null">
+        ITEM_COUNT,
+      </if>
+      <if test="itemPrice != null">
+        ITEM_PRICE,
+      </if>
+      <if test="ossKey != null">
+        OSS_KEY,
+      </if>
+      <if test="effectiveTime != null">
+        EFFECTIVE_TIME,
+      </if>
+      <if test="dueTime != null">
+        DUE_TIME,
+      </if>
+      <if test="expiryTime != null">
+        EXPIRY_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="payFlag != null">
+        PAY_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null">
+        #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="saleType != null">
+        #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCount != null">
+        #{itemCount,jdbcType=INTEGER},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ossKey != null">
+        #{ossKey,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dueTime != null">
+        #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiryTime != null">
+        #{expiryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null">
+        #{payFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.CrmOrderItem">
+    update crm_order_item
+    <set>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        ITEM_ID = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null">
+        ITEM_TYPE = #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="saleType != null">
+        SALE_TYPE = #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        TERM = #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCount != null">
+        ITEM_COUNT = #{itemCount,jdbcType=INTEGER},
+      </if>
+      <if test="itemPrice != null">
+        ITEM_PRICE = #{itemPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ossKey != null">
+        OSS_KEY = #{ossKey,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null">
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dueTime != null">
+        DUE_TIME = #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiryTime != null">
+        EXPIRY_TIME = #{expiryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null">
+        PAY_FLAG = #{payFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.CrmOrderItem">
+    update crm_order_item
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      ITEM_ID = #{itemId,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_TYPE = #{itemType,jdbcType=INTEGER},
+      SALE_TYPE = #{saleType,jdbcType=INTEGER},
+      TERM = #{term,jdbcType=VARCHAR},
+      ITEM_COUNT = #{itemCount,jdbcType=INTEGER},
+      ITEM_PRICE = #{itemPrice,jdbcType=DECIMAL},
+      OSS_KEY = #{ossKey,jdbcType=VARCHAR},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      DUE_TIME = #{dueTime,jdbcType=TIMESTAMP},
+      EXPIRY_TIME = #{expiryTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PAY_FLAG = #{payFlag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="makeEffective" >
+    update crm_order_item
+    set 
+      EFFECTIVE_TIME = #{1},
+      STATUS = 2
+    where ORDER_ID = #{0}
+  </update>
+</mapper>

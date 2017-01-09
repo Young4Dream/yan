@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidDataConfigMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidDataConfig">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="UP_SPEED" jdbcType="INTEGER" property="upSpeed" />
+    <result column="DOWN_SPEED" jdbcType="INTEGER" property="downSpeed" />
+    <result column="BAND_WIDTH" jdbcType="INTEGER" property="bandWidth" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, UP_SPEED, DOWN_SPEED, BAND_WIDTH, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_data_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_data_config
+    where 1=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_data_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidDataConfig">
+    insert into sid_data_config (ID, NAME, UP_SPEED, 
+      DOWN_SPEED, BAND_WIDTH, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{upSpeed,jdbcType=INTEGER}, 
+      #{downSpeed,jdbcType=INTEGER}, #{bandWidth,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidDataConfig">
+    insert into sid_data_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="upSpeed != null">
+        UP_SPEED,
+      </if>
+      <if test="downSpeed != null">
+        DOWN_SPEED,
+      </if>
+      <if test="bandWidth != null">
+        BAND_WIDTH,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="upSpeed != null">
+        #{upSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="downSpeed != null">
+        #{downSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="bandWidth != null">
+        #{bandWidth,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidDataConfig">
+    update sid_data_config
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="upSpeed != null">
+        UP_SPEED = #{upSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="downSpeed != null">
+        DOWN_SPEED = #{downSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="bandWidth != null">
+        BAND_WIDTH = #{bandWidth,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidDataConfig">
+    update sid_data_config
+    set NAME = #{name,jdbcType=VARCHAR},
+      UP_SPEED = #{upSpeed,jdbcType=INTEGER},
+      DOWN_SPEED = #{downSpeed,jdbcType=INTEGER},
+      BAND_WIDTH = #{bandWidth,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

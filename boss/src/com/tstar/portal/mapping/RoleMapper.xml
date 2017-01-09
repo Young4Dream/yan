@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.Role">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="ROLE_DESC" jdbcType="VARCHAR" property="roleDesc" />
+    <result column="ADMIN_FLAG" jdbcType="INTEGER" property="adminFlag" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap id="AdvResultMap" type="com.tstar.portal.model.ResultMap">
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLE_NAME, ROLE_DESC, ADMIN_FLAG, CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+	<select id="selectAllRole" resultMap="AdvResultMap">
+		select
+		id as roleId,
+		role_name as roleName,
+		role_desc as roleDesc,
+		admin_flag as adminFlag,
+		create_time as createTime,
+		update_time as updateTime,
+		remark
+		from sys_role
+		where 1=1
+		ORDER BY update_time DESC,create_time DESC
+	</select>
+	
+	<select id="selectByPage" parameterType="map" resultMap="AdvResultMap">
+	  select
+		id as roleId,
+		role_name as roleName,
+		role_desc as roleDesc,
+		admin_flag as adminFlag,
+		create_time as createTime,
+		update_time as updateTime,
+		remark
+	  from sys_role
+	  where 1=1
+      <if test="roleName != null">
+        and ROLE_NAME like concat('%', #{roleName}, '%');
+      </if>
+	</select>
+	
+	<select id="countAll" resultType="int">
+		select
+		count(*)
+		from sys_role
+		where 1=1
+	</select>
+	
+	<select id="countByCriteria" parameterType="map" resultType="int">
+	  select
+		count(*)
+	  from sys_role
+	  where 1=1
+      <if test="roleName != null">
+        and ROLE_NAME like concat('%', #{roleName}, '%');
+      </if>
+	</select>
+	
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_role
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.Role">
+    insert into sys_role (ID, ROLE_NAME, ROLE_DESC, 
+      ADMIN_FLAG, CREATE_TIME, UPDATE_TIME, 
+      REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
+      #{adminFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.Role">
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME,
+      </if>
+      <if test="roleDesc != null">
+        ROLE_DESC,
+      </if>
+      <if test="adminFlag != null">
+        ADMIN_FLAG,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null">
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="adminFlag != null">
+        #{adminFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.Role">
+    update sys_role
+    <set>
+      <if test="roleName != null">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null">
+        ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="adminFlag != null">
+        ADMIN_FLAG = #{adminFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.Role">
+    update sys_role
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+      ADMIN_FLAG = #{adminFlag,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

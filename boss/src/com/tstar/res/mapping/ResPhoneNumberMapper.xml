@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResPhoneNumberMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResPhoneNumber">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="ROOT_DEVICE_CODE" jdbcType="VARCHAR" property="rootDeviceCode" />
+    <result column="NUMBER_LEVEL" jdbcType="INTEGER" property="numberLevel" />
+    <result column="RESERVED" jdbcType="INTEGER" property="reserved" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="UNLOCK_TIME" jdbcType="TIMESTAMP" property="unlockTime" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PHONE_NUMBER, ROOT_DEVICE_CODE, NUMBER_LEVEL, RESERVED, STATUS, UNLOCK_TIME, 
+    CUSTOMER_NAME, REMARK
+  </sql>
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from res_phone_number
+    where 1=1
+    <if test="phoneNumber != null and phoneNumber != ''">
+    	and PHONE_NUMBER LIKE concat(#{phoneNumber}, '%')
+    </if>
+    <if test="numberLevel != null">
+    	and NUMBER_LEVEL = #{numberLevel}
+    </if>
+    <if test="status != null">
+    	and STATUS = #{status}
+    </if>
+    <if test="reserved != null">
+    	and RESERVED = #{reserved}
+    </if>
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_phone_number
+    where 1=1
+    <if test="phoneNumber != null and phoneNumber != ''">
+    	and PHONE_NUMBER LIKE concat(#{phoneNumber}, '%')
+    </if>
+    <if test="numberLevel != null">
+    	and NUMBER_LEVEL = #{numberLevel}
+    </if>
+    <if test="status != null">
+    	and STATUS = #{status}
+    </if>
+    <if test="reserved != null">
+    	and RESERVED = #{reserved}
+    </if>
+    order by PHONE_NUMBER
+    limit #{start}, #{length}
+  </select>
+  <select id="selectByNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_phone_number
+    where PHONE_NUMBER = #{0}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_phone_number
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_phone_number
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResPhoneNumber">
+    insert into res_phone_number (ID, PHONE_NUMBER, ROOT_DEVICE_CODE, 
+      NUMBER_LEVEL, RESERVED, STATUS, 
+      UNLOCK_TIME, CUSTOMER_NAME, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{rootDeviceCode,jdbcType=VARCHAR}, 
+      #{numberLevel,jdbcType=INTEGER}, #{reserved,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{unlockTime,jdbcType=TIMESTAMP}, #{customerName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResPhoneNumber">
+    insert into res_phone_number
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER,
+      </if>
+      <if test="rootDeviceCode != null">
+        ROOT_DEVICE_CODE,
+      </if>
+      <if test="numberLevel != null">
+        NUMBER_LEVEL,
+      </if>
+      <if test="reserved != null">
+        RESERVED,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="unlockTime != null">
+        UNLOCK_TIME,
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rootDeviceCode != null">
+        #{rootDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="numberLevel != null">
+        #{numberLevel,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null">
+        #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unlockTime != null">
+        #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResPhoneNumber">
+    update res_phone_number
+    <set>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rootDeviceCode != null">
+        ROOT_DEVICE_CODE = #{rootDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="numberLevel != null">
+        NUMBER_LEVEL = #{numberLevel,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null">
+        RESERVED = #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unlockTime != null">
+        UNLOCK_TIME = #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResPhoneNumber">
+    update res_phone_number
+    set PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      ROOT_DEVICE_CODE = #{rootDeviceCode,jdbcType=VARCHAR},
+      NUMBER_LEVEL = #{numberLevel,jdbcType=INTEGER},
+      RESERVED = #{reserved,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      UNLOCK_TIME = #{unlockTime,jdbcType=TIMESTAMP},
+      CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateStatus">
+    update res_phone_number
+    set STATUS = #{1},
+    CUSTOMER_NAME = #{2}
+    where PHONE_NUMBER = #{0}
+  </update>
+  <update id="lockPhoneNumber">
+    update res_phone_number
+    set STATUS = 1,
+    UNLOCK_TIME = #{1}
+    where PHONE_NUMBER = #{0}
+  </update>
+  <update id="unlockPhoneNumber">
+    update res_phone_number
+    set STATUS = 0
+    where PHONE_NUMBER = #{0}
+  </update>
+</mapper>

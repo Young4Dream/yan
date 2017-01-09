@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidRateDiscountMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidRateDiscount">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DISCOUNT_ID" jdbcType="VARCHAR" property="discountId" />
+    <result column="RATE_ID" jdbcType="VARCHAR" property="rateId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DISCOUNT_ID, RATE_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_rate_discount
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_rate_discount
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidRateDiscount">
+    insert into sid_rate_discount (ID, DISCOUNT_ID, RATE_ID, 
+      CREATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{discountId,jdbcType=VARCHAR}, #{rateId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidRateDiscount">
+    insert into sid_rate_discount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="discountId != null">
+        DISCOUNT_ID,
+      </if>
+      <if test="rateId != null">
+        RATE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="discountId != null">
+        #{discountId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidRateDiscount">
+    update sid_rate_discount
+    <set>
+      <if test="discountId != null">
+        DISCOUNT_ID = #{discountId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        RATE_ID = #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidRateDiscount">
+    update sid_rate_discount
+    set DISCOUNT_ID = #{discountId,jdbcType=VARCHAR},
+      RATE_ID = #{rateId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

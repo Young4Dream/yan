@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidServiceMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidService">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CATEGORY_ID" jdbcType="VARCHAR" property="categoryId" />
+    <result column="VOICE_ID" jdbcType="VARCHAR" property="voiceId" />
+    <result column="DATA_ID" jdbcType="VARCHAR" property="dataId" />
+    <result column="METER_NAME" jdbcType="VARCHAR" property="meterName" />
+    <result column="METER_COUNT" jdbcType="INTEGER" property="meterCount" />
+    <result column="DEBIT_PRICE" jdbcType="DECIMAL" property="debitPrice" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CATEGORY_NAME" jdbcType="VARCHAR" property="categoryName" />
+    <result column="VOICE_NAME" jdbcType="VARCHAR" property="voiceName" />
+    <result column="DATA_NAME" jdbcType="VARCHAR" property="dataName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, CATEGORY_ID, VOICE_ID, DATA_ID, METER_NAME, METER_COUNT, DEBIT_PRICE, REMARK,
+    (SELECT NAME FROM sid_service_category WHERE ID=CATEGORY_ID) AS CATEGORY_NAME,
+    (SELECT NAME FROM sid_voice_config WHERE ID=VOICE_ID) AS VOICE_NAME,
+    (SELECT NAME FROM sid_data_config WHERE ID=DATA_ID) AS DATA_NAME
+  </sql>
+  <select id="countAll" resultType="int">
+    select 
+    count(*)
+    from sid_service
+    where 1=1
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_service
+    where 1=1
+    limit #{0}, #{1}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_service
+    where 1=1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_service
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_service
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidService">
+    insert into sid_service (ID, NAME, CATEGORY_ID, 
+      VOICE_ID, DATA_ID, METER_NAME, 
+      METER_COUNT, DEBIT_PRICE, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, 
+      #{voiceId,jdbcType=VARCHAR}, #{dataId,jdbcType=VARCHAR}, #{meterName,jdbcType=VARCHAR}, 
+      #{meterCount,jdbcType=INTEGER}, #{debitPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidService">
+    insert into sid_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="categoryId != null">
+        CATEGORY_ID,
+      </if>
+      <if test="voiceId != null">
+        VOICE_ID,
+      </if>
+      <if test="dataId != null">
+        DATA_ID,
+      </if>
+      <if test="meterName != null">
+        METER_NAME,
+      </if>
+      <if test="meterCount != null">
+        METER_COUNT,
+      </if>
+      <if test="debitPrice != null">
+        DEBIT_PRICE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceId != null">
+        #{voiceId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataId != null">
+        #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="meterName != null">
+        #{meterName,jdbcType=VARCHAR},
+      </if>
+      <if test="meterCount != null">
+        #{meterCount,jdbcType=INTEGER},
+      </if>
+      <if test="debitPrice != null">
+        #{debitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidService">
+    update sid_service
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        CATEGORY_ID = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceId != null">
+        VOICE_ID = #{voiceId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataId != null">
+        DATA_ID = #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="meterName != null">
+        METER_NAME = #{meterName,jdbcType=VARCHAR},
+      </if>
+      <if test="meterCount != null">
+        METER_COUNT = #{meterCount,jdbcType=INTEGER},
+      </if>
+      <if test="debitPrice != null">
+        DEBIT_PRICE = #{debitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidService">
+    update sid_service
+    set NAME = #{name,jdbcType=VARCHAR},
+      CATEGORY_ID = #{categoryId,jdbcType=VARCHAR},
+      VOICE_ID = #{voiceId,jdbcType=VARCHAR},
+      DATA_ID = #{dataId,jdbcType=VARCHAR},
+      METER_NAME = #{meterName,jdbcType=VARCHAR},
+      METER_COUNT = #{meterCount,jdbcType=INTEGER},
+      DEBIT_PRICE = #{debitPrice,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

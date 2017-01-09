@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.callcenter.dao.admin.KnowledgeCustomerMapper">
+<resultMap id="ResultMap" type="com.tstar.callcenter.pub.data.ResultMap">
+</resultMap>
+<select id="getQuestionListByPage" resultMap="ResultMap">
+	select * from
+   (select a.*,rownum row_num from
+      (
+select * from T_CC_KL_QU order by id DESC
+      ) a
+   ) b 
+where b.row_num between #{start} and #{length}
+
+
+</select> 
+<select id="selectAllKnowClass" resultMap="ResultMap">
+	select 
+	KLC_ID,
+	KLC_NAME
+	from T_CC_KL_CLASS order by KLC_ORDER ASC
+</select>
+
+<select id="getKnowClassListByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+	select 
+	a.KLC_ID,
+    a.KLC_NAME,
+    a.KLC_PARENTID,
+    b.KLC_NAME  KLC_PARENT_NAME,
+    a.KLC_ORDER
+    from T_CC_KL_CLASS a left join T_CC_KL_CLASS b
+    on a.klc_parentid=b.klc_id
+		<if test="KLC_NAME != null and KLC_NAME != '' ">
+			and KLC_NAME like '%'||#{KLC_NAME}||'%'
+	  	</if>
+		ORDER BY KLC_ORDER ASC
+		<!-- 
+		limit #{pageSize} offset #{offset}
+		 -->
+</select>
+<select id="getKnowListByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+	select * from
+   (select a.*,rownum row_num from
+      (
+      select 
+  KL_ID,
+    KL_TITLE,
+    kl.KLC_NAME,
+    KL_FILE_URL
+    from T_CC_KL k left join T_CC_KL_CLASS kl
+    on k.klc_id=kl.klc_id 
+    where 1=1 
+    <if test="kl_title != null and kl_title != '' ">
+			and k.kl_title like '%'||#{kl_title}||'%'
+	</if>
+	<if test="kl_cid != null and kl_cid != 0 ">
+			and k.klc_id=#{kl_cid}
+	</if>
+  order by kl_id desc
+      ) a
+   ) b 
+where b.row_num between #{start} and #{length}
+	
+	
+</select>
+	
+</mapper>

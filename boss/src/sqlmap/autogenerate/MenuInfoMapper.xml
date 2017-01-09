@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.MenuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.MenuInfo" >
+    <id column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
+    <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+    <result column="MENU_DESC" property="menuDesc" jdbcType="VARCHAR" />
+    <result column="MENU_ICO" property="menuIco" jdbcType="VARCHAR" />
+    <result column="MENU_URL" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    <result column="MENU_SORT" property="menuSort" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MENU_ID, MENU_NAME, MENU_DESC, MENU_ICO, MENU_URL, PARENT_ID, MENU_SORT, CREATE_TIME, 
+    UPDATE_TIME, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_BS_MENU_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BS_MENU_INFO
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_BS_MENU_INFO
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfoExample" >
+    delete from T_BS_MENU_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfo" >
+    <selectKey resultType="long" keyProperty="menuId" order="BEFORE" >
+      select t_bs_menu_info_menu_id_seq.nextval from dual
+    </selectKey>
+    insert into T_BS_MENU_INFO (MENU_ID, MENU_NAME, MENU_DESC, 
+      MENU_ICO, MENU_URL, PARENT_ID, 
+      MENU_SORT, CREATE_TIME, UPDATE_TIME, 
+      REMARK)
+    values (#{menuId,jdbcType=DECIMAL}, #{menuName,jdbcType=VARCHAR}, #{menuDesc,jdbcType=VARCHAR}, 
+      #{menuIco,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{parentId,jdbcType=DECIMAL}, 
+      #{menuSort,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfo" >
+    <selectKey resultType="long" keyProperty="menuId" order="BEFORE" >
+      select t_bs_menu_info_menu_id_seq.nextval from dual
+    </selectKey>
+    insert into T_BS_MENU_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      MENU_ID,
+      <if test="menuName != null" >
+        MENU_NAME,
+      </if>
+      <if test="menuDesc != null" >
+        MENU_DESC,
+      </if>
+      <if test="menuIco != null" >
+        MENU_ICO,
+      </if>
+      <if test="menuUrl != null" >
+        MENU_URL,
+      </if>
+      PARENT_ID,
+      MENU_SORT,
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{menuId,jdbcType=DECIMAL},
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuDesc != null" >
+        #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIco != null" >
+        #{menuIco,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      #{parentId,jdbcType=DECIMAL},
+      #{menuSort,jdbcType=DECIMAL},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_BS_MENU_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_BS_MENU_INFO
+    <set >
+      <if test="record.menuId != null" >
+        MENU_ID = #{record.menuId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuName != null" >
+        MENU_NAME = #{record.menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuDesc != null" >
+        MENU_DESC = #{record.menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuIco != null" >
+        MENU_ICO = #{record.menuIco,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuUrl != null" >
+        MENU_URL = #{record.menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuSort != null" >
+        MENU_SORT = #{record.menuSort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_BS_MENU_INFO
+    set MENU_ID = #{record.menuId,jdbcType=DECIMAL},
+      MENU_NAME = #{record.menuName,jdbcType=VARCHAR},
+      MENU_DESC = #{record.menuDesc,jdbcType=VARCHAR},
+      MENU_ICO = #{record.menuIco,jdbcType=VARCHAR},
+      MENU_URL = #{record.menuUrl,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      MENU_SORT = #{record.menuSort,jdbcType=DECIMAL},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfo" >
+    update T_BS_MENU_INFO
+    <set >
+      <if test="menuName != null" >
+        MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuDesc != null" >
+        MENU_DESC = #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIco != null" >
+        MENU_ICO = #{menuIco,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="menuSort != null" >
+        MENU_SORT = #{menuSort,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.MenuInfo" >
+    update T_BS_MENU_INFO
+    set MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      MENU_DESC = #{menuDesc,jdbcType=VARCHAR},
+      MENU_ICO = #{menuIco,jdbcType=VARCHAR},
+      MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      MENU_SORT = #{menuSort,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </update>
+</mapper>

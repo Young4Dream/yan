@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.CdrMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.Cdr">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="CALLER" jdbcType="VARCHAR" property="caller" />
+    <result column="CALLEE" jdbcType="VARCHAR" property="callee" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="DURATION" jdbcType="INTEGER" property="duration" />
+    <result column="TRUNK_GROUP_IN" jdbcType="VARCHAR" property="trunkGroupIn" />
+    <result column="TRUNK_GROUP_OUT" jdbcType="VARCHAR" property="trunkGroupOut" />
+    <result column="CALLER_LOCATION" jdbcType="VARCHAR" property="callerLocation" />
+    <result column="CALLEE_LOCATION" jdbcType="VARCHAR" property="calleeLocation" />
+    <result column="CALL_TYPE" jdbcType="VARCHAR" property="callType" />
+    <result column="SERVICE_ABBR" jdbcType="VARCHAR" property="serviceAbbr" />
+    <result column="SERVICE_ID" jdbcType="VARCHAR" property="serviceId" />
+    <result column="PRICE_PLAN_ID" jdbcType="VARCHAR" property="pricePlanId" />
+    <result column="RATE_ID" jdbcType="VARCHAR" property="rateId" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="USAGE_COUNT" jdbcType="INTEGER" property="usageCount" />
+    <result column="FREE_USAGE" jdbcType="INTEGER" property="freeUsage" />
+    <result column="CHARGING_USAGE" jdbcType="INTEGER" property="chargingUsage" />
+    <result column="FEE" jdbcType="DECIMAL" property="fee" />
+    <result column="DISCOUNT" jdbcType="DECIMAL" property="discount" />
+    <result column="ATTACH_PRICE" jdbcType="DECIMAL" property="attachPrice" />
+    <result column="ATTACH_USAGE" jdbcType="INTEGER" property="attachUsage" />
+    <result column="ATTACH_FEE" jdbcType="DECIMAL" property="attachFee" />
+    <result column="TOTAL_FEE" jdbcType="DECIMAL" property="totalFee" />
+    <result column="DEBIT_PRICE" jdbcType="DECIMAL" property="debitPrice" />
+    <result column="DEBITOR" jdbcType="VARCHAR" property="debitor" />
+    <result column="BILL_ID" jdbcType="VARCHAR" property="billId" />
+    <result column="BILL_ACC_NO" jdbcType="VARCHAR" property="billAccNo" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="LOG_ID" jdbcType="VARCHAR" property="logId" />
+    <result column="ABNORMAL_CODE" jdbcType="INTEGER" property="abnormalCode" />
+    <result column="ABNORMAL_DESC" jdbcType="VARCHAR" property="abnormalDesc" />
+    <result column="HASH_CODE" jdbcType="INTEGER" property="hashCode" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="SOURCE_NAME" jdbcType="VARCHAR" property="sourceName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, CUSTOMER_ID, USER_NAME, CALLER, CALLEE, START_TIME, END_TIME, DURATION, 
+    TRUNK_GROUP_IN, TRUNK_GROUP_OUT, 
+    CALLER_LOCATION, CALLEE_LOCATION, CALL_TYPE, SERVICE_ABBR, SERVICE_ID, PRICE_PLAN_ID, RATE_ID, 
+    PRICE, USAGE_COUNT, FREE_USAGE, CHARGING_USAGE, FEE, DISCOUNT, 
+    ATTACH_PRICE, ATTACH_USAGE, ATTACH_FEE, TOTAL_FEE, DEBIT_PRICE, DEBITOR, 
+    BILL_ID, BILL_ACC_NO, STATUS, LOG_ID, ABNORMAL_CODE, ABNORMAL_DESC, HASH_CODE, CREATE_TIME, 
+    UPDATE_TIME, SOURCE_NAME
+  </sql>
+  <select id="countAll" resultType="int">
+    select 
+    count(*)
+    from ocs_cdrs
+    where 1=1
+  </select>
+
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from ocs_cdrs
+    where 1=1
+    <if test="caller != null">
+      and CALLER=#{caller}
+    </if>
+    <if test="startTime != null">
+      and START_TIME &gt;= #{startTime}
+    </if>
+    <if test="endTime != null">
+      and START_TIME &lt; #{endTime}
+    </if>
+  </select>
+
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdrs
+    where 1=1
+    <if test="caller != null">
+      and CALLER=#{caller}
+    </if>
+    <if test="startTime != null">
+      and START_TIME &gt;= #{startTime}
+    </if>
+    <if test="endTime != null">
+      and START_TIME &lt; #{endTime}
+    </if>
+    order by START_TIME desc
+    limit #{start}, #{length}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdrs
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByHashCode" parameterType="int" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdrs
+    where HASH_CODE = #{1} AND ID NOT IN (#{0})
+  </select>
+  <select id="selectPricingByLogId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdrs
+    where LOG_ID = #{0}
+    and STATUS = #{1}
+    and ABNORMAL_CODE=0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_cdrs
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByLogId" parameterType="java.lang.String">
+    delete from ocs_cdrs
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.Cdr">
+    insert into ocs_cdrs (ID, USER_ID, CUSTOMER_ID, 
+      USER_NAME, CALLER, 
+      CALLEE, START_TIME, END_TIME, 
+      DURATION, TRUNK_GROUP_IN, TRUNK_GROUP_OUT, 
+      CALLER_LOCATION, CALLEE_LOCATION, CALL_TYPE, 
+      SERVICE_ABBR, SERVICE_ID, PRICE_PLAN_ID, RATE_ID, 
+      PRICE, USAGE_COUNT, FREE_USAGE, 
+      CHARGING_USAGE, FEE, DISCOUNT, 
+      ATTACH_PRICE, ATTACH_USAGE, ATTACH_FEE, TOTAL_FEE,
+      DEBIT_PRICE, DEBITOR, BILL_ID, 
+      BILL_ACC_NO, STATUS, LOG_ID, ABNORMAL_CODE, 
+      ABNORMAL_DESC, HASH_CODE, CREATE_TIME, 
+      UPDATE_TIME, SOURCE_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+      #{caller,jdbcType=VARCHAR}, 
+      #{callee,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{duration,jdbcType=INTEGER}, #{trunkGroupIn,jdbcType=VARCHAR}, #{trunkGroupOut,jdbcType=VARCHAR}, 
+      #{callerLocation,jdbcType=VARCHAR}, #{calleeLocation,jdbcType=VARCHAR}, #{callType,jdbcType=VARCHAR}, 
+      #{serviceAbbr,jdbcType=VARCHAR}, #{serviceId,jdbcType=VARCHAR}, #{pricePlanId,jdbcType=VARCHAR}, #{rateId,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{usageCount,jdbcType=INTEGER}, #{freeUsage,jdbcType=INTEGER}, 
+      #{chargingUsage,jdbcType=INTEGER}, #{fee,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{attachPrice,jdbcType=DECIMAL}, #{attachUsage,jdbcType=INTEGER}, #{attachFee,jdbcType=DECIMAL}, #{totalFee,jdbcType=DECIMAL},
+      #{debitPrice,jdbcType=DECIMAL}, #{debitor,jdbcType=VARCHAR}, #{billId,jdbcType=VARCHAR}, 
+      #{billAccNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{logId,jdbcType=VARCHAR}, #{abnormalCode,jdbcType=INTEGER}, 
+      #{abnormalDesc,jdbcType=VARCHAR}, #{hashCode,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{sourceName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.Cdr">
+    insert into ocs_cdrs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="caller != null">
+        CALLER,
+      </if>
+      <if test="callee != null">
+        CALLEE,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="duration != null">
+        DURATION,
+      </if>
+      <if test="trunkGroupIn != null">
+        TRUNK_GROUP_IN,
+      </if>
+      <if test="trunkGroupOut != null">
+        TRUNK_GROUP_OUT,
+      </if>
+      <if test="callerLocation != null">
+        CALLER_LOCATION,
+      </if>
+      <if test="calleeLocation != null">
+        CALLEE_LOCATION,
+      </if>
+      <if test="callType != null">
+        CALL_TYPE,
+      </if>
+      <if test="serviceAbbr != null">
+        SERVICE_ABBR,
+      </if>
+      <if test="serviceId != null">
+        SERVICE_ID,
+      </if>
+      <if test="pricePlanId != null">
+        PRICE_PLAN_ID,
+      </if>
+      <if test="rateId != null">
+        RATE_ID,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="usageCount != null">
+        USAGE_COUNT,
+      </if>
+      <if test="freeUsage != null">
+        FREE_USAGE,
+      </if>
+      <if test="chargingUsage != null">
+        CHARGING_USAGE,
+      </if>
+      <if test="fee != null">
+        FEE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="attachPrice != null">
+        ATTACH_PRICE,
+      </if>
+      <if test="attachUsage != null">
+        ATTACH_USAGE,
+      </if>
+      <if test="attachFee != null">
+        ATTACH_FEE,
+      </if>
+      <if test="totalFee != null">
+        TOTAL_FEE,
+      </if>
+      <if test="debitPrice != null">
+        DEBIT_PRICE,
+      </if>
+      <if test="debitor != null">
+        DEBITOR,
+      </if>
+      <if test="billId != null">
+        BILL_ID,
+      </if>
+      <if test="billAccNo != null">
+        BILL_ACC_NO,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="logId != null">
+        LOG_ID,
+      </if>
+      <if test="abnormalCode != null">
+        ABNORMAL_CODE,
+      </if>
+      <if test="abnormalDesc != null">
+        ABNORMAL_DESC,
+      </if>
+      <if test="hashCode != null">
+        HASH_CODE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="sourceName != null">
+        SOURCE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="caller != null">
+        #{caller,jdbcType=VARCHAR},
+      </if>
+      <if test="callee != null">
+        #{callee,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="trunkGroupIn != null">
+        #{trunkGroupIn,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkGroupOut != null">
+        #{trunkGroupOut,jdbcType=VARCHAR},
+      </if>
+      <if test="callerLocation != null">
+        #{callerLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="calleeLocation != null">
+        #{calleeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="callType != null">
+        #{callType,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAbbr != null">
+        #{serviceAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="pricePlanId != null">
+        #{pricePlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="usageCount != null">
+        #{usageCount,jdbcType=INTEGER},
+      </if>
+      <if test="freeUsage != null">
+        #{freeUsage,jdbcType=INTEGER},
+      </if>
+      <if test="chargingUsage != null">
+        #{chargingUsage,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="attachPrice != null">
+        #{attachPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="attachUsage != null">
+        #{attachUsage,jdbcType=INTEGER},
+      </if>
+      <if test="attachFee != null">
+        #{attachFee,jdbcType=DECIMAL},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="debitPrice != null">
+        #{debitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="debitor != null">
+        #{debitor,jdbcType=VARCHAR},
+      </if>
+      <if test="billId != null">
+        #{billId,jdbcType=VARCHAR},
+      </if>
+      <if test="billAccNo != null">
+        #{billAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="logId != null">
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalCode != null">
+        #{abnormalCode,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalDesc != null">
+        #{abnormalDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hashCode != null">
+        #{hashCode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceName != null">
+        #{sourceName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.Cdr">
+    update ocs_cdrs
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="caller != null">
+        CALLER = #{caller,jdbcType=VARCHAR},
+      </if>
+      <if test="callee != null">
+        CALLEE = #{callee,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null">
+        DURATION = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="trunkGroupIn != null">
+        TRUNK_GROUP_IN = #{trunkGroupIn,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkGroupOut != null">
+        TRUNK_GROUP_OUT = #{trunkGroupOut,jdbcType=VARCHAR},
+      </if>
+      <if test="callerLocation != null">
+        CALLER_LOCATION = #{callerLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="calleeLocation != null">
+        CALLEE_LOCATION = #{calleeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="callType != null">
+        CALL_TYPE = #{callType,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAbbr != null">
+        SERVICE_ABBR = #{serviceAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="pricePlanId != null">
+        PRICE_PLAN_ID = #{pricePlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="rateId != null">
+        RATE_ID = #{rateId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="usageCount != null">
+        USAGE_COUNT = #{usageCount,jdbcType=INTEGER},
+      </if>
+      <if test="freeUsage != null">
+        FREE_USAGE = #{freeUsage,jdbcType=INTEGER},
+      </if>
+      <if test="chargingUsage != null">
+        CHARGING_USAGE = #{chargingUsage,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        FEE = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="attachPrice != null">
+        ATTACH_PRICE = #{attachPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="attachUsage != null">
+        ATTACH_USAGE = #{attachUsage,jdbcType=INTEGER},
+      </if>
+      <if test="attachFee != null">
+        ATTACH_FEE = #{attachFee,jdbcType=DECIMAL},
+      </if>
+      <if test="totalFee != null">
+        TOTAL_FEE = #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="debitPrice != null">
+        DEBIT_PRICE = #{debitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="debitor != null">
+        DEBITOR = #{debitor,jdbcType=VARCHAR},
+      </if>
+      <if test="billId != null">
+        BILL_ID = #{billId,jdbcType=VARCHAR},
+      </if>
+      <if test="billAccNo != null">
+        BILL_ACC_NO = #{billAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="logId != null">
+        LOG_ID = #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalCode != null">
+        ABNORMAL_CODE = #{abnormalCode,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalDesc != null">
+        ABNORMAL_DESC = #{abnormalDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hashCode != null">
+        HASH_CODE = #{hashCode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceName != null">
+        SOURCE_NAME = #{sourceName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.Cdr">
+    update ocs_cdrs
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      CALLER = #{caller,jdbcType=VARCHAR},
+      CALLEE = #{callee,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      DURATION = #{duration,jdbcType=INTEGER},
+      TRUNK_GROUP_IN = #{trunkGroupIn,jdbcType=VARCHAR},
+      TRUNK_GROUP_OUT = #{trunkGroupOut,jdbcType=VARCHAR},
+      CALLER_LOCATION = #{callerLocation,jdbcType=VARCHAR},
+      CALLEE_LOCATION = #{calleeLocation,jdbcType=VARCHAR},
+      CALL_TYPE = #{callType,jdbcType=VARCHAR},
+      SERVICE_ABBR = #{serviceAbbr,jdbcType=VARCHAR},
+      SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
+      PRICE_PLAN_ID = #{pricePlanId,jdbcType=VARCHAR},
+      RATE_ID = #{rateId,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      USAGE_COUNT = #{usageCount,jdbcType=INTEGER},
+      FREE_USAGE = #{freeUsage,jdbcType=INTEGER},
+      CHARGING_USAGE = #{chargingUsage,jdbcType=INTEGER},
+      FEE = #{fee,jdbcType=DECIMAL},
+      DISCOUNT = #{discount,jdbcType=DECIMAL},
+      ATTACH_PRICE = #{attachPrice,jdbcType=DECIMAL},
+      ATTACH_USAGE = #{attachUsage,jdbcType=INTEGER},
+      ATTACH_FEE = #{attachFee,jdbcType=DECIMAL},
+      TOTAL_FEE = #{totalFee,jdbcType=DECIMAL},
+      DEBIT_PRICE = #{debitPrice,jdbcType=DECIMAL},
+      DEBITOR = #{debitor,jdbcType=VARCHAR},
+      BILL_ID = #{billId,jdbcType=VARCHAR},
+      BILL_ACC_NO = #{billAccNo,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      LOG_ID = #{logId,jdbcType=VARCHAR},
+      ABNORMAL_CODE = #{abnormalCode,jdbcType=INTEGER},
+      ABNORMAL_DESC = #{abnormalDesc,jdbcType=VARCHAR},
+      HASH_CODE = #{hashCode,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SOURCE_NAME = #{sourceName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

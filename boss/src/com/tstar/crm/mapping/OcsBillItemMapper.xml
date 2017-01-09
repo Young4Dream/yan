@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.OcsBillItemMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.OcsBillItem">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BILL_ID" jdbcType="VARCHAR" property="billId" />
+    <result column="ACCOUNT_ITEM_ID" jdbcType="VARCHAR" property="accountItemId" />
+    <result column="ACCOUNT_ITEM_CODE" jdbcType="VARCHAR" property="accountItemCode" />
+    <result column="ACCOUNT_ITEM_NAME" jdbcType="VARCHAR" property="accountItemName" />
+    <result column="ACCOUNT_ITEM_DESC" jdbcType="VARCHAR" property="accountItemDesc" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="AMOUNT_PROCEED" jdbcType="DECIMAL" property="amountProceed" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BILL_ID, ACCOUNT_ITEM_ID, ACCOUNT_ITEM_CODE, ACCOUNT_ITEM_NAME, ACCOUNT_ITEM_DESC, 
+    AMOUNT, AMOUNT_PROCEED, CREATE_TIME, UPDATE_TIME
+  </sql>
+  
+  <select id="selectByBillId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_bill_item
+    where BILL_ID = #{billId,jdbcType=VARCHAR}
+    and AMOUNT > 0
+    order by ACCOUNT_ITEM_CODE
+  </select>
+  <select id="selectByBillIdAndAccountItemId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_bill_item
+    where BILL_ID = #{0}
+    and ACCOUNT_ITEM_ID = #{1}
+    limit 0, 1
+  </select>
+  
+  <select id="selectPrepaid" resultType="map">
+	select 
+		a.id as billItemId, b.id as billId, b.bill_no as billNo,
+		a.bill_id as billId, a.amount as amountDue, a.amount_proceed as amountProceed, 
+		b.customer_id as customerId, b.creditor_id as accountId, d.amount as amount
+	from ocs_bill_item a, ocs_bill b, crm_user c, crm_account d
+	where a.bill_id = b.id and b.user_id = c.id 
+	and b.creditor_id = d.id
+	and c.pay_policy = 2
+	and b.status &lt;= 9
+	and a.amount > b.amount_proceed  
+	and d.amount > 0
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_bill_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_bill_item
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.OcsBillItem">
+    insert into ocs_bill_item (ID, BILL_ID, ACCOUNT_ITEM_ID, 
+      ACCOUNT_ITEM_CODE, ACCOUNT_ITEM_NAME, ACCOUNT_ITEM_DESC, 
+      AMOUNT, AMOUNT_PROCEED, 
+      CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{billId,jdbcType=VARCHAR}, #{accountItemId,jdbcType=VARCHAR}, 
+      #{accountItemCode,jdbcType=VARCHAR}, #{accountItemName,jdbcType=VARCHAR}, #{accountItemDesc,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{amountProceed,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.OcsBillItem">
+    insert into ocs_bill_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="billId != null">
+        BILL_ID,
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID,
+      </if>
+      <if test="accountItemCode != null">
+        ACCOUNT_ITEM_CODE,
+      </if>
+      <if test="accountItemName != null">
+        ACCOUNT_ITEM_NAME,
+      </if>
+      <if test="accountItemDesc != null">
+        ACCOUNT_ITEM_DESC,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="amountProceed != null">
+        AMOUNT_PROCEED,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="billId != null">
+        #{billId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        #{accountItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemCode != null">
+        #{accountItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemName != null">
+        #{accountItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemDesc != null">
+        #{accountItemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="amountProceed != null">
+        #{amountProceed,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.OcsBillItem">
+    update ocs_bill_item
+    <set>
+      <if test="billId != null">
+        BILL_ID = #{billId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemCode != null">
+        ACCOUNT_ITEM_CODE = #{accountItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemName != null">
+        ACCOUNT_ITEM_NAME = #{accountItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemDesc != null">
+        ACCOUNT_ITEM_DESC = #{accountItemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="amountProceed != null">
+        AMOUNT_PROCEED = #{amountProceed,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.OcsBillItem">
+    update ocs_bill_item
+    set BILL_ID = #{billId,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_CODE = #{accountItemCode,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_NAME = #{accountItemName,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_DESC = #{accountItemDesc,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      AMOUNT_PROCEED = #{amountProceed,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="addAmount">
+    update ocs_bill_item
+    set AMOUNT = AMOUNT + #{1}
+    where ID = #{0}
+  </update>
+  <update id="addAmountProceed">
+  	update ocs_bill_item
+  	set AMOUNT_PROCEED = AMOUNT_PROCEED + #{1}
+  	where ID = #{0}
+  </update>
+</mapper>

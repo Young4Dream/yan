@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>      
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">    
+    
+<configuration>
+   <!-- mybatis 配置  -->
+   <settings>
+		<setting name="jdbcTypeForNull" value="VARCHAR"/>
+		<setting name="callSettersOnNulls" value="true"/>
+   </settings>
+   
+   <plugins>
+    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+    <plugin interceptor="com.github.pagehelper.PageHelper">
+        <!-- 4.0.0以后版本可以不设置该参数 -->
+        <property name="dialect" value="oracle"/>
+        <!-- 该参数默认为false -->
+        <!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
+        <!-- 和startPage中的pageNum效果一样-->
+        <property name="offsetAsPageNum" value="true"/>
+        <!-- 该参数默认为false -->
+        <!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+        <property name="rowBoundsWithCount" value="true"/>
+        <!-- 设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果 -->
+        <!-- （相当于没有执行分页查询，但是返回结果仍然是Page类型）-->
+        <property name="pageSizeZero" value="true"/>
+        <!-- 3.3.0版本可用 - 分页参数合理化，默认false禁用 -->
+        <!-- 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
+        <!-- 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据 -->
+        <property name="reasonable" value="false"/>
+        <!-- 3.5.0版本可用 - 为了支持startPage(Object params)方法 -->
+        <!-- 增加了一个`params`参数来配置参数映射，用于从Map或ServletRequest中取值 -->
+        <!-- 可以配置pageNum,pageSize,count,pageSizeZero,reasonable,orderBy,不配置映射的用默认值 -->
+        <!-- 不理解该含义的前提下，不要随便复制该配置 -->
+        <property name="params" value="pageNum=start;pageSize=limit;"/>
+        <!-- 支持通过Mapper接口参数来传递分页参数 -->
+        <property name="supportMethodsArguments" value="true"/>
+        <!-- always总是返回PageInfo类型,check检查返回类型是否为PageInfo,none返回Page -->
+        <property name="returnPageInfo" value="check"/>
+    </plugin>
+</plugins>
+   
+   
+
+    <!-- 配置sql语句文件 -->      
+    <mappers>    
+    	<!-- SysProfile -->
+    	<mapper resource="com/tstar/portal/mapping/ProfileMapper.xml"/>
+    	<!-- 字段表 -->
+    	<mapper resource="com/tstar/portal/mapping/RefMapper.xml"/>
+    	<!-- Portal -->
+    	<mapper resource="com/tstar/portal/mapping/UserMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/DeptMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/MenuMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/RoleMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/RoleAclMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysSequencePolicyMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysSequencePoolMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysBusinessOpMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysAccountItemMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysWarnLogMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysSmsTemplateMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysSmsOutboxMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysNoticeMapper.xml"/>
+    	<!-- OCS -->
+    	<mapper resource="com/tstar/ocs/mapping/CdrSourceMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/CdrLogMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/CdrMapper.xml"/>
+    	<!-- SID -->
+    	<mapper resource="com/tstar/ocs/mapping/SidServiceCategoryMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidVoiceConfigMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidVoiceConfigItemMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidDataConfigMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidServiceMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidPricePlanMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidPlanRateMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidRateMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidRateItemMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOperatorMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOperatorTrunkMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOperatorRateMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidDiscountMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidRateDiscountMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidProductMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOpMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidFeeMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidMaterialMapper.xml"/>
+    	<!-- 资源 -->
+    	<mapper resource="com/tstar/res/mapping/ResDeptMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResDeviceTypeMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResDeviceMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResDevicePortMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResPhoneNumberMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResUserPortMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResHisPortMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResAccMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResAddressMapper.xml"/>
+    	<!-- 报表管理 -->
+    	<mapper resource="com/tstar/res/mapping/ResReportMapper.xml"/>
+    	<!-- CRM -->
+    	<mapper resource="com/tstar/crm/mapping/CustomerMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmAccountMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserPhoneMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserBroadMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserAdslMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserPlMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmOrderMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmOrderItemMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/OcsAccountLogMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/OcsInvoiceMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/OcsInvoiceItemMapper.xml"/>
+    	<!-- BILL -->
+    	<mapper resource="com/tstar/crm/mapping/OcsBillMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/OcsBillItemMapper.xml"/>
+    	<!-- JOB -->
+    	<mapper resource="com/tstar/crm/mapping/JobOpInstanceMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/JobOpFormMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/JobOpMaterialMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/JobOpWorkloadMapper.xml"/>
+    	<!-- 自控 -->
+    	<mapper resource="com/tstar/ac/mapping/AcActionMapper.xml"/>
+    	<mapper resource="com/tstar/ac/mapping/AcCommandMapper.xml"/>
+    	
+        <!-- autogenerate 自动生成配置文件 -->
+        <mapper resource="sqlmap/autogenerate/UserInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/MenuInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/RoleInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/MenuRoleMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/DeptInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/EmployeeInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/SkillGroupsMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/SkillInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/EmployeeSkillMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/TroubleAcceptMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/UserEmplInfoMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/Query114UserMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/TelJobMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/KnowledgeClassMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/KnowledgeMapper.xml" />
+        <mapper resource="sqlmap/autogenerate/KnowledgeQuestionMapper.xml" />
+        <!-- 自建sql --> 
+        <mapper resource="sqlmap/system/SystemConfMapper.xml" />
+        <mapper resource="sqlmap/admin/AdminConfMapper.xml" />
+        <mapper resource="sqlmap/admin/ParamsMapper.xml" />
+        <mapper resource="sqlmap/admin/KnowledgeCustomerMapper.xml" />
+    </mappers>    
+</configuration> 

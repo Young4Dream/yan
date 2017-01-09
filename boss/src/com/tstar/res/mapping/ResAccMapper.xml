@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResAccMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResAcc">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ACC" jdbcType="VARCHAR" property="acc" />
+    <result column="BEARABLE" jdbcType="VARCHAR" property="bearable" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="UNLOCK_TIME" jdbcType="TIMESTAMP" property="unlockTime" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACC, STATUS, BEARABLE, UNLOCK_TIME, CUSTOMER_NAME, REMARK
+  </sql>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from res_acc
+    where 1=1
+    <if test="acc != null and acc != ''">
+    	and ACC LIKE concat(#{acc}, '%')
+    </if>
+    <if test="status != null">
+    	and STATUS = #{status}
+    </if>
+    <if test="bearable != null and bearable != ''">
+    	and instr(bearable, #{bearable}) &gt; 0
+    </if>
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_acc
+    where 1=1
+    <if test="acc != null and acc != ''">
+    	and ACC LIKE concat(#{acc}, '%')
+    </if>
+    <if test="status != null">
+    	and STATUS = #{status}
+    </if>
+    <if test="bearable != null and bearable != ''">
+    	and instr(bearable, #{bearable}) &gt; 0
+    </if>
+    order by ACC
+    limit #{start}, #{length}
+  </select>
+  <select id="selectByAcc" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_acc
+    where ACC = #{0}
+  </select>
+
+  <select id="selectTopUsable" parameterType="java.lang.String" resultType="java.lang.String">
+    select 
+      ACC
+    from res_acc
+    where STATUS = 0
+    and ACC like #{0}
+    and instr(bearable, #{1}) &gt; 0
+    limit 0, 1
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_acc
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_acc
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResAcc">
+    insert into res_acc (ID, ACC, BEARABLE, STATUS, 
+      UNLOCK_TIME, CUSTOMER_NAME, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{acc,jdbcType=VARCHAR}, #{bearable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{unlockTime,jdbcType=TIMESTAMP}, #{customerName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResAcc">
+    insert into res_acc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="acc != null">
+        ACC,
+      </if>
+      <if test="acc != null">
+        BEARABLE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="unlockTime != null">
+        UNLOCK_TIME,
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null">
+        #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="bearable != null">
+        #{bearable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unlockTime != null">
+        #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResAcc">
+    update res_acc
+    <set>
+      <if test="acc != null">
+        ACC = #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="bearable != null">
+        BEARABLE = #{bearable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unlockTime != null">
+        UNLOCK_TIME = #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResAcc">
+    update res_acc
+    set ACC = #{acc,jdbcType=VARCHAR},
+      BEARABLE = #{bearable,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      UNLOCK_TIME = #{unlockTime,jdbcType=TIMESTAMP},
+      CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateStatus">
+    update res_acc
+    set STATUS = #{1},
+    CUSTOMER_NAME = #{2}
+    where ACC = #{0}
+  </update>
+  <update id="lockAcc">
+    update res_acc
+    set STATUS = 1,
+    UNLOCK_TIME = #{1}
+    where ACC = #{0}
+  </update>
+  <update id="unlockAcc">
+    update res_acc
+    set STATUS = 0
+    where ACC = #{0}
+  </update>
+  
+</mapper>

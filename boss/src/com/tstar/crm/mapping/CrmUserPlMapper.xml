@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CrmUserPlMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.CrmUserPl">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PL_NO" jdbcType="VARCHAR" property="plNo" />
+    <result column="PL_TYPE" jdbcType="VARCHAR" property="plType" />
+    <result column="PL_MODEL" jdbcType="VARCHAR" property="plModel" />
+    <result column="START_EP" jdbcType="VARCHAR" property="startEp" />
+    <result column="END_EP" jdbcType="VARCHAR" property="endEp" />
+    <result column="PL_TYPE_DESC" jdbcType="VARCHAR" property="plTypeDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PL_NO, PL_TYPE, PL_MODEL, START_EP, END_EP,
+    (SELECT NAME FROM ref_pl_type WHERE ref_pl_type.ID=PL_TYPE) AS PL_TYPE_DESC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user_pl
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_user_pl
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.CrmUserPl">
+    insert into crm_user_pl (ID, PL_NO, PL_TYPE, 
+      PL_MODEL, START_EP, END_EP
+      )
+    values (#{id,jdbcType=VARCHAR}, #{plNo,jdbcType=VARCHAR}, #{plType,jdbcType=VARCHAR}, 
+      #{plModel,jdbcType=VARCHAR}, #{startEp,jdbcType=VARCHAR}, #{endEp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.CrmUserPl">
+    insert into crm_user_pl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="plNo != null">
+        PL_NO,
+      </if>
+      <if test="plType != null">
+        PL_TYPE,
+      </if>
+      <if test="plModel != null">
+        PL_MODEL,
+      </if>
+      <if test="startEp != null">
+        START_EP,
+      </if>
+      <if test="endEp != null">
+        END_EP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="plNo != null">
+        #{plNo,jdbcType=VARCHAR},
+      </if>
+      <if test="plType != null">
+        #{plType,jdbcType=VARCHAR},
+      </if>
+      <if test="plModel != null">
+        #{plModel,jdbcType=VARCHAR},
+      </if>
+      <if test="startEp != null">
+        #{startEp,jdbcType=VARCHAR},
+      </if>
+      <if test="endEp != null">
+        #{endEp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.CrmUserPl">
+    update crm_user_pl
+    <set>
+      <if test="plNo != null">
+        PL_NO = #{plNo,jdbcType=VARCHAR},
+      </if>
+      <if test="plType != null">
+        PL_TYPE = #{plType,jdbcType=VARCHAR},
+      </if>
+      <if test="plModel != null">
+        PL_MODEL = #{plModel,jdbcType=VARCHAR},
+      </if>
+      <if test="startEp != null">
+        START_EP = #{startEp,jdbcType=VARCHAR},
+      </if>
+      <if test="endEp != null">
+        END_EP = #{endEp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.CrmUserPl">
+    update crm_user_pl
+    set PL_NO = #{plNo,jdbcType=VARCHAR},
+      PL_TYPE = #{plType,jdbcType=VARCHAR},
+      PL_MODEL = #{plModel,jdbcType=VARCHAR},
+      START_EP = #{startEp,jdbcType=VARCHAR},
+      END_EP = #{endEp,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

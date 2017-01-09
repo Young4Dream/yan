@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+ 
+   <properties resource="config/db.properties"/>
+ 	
+   <environments default="development">
+     <environment id="development">
+       <transactionManager type="JDBC" />
+       <!-- 配置数据库连接信息 -->
+       <dataSource type="POOLED">
+         <property name="driver" value="${driver}" />
+         <property name="url" value="${url}" />
+         <property name="username" value="${username}" />
+         <property name="password" value="${password}" />
+       </dataSource>
+     </environment>
+   </environments>
+   
+   <mappers>
+    	<!-- SYS -->
+    	<mapper resource="com/tstar/portal/mapping/ProfileMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysSequencePolicyMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysAccountItemMapper.xml"/>
+    	<mapper resource="com/tstar/portal/mapping/SysWarnLogMapper.xml"/>
+    	<!-- OCS -->
+    	<mapper resource="com/tstar/ocs/mapping/CdrSourceMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/CdrLogMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/CdrMapper.xml"/>
+    	<!-- SID -->
+    	<mapper resource="com/tstar/ocs/mapping/SidServiceCategoryMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidVoiceConfigMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidVoiceConfigItemMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidDataConfigMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidServiceMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidPricePlanMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidPlanRateMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidRateMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidRateItemMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOperatorMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOperatorTrunkMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidOperatorRateMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidDiscountMapper.xml"/>
+    	<mapper resource="com/tstar/ocs/mapping/SidRateDiscountMapper.xml"/>
+    	<!-- CRM -->
+    	<mapper resource="com/tstar/crm/mapping/CustomerMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmAccountMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserPhoneMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserBroadMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserAdslMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmUserPlMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmOrderMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/CrmOrderItemMapper.xml"/>
+    	<!-- BILL -->
+    	<mapper resource="com/tstar/crm/mapping/OcsBillMapper.xml"/>
+    	<mapper resource="com/tstar/crm/mapping/OcsBillItemMapper.xml"/>
+    	<!-- 自控 -->
+    	<mapper resource="com/tstar/ac/mapping/AcActionMapper.xml"/>
+    	<mapper resource="com/tstar/ac/mapping/AcCommandMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResUserPortMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResDeviceMapper.xml"/>
+  </mappers>
+  
+</configuration>

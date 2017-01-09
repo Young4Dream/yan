@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>      
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">    
+    
+<configuration>
+
+   <environments default="development">
+     <environment id="development">
+       <transactionManager type="JDBC" />
+       <!-- 配置数据库连接信息 -->
+       <dataSource type="POOLED">
+         <property name="driver" value="org.postgresql.Driver" />
+         <property name="url" value="jdbc:postgresql://192.168.15.3:5432/aaadb" />
+         <property name="username" value="aaa" />
+         <property name="password" value="amtium" />
+       </dataSource>
+     </environment>
+   </environments>
+   
+    <mappers>    
+    	<!-- 宽带接口 -->
+    	<mapper resource="com/tstar/sms/BroadMapper.xml"/>
+    </mappers>    
+</configuration>    
