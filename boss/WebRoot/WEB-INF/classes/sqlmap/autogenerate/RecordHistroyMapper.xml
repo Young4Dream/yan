@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.RecordHistroyMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.RecordHistroy" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FILE_PATH" property="filePath" jdbcType="VARCHAR" />
+    <result column="CREAT_TIME" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="EMPL_NO" property="emplNo" jdbcType="VARCHAR" />
+    <result column="EMPL_NAME" property="emplName" jdbcType="VARCHAR" />
+    <result column="USER_TEL" property="userTel" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_TEL" property="customerTel" jdbcType="VARCHAR" />
+    <result column="MEMO1" property="memo1" jdbcType="VARCHAR" />
+    <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+    <result column="MEMO3" property="memo3" jdbcType="VARCHAR" />
+    <result column="MEMO4" property="memo4" jdbcType="VARCHAR" />
+    <result column="MEMO5" property="memo5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FILE_PATH, CREAT_TIME, EMPL_NO, EMPL_NAME, USER_TEL, CUSTOMER_TEL, MEMO1, MEMO2, 
+    MEMO3, MEMO4, MEMO5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CC_RECORD_HISTROY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CC_RECORD_HISTROY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_CC_RECORD_HISTROY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroyExample" >
+    delete from T_CC_RECORD_HISTROY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroy" >
+    <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+      select t_cc_record_histroy_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_RECORD_HISTROY (ID, FILE_PATH, CREAT_TIME, 
+      EMPL_NO, EMPL_NAME, USER_TEL, 
+      CUSTOMER_TEL, MEMO1, MEMO2, 
+      MEMO3, MEMO4, MEMO5
+      )
+    values (#{id,jdbcType=DECIMAL}, #{filePath,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{emplNo,jdbcType=VARCHAR}, #{emplName,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, 
+      #{customerTel,jdbcType=VARCHAR}, #{memo1,jdbcType=VARCHAR}, #{memo2,jdbcType=VARCHAR}, 
+      #{memo3,jdbcType=VARCHAR}, #{memo4,jdbcType=VARCHAR}, #{memo5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroy" >
+    <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+      select t_cc_record_histroy_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_RECORD_HISTROY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="filePath != null" >
+        FILE_PATH,
+      </if>
+      <if test="creatTime != null" >
+        CREAT_TIME,
+      </if>
+      <if test="emplNo != null" >
+        EMPL_NO,
+      </if>
+      <if test="emplName != null" >
+        EMPL_NAME,
+      </if>
+      <if test="userTel != null" >
+        USER_TEL,
+      </if>
+      <if test="customerTel != null" >
+        CUSTOMER_TEL,
+      </if>
+      <if test="memo1 != null" >
+        MEMO1,
+      </if>
+      <if test="memo2 != null" >
+        MEMO2,
+      </if>
+      <if test="memo3 != null" >
+        MEMO3,
+      </if>
+      <if test="memo4 != null" >
+        MEMO4,
+      </if>
+      <if test="memo5 != null" >
+        MEMO5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=DECIMAL},
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emplNo != null" >
+        #{emplNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emplName != null" >
+        #{emplName,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTel != null" >
+        #{customerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        #{memo5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroyExample" resultType="java.lang.Integer" >
+    select count(*) from T_CC_RECORD_HISTROY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CC_RECORD_HISTROY
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.filePath != null" >
+        FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null" >
+        CREAT_TIME = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.emplNo != null" >
+        EMPL_NO = #{record.emplNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emplName != null" >
+        EMPL_NAME = #{record.emplName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userTel != null" >
+        USER_TEL = #{record.userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerTel != null" >
+        CUSTOMER_TEL = #{record.customerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo1 != null" >
+        MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo2 != null" >
+        MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo3 != null" >
+        MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo4 != null" >
+        MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo5 != null" >
+        MEMO5 = #{record.memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CC_RECORD_HISTROY
+    set ID = #{record.id,jdbcType=DECIMAL},
+      FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      CREAT_TIME = #{record.creatTime,jdbcType=TIMESTAMP},
+      EMPL_NO = #{record.emplNo,jdbcType=VARCHAR},
+      EMPL_NAME = #{record.emplName,jdbcType=VARCHAR},
+      USER_TEL = #{record.userTel,jdbcType=VARCHAR},
+      CUSTOMER_TEL = #{record.customerTel,jdbcType=VARCHAR},
+      MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      MEMO5 = #{record.memo5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroy" >
+    update T_CC_RECORD_HISTROY
+    <set >
+      <if test="filePath != null" >
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        CREAT_TIME = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emplNo != null" >
+        EMPL_NO = #{emplNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emplName != null" >
+        EMPL_NAME = #{emplName,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        USER_TEL = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTel != null" >
+        CUSTOMER_TEL = #{customerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        MEMO2 = #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        MEMO3 = #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        MEMO4 = #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        MEMO5 = #{memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.RecordHistroy" >
+    update T_CC_RECORD_HISTROY
+    set FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      CREAT_TIME = #{creatTime,jdbcType=TIMESTAMP},
+      EMPL_NO = #{emplNo,jdbcType=VARCHAR},
+      EMPL_NAME = #{emplName,jdbcType=VARCHAR},
+      USER_TEL = #{userTel,jdbcType=VARCHAR},
+      CUSTOMER_TEL = #{customerTel,jdbcType=VARCHAR},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      MEMO2 = #{memo2,jdbcType=VARCHAR},
+      MEMO3 = #{memo3,jdbcType=VARCHAR},
+      MEMO4 = #{memo4,jdbcType=VARCHAR},
+      MEMO5 = #{memo5,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

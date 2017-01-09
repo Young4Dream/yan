@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FaceManager>
+<Attributes dayOfMonth="7"
+ />
+<FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="报表展示" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="设备明细列表" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/equipmentdetails.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="交叉分布表" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/systemresources.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="简单汇总" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/equipmentdemand.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="风险预警分析" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/finance3.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+<ReportletInfo reporletPath="/com/demo/basic/finance4.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="单列多层次报表" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/assess.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="共同的父格" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/agent.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="多源分片" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/item.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="大文本报表" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/annals.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Year"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[2007]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="参数查询" /><FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="产品信息TOPN统计" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/topn.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="DATE"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[2008-11-05]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="TOPN"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[5]]></O>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="设备单价查询" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/pricequerey.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Price"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[6000]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="月份天数自动补全" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/filiale.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="start"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[2008-01-01]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="end"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[2008-01-31]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="月份"
+ type="1"
+ shown="true" />
+<O t="I">1</O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1:I" value="1:I"/>
+<Dict key="2:I" value="2:I"/>
+<Dict key="3:I" value="3:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="参数连动" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/connect.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Province"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="福建省" value="福建省"/>
+<Dict key="广东省" value="广东省"/>
+<Dict key="吉林省" value="吉林省"/>
+<Dict key="江苏省" value="江苏省"/>
+<Dict key="浙江省" value="浙江省"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="City"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="长春市" value="长春市"/>
+<Dict key="广州市" value="广州市"/>
+<Dict key="杭州市" value="杭州市"/>
+<Dict key="吉林市" value="吉林市"/>
+<Dict key="南京市" value="南京市"/>
+<Dict key="宁波市" value="宁波市"/>
+<Dict key="苏州市" value="苏州市"/>
+<Dict key="厦门市" value="厦门市"/>
+<Dict key="烟台市" value="烟台市"/>
+<Dict key="珠海市" value="珠海市"/>
+</CustomDictAttr>
+</Dict><Filter><![CDATA[=MAP($$$,"省份城市")==$Province]]></Filter></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="时间段查询" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/season.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Start"
+ type="1"
+ shown="true" />
+<O t="I">0</O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="End"
+ type="1"
+ shown="true" />
+<O t="I">0</O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="Year"
+ type="1"
+ shown="true" />
+<O t="I">0</O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="0:I" value="今年"/>
+<Dict key="-1" value="去年"/>
+<Dict key="-2" value="前年"/>
+<Dict key="-5" value="前五年"/>
+<Dict key="-10" value="前十年"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="周报查询" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/week.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Date"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="Start"
+ type="5"
+ shown="true" />
+<O t="Date"><![CDATA[2008-12-11 16:49:53]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="End"
+ type="5"
+ shown="true" />
+<O t="Date"><![CDATA[2008-12-11 16:49:53]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="办公设备销售年度查询" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/show.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Year"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="2005:I" value="2005:I"/>
+<Dict key="2006:I" value="2006:I"/>
+<Dict key="2007:I" value="2007:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="复杂参数查询" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/parameter/books.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Isbn编号"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="书籍名称"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="书籍类别"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="程序设计、软件工程" value="程序设计、软件工程"/>
+<Dict key="数据库系统" value="数据库系统"/>
+<Dict key="微处理机" value="微处理机"/>
+<Dict key="语义、词汇、词义" value="语义、词汇、词义"/>
+<Dict key="计算机软件" value="计算机软件"/>
+<Dict key="数据库系统" value="数据库系统"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="作者"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="出版社名"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="出版日期"
+ type="5"
+ shown="true" />
+<O t="Date"><![CDATA[2008-11-25 16:48:49]]></O>
+<CellEditorDef class="com.fr.report.cellElement.DateCellEditorDef"><Attributes allowBlank="true" />
+<Attribute format="yyyy-MM-dd" />
+</CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="入库时间"
+ type="5"
+ shown="true" />
+<O t="Date"><![CDATA[2008-11-25 16:48:49]]></O>
+<CellEditorDef class="com.fr.report.cellElement.DateCellEditorDef"><Attributes allowBlank="true" />
+<Attribute format="yyyy-MM-dd" />
+</CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="书架位置"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="总藏书量"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.NumberCellEditorDef"><Attributes allowBlank="true" />
+<Attribute maxIntegerLength="32" maxDecimalLength="16" allowDecimals="false" allowNegative="false" minValue="-1.7976931348623157E308" maxValue="1.7976931348623157E308" />
+</CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="馆内剩余"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.NumberCellEditorDef"><Attributes allowBlank="true" />
+<Attribute maxIntegerLength="32" maxDecimalLength="16" allowDecimals="false" allowNegative="false" minValue="-1.7976931348623157E308" maxValue="1.7976931348623157E308" />
+</CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="超级链接" /><FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="订单超链查询" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/order.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="层次钻取" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/internationalsale.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="多超级链接" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/statistic.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="BS动态网页排序" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/book.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="cname"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[Total]]></O>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="分页" /><FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="动态重复标题行" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/basic/post.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="套打" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/slip.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="卡片式分栏" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/equipment.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="层次坐标" /><FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="占比分析" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/total.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="同期比分析" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/compair.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="告警排名" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/orderby.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="跨层累计" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/complex/cumulation.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+</FaceNode>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="表单录入" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.WriteReportletDef">
+<Attributes name="自由填报" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/form/stuff.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.WriteReportletDef">
+<Attributes name="连动填报" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/form/connectstuff.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.WriteReportletDef">
+<Attributes name="多源填报" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/form/contract.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.WriteReportletDef">
+<Attributes name="参数展现组合填报" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/form/menology.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="month"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.CheckBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1:I" value="1:I"/>
+<Dict key="2:I" value="2:I"/>
+<Dict key="3:I" value="3:I"/>
+<Dict key="4:I" value="4:I"/>
+<Dict key="5:I" value="5:I"/>
+<Dict key="6:I" value="6:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="year"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.CheckBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="2007:I" value="2007:I"/>
+<Dict key="2008:I" value="2008:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="ID"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[]]></O>
+<CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attributes allowBlank="true" />
+<Attr multiLine="false" /></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.WriteReportletDef">
+<Attributes name="交叉填报表_添加行/列" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/form/crossfillin.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.FolderDef">
+<Attributes name="图表" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<FolderAttributes isShow="true" /></NodeDef>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="柱状图" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/histogram.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="饼状图" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/areaChart.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="仪表盘" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/panel.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="混合显示" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/combinechart.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="热点链接图" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/car.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="动态显示" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/car3.cpt">
+<Parameters>
+<Parameter>
+<Attributes name="Year"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[2007]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="2007:I" value="2007:I"/>
+<Dict key="2008:I" value="2008:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="Start"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[1]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1:I" value="1:I"/>
+<Dict key="2:I" value="2:I"/>
+<Dict key="3:I" value="3:I"/>
+<Dict key="4:I" value="4:I"/>
+<Dict key="5:I" value="5:I"/>
+<Dict key="6:I" value="6:I"/>
+<Dict key="7:I" value="7:I"/>
+<Dict key="8:I" value="8:I"/>
+<Dict key="9:I" value="9:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+<Parameter>
+<Attributes name="End"
+ type="0"
+ shown="true" />
+<O t="S"><![CDATA[7]]></O>
+<CellEditorDef class="com.fr.report.cellElement.ComboBoxCellEditorDef"><Attributes allowBlank="true" />
+<Dict class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1:I" value="1:I"/>
+<Dict key="2:I" value="2:I"/>
+<Dict key="3:I" value="3:I"/>
+<Dict key="4:I" value="4:I"/>
+<Dict key="5:I" value="5:I"/>
+<Dict key="6:I" value="6:I"/>
+<Dict key="7:I" value="7:I"/>
+<Dict key="8:I" value="8:I"/>
+<Dict key="9:I" value="9:I"/>
+</CustomDictAttr>
+</Dict></CellEditorDef>
+</Parameter>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+<FaceNode>
+<NodeDef class="com.fr.web.face.ViewReportletDef">
+<Attributes name="交叉图表" /><RoleNames>
+<![CDATA[admin]]>
+</RoleNames>
+<ReportletInfo reporletPath="/com/demo/chart/crosschart.cpt">
+<Parameters>
+</Parameters>
+</ReportletInfo>
+</NodeDef>
+</FaceNode>
+</FaceNode>
+</FaceNode>
+</FaceManager>

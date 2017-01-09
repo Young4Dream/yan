@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.DeptInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.DeptInfo" >
+    <id column="DEPT_ID" property="deptId" jdbcType="DECIMAL" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    <result column="FULL_PATH_ID" property="fullPathId" jdbcType="VARCHAR" />
+    <result column="MEMO1" property="memo1" jdbcType="VARCHAR" />
+    <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+    <result column="MEMO3" property="memo3" jdbcType="VARCHAR" />
+    <result column="MEMO4" property="memo4" jdbcType="VARCHAR" />
+    <result column="MEMO5" property="memo5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DEPT_ID, DEPT_NAME, PARENT_ID, FULL_PATH_ID, MEMO1, MEMO2, MEMO3, MEMO4, MEMO5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CC_DEPT_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CC_DEPT_INFO
+    where DEPT_ID = #{deptId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_CC_DEPT_INFO
+    where DEPT_ID = #{deptId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfoExample" >
+    delete from T_CC_DEPT_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfo" >
+    <selectKey resultType="long" keyProperty="deptId" order="BEFORE" >
+      select t_cc_dept_info_dept_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_DEPT_INFO (DEPT_ID, DEPT_NAME, PARENT_ID, 
+      FULL_PATH_ID, MEMO1, MEMO2, 
+      MEMO3, MEMO4, MEMO5
+      )
+    values (#{deptId,jdbcType=DECIMAL}, #{deptName,jdbcType=VARCHAR}, #{parentId,jdbcType=DECIMAL}, 
+      #{fullPathId,jdbcType=VARCHAR}, #{memo1,jdbcType=VARCHAR}, #{memo2,jdbcType=VARCHAR}, 
+      #{memo3,jdbcType=VARCHAR}, #{memo4,jdbcType=VARCHAR}, #{memo5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfo" >
+    <selectKey resultType="long" keyProperty="deptId" order="BEFORE" >
+      select t_cc_dept_info_dept_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_DEPT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      DEPT_ID,
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      PARENT_ID,
+      <if test="fullPathId != null" >
+        FULL_PATH_ID,
+      </if>
+      <if test="memo1 != null" >
+        MEMO1,
+      </if>
+      <if test="memo2 != null" >
+        MEMO2,
+      </if>
+      <if test="memo3 != null" >
+        MEMO3,
+      </if>
+      <if test="memo4 != null" >
+        MEMO4,
+      </if>
+      <if test="memo5 != null" >
+        MEMO5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{deptId,jdbcType=DECIMAL},
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      #{parentId,jdbcType=DECIMAL},
+      <if test="fullPathId != null" >
+        #{fullPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        #{memo5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_CC_DEPT_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CC_DEPT_INFO
+    <set >
+      <if test="record.deptId != null" >
+        DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deptName != null" >
+        DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fullPathId != null" >
+        FULL_PATH_ID = #{record.fullPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo1 != null" >
+        MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo2 != null" >
+        MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo3 != null" >
+        MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo4 != null" >
+        MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo5 != null" >
+        MEMO5 = #{record.memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CC_DEPT_INFO
+    set DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      FULL_PATH_ID = #{record.fullPathId,jdbcType=VARCHAR},
+      MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      MEMO5 = #{record.memo5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfo" >
+    update T_CC_DEPT_INFO
+    <set >
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="fullPathId != null" >
+        FULL_PATH_ID = #{fullPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        MEMO2 = #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        MEMO3 = #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        MEMO4 = #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        MEMO5 = #{memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_ID = #{deptId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.DeptInfo" >
+    update T_CC_DEPT_INFO
+    set DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      FULL_PATH_ID = #{fullPathId,jdbcType=VARCHAR},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      MEMO2 = #{memo2,jdbcType=VARCHAR},
+      MEMO3 = #{memo3,jdbcType=VARCHAR},
+      MEMO4 = #{memo4,jdbcType=VARCHAR},
+      MEMO5 = #{memo5,jdbcType=VARCHAR}
+    where DEPT_ID = #{deptId,jdbcType=DECIMAL}
+  </update>
+</mapper>

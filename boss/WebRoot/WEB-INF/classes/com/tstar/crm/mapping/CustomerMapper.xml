@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.Customer">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CUSTOMER_NO" jdbcType="VARCHAR" property="customerNo" />
+    <result column="CUSTOMER_TYPE" jdbcType="INTEGER" property="customerType" />
+    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="CERT_TYPE" jdbcType="INTEGER" property="certType" />
+    <result column="CERT_ID" jdbcType="VARCHAR" property="certId" />
+    <result column="LINKER" jdbcType="VARCHAR" property="linker" />
+    <result column="LINK_PHONE" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="LINK_ADDRESS" jdbcType="VARCHAR" property="linkAddress" />
+    <result column="VIP" jdbcType="INTEGER" property="vip" />
+    <result column="LOYALTY" jdbcType="INTEGER" property="loyalty" />
+    <result column="CUSTOMER_MANAGER" jdbcType="VARCHAR" property="customerManager" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REG_OUT_TIME" jdbcType="TIMESTAMP" property="regOutTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="VIP_DESC" jdbcType="VARCHAR" property="vipDesc" />
+    <result column="LOYALTY_DESC" jdbcType="VARCHAR" property="loyaltyDesc" />
+    <result column="CUSTOMER_TYPE_DESC" jdbcType="VARCHAR" property="customerTypeDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, CUSTOMER_NO, CUSTOMER_TYPE, DEPARTMENT_ID, ADDRESS, CERT_TYPE, CERT_ID, 
+    LINKER, LINK_PHONE, EMAIL, LINK_ADDRESS, VIP, LOYALTY, CUSTOMER_MANAGER, STATUS, 
+    PWD, CREATOR, CREATE_TIME, UPDATE_TIME, REG_OUT_TIME, REMARK,
+    (SELECT NAME FROM res_dept WHERE res_dept.ID=DEPARTMENT_ID) AS DEPARTMENT_NAME,
+    (SELECT NAME FROM ref_vip WHERE ref_vip.ID=vip) AS VIP_DESC,
+    (SELECT NAME FROM ref_loyalty WHERE ref_loyalty.ID=loyalty) AS LOYALTY_DESC,
+    (SELECT NAME FROM ref_customer_type WHERE ref_customer_type.ID=loyalty) AS CUSTOMER_TYPE_DESC
+  </sql>
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from crm_customer
+    where 1=1
+    <if test="customerNo != null and customerNo != ''">
+    	and CUSTOMER_NO LIKE concat(#{customerNo}, '%')
+    </if>
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		NAME LIKE concat('%', #{fullText}, '%')
+    		or
+    		CUSTOMER_NO LIKE concat(#{fullText}, '%')
+    		or 
+    		CERT_ID LIKE  concat('%', #{fullText}, '%')
+    		or 
+    		LINK_PHONE LIKE concat('%', #{fullText}, '%')
+    		)
+    </if>
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_customer
+    where 1=1
+    <if test="customerNo != null and customerNo != ''">
+    	and CUSTOMER_NO LIKE concat(#{customerNo}, '%')
+    </if>
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		NAME LIKE concat('%', #{fullText}, '%')
+    		or
+    		CUSTOMER_NO LIKE concat(#{fullText}, '%')
+    		or 
+    		CERT_ID LIKE  concat('%', #{fullText}, '%')
+    		or 
+    		LINK_PHONE LIKE concat('%', #{fullText}, '%')
+    		)
+    </if>
+    limit #{start}, #{length}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_customer
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_customer
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.Customer">
+    insert into crm_customer (ID, NAME, CUSTOMER_NO, 
+      CUSTOMER_TYPE, DEPARTMENT_ID, ADDRESS, 
+      CERT_TYPE, CERT_ID, LINKER, 
+      LINK_PHONE, EMAIL, LINK_ADDRESS, 
+      VIP, LOYALTY, CUSTOMER_MANAGER, 
+      STATUS, PWD, CREATOR, 
+      CREATE_TIME, UPDATE_TIME, REG_OUT_TIME, 
+      REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{customerNo,jdbcType=VARCHAR}, 
+      #{customerType,jdbcType=INTEGER}, #{departmentId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=INTEGER}, #{certId,jdbcType=VARCHAR}, #{linker,jdbcType=VARCHAR}, 
+      #{linkPhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{linkAddress,jdbcType=VARCHAR}, 
+      #{vip,jdbcType=INTEGER}, #{loyalty,jdbcType=INTEGER}, #{customerManager,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{pwd,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{regOutTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.Customer">
+    insert into crm_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="customerNo != null">
+        CUSTOMER_NO,
+      </if>
+      <if test="customerType != null">
+        CUSTOMER_TYPE,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certId != null">
+        CERT_ID,
+      </if>
+      <if test="linker != null">
+        LINKER,
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="linkAddress != null">
+        LINK_ADDRESS,
+      </if>
+      <if test="vip != null">
+        VIP,
+      </if>
+      <if test="loyalty != null">
+        LOYALTY,
+      </if>
+      <if test="customerManager != null">
+        CUSTOMER_MANAGER,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="pwd != null">
+        PWD,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="regOutTime != null">
+        REG_OUT_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNo != null">
+        #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        #{customerType,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=INTEGER},
+      </if>
+      <if test="certId != null">
+        #{certId,jdbcType=VARCHAR},
+      </if>
+      <if test="linker != null">
+        #{linker,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="linkAddress != null">
+        #{linkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="vip != null">
+        #{vip,jdbcType=INTEGER},
+      </if>
+      <if test="loyalty != null">
+        #{loyalty,jdbcType=INTEGER},
+      </if>
+      <if test="customerManager != null">
+        #{customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regOutTime != null">
+        #{regOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.Customer">
+    update crm_customer
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNo != null">
+        CUSTOMER_NO = #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        CUSTOMER_TYPE = #{customerType,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        CERT_TYPE = #{certType,jdbcType=INTEGER},
+      </if>
+      <if test="certId != null">
+        CERT_ID = #{certId,jdbcType=VARCHAR},
+      </if>
+      <if test="linker != null">
+        LINKER = #{linker,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="linkAddress != null">
+        LINK_ADDRESS = #{linkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="vip != null">
+        VIP = #{vip,jdbcType=INTEGER},
+      </if>
+      <if test="loyalty != null">
+        LOYALTY = #{loyalty,jdbcType=INTEGER},
+      </if>
+      <if test="customerManager != null">
+        CUSTOMER_MANAGER = #{customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pwd != null">
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regOutTime != null">
+        REG_OUT_TIME = #{regOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.Customer">
+    update crm_customer
+    set NAME = #{name,jdbcType=VARCHAR},
+      CUSTOMER_NO = #{customerNo,jdbcType=VARCHAR},
+      CUSTOMER_TYPE = #{customerType,jdbcType=INTEGER},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CERT_TYPE = #{certType,jdbcType=INTEGER},
+      CERT_ID = #{certId,jdbcType=VARCHAR},
+      LINKER = #{linker,jdbcType=VARCHAR},
+      LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      LINK_ADDRESS = #{linkAddress,jdbcType=VARCHAR},
+      VIP = #{vip,jdbcType=INTEGER},
+      LOYALTY = #{loyalty,jdbcType=INTEGER},
+      CUSTOMER_MANAGER = #{customerManager,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REG_OUT_TIME = #{regOutTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResDeviceTypeMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResDeviceType">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CODE_PREFIX" jdbcType="VARCHAR" property="codePrefix" />
+    <result column="CODE_LEN" jdbcType="INTEGER" property="codeLen" />
+    <result column="BEAR_BUSINESS" jdbcType="VARCHAR" property="bearBusiness" />
+    <result column="CTRL_SET_NAME" jdbcType="VARCHAR" property="ctrlSetName" />
+    <result column="DEVICE_ICON" jdbcType="VARCHAR" property="deviceIcon" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, CODE_PREFIX, CODE_LEN, BEAR_BUSINESS, CTRL_SET_NAME, DEVICE_ICON, REMARK
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device_type
+    where 1=1 
+    order by NAME
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device_type
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_device_type
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResDeviceType">
+    insert into res_device_type (ID, NAME, CODE_PREFIX, 
+      CODE_LEN, BEAR_BUSINESS, CTRL_SET_NAME, DEVICE_ICON, 
+      REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{codePrefix,jdbcType=VARCHAR}, 
+      #{codeLen,jdbcType=INTEGER}, #{bearBusiness,jdbcType=VARCHAR}, #{ctrlSetName,jdbcType=VARCHAR},  
+      #{deviceIcon,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResDeviceType">
+    insert into res_device_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="codePrefix != null">
+        CODE_PREFIX,
+      </if>
+      <if test="codeLen != null">
+        CODE_LEN,
+      </if>
+      <if test="bearBusiness != null">
+        BEAR_BUSINESS,
+      </if>
+      <if test="ctrlSetName != null">
+        CTRL_SET_NAME,
+      </if>
+      <if test="deviceIcon != null">
+        DEVICE_ICON,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="codePrefix != null">
+        #{codePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLen != null">
+        #{codeLen,jdbcType=INTEGER},
+      </if>
+      <if test="bearBusiness != null">
+        #{bearBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlSetName != null">
+        #{ctrlSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIcon != null">
+        #{deviceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResDeviceType">
+    update res_device_type
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="codePrefix != null">
+        CODE_PREFIX = #{codePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLen != null">
+        CODE_LEN = #{codeLen,jdbcType=INTEGER},
+      </if>
+      <if test="bearBusiness != null">
+        BEAR_BUSINESS = #{bearBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlSetName != null">
+        CTRL_SET_NAME = #{ctrlSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIcon != null">
+        DEVICE_ICON = #{deviceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResDeviceType">
+    update res_device_type
+    set NAME = #{name,jdbcType=VARCHAR},
+      CODE_PREFIX = #{codePrefix,jdbcType=VARCHAR},
+      CODE_LEN = #{codeLen,jdbcType=INTEGER},
+      BEAR_BUSINESS = #{bearBusiness,jdbcType=VARCHAR},
+      CTRL_SET_NAME = #{ctrlSetName,jdbcType=VARCHAR},
+      DEVICE_ICON = #{deviceIcon,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

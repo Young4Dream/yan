@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.admin.ParamsMapper" >
+  
+  <resultMap id="ResultMap" type="com.tstar.callcenter.pub.data.ResultMap"></resultMap>
+  
+  <select id="selectParamsList" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+    select nID, vcParamName, vcValue1, vcValue2 from t_cc_params
+    where 1 = 1
+    <if test="paramName != null and paramName != '' ">
+        and vcParamName like '%'||#{paramName}||'%'
+    </if>
+    order by nID
+    <!-- 
+    limit #{pageSize} offset #{offset}
+     -->
+  </select>
+  
+  <select id="selectParamsCount" resultType="int" parameterType="com.tstar.callcenter.model.Params">
+    select 
+    count(*)
+    from t_cc_params 
+    where 1 = 1
+    <if test="paramName != null and paramName != '' ">
+        and vcParamName like '%'||#{paramName}||'%'
+    </if>
+  </select>
+  
+  <insert id="paramsInsert" parameterType="com.tstar.callcenter.model.Params" >
+       insert into t_cc_params(vcParamName, vcValue1, vcValue2)
+            values(#{paramName}, #{value1}, #{value2})
+  </insert>
+  
+  <update id="paramsUpdate" parameterType="com.tstar.callcenter.model.Params" >
+       update t_cc_params set vcValue1 = #{value1}, vcValue2 = #{value2} 
+            where nID = #{id} and vcParamName = #{paramName}
+  </update>
+  
+  <delete id="paramsDelete" parameterType="com.tstar.callcenter.model.Params" >
+       delete from t_cc_params where nID = #{id} and vcParamName = #{paramName}
+  </delete>
+</mapper>

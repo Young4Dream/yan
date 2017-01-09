@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.SkillGroupsMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.SkillGroups" >
+    <id column="GROUP_ID" property="groupId" jdbcType="DECIMAL" />
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    <result column="MEMO1" property="memo1" jdbcType="VARCHAR" />
+    <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+    <result column="MEMO3" property="memo3" jdbcType="VARCHAR" />
+    <result column="MEMO4" property="memo4" jdbcType="VARCHAR" />
+    <result column="MEMO5" property="memo5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GROUP_ID, GROUP_NAME, PARENT_ID, MEMO1, MEMO2, MEMO3, MEMO4, MEMO5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroupsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CC_SKILL_GROUPS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CC_SKILL_GROUPS
+    where GROUP_ID = #{groupId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_CC_SKILL_GROUPS
+    where GROUP_ID = #{groupId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroupsExample" >
+    delete from T_CC_SKILL_GROUPS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroups" >
+    <selectKey resultType="long" keyProperty="groupId" order="BEFORE" >
+      select t_cc_skill_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_SKILL_GROUPS (GROUP_ID, GROUP_NAME, PARENT_ID, 
+      MEMO1, MEMO2, MEMO3, 
+      MEMO4, MEMO5)
+    values (#{groupId,jdbcType=DECIMAL}, #{groupName,jdbcType=VARCHAR}, #{parentId,jdbcType=DECIMAL}, 
+      #{memo1,jdbcType=VARCHAR}, #{memo2,jdbcType=VARCHAR}, #{memo3,jdbcType=VARCHAR}, 
+      #{memo4,jdbcType=VARCHAR}, #{memo5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroups" >
+    <selectKey resultType="long" keyProperty="groupId" order="BEFORE" >
+      select t_cc_skill_id_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_SKILL_GROUPS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      GROUP_ID,
+      <if test="groupName != null" >
+        GROUP_NAME,
+      </if>
+      PARENT_ID,
+      <if test="memo1 != null" >
+        MEMO1,
+      </if>
+      <if test="memo2 != null" >
+        MEMO2,
+      </if>
+      <if test="memo3 != null" >
+        MEMO3,
+      </if>
+      <if test="memo4 != null" >
+        MEMO4,
+      </if>
+      <if test="memo5 != null" >
+        MEMO5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{groupId,jdbcType=DECIMAL},
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      #{parentId,jdbcType=DECIMAL},
+      <if test="memo1 != null" >
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        #{memo5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroupsExample" resultType="java.lang.Integer" >
+    select count(*) from T_CC_SKILL_GROUPS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CC_SKILL_GROUPS
+    <set >
+      <if test="record.groupId != null" >
+        GROUP_ID = #{record.groupId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.groupName != null" >
+        GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memo1 != null" >
+        MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo2 != null" >
+        MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo3 != null" >
+        MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo4 != null" >
+        MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo5 != null" >
+        MEMO5 = #{record.memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CC_SKILL_GROUPS
+    set GROUP_ID = #{record.groupId,jdbcType=DECIMAL},
+      GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      MEMO5 = #{record.memo5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroups" >
+    update T_CC_SKILL_GROUPS
+    <set >
+      <if test="groupName != null" >
+        GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="memo1 != null" >
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        MEMO2 = #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        MEMO3 = #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        MEMO4 = #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        MEMO5 = #{memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_ID = #{groupId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.SkillGroups" >
+    update T_CC_SKILL_GROUPS
+    set GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      MEMO2 = #{memo2,jdbcType=VARCHAR},
+      MEMO3 = #{memo3,jdbcType=VARCHAR},
+      MEMO4 = #{memo4,jdbcType=VARCHAR},
+      MEMO5 = #{memo5,jdbcType=VARCHAR}
+    where GROUP_ID = #{groupId,jdbcType=DECIMAL}
+  </update>
+</mapper>

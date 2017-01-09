@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidProductMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidProduct">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="CATEGORY" jdbcType="VARCHAR" property="category" />
+    <result column="SALE_TYPE" jdbcType="INTEGER" property="saleType" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="TERM" jdbcType="VARCHAR" property="term" />
+    <result column="PRODUCT_DESC" jdbcType="VARCHAR" property="productDesc" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="OSS_OPEN_KEY" jdbcType="VARCHAR" property="ossOpenKey" />
+    <result column="OSS_CLOSE_KEY" jdbcType="VARCHAR" property="ossCloseKey" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ACCOUNT_ITEM_ID" jdbcType="VARCHAR" property="accountItemId" />
+    <result column="ACCOUNT_ITEM_NAME" jdbcType="VARCHAR" property="accountItemName" />
+    <result column="PARENT_NAME" jdbcType="VARCHAR" property="parentName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, PARENT_ID, CATEGORY, SALE_TYPE, PRICE, TERM, PRODUCT_DESC, STATUS, CREATOR, 
+    CREATE_TIME, UPDATE_TIME, OSS_OPEN_KEY, OSS_CLOSE_KEY, REMARK, ACCOUNT_ITEM_ID,
+    (select ITEM_NAME from sys_account_item where sys_account_item.ID=ACCOUNT_ITEM_ID) AS ACCOUNT_ITEM_NAME
+  </sql>
+  <select id="countAll" resultType="int">
+    select 
+    count(*)
+    from sid_product
+    where 1=1
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_product
+    where PARENT_ID IS NOT NULL
+    order by CREATE_TIME desc
+    limit #{0}, #{1}
+  </select>
+  <select id="selectRoot" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_product
+    where PARENT_ID='' or PARENT_ID IS NULL
+    order by CREATE_TIME desc
+  </select>
+  <select id="selectChildren" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_product
+    where PARENT_ID = #{0}
+    order by CREATE_TIME desc
+  </select>
+  <select id="selectChildrenByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_product
+    where PARENT_ID = #{0}
+    and status = 2
+    order by NAME
+    limit #{1}, #{2}
+  </select>
+  <select id="countChildren" resultType="int">
+    select 
+    count(*)
+    from sid_product
+    where PARENT_ID = #{0}
+    and status = 2
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_product
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_product
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidProduct">
+    insert into sid_product (ID, NAME, PARENT_ID, 
+      CATEGORY, SALE_TYPE, PRICE, 
+      TERM, PRODUCT_DESC, STATUS, 
+      CREATOR, CREATE_TIME, UPDATE_TIME, 
+      OSS_OPEN_KEY, OSS_CLOSE_KEY, REMARK, ACCOUNT_ITEM_ID)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{saleType,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{term,jdbcType=VARCHAR}, #{productDesc,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{ossOpenKey,jdbcType=VARCHAR}, #{ossCloseKey,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{accountItemId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidProduct">
+    insert into sid_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="category != null">
+        CATEGORY,
+      </if>
+      <if test="saleType != null">
+        SALE_TYPE,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="term != null">
+        TERM,
+      </if>
+      <if test="productDesc != null">
+        PRODUCT_DESC,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="ossOpenKey != null">
+        OSS_OPEN_KEY,
+      </if>
+      <if test="ossCloseKey != null">
+        OSS_CLOSE_KEY,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null">
+        #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ossOpenKey != null">
+        #{ossOpenKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ossCloseKey != null">
+        #{ossCloseKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        #{accountItemId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidProduct">
+    update sid_product
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        CATEGORY = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null">
+        SALE_TYPE = #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="term != null">
+        TERM = #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        PRODUCT_DESC = #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ossOpenKey != null">
+        OSS_OPEN_KEY = #{ossOpenKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ossCloseKey != null">
+        OSS_CLOSE_KEY = #{ossCloseKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidProduct">
+    update sid_product
+    set NAME = #{name,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=VARCHAR},
+      SALE_TYPE = #{saleType,jdbcType=INTEGER},
+      PRICE = #{price,jdbcType=DECIMAL},
+      TERM = #{term,jdbcType=VARCHAR},
+      PRODUCT_DESC = #{productDesc,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      OSS_OPEN_KEY = #{ossOpenKey,jdbcType=VARCHAR},
+      OSS_CLOSE_KEY = #{ossCloseKey,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

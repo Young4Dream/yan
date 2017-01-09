@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.CdrSourceMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.CdrSource">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PROTOCOL" jdbcType="VARCHAR" property="protocol" />
+    <result column="HOST" jdbcType="VARCHAR" property="host" />
+    <result column="PORT" jdbcType="INTEGER" property="port" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+    <result column="SOURCE_DIRECTORY" jdbcType="VARCHAR" property="sourceDirectory" />
+    <result column="CACHED_DIRECTORY" jdbcType="VARCHAR" property="cachedDirectory" />
+    <result column="ARCHIVE_DIRECTORY" jdbcType="VARCHAR" property="archiveDirectory" />
+    <result column="DECODER_NAME" jdbcType="VARCHAR" property="decoderName" />
+    <result column="FILENAME_PATTERN" jdbcType="VARCHAR" property="filenamePattern" />
+    <result column="COLLECT_MODE" jdbcType="INTEGER" property="collectMode" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, PROTOCOL, HOST, PORT, USER_NAME, PWD, SOURCE_DIRECTORY, CACHED_DIRECTORY, 
+    ARCHIVE_DIRECTORY, DECODER_NAME, FILENAME_PATTERN, COLLECT_MODE, STATUS, CREATOR, 
+    CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+  <select id="selectByStatus" parameterType="int" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_source
+    where STATUS = #{0}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_source
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_source
+    where 1=1
+    order by create_time desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_cdr_source
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.CdrSource">
+    insert into ocs_cdr_source (ID, NAME, PROTOCOL, 
+      HOST, PORT, USER_NAME, 
+      PWD, SOURCE_DIRECTORY, CACHED_DIRECTORY, 
+      ARCHIVE_DIRECTORY, DECODER_NAME, FILENAME_PATTERN, 
+      COLLECT_MODE, STATUS, CREATOR, 
+      CREATE_TIME, UPDATE_TIME, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{protocol,jdbcType=VARCHAR}, 
+      #{host,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{sourceDirectory,jdbcType=VARCHAR}, #{cachedDirectory,jdbcType=VARCHAR}, 
+      #{archiveDirectory,jdbcType=VARCHAR}, #{decoderName,jdbcType=VARCHAR}, #{filenamePattern,jdbcType=VARCHAR}, 
+      #{collectMode,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.CdrSource">
+    insert into ocs_cdr_source
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="protocol != null">
+        PROTOCOL,
+      </if>
+      <if test="host != null">
+        HOST,
+      </if>
+      <if test="port != null">
+        PORT,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="pwd != null">
+        PWD,
+      </if>
+      <if test="sourceDirectory != null">
+        SOURCE_DIRECTORY,
+      </if>
+      <if test="cachedDirectory != null">
+        CACHED_DIRECTORY,
+      </if>
+      <if test="archiveDirectory != null">
+        ARCHIVE_DIRECTORY,
+      </if>
+      <if test="decoderName != null">
+        DECODER_NAME,
+      </if>
+      <if test="filenamePattern != null">
+        FILENAME_PATTERN,
+      </if>
+      <if test="collectMode != null">
+        COLLECT_MODE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null">
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceDirectory != null">
+        #{sourceDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="cachedDirectory != null">
+        #{cachedDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDirectory != null">
+        #{archiveDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="decoderName != null">
+        #{decoderName,jdbcType=VARCHAR},
+      </if>
+      <if test="filenamePattern != null">
+        #{filenamePattern,jdbcType=VARCHAR},
+      </if>
+      <if test="collectMode != null">
+        #{collectMode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.CdrSource">
+    update ocs_cdr_source
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null">
+        PROTOCOL = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        HOST = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        PORT = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceDirectory != null">
+        SOURCE_DIRECTORY = #{sourceDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="cachedDirectory != null">
+        CACHED_DIRECTORY = #{cachedDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDirectory != null">
+        ARCHIVE_DIRECTORY = #{archiveDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="decoderName != null">
+        DECODER_NAME = #{decoderName,jdbcType=VARCHAR},
+      </if>
+      <if test="filenamePattern != null">
+        FILENAME_PATTERN = #{filenamePattern,jdbcType=VARCHAR},
+      </if>
+      <if test="collectMode != null">
+        COLLECT_MODE = #{collectMode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.CdrSource">
+    update ocs_cdr_source
+    set NAME = #{name,jdbcType=VARCHAR},
+      PROTOCOL = #{protocol,jdbcType=VARCHAR},
+      HOST = #{host,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=INTEGER},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      SOURCE_DIRECTORY = #{sourceDirectory,jdbcType=VARCHAR},
+      CACHED_DIRECTORY = #{cachedDirectory,jdbcType=VARCHAR},
+      ARCHIVE_DIRECTORY = #{archiveDirectory,jdbcType=VARCHAR},
+      DECODER_NAME = #{decoderName,jdbcType=VARCHAR},
+      FILENAME_PATTERN = #{filenamePattern,jdbcType=VARCHAR},
+      COLLECT_MODE = #{collectMode,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

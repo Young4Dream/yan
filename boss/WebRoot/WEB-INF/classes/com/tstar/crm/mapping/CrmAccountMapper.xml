@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CrmAccountMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.CrmAccount">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="ACC_NO" jdbcType="VARCHAR" property="accNo" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="PAY_METHOD" jdbcType="INTEGER" property="payMethod" />
+    <result column="CREDITOR" jdbcType="VARCHAR" property="creditor" />
+    <result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+    <result column="BANK_ACC" jdbcType="VARCHAR" property="bankAcc" />
+    <result column="BANK_ACC_OWNER" jdbcType="VARCHAR" property="bankAccOwner" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="SCORE" jdbcType="DECIMAL" property="score" />
+    <result column="CREDITOR_NAME" jdbcType="VARCHAR" property="creditorName" />
+    <result column="PAY_METHOD_DESC" jdbcType="VARCHAR" property="payMethodDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUSTOMER_ID, ACC_NO, AMOUNT, PAY_METHOD, CREDITOR, BANK_NAME, BANK_ACC, BANK_ACC_OWNER, 
+    CREATE_TIME, UPDATE_TIME, REMARK, SCORE,
+    (SELECT NAME FROM crm_customer WHERE crm_customer.ID=CREDITOR) AS CREDITOR_NAME,
+    (SELECT NAME FROM ref_pay_method WHERE ref_pay_method.ID=PAY_METHOD) AS PAY_METHOD_DESC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_account
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCustomerId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_account
+    where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+    limit 0, 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_account
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.CrmAccount">
+    insert into crm_account (ID, CUSTOMER_ID, ACC_NO, 
+      AMOUNT, PAY_METHOD, CREDITOR, 
+      BANK_NAME, BANK_ACC, BANK_ACC_OWNER, 
+      CREATE_TIME, UPDATE_TIME, REMARK,
+      SCORE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{accNo,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{payMethod,jdbcType=INTEGER}, #{creditor,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankAcc,jdbcType=VARCHAR}, #{bankAccOwner,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},
+      #{score,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.CrmAccount">
+    insert into crm_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="accNo != null">
+        ACC_NO,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="payMethod != null">
+        PAY_METHOD,
+      </if>
+      <if test="creditor != null">
+        CREDITOR,
+      </if>
+      <if test="bankName != null">
+        BANK_NAME,
+      </if>
+      <if test="bankAcc != null">
+        BANK_ACC,
+      </if>
+      <if test="bankAccOwner != null">
+        BANK_ACC_OWNER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="score != null">
+        SCORE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accNo != null">
+        #{accNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="creditor != null">
+        #{creditor,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcc != null">
+        #{bankAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccOwner != null">
+        #{bankAccOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.CrmAccount">
+    update crm_account
+    <set>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accNo != null">
+        ACC_NO = #{accNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethod != null">
+        PAY_METHOD = #{payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="creditor != null">
+        CREDITOR = #{creditor,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcc != null">
+        BANK_ACC = #{bankAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccOwner != null">
+        BANK_ACC_OWNER = #{bankAccOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        SCORE = #{score,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.CrmAccount">
+    update crm_account
+    set CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      ACC_NO = #{accNo,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      PAY_METHOD = #{payMethod,jdbcType=INTEGER},
+      CREDITOR = #{creditor,jdbcType=VARCHAR},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      BANK_ACC = #{bankAcc,jdbcType=VARCHAR},
+      BANK_ACC_OWNER = #{bankAccOwner,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="addAmount">
+    update crm_account
+    set 
+      AMOUNT = AMOUNT + (#{1})
+    where ID = #{0}
+  </update>
+  <update id="addScore">
+    update crm_account
+    set 
+      SCORE = SCORE + (#{1})
+    where ID = #{0}
+  </update>
+</mapper>

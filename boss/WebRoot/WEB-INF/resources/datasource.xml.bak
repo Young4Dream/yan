@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DatasourceManager xmlVersion="20120203" releaseVersion="7.0.0">
+<ConnectionMap>
+<Connection name="tsdBilling" class="com.fr.data.impl.JDBCDatabaseConnection">
+<DatabaseAttr/>
+<JDBCDatabaseAttr url="jdbc:oracle:thin:@192.168.45.203:1521:orcl" driver="oracle.jdbc.driver.OracleDriver" user="tsd_xif" password="___0067003d006e003d005400e4001b006700600039" encryptPassword="true">
+<DBCPAttr/>
+</JDBCDatabaseAttr>
+</Connection>
+</ConnectionMap>
+</DatasourceManager>

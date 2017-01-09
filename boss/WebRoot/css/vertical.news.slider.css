@@ -1,0 +1,143 @@
+.news-holder p {
+    margin-bottom: 12px;
+}
+
+.news-holder {
+    max-width: 300px;
+    margin: 0 auto;
+    font-family: Verdana, sans-serif;
+    font-size: 13px;
+    //background-image:url('images/page1_back.jpg');
+    //background-color: #ffffff;
+    //position:relative;
+    //z-index:1;
+}
+
+.news-holder * {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+  color: #336699;
+  text-decoration: none;
+}
+
+.news-headlines {
+	float: left;
+	width: 10%;
+	position: relative;
+	background: #DDEAF4;        //#DDEAF4;
+	min-height: 98px;
+}
+
+.news-headlines li {
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 0px;
+  z-index: 20;
+  color: #336699;
+  position: relative;
+  height:49px;
+}
+
+.news-headlines li.selected {
+  color: #ffffff;
+  //position: relative;
+  //z-index: 9;
+}
+
+.nh-anim {
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+/*
+.news-headlines li:before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #888;
+  vertical-align: middle;
+  margin-left: -12px;
+  margin-right: 7px;
+}
+*/
+.news-headlines li:hover, a:hover {
+    cursor: pointer;
+    //text-decoration: underline;
+}
+
+.news-headlines .highlight {
+   width: 100%;
+   //background: #EF6DA4;
+   background: #1A69A1;
+   border: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 10;
+   color: white;
+}
+
+.news-headlines .highlight:before {
+  display: none;
+}
+
+
+.news-preview {
+   background:none;
+   float: left;
+   border: none;
+   width: 90%;
+   height: 90%;
+   background: #EEEEEE;
+   position: relative;
+   z-index: 5;
+   margin-left: -1px;
+   min-height: 98px;
+   height:auto !important;
+   position: relative;
+   border-left:2px solid #1A69A1;
+}
+
+
+.news-content {
+    position: absolute;
+    background: #EEEEEE;
+    z-index: 10;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.top-content {
+    display: block;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}

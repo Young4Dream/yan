@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CrmUserAdslMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.CrmUserAdsl">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ACC" jdbcType="VARCHAR" property="acc" />
+    <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+    <result column="PHONE_NO" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="SPEED" jdbcType="VARCHAR" property="speed" />
+    <result column="IP_ADDRESS" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="MAC_ADDRESS" jdbcType="VARCHAR" property="macAddress" />
+    <result column="NOTIFY_POLICY" jdbcType="VARCHAR" property="notifyPolicy" />
+    <result column="SERVICE_OPER" jdbcType="VARCHAR" property="serviceOper" />
+    <result column="SPEED_DESC" jdbcType="VARCHAR" property="speedDesc" />
+    <result column="NOTIFY_POLICY_DESC" jdbcType="VARCHAR" property="notifyPolicyDesc" />
+    <result column="SERVICE_OPER_DESC" jdbcType="VARCHAR" property="serviceOperDesc" />
+    <result column="INNER_VLAN" jdbcType="VARCHAR" property="innerVlan" />
+    <result column="OUTER_VLAN" jdbcType="VARCHAR" property="outerVlan" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACC, PWD, PHONE_NO, SPEED, IP_ADDRESS, MAC_ADDRESS, NOTIFY_POLICY, SERVICE_OPER, INNER_VLAN, OUTER_VLAN,
+    (SELECT NAME FROM ref_band_width WHERE ref_band_width.ID=SPEED) AS SPEED_DESC,
+    (SELECT NAME FROM ref_notify_policy WHERE ref_notify_policy.ID=NOTIFY_POLICY) AS NOTIFY_POLICY_DESC,
+    (SELECT NAME FROM ref_service_oper WHERE ref_service_oper.ID=SERVICE_OPER) AS SERVICE_OPER_DESC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user_adsl
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_user_adsl
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.CrmUserAdsl">
+    insert into crm_user_adsl (ID, ACC, PWD, 
+      PHONE_NO, SPEED, IP_ADDRESS, 
+      MAC_ADDRESS, NOTIFY_POLICY, SERVICE_OPER,
+      INNER_VLAN, OUTER_VLAN
+      )
+    values (#{id,jdbcType=VARCHAR}, #{acc,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{phoneNo,jdbcType=VARCHAR}, #{speed,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{macAddress,jdbcType=VARCHAR}, #{notifyPolicy,jdbcType=VARCHAR}, #{serviceOper,jdbcType=VARCHAR},
+      #{innerVlan,jdbcType=VARCHAR},#{outerVlan,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.CrmUserAdsl">
+    insert into crm_user_adsl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="acc != null">
+        ACC,
+      </if>
+      <if test="pwd != null">
+        PWD,
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO,
+      </if>
+      <if test="speed != null">
+        SPEED,
+      </if>
+      <if test="ipAddress != null">
+        IP_ADDRESS,
+      </if>
+      <if test="macAddress != null">
+        MAC_ADDRESS,
+      </if>
+      <if test="notifyPolicy != null">
+        NOTIFY_POLICY,
+      </if>
+      <if test="serviceOper != null">
+        SERVICE_OPER,
+      </if>
+      <if test="innerVlan != null">
+        INNER_VLAN,
+      </if>
+      <if test="outerVlan != null">
+        OUTER_VLAN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null">
+        #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddress != null">
+        #{macAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyPolicy != null">
+        #{notifyPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceOper != null">
+        #{serviceOper,jdbcType=VARCHAR},
+      </if>
+      <if test="innerVlan != null">
+        #{innerVlan,jdbcType=VARCHAR},
+      </if>
+      <if test="outerVlan != null">
+        #{outerVlan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.CrmUserAdsl">
+    update crm_user_adsl
+    <set>
+      <if test="acc != null">
+        ACC = #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="speed != null">
+        SPEED = #{speed,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddress != null">
+        MAC_ADDRESS = #{macAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyPolicy != null">
+        NOTIFY_POLICY = #{notifyPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceOper != null">
+        SERVICE_OPER = #{serviceOper,jdbcType=VARCHAR},
+      </if>
+      <if test="innerVlan != null">
+        INNER_VLAN = #{innerVlan,jdbcType=VARCHAR},
+      </if>
+      <if test="outerVlan != null">
+        OUTER_VLAN = #{outerVlan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.CrmUserAdsl">
+    update crm_user_adsl
+    set ACC = #{acc,jdbcType=VARCHAR},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      SPEED = #{speed,jdbcType=VARCHAR},
+      IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      MAC_ADDRESS = #{macAddress,jdbcType=VARCHAR},
+      NOTIFY_POLICY = #{notifyPolicy,jdbcType=VARCHAR},
+      SERVICE_OPER = #{serviceOper,jdbcType=VARCHAR},
+      INNER_VLAN = #{innerVlan,jdbcType=VARCHAR},
+      OUTER_VLAN = #{outerVlan,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.EmployeeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.EmployeeInfo" >
+    <id column="EMPLOYEE_ID" property="employeeId" jdbcType="DECIMAL" />
+    <result column="EMPLOYEE_NO" property="employeeNo" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="BOSS_PWD" property="bossPwd" jdbcType="VARCHAR"/>
+    <result column="DEPT_ID" property="deptId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GENDER" property="gender" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="JOIN_DATE" property="joinDate" jdbcType="TIMESTAMP" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_ID" property="certificateId" jdbcType="VARCHAR" />
+    <result column="IS_AGENT" property="isAgent" jdbcType="DECIMAL" />
+    <result column="MONITOR_DEPT" property="monitorDept" jdbcType="VARCHAR" />
+    <result column="MEMO1" property="memo1" jdbcType="VARCHAR" />
+    <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+    <result column="MEMO3" property="memo3" jdbcType="VARCHAR" />
+    <result column="MEMO4" property="memo4" jdbcType="VARCHAR" />
+    <result column="MEMO5" property="memo5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    EMPLOYEE_ID, EMPLOYEE_NO, PASSWORD, TYPE, DEPT_ID, NAME, GENDER, AGE, BIRTHDAY, JOIN_DATE, 
+    TEL, MOBILE, EMAIL, CERTIFICATE_ID, IS_AGENT, MONITOR_DEPT, MEMO1, MEMO2, MEMO3, 
+    MEMO4, MEMO5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CC_EMPLOYEE_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CC_EMPLOYEE_INFO
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long" >
+    delete from T_CC_EMPLOYEE_INFO
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfoExample" >
+    delete from T_CC_EMPLOYEE_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfo" >
+    <selectKey resultType="long" keyProperty="employeeId" order="BEFORE" >
+      select t_cc_employee_info_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_EMPLOYEE_INFO (EMPLOYEE_ID, EMPLOYEE_NO, PASSWORD, 
+      TYPE, DEPT_ID, NAME, 
+      GENDER, AGE, BIRTHDAY, 
+      JOIN_DATE, TEL, MOBILE, 
+      EMAIL, CERTIFICATE_ID, IS_AGENT, 
+      MONITOR_DEPT, MEMO1, MEMO2, 
+      MEMO3, MEMO4, MEMO5
+      )
+    values (#{employeeId,jdbcType=DECIMAL}, #{employeeNo,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{deptId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{joinDate,jdbcType=TIMESTAMP}, #{tel,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{certificateId,jdbcType=VARCHAR}, #{isAgent,jdbcType=DECIMAL}, 
+      #{monitorDept,jdbcType=VARCHAR}, #{memo1,jdbcType=VARCHAR}, #{memo2,jdbcType=VARCHAR}, 
+      #{memo3,jdbcType=VARCHAR}, #{memo4,jdbcType=VARCHAR}, #{memo5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfo" >
+    <selectKey resultType="long" keyProperty="employeeId" order="BEFORE" >
+      select t_cc_employee_info_seq.nextval from dual
+    </selectKey>
+    insert into T_CC_EMPLOYEE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      EMPLOYEE_ID,
+      <if test="employeeNo != null" >
+        EMPLOYEE_NO,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="bossPwd != null" >
+        BOSS_PWD,
+      </if>
+      DEPT_ID,
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="gender != null and gender != ''.toString()" >
+        GENDER,
+      </if>
+      AGE,
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE,
+      </if>
+      <if test="tel != null and tel != ''.toString()" >
+        TEL,
+      </if>
+      <if test="mobile != null and mobile != ''.toString()" >
+        MOBILE,
+      </if>
+      <if test="email != null and email != ''.toString()" >
+        EMAIL,
+      </if>
+      <if test="certificateId != null and certificateId != ''.toString()" >
+        CERTIFICATE_ID,
+      </if>
+      IS_AGENT,
+      <if test="monitorDept != null and monitorDept != ''.toString()" >
+        MONITOR_DEPT,
+      </if>
+      <if test="memo1 != null and memo1 != ''.toString()" >
+        MEMO1,
+      </if>
+      <if test="memo2 != null" >
+        MEMO2,
+      </if>
+      <if test="memo3 != null" >
+        MEMO3,
+      </if>
+      <if test="memo4 != null" >
+        MEMO4,
+      </if>
+      <if test="memo5 != null" >
+        MEMO5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{employeeId,jdbcType=DECIMAL},
+      <if test="employeeNo != null" >
+        #{employeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bossPwd != null" >
+        #{bossPwd,jdbcType=VARCHAR},
+      </if>
+      #{deptId,jdbcType=DECIMAL},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null and gender != ''.toString()" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      #{age,jdbcType=DECIMAL},
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tel != null and tel != ''.toString()" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null and mobile != ''.toString()" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email != ''.toString()" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateId != null and certificateId != ''.toString()" >
+        #{certificateId,jdbcType=VARCHAR},
+      </if>
+      #{isAgent,jdbcType=DECIMAL},
+      <if test="monitorDept != null and monitorDept != ''.toString()" >
+        #{monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null and memo1 != ''.toString()" >
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        #{memo5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_CC_EMPLOYEE_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CC_EMPLOYEE_INFO
+    <set >
+      <if test="record.employeeId != null" >
+        EMPLOYEE_ID = #{record.employeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.employeeNo != null" >
+        EMPLOYEE_NO = #{record.employeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null" >
+        DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        GENDER = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        AGE = #{record.age,jdbcType=DECIMAL},
+      </if>
+      <if test="record.birthday != null" >
+        BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.joinDate != null" >
+        JOIN_DATE = #{record.joinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tel != null" >
+        TEL = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateId != null" >
+        CERTIFICATE_ID = #{record.certificateId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAgent != null" >
+        IS_AGENT = #{record.isAgent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.monitorDept != null" >
+        MONITOR_DEPT = #{record.monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo1 != null" >
+        MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo2 != null" >
+        MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo3 != null" >
+        MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo4 != null" >
+        MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo5 != null" >
+        MEMO5 = #{record.memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CC_EMPLOYEE_INFO
+    set EMPLOYEE_ID = #{record.employeeId,jdbcType=DECIMAL},
+      EMPLOYEE_NO = #{record.employeeNo,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      GENDER = #{record.gender,jdbcType=VARCHAR},
+      AGE = #{record.age,jdbcType=DECIMAL},
+      BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      JOIN_DATE = #{record.joinDate,jdbcType=TIMESTAMP},
+      TEL = #{record.tel,jdbcType=VARCHAR},
+      MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      CERTIFICATE_ID = #{record.certificateId,jdbcType=VARCHAR},
+      IS_AGENT = #{record.isAgent,jdbcType=DECIMAL},
+      MONITOR_DEPT = #{record.monitorDept,jdbcType=VARCHAR},
+      MEMO1 = #{record.memo1,jdbcType=VARCHAR},
+      MEMO2 = #{record.memo2,jdbcType=VARCHAR},
+      MEMO3 = #{record.memo3,jdbcType=VARCHAR},
+      MEMO4 = #{record.memo4,jdbcType=VARCHAR},
+      MEMO5 = #{record.memo5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfo" >
+    update T_CC_EMPLOYEE_INFO
+    <set >
+      <if test="employeeNo != null" >
+        EMPLOYEE_NO = #{employeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bossPwd != null" >
+        BOSS_PWD = #{bossPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE = #{joinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateId != null" >
+        CERTIFICATE_ID = #{certificateId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null" >
+        IS_AGENT = #{isAgent,jdbcType=DECIMAL},
+      </if>
+      <if test="monitorDept != null" >
+        MONITOR_DEPT = #{monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        MEMO2 = #{memo2,jdbcType=VARCHAR},
+      </if>
+      <if test="memo3 != null" >
+        MEMO3 = #{memo3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo4 != null" >
+        MEMO4 = #{memo4,jdbcType=VARCHAR},
+      </if>
+      <if test="memo5 != null" >
+        MEMO5 = #{memo5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.callcenter.model.autogenerate.EmployeeInfo" >
+    update T_CC_EMPLOYEE_INFO
+    set EMPLOYEE_NO = #{employeeNo,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      BOSS_PWD = #{type,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      JOIN_DATE = #{joinDate,jdbcType=TIMESTAMP},
+      TEL = #{tel,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CERTIFICATE_ID = #{certificateId,jdbcType=VARCHAR},
+      IS_AGENT = #{isAgent,jdbcType=DECIMAL},
+      MONITOR_DEPT = #{monitorDept,jdbcType=VARCHAR},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      MEMO2 = #{memo2,jdbcType=VARCHAR},
+      MEMO3 = #{memo3,jdbcType=VARCHAR},
+      MEMO4 = #{memo4,jdbcType=VARCHAR},
+      MEMO5 = #{memo5,jdbcType=VARCHAR}
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+  </update>
+</mapper>

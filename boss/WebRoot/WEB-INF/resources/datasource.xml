@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DatasourceManager xmlVersion="20120203" releaseVersion="7.0.0">
+<ConnectionMap>
+<Connection name="boss" class="com.fr.data.impl.JDBCDatabaseConnection">
+<DatabaseAttr/>
+<JDBCDatabaseAttr url="jdbc:mysql://localhost:3306/boss?useUnicode=true&amp;characterEncoding=UTF-8" driver="com.mysql.jdbc.Driver" user="tsd" password="___0067003d006e003d005400e4001b006700600039" encryptPassword="true">
+<DBCPAttr/>
+</JDBCDatabaseAttr>
+</Connection>
+</ConnectionMap>
+</DatasourceManager>

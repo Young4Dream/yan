@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="struts-admin" location="0,0" size="0,0">
+    <action name="login" location="0,0" size="0,0">
+      <result name="login" />
+      <result name="fail">
+        <resourceEdge source="fail" routing="0" target="login.jsp" />
+      </result>
+      <result name="success" />
+      <result name="adminSuccess" />
+    </action>
+    <action name="sysIndex" location="0,0" size="0,0">
+      <result name="indexPage" />
+      <result name="adminPage" />
+    </action>
+    <action name="index" location="0,0" size="0,0">
+      <result name="menuTree" />
+    </action>
+    <action name="user" location="0,0" size="0,0">
+      <result name="userPage" />
+      <result name="userJson" />
+      <result name="roleJson" />
+    </action>
+    <action name="menu" location="0,0" size="0,0">
+      <result name="menuPage" />
+      <result name="menuTree" />
+      <result name="menuInfo" />
+    </action>
+    <action name="role" location="0,0" size="0,0">
+      <result name="rolePage" />
+      <result name="allRole" />
+      <result name="checked" />
+    </action>
+    <action name="menucheck" location="0,0" size="0,0">
+      <result name="checked" />
+    </action>
+    <action name="empl" location="0,0" size="0,0">
+      <result name="emplPage" />
+      <result name="emplList" />
+      <result name="skillTree" />
+    </action>
+    <action name="skill" location="0,0" size="0,0">
+      <result name="skillPage" />
+      <result name="skillJson" />
+    </action>
+    <action name="querynum" location="0,0" size="0,0">
+      <result name="numPage" />
+      <result name="telMgrPage" />
+      <result name="queryNumInsert" />
+      <result name="queryNumUpdate" />
+      <result name="queryNumDelete" />
+      <result name="numJson" />
+    </action>
+    <action name="trou" location="0,0" size="0,0">
+      <result name="trouPage" />
+      <result name="phenomenonSelect" />
+      <result name="troubleHistoryList" />
+      <result name="userInfoSelect" />
+      <result name="checkDh" />
+      <result name="checkBroad" />
+      <result name="selectKdUserInfo" />
+    </action>
+    <action name="param" location="0,0" size="0,0">
+      <result name="paramConfPage" />
+      <result name="paramsInsert" />
+      <result name="paramsUpdate" />
+      <result name="paramsDelete" />
+      <result name="numJson" />
+    </action>
+  </package>
+  <webResource name="login.jsp" path="login.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.CdrLogMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.CdrLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="HOST" jdbcType="VARCHAR" property="host" />
+    <result column="FILENAME" jdbcType="VARCHAR" property="filename" />
+    <result column="SOURCE_ID" jdbcType="VARCHAR" property="sourceId" />
+    <result column="FILE_SIZE" jdbcType="VARCHAR" property="fileSize" />
+    <result column="CHECK_SUM" jdbcType="VARCHAR" property="checkSum" />
+    <result column="SOURCE_DIRECTORY" jdbcType="VARCHAR" property="sourceDirectory" />
+    <result column="CACHED_DIRECTORY" jdbcType="VARCHAR" property="cachedDirectory" />
+    <result column="ARCHIVE_DIRECTORY" jdbcType="VARCHAR" property="archiveDirectory" />
+    <result column="DECODER_NAME" jdbcType="VARCHAR" property="decoderName" />
+    <result column="FLAG" jdbcType="INTEGER" property="flag" />
+    <result column="RECORD_COUNT" jdbcType="INTEGER" property="recordCount" />
+    <result column="ABNORMAL_COUNT" jdbcType="INTEGER" property="abnormalCount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, HOST, FILENAME, SOURCE_ID, FILE_SIZE, CHECK_SUM, SOURCE_DIRECTORY, CACHED_DIRECTORY, 
+    ARCHIVE_DIRECTORY, DECODER_NAME, FLAG, RECORD_COUNT, ABNORMAL_COUNT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="countAll" resultType="int">
+    select 
+    count(*)
+    from ocs_cdr_log
+    where 1=1
+  </select>
+  <select id="selectLastLog" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_log
+    where SOURCE_ID = #{0}
+    and FILENAME = #{1}
+    order by CREATE_TIME desc
+    limit 0, 1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByFlag" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_log
+    where FLAG = #{0}
+    order by CREATE_TIME
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_cdr_log
+    where 1=1
+    order by CREATE_TIME desc
+    limit #{0}, #{1}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_cdr_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.CdrLog">
+    insert into ocs_cdr_log (ID, HOST, FILENAME, 
+      SOURCE_DIRECTORY, CACHED_DIRECTORY, ARCHIVE_DIRECTORY, 
+      DECODER_NAME, FLAG, RECORD_COUNT, 
+      ABNORMAL_COUNT, CREATE_TIME, UPDATE_TIME,
+      SOURCE_ID, FILE_SIZE, CHECK_SUM
+      )
+    values (#{id,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{sourceDirectory,jdbcType=VARCHAR}, #{cachedDirectory,jdbcType=VARCHAR}, #{archiveDirectory,jdbcType=VARCHAR}, 
+      #{decoderName,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, #{recordCount,jdbcType=INTEGER}, 
+      #{abnormalCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+      #{sourceId,jdbcType=VARCHAR}, #{fileSize,jdbcType=INTEGER}, #{checkSum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.CdrLog">
+    insert into ocs_cdr_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="host != null">
+        HOST,
+      </if>
+      <if test="filename != null">
+        FILENAME,
+      </if>
+      <if test="sourceDirectory != null">
+        SOURCE_DIRECTORY,
+      </if>
+      <if test="cachedDirectory != null">
+        CACHED_DIRECTORY,
+      </if>
+      <if test="archiveDirectory != null">
+        ARCHIVE_DIRECTORY,
+      </if>
+      <if test="decoderName != null">
+        DECODER_NAME,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="recordCount != null">
+        RECORD_COUNT,
+      </if>
+      <if test="abnormalCount != null">
+        ABNORMAL_COUNT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="sourceId != null">
+        SOURCE_ID,
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE,
+      </if>
+      <if test="checkSum != null">
+        CHECK_SUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceDirectory != null">
+        #{sourceDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="cachedDirectory != null">
+        #{cachedDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDirectory != null">
+        #{archiveDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="decoderName != null">
+        #{decoderName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="recordCount != null">
+        #{recordCount,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalCount != null">
+        #{abnormalCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=INTEGER},
+      </if>
+      <if test="checkSum != null">
+        #{checkSum,jdbcType=INTEGER},
+      </if>
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.CdrLog">
+    update ocs_cdr_log
+    <set>
+      <if test="host != null">
+        HOST = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        FILENAME = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceDirectory != null">
+        SOURCE_DIRECTORY = #{sourceDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="cachedDirectory != null">
+        CACHED_DIRECTORY = #{cachedDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDirectory != null">
+        ARCHIVE_DIRECTORY = #{archiveDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="decoderName != null">
+        DECODER_NAME = #{decoderName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="recordCount != null">
+        RECORD_COUNT = #{recordCount,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalCount != null">
+        ABNORMAL_COUNT = #{abnormalCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceId != null">
+        SOURCE_ID = #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE = #{fileSize,jdbcType=INTEGER},
+      </if>
+      <if test="checkSum != null">
+        CHECK_SUM = #{checkSum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.CdrLog">
+    update ocs_cdr_log
+    set HOST = #{host,jdbcType=VARCHAR},
+      FILENAME = #{filename,jdbcType=VARCHAR},
+      SOURCE_DIRECTORY = #{sourceDirectory,jdbcType=VARCHAR},
+      CACHED_DIRECTORY = #{cachedDirectory,jdbcType=VARCHAR},
+      ARCHIVE_DIRECTORY = #{archiveDirectory,jdbcType=VARCHAR},
+      DECODER_NAME = #{decoderName,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=INTEGER},
+      RECORD_COUNT = #{recordCount,jdbcType=INTEGER},
+      ABNORMAL_COUNT = #{abnormalCount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SOURCE_ID = #{sourceId,jdbcType=VARCHAR},
+      FILE_SIZE = #{fileSize,jdbcType=INTEGER},
+      CHECK_SUM = #{checkSum,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.JobOpWorkloadMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.JobOpWorkload">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FORM_ID" jdbcType="VARCHAR" property="formId" />
+    <result column="ASSIGNEE" jdbcType="VARCHAR" property="assignee" />
+    <result column="ASSIGNEE_NAME" jdbcType="VARCHAR" property="assigneeName" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FORM_ID, ASSIGNEE, ASSIGNEE_NAME, AMOUNT, CREATOR, CREATE_TIME, REMARK
+  </sql>
+
+  <select id="selectByFormId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_workload
+    where FORM_ID = #{formId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_workload
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from job_op_workload
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.JobOpWorkload">
+    insert into job_op_workload (ID, FORM_ID, ASSIGNEE, 
+      ASSIGNEE_NAME, AMOUNT, CREATOR, 
+      CREATE_TIME, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{formId,jdbcType=VARCHAR}, #{assignee,jdbcType=VARCHAR}, 
+      #{assigneeName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.JobOpWorkload">
+    insert into job_op_workload
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="formId != null">
+        FORM_ID,
+      </if>
+      <if test="assignee != null">
+        ASSIGNEE,
+      </if>
+      <if test="assigneeName != null">
+        ASSIGNEE_NAME,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="formId != null">
+        #{formId,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null">
+        #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="assigneeName != null">
+        #{assigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.JobOpWorkload">
+    update job_op_workload
+    <set>
+      <if test="formId != null">
+        FORM_ID = #{formId,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null">
+        ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="assigneeName != null">
+        ASSIGNEE_NAME = #{assigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.JobOpWorkload">
+    update job_op_workload
+    set FORM_ID = #{formId,jdbcType=VARCHAR},
+      ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      ASSIGNEE_NAME = #{assigneeName,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

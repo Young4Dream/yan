@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ac.dao.AcCommandMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ac.model.AcCommand">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ACTION_ID" jdbcType="VARCHAR" property="actionId" />
+    <result column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="CTRL_SET_NAME" jdbcType="VARCHAR" property="ctrlSetName" />
+    <result column="CMD" jdbcType="VARCHAR" property="cmd" />
+    <result column="CMD_ORDER" jdbcType="INTEGER" property="cmdOrder" />
+    <result column="KEY_FLAG" jdbcType="INTEGER" property="keyFlag" />
+    <result column="RET_CODE" jdbcType="INTEGER" property="retCode" />
+    <result column="RET_DESC" jdbcType="VARCHAR" property="retDesc" />
+    <result column="EXE_TIME" jdbcType="TIMESTAMP" property="exeTime" />
+    <result column="CMD_PROMPT" jdbcType="VARCHAR" property="cmdPrompt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACTION_ID, DEVICE_CODE, CTRL_SET_NAME, CMD, CMD_ORDER, KEY_FLAG, RET_CODE, RET_DESC, 
+    EXE_TIME, CMD_PROMPT
+  </sql>
+
+  <select id="selectByActionId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_command
+    where ACTION_ID = #{actionId,jdbcType=VARCHAR}
+    order by CMD_ORDER
+  </select>
+ 
+  <delete id="deleteByActionId" parameterType="java.lang.String">
+    delete from ac_command
+    where ACTION_ID = #{actionId,jdbcType=VARCHAR}
+  </delete>
+ 
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_command
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ac_command
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ac.model.AcCommand">
+    insert into ac_command (ID, ACTION_ID, DEVICE_CODE, 
+      CTRL_SET_NAME, CMD, CMD_ORDER, 
+      KEY_FLAG, RET_CODE, RET_DESC, 
+      EXE_TIME, CMD_PROMPT)
+    values (#{id,jdbcType=VARCHAR}, #{actionId,jdbcType=VARCHAR}, #{deviceCode,jdbcType=VARCHAR}, 
+      #{ctrlSetName,jdbcType=VARCHAR}, #{cmd,jdbcType=VARCHAR}, #{cmdOrder,jdbcType=INTEGER}, 
+      #{keyFlag,jdbcType=INTEGER}, #{retCode,jdbcType=INTEGER}, #{retDesc,jdbcType=VARCHAR}, 
+      #{exeTime,jdbcType=TIMESTAMP}, #{cmdPrompt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ac.model.AcCommand">
+    insert into ac_command
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="actionId != null">
+        ACTION_ID,
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE,
+      </if>
+      <if test="ctrlSetName != null">
+        CTRL_SET_NAME,
+      </if>
+      <if test="cmd != null">
+        CMD,
+      </if>
+      <if test="cmdOrder != null">
+        CMD_ORDER,
+      </if>
+      <if test="keyFlag != null">
+        KEY_FLAG,
+      </if>
+      <if test="retCode != null">
+        RET_CODE,
+      </if>
+      <if test="retDesc != null">
+        RET_DESC,
+      </if>
+      <if test="exeTime != null">
+        EXE_TIME,
+      </if>
+      <if test="cmdPrompt != null">
+        CMD_PROMPT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="actionId != null">
+        #{actionId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlSetName != null">
+        #{ctrlSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmd != null">
+        #{cmd,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdOrder != null">
+        #{cmdOrder,jdbcType=INTEGER},
+      </if>
+      <if test="keyFlag != null">
+        #{keyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="retCode != null">
+        #{retCode,jdbcType=INTEGER},
+      </if>
+      <if test="retDesc != null">
+        #{retDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="exeTime != null">
+        #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmdPrompt != null">
+        #{cmdPrompt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ac.model.AcCommand">
+    update ac_command
+    <set>
+      <if test="actionId != null">
+        ACTION_ID = #{actionId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlSetName != null">
+        CTRL_SET_NAME = #{ctrlSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmd != null">
+        CMD = #{cmd,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdOrder != null">
+        CMD_ORDER = #{cmdOrder,jdbcType=INTEGER},
+      </if>
+      <if test="keyFlag != null">
+        KEY_FLAG = #{keyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="retCode != null">
+        RET_CODE = #{retCode,jdbcType=INTEGER},
+      </if>
+      <if test="retDesc != null">
+        RET_DESC = #{retDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="exeTime != null">
+        EXE_TIME = #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmdPrompt != null">
+        CMD_PROMPT = #{cmdPrompt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ac.model.AcCommand">
+    update ac_command
+    set ACTION_ID = #{actionId,jdbcType=VARCHAR},
+      DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      CTRL_SET_NAME = #{ctrlSetName,jdbcType=VARCHAR},
+      CMD = #{cmd,jdbcType=VARCHAR},
+      CMD_ORDER = #{cmdOrder,jdbcType=INTEGER},
+      KEY_FLAG = #{keyFlag,jdbcType=INTEGER},
+      RET_CODE = #{retCode,jdbcType=INTEGER},
+      RET_DESC = #{retDesc,jdbcType=VARCHAR},
+      EXE_TIME = #{exeTime,jdbcType=TIMESTAMP},
+      CMD_PROMPT = #{cmdPrompt,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

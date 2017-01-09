@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.OcsAccountLogMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.OcsAccountLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="LOG_NO" jdbcType="VARCHAR" property="logNo" />
+    <result column="OP_TYPE" jdbcType="VARCHAR" property="opType" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="OPER" jdbcType="VARCHAR" property="oper" />
+    <result column="OP_TIME" jdbcType="TIMESTAMP" property="opTime" />
+    <result column="OP_INFO" jdbcType="VARCHAR" property="opInfo" />
+    <result column="VOUCHER_NO" jdbcType="VARCHAR" property="voucherNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUSTOMER_ID, ACCOUNT_ID, LOG_NO, OP_TYPE, AMOUNT, OPER, OP_TIME, OP_INFO, VOUCHER_NO
+  </sql>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from ocs_account_log a
+    left join crm_customer b on a.customer_id=b.id
+    where 1=1
+    <if test="opType != null">
+      and OP_TYPE = #{opType}
+    </if>
+    <if test="oper != null and oper != ''">
+      and OPER = #{oper}
+    </if>
+    <if test="fullText != null and oper != ''">
+       and (
+         b.CUSTOMER_NO = #{fullText}
+         or b.NAME like concat('%', #{fullText}, '%')
+       )
+    </if>
+    <if test="startTime != null">
+      and OP_TIME &gt;= #{startTime}
+    </if>
+    <if test="endTime != null">
+      and OP_TIME &lt;= #{endTime}
+    </if>
+  </select>
+  
+  <select id="selectByPage" parameterType="map" resultType="map">
+    select 
+      a.OPER as oper, a.OP_TIME as opTime, a.VOUCHER_NO as voucherNo, a.AMOUNT as amount,
+      a.OP_TYPE as opType, b.CUSTOMER_NO as customerNo, b.NAME as customerName
+    from ocs_account_log a
+    left join crm_customer b on a.customer_id=b.id
+    where 1=1
+    <if test="opType != null">
+      and OP_TYPE = #{opType}
+    </if>
+    <if test="oper != null and oper != ''">
+      and OPER = #{oper}
+    </if>
+    <if test="fullText != null and oper != ''">
+       and (
+         b.CUSTOMER_NO = #{fullText}
+         or b.NAME like concat('%', #{fullText}, '%')
+       )
+    </if>
+    <if test="startTime != null">
+      and OP_TIME &gt;= #{startTime}
+    </if>
+    <if test="endTime != null">
+      and OP_TIME &lt;= #{endTime}
+    </if>
+    order by a.OP_TIME desc
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_account_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_account_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.OcsAccountLog">
+    insert into ocs_account_log (ID, CUSTOMER_ID, ACCOUNT_ID, 
+      LOG_NO, OP_TYPE, AMOUNT, 
+      OPER, OP_TIME, OP_INFO, 
+      VOUCHER_NO)
+    values (#{id,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{logNo,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{oper,jdbcType=VARCHAR}, #{opTime,jdbcType=TIMESTAMP}, #{opInfo,jdbcType=VARCHAR}, 
+      #{voucherNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.OcsAccountLog">
+    insert into ocs_account_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="logNo != null">
+        LOG_NO,
+      </if>
+      <if test="opType != null">
+        OP_TYPE,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="oper != null">
+        OPER,
+      </if>
+      <if test="opTime != null">
+        OP_TIME,
+      </if>
+      <if test="opInfo != null">
+        OP_INFO,
+      </if>
+      <if test="voucherNo != null">
+        VOUCHER_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="logNo != null">
+        #{logNo,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="oper != null">
+        #{oper,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null">
+        #{opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opInfo != null">
+        #{opInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNo != null">
+        #{voucherNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.OcsAccountLog">
+    update ocs_account_log
+    <set>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="logNo != null">
+        LOG_NO = #{logNo,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        OP_TYPE = #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="oper != null">
+        OPER = #{oper,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null">
+        OP_TIME = #{opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opInfo != null">
+        OP_INFO = #{opInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNo != null">
+        VOUCHER_NO = #{voucherNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.OcsAccountLog">
+    update ocs_account_log
+    set CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      LOG_NO = #{logNo,jdbcType=VARCHAR},
+      OP_TYPE = #{opType,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      OPER = #{oper,jdbcType=VARCHAR},
+      OP_TIME = #{opTime,jdbcType=TIMESTAMP},
+      OP_INFO = #{opInfo,jdbcType=VARCHAR},
+      VOUCHER_NO = #{voucherNo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.UserEmplInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.UserEmplInfo" >
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="S1" property="s1" jdbcType="VARCHAR" />
+    <result column="S2" property="s2" jdbcType="VARCHAR" />
+    <result column="S3" property="s3" jdbcType="VARCHAR" />
+    <result column="NUM1" property="num1" jdbcType="DECIMAL" />
+    <result column="NUM2" property="num2" jdbcType="DECIMAL" />
+    <result column="NUM3" property="num3" jdbcType="DECIMAL" />
+    <result column="IS_ADMIN" property="isAdmin" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="BOSS_PWD" property="bossPwd" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GENDER" property="gender" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="JOIN_DATE" property="joinDate" jdbcType="TIMESTAMP" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_ID" property="certificateId" jdbcType="VARCHAR" />
+    <result column="IS_AGENT" property="isAgent" jdbcType="DECIMAL" />
+    <result column="MONITOR_DEPT" property="monitorDept" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NAME, PASSWORD, ROLE_ID, CREATE_TIME, UPDATE_TIME, REMARK, S1, S2, 
+    S3, NUM1, NUM2, NUM3, IS_ADMIN, TYPE,BOSS_PWD, DEPT_ID, NAME, GENDER, AGE, BIRTHDAY, JOIN_DATE, 
+    TEL, MOBILE, EMAIL, CERTIFICATE_ID, IS_AGENT, MONITOR_DEPT, DEPT_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tstar.callcenter.model.autogenerate.UserEmplInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from V_CC_USER_EMPLOYEE_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.UserEmplInfoExample" >
+    delete from V_CC_USER_EMPLOYEE_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.UserEmplInfo" >
+    insert into V_CC_USER_EMPLOYEE_INFO (USER_ID, USER_NAME, PASSWORD, 
+      ROLE_ID, CREATE_TIME, UPDATE_TIME, 
+      REMARK, S1, S2, S3, 
+      NUM1, NUM2, NUM3, IS_ADMIN, 
+      TYPE, DEPT_ID, NAME, 
+      GENDER, AGE, BIRTHDAY, 
+      JOIN_DATE, TEL, MOBILE, 
+      EMAIL, CERTIFICATE_ID, IS_AGENT, 
+      MONITOR_DEPT, DEPT_NAME)
+    values (#{userId,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{s1,jdbcType=VARCHAR}, #{s2,jdbcType=VARCHAR}, #{s3,jdbcType=VARCHAR}, 
+      #{num1,jdbcType=DECIMAL}, #{num2,jdbcType=DECIMAL}, #{num3,jdbcType=DECIMAL}, #{isAdmin,jdbcType=DECIMAL}, 
+      #{type,jdbcType=VARCHAR}, #{deptId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{joinDate,jdbcType=TIMESTAMP}, #{tel,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{certificateId,jdbcType=VARCHAR}, #{isAgent,jdbcType=DECIMAL}, 
+      #{monitorDept,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.UserEmplInfo" >
+    insert into V_CC_USER_EMPLOYEE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      USER_ID,
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      ROLE_ID,
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="s1 != null" >
+        S1,
+      </if>
+      <if test="s2 != null" >
+        S2,
+      </if>
+      <if test="s3 != null" >
+        S3,
+      </if>
+      NUM1,
+      NUM2,
+      NUM3,
+      IS_ADMIN,
+      <if test="type != null" >
+        TYPE,
+      </if>
+      DEPT_ID,
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      AGE,
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="certificateId != null" >
+        CERTIFICATE_ID,
+      </if>
+      IS_AGENT,
+      <if test="monitorDept != null" >
+        MONITOR_DEPT,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{userId,jdbcType=DECIMAL},
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      #{roleId,jdbcType=DECIMAL},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="s1 != null" >
+        #{s1,jdbcType=VARCHAR},
+      </if>
+      <if test="s2 != null" >
+        #{s2,jdbcType=VARCHAR},
+      </if>
+      <if test="s3 != null" >
+        #{s3,jdbcType=VARCHAR},
+      </if>
+      #{num1,jdbcType=DECIMAL},
+      #{num2,jdbcType=DECIMAL},
+      #{num3,jdbcType=DECIMAL},
+      #{isAdmin,jdbcType=DECIMAL},
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      #{deptId,jdbcType=DECIMAL},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      #{age,jdbcType=DECIMAL},
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateId != null" >
+        #{certificateId,jdbcType=VARCHAR},
+      </if>
+      #{isAgent,jdbcType=DECIMAL},
+      <if test="monitorDept != null" >
+        #{monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.UserEmplInfoExample" resultType="java.lang.Integer" >
+    select count(*) from V_CC_USER_EMPLOYEE_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update V_CC_USER_EMPLOYEE_INFO
+    <set >
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userName != null" >
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null" >
+        ROLE_ID = #{record.roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.s1 != null" >
+        S1 = #{record.s1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.s2 != null" >
+        S2 = #{record.s2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.s3 != null" >
+        S3 = #{record.s3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num1 != null" >
+        NUM1 = #{record.num1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num2 != null" >
+        NUM2 = #{record.num2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num3 != null" >
+        NUM3 = #{record.num3,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isAdmin != null" >
+        IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null" >
+        DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        GENDER = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        AGE = #{record.age,jdbcType=DECIMAL},
+      </if>
+      <if test="record.birthday != null" >
+        BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.joinDate != null" >
+        JOIN_DATE = #{record.joinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tel != null" >
+        TEL = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateId != null" >
+        CERTIFICATE_ID = #{record.certificateId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAgent != null" >
+        IS_AGENT = #{record.isAgent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.monitorDept != null" >
+        MONITOR_DEPT = #{record.monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptName != null" >
+        DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update V_CC_USER_EMPLOYEE_INFO
+    set USER_ID = #{record.userId,jdbcType=DECIMAL},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      ROLE_ID = #{record.roleId,jdbcType=DECIMAL},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      S1 = #{record.s1,jdbcType=VARCHAR},
+      S2 = #{record.s2,jdbcType=VARCHAR},
+      S3 = #{record.s3,jdbcType=VARCHAR},
+      NUM1 = #{record.num1,jdbcType=DECIMAL},
+      NUM2 = #{record.num2,jdbcType=DECIMAL},
+      NUM3 = #{record.num3,jdbcType=DECIMAL},
+      IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      GENDER = #{record.gender,jdbcType=VARCHAR},
+      AGE = #{record.age,jdbcType=DECIMAL},
+      BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      JOIN_DATE = #{record.joinDate,jdbcType=TIMESTAMP},
+      TEL = #{record.tel,jdbcType=VARCHAR},
+      MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      CERTIFICATE_ID = #{record.certificateId,jdbcType=VARCHAR},
+      IS_AGENT = #{record.isAgent,jdbcType=DECIMAL},
+      MONITOR_DEPT = #{record.monitorDept,jdbcType=VARCHAR},
+      DEPT_NAME = #{record.deptName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

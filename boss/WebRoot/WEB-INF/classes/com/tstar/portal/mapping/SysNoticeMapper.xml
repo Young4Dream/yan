@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.SysNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.portal.model.SysNotice">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SUBJECT" jdbcType="VARCHAR" property="subject" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="LEVEL" jdbcType="VARCHAR" property="level" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SUBJECT, CONTENT, LEVEL, STATUS, CREATOR, CREATE_TIME
+  </sql>
+
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from sys_notice
+    where 1=1
+    <if test="level != null">
+      and LEVEL = #{level}
+    </if>
+    <if test="status != null">
+      and STATUS = #{status}
+    </if>
+    <if test="subject != null and subject != ''">
+      and SUBJECT like concat('%', #{subject}, '%')
+    </if>
+  </select>
+
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_notice
+    where 1=1
+    <if test="level != null">
+      and LEVEL = #{level}
+    </if>
+    <if test="status != null">
+      and STATUS = #{status}
+    </if>
+    <if test="subject != null and subject != ''">
+      and SUBJECT like concat('%', #{subject}, '%')
+    </if>
+    order by CREATE_TIME desc
+    limit #{start}, #{length};
+  </select>
+
+  <select id="selectTop10" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_notice
+    where STATUS = 1
+    order by CREATE_TIME desc
+    limit 0, 10
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_notice
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_notice
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.portal.model.SysNotice">
+    insert into sys_notice (ID, SUBJECT, CONTENT, 
+      LEVEL, STATUS, CREATOR, 
+      CREATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.portal.model.SysNotice">
+    insert into sys_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="subject != null">
+        SUBJECT,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="level != null">
+        LEVEL,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.portal.model.SysNotice">
+    update sys_notice
+    <set>
+      <if test="subject != null">
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        LEVEL = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.portal.model.SysNotice">
+    update sys_notice
+    set SUBJECT = #{subject,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

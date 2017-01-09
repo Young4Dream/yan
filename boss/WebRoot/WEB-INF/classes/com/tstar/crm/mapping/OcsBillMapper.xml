@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.OcsBillMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.OcsBill">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="CREDITOR_ID" jdbcType="VARCHAR" property="creditorId" />
+    <result column="BILL_NO" jdbcType="VARCHAR" property="billNo" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="AMOUNT_DUE" jdbcType="DECIMAL" property="amountDue" />
+    <result column="AMOUNT_PROCEED" jdbcType="DECIMAL" property="amountProceed" />
+    <result column="PAY_POLICY" jdbcType="INTEGER" property="payPolicy" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, CUSTOMER_ID, ACCOUNT_ID, CREDITOR_ID, BILL_NO, START_DATE, END_DATE, 
+    AMOUNT_DUE, AMOUNT_PROCEED, PAY_POLICY, STATUS, FILE_PATH, CREATE_TIME, UPDATE_TIME
+  </sql>
+
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    	count(*)
+    from ocs_bill a
+    left join crm_customer b on a.customer_id = b.id
+    left join crm_user c on a.user_id = c.id
+    where 1=1
+    <if test="billNo != null and billNo != ''">
+    	and a.bill_no like concat(#{billNo}, '%') 
+    </if>
+    <if test="businessType != null">
+    	and c.business_type = #{businessType}
+    </if>
+    <if test="status != null">
+    	and a.status = #{status}
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		b.customer_no like concat(#{fullText}, '%') or
+    		b.name like concat('%', #{fullText}, '%') or
+    		c.business_key like concat(#{fullText}, '%') or
+    		c.name like concat('%', #{fullText}, '%')
+    	)
+    </if>
+  </select>
+  <select id="selectByPage" parameterType="map" resultType="map">
+    select 
+    	a.id as id, a.bill_no as billNo, c.id as userId, b.id as customerId, 
+    	a.start_date as startDate, a.end_date as endDate, d.amount as balance, 
+    	a.amount_due as amountDue, a.amount_proceed as amountProceed, a.status as status,
+    	b.name as customerName, c.name as userName, 
+    	c.business_key as businessKey, 
+    	(select name from ref_business_type where ref_business_type.id = c.business_type) as businessType
+    from ocs_bill a
+    left join crm_customer b on a.customer_id = b.id
+    left join crm_user c on a.user_id = c.id
+    left join crm_account d on a.creditor_id = d.id
+    where 1=1
+    <if test="billNo != null and billNo != ''">
+    	and a.bill_no like concat(#{billNo}, '%') 
+    </if>
+    <if test="status != null">
+    	and a.status = #{status}
+    </if>
+    <if test="businessType != null">
+    	and c.business_type = #{businessType}
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		b.customer_no like concat(#{fullText}, '%') or
+    		b.name like concat('%', #{fullText}, '%') or
+    		c.business_key like concat(#{fullText}, '%') or
+    		c.name like concat('%', #{fullText}, '%')
+    	)
+    </if>
+    order by bill_no desc
+    limit ${start}, ${length}
+  </select>
+  
+  <select id="selectByUserIdAndDate" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_bill
+    where USER_ID = #{0}
+    and #{1} between START_DATE and END_DATE
+    and STATUS = 0
+    limit 0, 1
+  </select>
+
+  <select id="selectAnother" resultType="map">
+    select 
+    	ID as id, BILL_NO as billNo, date_format(END_DATE, '%Y-%m-%d') as endDate, (AMOUNT_DUE - AMOUNT_PROCEED) as amountDue,
+    	(select NAME from ref_business_type a where a.ID=(select BUSINESS_TYPE from crm_user b where b.ID=USER_ID)) as businessTypeDesc
+    from ocs_bill
+    where CUSTOMER_ID = #{0}
+    and ID not in (#{1})
+    and STATUS in (2, 91)
+    order by BILL_NO
+    limit 0, 5
+  </select>
+
+  <update id="updateStatusByCriteria" parameterType="map">
+    update ocs_bill
+    set 
+      STATUS = #{newStatus}
+    where BILL_NO like concat(#{billNo}, '%')
+    and STATUS in (0, 1)
+  </update>
+
+  <update id="finishByAmount" parameterType="java.lang.String">
+    update ocs_bill
+    set 
+      STATUS = 9
+    where BILL_NO like concat(#{0}, '%')
+    and STATUS = 2
+    and AMOUNT_DUE = AMOUNT_PROCEED
+  </update>
+
+  <update id="updateStatusByBillNo">
+    update ocs_bill
+    set 
+      STATUS = #{1}
+    where BILL_NO like concat(#{0}, '%')
+    and STATUS &lt; #{1}
+  </update>
+
+  <update id="updateStatusByUserId">
+    update ocs_bill
+    set 
+      STATUS = #{1}
+    where USER_ID = #{0}
+    and STATUS &lt; #{1}
+  </update>
+
+  <select id="selectCustomerTopBill" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_bill
+    where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+    and STATUS IN (2, 91)
+    order by BILL_NO
+    limit 0, 1
+  </select>
+  
+  <select id="selectItemsByCustomer" parameterType="map" resultType="map">
+    select 
+    	b.ACCOUNT_ITEM_CODE as accountItemCode, b.ACCOUNT_ITEM_NAME as accountItemName,
+    	sum(b.AMOUNT) as amount, 
+    	sum(b.AMOUNT_PROCEED) as amountProceed
+    from ocs_bill a, ocs_bill_item b, crm_user c
+    where a.ID = b.BILL_ID
+    and a.USER_ID = c.ID
+    and a.CUSTOMER_ID = #{customerId}
+    and a.BILL_NO like concat(#{billNo}, '%')
+    and a.STATUS IN (2, 91)
+    <if test="businessType != null and businessType != ''">
+        and c.BUSINESS_TYPE = #{businessType} 
+    </if>
+    group by b.ACCOUNT_ITEM_CODE, b.ACCOUNT_ITEM_NAME
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_bill
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_bill
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.OcsBill">
+    insert into ocs_bill (ID, USER_ID, CUSTOMER_ID, 
+      ACCOUNT_ID, CREDITOR_ID, BILL_NO, 
+      START_DATE, END_DATE, AMOUNT_DUE, 
+      AMOUNT_PROCEED, PAY_POLICY, STATUS, 
+      FILE_PATH, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{accountId,jdbcType=VARCHAR}, #{creditorId,jdbcType=VARCHAR}, #{billNo,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{amountDue,jdbcType=DECIMAL}, 
+      #{amountProceed,jdbcType=DECIMAL}, #{payPolicy,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{filePath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.OcsBill">
+    insert into ocs_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="creditorId != null">
+        CREDITOR_ID,
+      </if>
+      <if test="billNo != null">
+        BILL_NO,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="amountDue != null">
+        AMOUNT_DUE,
+      </if>
+      <if test="amountProceed != null">
+        AMOUNT_PROCEED,
+      </if>
+      <if test="payPolicy != null">
+        PAY_POLICY,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditorId != null">
+        #{creditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="billNo != null">
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDue != null">
+        #{amountDue,jdbcType=DECIMAL},
+      </if>
+      <if test="amountProceed != null">
+        #{amountProceed,jdbcType=DECIMAL},
+      </if>
+      <if test="payPolicy != null">
+        #{payPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.OcsBill">
+    update ocs_bill
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditorId != null">
+        CREDITOR_ID = #{creditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="billNo != null">
+        BILL_NO = #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDue != null">
+        AMOUNT_DUE = #{amountDue,jdbcType=DECIMAL},
+      </if>
+      <if test="amountProceed != null">
+        AMOUNT_PROCEED = #{amountProceed,jdbcType=DECIMAL},
+      </if>
+      <if test="payPolicy != null">
+        PAY_POLICY = #{payPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.OcsBill">
+    update ocs_bill
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      CREDITOR_ID = #{creditorId,jdbcType=VARCHAR},
+      BILL_NO = #{billNo,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      AMOUNT_DUE = #{amountDue,jdbcType=DECIMAL},
+      AMOUNT_PROCEED = #{amountProceed,jdbcType=DECIMAL},
+      PAY_POLICY = #{payPolicy,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateStatus" parameterType="com.tstar.crm.model.OcsBill">
+    update ocs_bill
+    set 
+      STATUS = #{1}
+    where ID = #{0}
+  </update>
+  <update id="addAmount">
+    update ocs_bill
+    set AMOUNT_DUE = AMOUNT_DUE + #{1}
+    where ID = #{0}
+  </update>
+  <update id="addAmountProceed">
+    update ocs_bill
+    set AMOUNT_PROCEED = AMOUNT_PROCEED + #{1}
+    where ID = #{0}
+  </update>
+</mapper>

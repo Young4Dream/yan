@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.CrmUserMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.CrmUser">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="BUSINESS_TYPE" jdbcType="VARCHAR" property="businessType" />
+    <result column="BUSINESS_KEY" jdbcType="VARCHAR" property="businessKey" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="LINK_PHONE" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="PAY_POLICY" jdbcType="INTEGER" property="payPolicy" />
+    <result column="REL_TABLE" jdbcType="VARCHAR" property="relTable" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="EFFECTIVE_TIME" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="EXPIRY_TIME" jdbcType="TIMESTAMP" property="expiryTime" />
+    <result column="BILLING_DAY" jdbcType="INTEGER" property="billingDay" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="PAY_POLICY_DESC" jdbcType="VARCHAR" property="payPolicyDesc" />
+    <result column="BUSINESS_TYPE_DESC" jdbcType="VARCHAR" property="businessTypeDesc" />
+    <result column="BUSINESS_AREA" jdbcType="VARCHAR" property="businessArea" />
+    <result column="USER_AREA" jdbcType="VARCHAR" property="userArea" />
+    <result column="POST_ADDRESS" jdbcType="VARCHAR" property="postAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUSTOMER_ID, BUSINESS_TYPE, BUSINESS_KEY, NAME, DEPARTMENT_ID, ADDRESS, LINK_PHONE, 
+    STATUS, PAY_POLICY, REL_TABLE, CREATOR, CREATE_TIME, UPDATE_TIME, REMARK,
+    EFFECTIVE_TIME, EXPIRY_TIME, BILLING_DAY, BUSINESS_AREA, USER_AREA, POST_ADDRESS,
+    (SELECT NAME FROM res_dept WHERE res_dept.ID=DEPARTMENT_ID) AS DEPARTMENT_NAME,
+    (SELECT NAME FROM ref_pay_policy WHERE ref_pay_policy.ID=PAY_POLICY) AS PAY_POLICY_DESC,
+    (SELECT NAME FROM ref_business_type WHERE ref_business_type.ID=BUSINESS_TYPE) AS BUSINESS_TYPE_DESC
+  </sql>
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from crm_user
+    where 1=1
+    <if test="businessType != null and businessType != ''">
+    	and BUSINESS_TYPE = #{businessType, jdbcType=VARCHAR}
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		NAME LIKE concat('%', #{fullText}, '%')
+    		or
+    		BUSINESS_KEY LIKE concat(#{fullText}, '%')
+    		or 
+    		ADDRESS LIKE  concat('%', #{fullText}, '%')
+    		or 
+    		LINK_PHONE LIKE concat('%', #{fullText}, '%')
+    		)
+    </if>
+    <if test="status != null">
+    	and STATUS = #{status, jdbcType=INTEGER}
+    </if>
+    <if test="beginStatus != null">
+    	and STATUS &gt;= #{beginStatus, jdbcType=INTEGER}
+    </if>
+    <if test="endStatus != null">
+    	and STATUS &lt;= #{endStatus, jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="countEffectiveByKey" parameterType="java.lang.String" resultType="int">
+    select 
+    count(*)
+    from crm_user
+    where 1=1
+    and BUSINESS_TYPE = #{0}
+    and BUSINESS_KEY = #{1}
+    and STATUS &lt; 91
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user
+    where 1=1
+    <if test="businessType != null and businessType != ''">
+    	and BUSINESS_TYPE = #{businessType, jdbcType=VARCHAR}
+    </if>
+    <if test="fullText != null and fullText != ''">
+    	and (
+    		NAME LIKE concat('%', #{fullText}, '%')
+    		or
+    		BUSINESS_KEY LIKE concat(#{fullText}, '%')
+    		or 
+    		ADDRESS LIKE  concat('%', #{fullText}, '%')
+    		or 
+    		LINK_PHONE LIKE concat('%', #{fullText}, '%')
+    		)
+    </if>
+    <if test="status != null">
+    	and STATUS = #{status, jdbcType=INTEGER}
+    </if>
+    <if test="beginStatus != null">
+    	and STATUS &gt;= #{beginStatus, jdbcType=INTEGER}
+    </if>
+    <if test="endStatus != null">
+    	and STATUS &lt;= #{endStatus, jdbcType=INTEGER}
+    </if>
+    limit #{start}, #{length}
+  </select>
+
+  <select id="selectByTime" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user
+    where BUSINESS_TYPE = #{0}
+    and BUSINESS_KEY = #{1}
+    and effective_time &lt; #{2} 
+    and (expiry_time is null or expiry_time  &gt; #{2}) 
+    order by expiry_time
+    limit 0, 1
+  </select>
+  
+  <select id="selectByBusinessKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user
+    where BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR}
+    and STATUS IN (2, 3, 4)
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_user
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_user
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.CrmUser">
+    insert into crm_user (ID, CUSTOMER_ID, BUSINESS_TYPE, 
+      BUSINESS_KEY, NAME, DEPARTMENT_ID, 
+      ADDRESS, LINK_PHONE, STATUS, 
+      PAY_POLICY, REL_TABLE, CREATOR, 
+      CREATE_TIME, UPDATE_TIME, REMARK,
+      EFFECTIVE_TIME, EXPIRY_TIME, BILLING_DAY,
+      BUSINESS_AREA, USER_AREA, POST_ADDRESS
+      )
+    values (#{id,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR}, 
+      #{businessKey,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{linkPhone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{payPolicy,jdbcType=INTEGER}, #{relTable,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},
+      #{effectiveTime,jdbcType=TIMESTAMP}, #{expiryTime,jdbcType=TIMESTAMP}, #{billingDay,jdbcType=INTEGER},
+      #{businessArea,jdbcType=VARCHAR}, #{userArea,jdbcType=VARCHAR}, #{postAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.CrmUser">
+    insert into crm_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE,
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="payPolicy != null">
+        PAY_POLICY,
+      </if>
+      <if test="relTable != null">
+        REL_TABLE,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="effectiveTime != null">
+        EFFECTIVE_TIME,
+      </if>
+      <if test="expiryTime != null">
+        EXPIRY_TIME,
+      </if>
+      <if test="billingDay != null">
+        BILLING_DAY,
+      </if>
+      <if test="businessArea != null">
+        BUSINESS_AREA,
+      </if>
+      <if test="userArea != null">
+        USER_AREA,
+      </if>
+      <if test="postAddress != null">
+        POST_ADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="payPolicy != null">
+        #{payPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="relTable != null">
+        #{relTable,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiryTime != null">
+        #{expiryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billingDay != null">
+        #{billingDay,jdbcType=INTEGER},
+      </if>
+      <if test="businessArea != null">
+        #{businessArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userArea != null">
+        #{userArea,jdbcType=VARCHAR},
+      </if>
+      <if test="postAddress != null">
+        #{postAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.CrmUser">
+    update crm_user
+    <set>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="payPolicy != null">
+        PAY_POLICY = #{payPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="relTable != null">
+        REL_TABLE = #{relTable,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null">
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiryTime != null">
+        EXPIRY_TIME = #{expiryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billingDay != null">
+        BILLING_DAY = #{billingDay,jdbcType=INTEGER},
+      </if>
+      <if test="businessArea != null">
+        BUSINESS_AREA = #{businessArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userArea != null">
+        USER_AREA = #{userArea,jdbcType=VARCHAR},
+      </if>
+      <if test="postAddress != null">
+        POST_ADDRESS = #{postAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.CrmUser">
+    update crm_user
+    set CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      PAY_POLICY = #{payPolicy,jdbcType=INTEGER},
+      REL_TABLE = #{relTable,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      EXPIRY_TIME = #{expiryTime,jdbcType=TIMESTAMP},
+      BILLING_DAY = #{billingDay,jdbcType=INTEGER},
+      BUSINESS_AREA = #{businessArea,jdbcType=VARCHAR},
+      USER_AREA = #{userArea,jdbcType=VARCHAR},
+      POST_ADDRESS = #{postAddress,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateStatus">
+    update crm_user
+    set 
+      STATUS = #{1}
+    where ID = #{0}
+  </update>
+</mapper>

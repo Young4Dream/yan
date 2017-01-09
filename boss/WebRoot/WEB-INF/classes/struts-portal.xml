@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<!--采用json数据格式，package的extends必须是extends="json-default"-->  
+    <!--并且必须要用到struts2的json-lib，struts2-json-plugin包-->
+    <!--采用异步提交方式，result的type="json"，并且result节点值为空--> 
+ 	<package name="struts-portal" extends="json-default">
+ 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->  
+        <interceptors>  
+            <interceptor name="loginedCheck" class="com.tstar.portal.interceptor.SessionInterceptor"/>  
+            <interceptor-stack name="sessionstack">  
+                <interceptor-ref name="loginedCheck" />  
+                <interceptor-ref name="defaultStack" />  
+            </interceptor-stack>  
+        </interceptors>
+ 		 
+ 		<!-- 定义全局result --> 
+        <global-results>  
+            <result name="loginPage" type="redirect">login.jsp</result>  
+        </global-results> 
+        
+ 		<!-- 登录操作 -->
+ 		<action name="login" class="com.tstar.portal.action.LoginAction">
+ 			<result name="login" type="json"></result>
+			<result name="fail" type="dispatcher">login.jsp</result>
+			<result name="success" type="redirect">sysIndex!gotoPortal.do</result>
+			<interceptor-ref name="sessionstack" />
+ 		</action>
+ 		
+ 		<!-- 系统 -->
+ 		<action name="sysIndex" class="com.tstar.portal.action.SystemAction">
+			<result name="portalPage" type="dispatcher">portal.jsp</result>
+			<result name="dashboardPage" type="dispatcher">/WEB-INF/portal/dashboard.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+			<interceptor-ref name="sessionstack" />
+ 		</action> 		 
+ 		 
+ 		<action name="index" class="com.tstar.callcenter.action.SystemAction">
+			<result name="menuTree" type="json"></result>
+			<interceptor-ref name="sessionstack" />
+ 		</action>
+ 		 
+ 		<action name="user" class="com.tstar.portal.action.UserAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/user.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+ 		<action name="dept" class="com.tstar.portal.action.DeptAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/dept.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="menu" class="com.tstar.portal.action.MenuAction">
+ 			<result name="menuPage" type="dispatcher">/WEB-INF/portal/menu.jsp</result>
+ 			<result name="menuTree" type="json"></result>
+ 			<result name="menuInfo" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="role" class="com.tstar.portal.action.RoleAction">
+ 			<result name="rolePage" type="dispatcher">/WEB-INF/portal/role.jsp</result>
+ 			<result name="allRole" type="json"></result>
+ 			<result name="checked" type="json"></result> 
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="menucheck" class="com.tstar.portal.action.RoleAction" >  
+            <result name="checked" type="json"></result>  
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		
+		<action name="seq" class="com.tstar.portal.action.SeqAction" >  
+ 			<result name="getRecords" type="json"></result>
+        </action>  
+        
+		<action name="sysOp" class="com.tstar.portal.action.SysBusinessOpAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/sysBusinessOp.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<!-- 系统公告 -->
+		<action name="notice" class="com.tstar.portal.action.SysNoticeAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/notice.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<!-- 系统告警 -->
+		<action name="warn" class="com.tstar.portal.action.SysWarnLogAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/warn.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<!-- 短信服务 -->
+		<action name="sms" class="com.tstar.portal.action.SysSmsOutboxAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/sysSmsOutbox.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<action name="smsTemplate" class="com.tstar.portal.action.SysSmsTemplateAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/sysSmsTemplate.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<!-- 账务管理 -->
+		<action name="sysAccountItem" class="com.tstar.portal.action.SysAccountItemAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/portal/sysAccountItem.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<action name="ocsBill" class="com.tstar.crm.action.OcsBillAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/crm/ocsBill.jsp</result>
+ 			<result name="showPayPage" type="dispatcher">/WEB-INF/crm/userBill.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<action name="ocsInvoice" class="com.tstar.crm.action.OcsInvoiceAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/crm/ocsInvoice.jsp</result>
+ 			<result name="showNewPage" type="dispatcher">/WEB-INF/crm/customerInvoice.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		<action name="ocsAccountLog" class="com.tstar.crm.action.OcsAccountLogAction">
+ 			<result name="showHomePage" type="dispatcher">/WEB-INF/crm/ocsAccountLog.jsp</result>
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="ref" class="com.tstar.portal.action.RefAction">
+ 			<result name="getRecords" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<!-- 话单分拣 -->
+		<!-- 话单网元 -->
+		<action name="cdrSource" class="com.tstar.ocs.action.CdrSourceAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/cdrSource.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 分拣日志 -->
+		<action name="cdrLog" class="com.tstar.ocs.action.CdrLogAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/cdrLog.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 详单 -->
+		<action name="cdr" class="com.tstar.ocs.action.CdrAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/cdr.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		
+		<!-- 套餐 -->
+		<!-- 业务分类 -->
+		<action name="sidServiceCategory" class="com.tstar.ocs.action.SidServiceCategoryAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidServiceCategory.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 呼叫类型定义 -->
+		<action name="sidVoiceConfig" class="com.tstar.ocs.action.SidVoiceConfigAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidVoiceConfig.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="sidVoiceConfigItem" class="com.tstar.ocs.action.SidVoiceConfigItemAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 带宽定义 -->
+		<action name="sidDataConfig" class="com.tstar.ocs.action.SidDataConfigAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidDataConfig.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 业务定义 -->
+		<action name="sidService" class="com.tstar.ocs.action.SidServiceAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidService.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 套餐 -->
+		<action name="sidPricePlan" class="com.tstar.ocs.action.SidPricePlanAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidPricePlan.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="sidPlanRate" class="com.tstar.ocs.action.SidPlanRateAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 费率 -->
+		<action name="sidRate" class="com.tstar.ocs.action.SidRateAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidRate.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="sidRateItem" class="com.tstar.ocs.action.SidRateItemAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 运营商网间结算费率 -->
+		<action name="sidOperator" class="com.tstar.ocs.action.SidOperatorAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidOperator.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="sidOperatorRate" class="com.tstar.ocs.action.SidOperatorRateAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="sidOperatorTrunk" class="com.tstar.ocs.action.SidOperatorTrunkAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>
+		<!-- 增值服务 -->
+		<action name="sidProduct" class="com.tstar.ocs.action.SidProductAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidProduct.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 业务受理费 -->
+		<action name="sidOp" class="com.tstar.ocs.action.SidOpAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidOpFee.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="sidFee" class="com.tstar.ocs.action.SidFeeAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 耗材 -->
+		<action name="sidMaterial" class="com.tstar.ocs.action.SidMaterialAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/ocs/sidMaterial.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<!-- 资源管理 -->
+		<!-- 客户部门 -->
+		<action name="resDept" class="com.tstar.res.action.ResDeptAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resDept.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resDeviceType" class="com.tstar.res.action.ResDeviceTypeAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resDeviceType.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resDevice" class="com.tstar.res.action.ResDeviceAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resDevice.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resDevicePort" class="com.tstar.res.action.ResDevicePortAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resDevicePort.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resPortRoute" class="com.tstar.res.action.ResPortRouteAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resPortRoute.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resPhoneNumber" class="com.tstar.res.action.ResPhoneNumberAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resPhoneNumber.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resAcc" class="com.tstar.res.action.ResAccAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resAcc.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="resAddress" class="com.tstar.res.action.ResAddressAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/resAddress.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        <!-- 报表管理 -->
+		<action name="reportManager" class="com.tstar.res.action.ResReportManagerAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/reportManager.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        <!-- 报表呈现 -->
+		<action name="report" class="com.tstar.res.action.ResReportAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/report.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        <!-- 自控日志 -->
+		<action name="ac" class="com.tstar.ac.action.AcActionAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/res/ac.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        
+        <!-- 客户关系管理 -->
+		<action name="order" class="com.tstar.crm.action.CrmOrderAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="orderItem" class="com.tstar.crm.action.CrmOrderItemAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="customer" class="com.tstar.crm.action.CustomerAction" >  
+            <result name="createCustomerPage" type="dispatcher">/WEB-INF/crm/createCustomer.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="account" class="com.tstar.crm.action.CrmAccountAction" >  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="crmUser" class="com.tstar.crm.action.CrmUserAction" >  
+            <result name="inquiryUser" type="dispatcher">/WEB-INF/crm/user_inquiry.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        
+		<action name="phone" class="com.tstar.crm.action.PhoneAction" >  
+            <result name="createUser" type="dispatcher">/WEB-INF/crm/phone_create.jsp</result>  
+            <result name="deleteUser" type="dispatcher">/WEB-INF/crm/phone_delete.jsp</result>  
+            <result name="editUser" type="dispatcher">/WEB-INF/crm/phone_edit.jsp</result>  
+            <result name="changeUser" type="dispatcher">/WEB-INF/crm/phone_change.jsp</result>  
+            <result name="moveUser" type="dispatcher">/WEB-INF/crm/phone_move.jsp</result>  
+            <result name="transferUser" type="dispatcher">/WEB-INF/crm/phone_transfer.jsp</result>  
+            <result name="resetUser" type="dispatcher">/WEB-INF/crm/phone_reset.jsp</result>  
+            <result name="adjustUser" type="dispatcher">/WEB-INF/crm/phone_adjust.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="broad" class="com.tstar.crm.action.BroadAction" >  
+            <result name="createUser" type="dispatcher">/WEB-INF/crm/broad_create.jsp</result>  
+            <result name="deleteUser" type="dispatcher">/WEB-INF/crm/broad_delete.jsp</result>  
+            <result name="editUser" type="dispatcher">/WEB-INF/crm/broad_edit.jsp</result>  
+            <result name="changeUser" type="dispatcher">/WEB-INF/crm/broad_change.jsp</result>  
+            <result name="moveUser" type="dispatcher">/WEB-INF/crm/broad_move.jsp</result>  
+            <result name="transferUser" type="dispatcher">/WEB-INF/crm/broad_transfer.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="adsl" class="com.tstar.crm.action.AdslAction" >  
+            <result name="createUser" type="dispatcher">/WEB-INF/crm/adsl_create.jsp</result>  
+            <result name="deleteUser" type="dispatcher">/WEB-INF/crm/adsl_delete.jsp</result>  
+            <result name="editUser" type="dispatcher">/WEB-INF/crm/adsl_edit.jsp</result>  
+            <result name="changeUser" type="dispatcher">/WEB-INF/crm/adsl_change.jsp</result>  
+            <result name="moveUser" type="dispatcher">/WEB-INF/crm/adsl_move.jsp</result>  
+            <result name="transferUser" type="dispatcher">/WEB-INF/crm/adsl_transfer.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="pl" class="com.tstar.crm.action.PlAction" >  
+            <result name="createUser" type="dispatcher">/WEB-INF/crm/pl_create.jsp</result>  
+            <result name="deleteUser" type="dispatcher">/WEB-INF/crm/pl_delete.jsp</result>  
+            <result name="editUser" type="dispatcher">/WEB-INF/crm/pl_edit.jsp</result>  
+            <result name="changeUser" type="dispatcher">/WEB-INF/crm/pl_change.jsp</result>  
+            <result name="moveUser" type="dispatcher">/WEB-INF/crm/pl_move.jsp</result>  
+            <result name="transferUser" type="dispatcher">/WEB-INF/crm/pl_transfer.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="nb" class="com.tstar.crm.action.NewBusinessAction" >  
+            <result name="createUser" type="dispatcher">/WEB-INF/crm/nb_create.jsp</result>  
+            <result name="deleteUser" type="dispatcher">/WEB-INF/crm/nb_delete.jsp</result>  
+            <result name="editUser" type="dispatcher">/WEB-INF/crm/nb_edit.jsp</result>  
+            <result name="changeUser" type="dispatcher">/WEB-INF/crm/nb_change.jsp</result>  
+            <result name="moveUser" type="dispatcher">/WEB-INF/crm/nb_move.jsp</result>  
+            <result name="transferUser" type="dispatcher">/WEB-INF/crm/nb_transfer.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        
+		<!-- 模型、流程管理 -->
+		<action name="model" class="com.tstar.activiti.action.ModelAction" >  
+            <result name="showModelPage" type="dispatcher">/WEB-INF/workflow/model.jsp</result>  
+ 			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="modelExport" class="com.tstar.activiti.action.ModelExportAction" >  
+            <result name="success" type="stream">
+            	<!-- 指定下载文件的内容类型，text/plain是默认类型 -->
+        		<param name="contentType">text/plain</param>
+        		<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名是inputStream，那么可以省略这个参数 -->
+        		<param name="inputName">downloadFile</param>
+        		<!--动态获取文件名，从Action中的取得filename-->
+        		<param name="contentDisposition">
+            		attachment;filename="${filename}"
+        		</param>
+        		<param name="bufferSize">4096</param>
+            </result>  
+        </action>  
+		<action name="piDiagram" class="com.tstar.activiti.action.ModelDiagramAction">  
+            <result name="success" type="stream">
+            	<!-- 指定下载文件的内容类型，text/plain是默认类型 -->
+        		<param name="contentType">application/octet-stream</param>
+        		<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名是inputStream，那么可以省略这个参数 -->
+        		<param name="inputName">inputStream</param>
+        		<!--动态获取文件名，从Action中的取得filename-->
+        		<param name="contentDisposition">
+            		attachment;filename="${filename}"
+        		</param>
+        		<param name="bufferSize">4096</param>
+            </result>  
+        </action>  
+		<action name="process" class="com.tstar.activiti.action.ProcessAction" >  
+            <result name="showProcessPage" type="dispatcher">/WEB-INF/workflow/process.jsp</result>  
+			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="task" class="com.tstar.activiti.action.OpTaskAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/workflow/task.jsp</result>  
+            <result name="showMonitorPage" type="dispatcher">/WEB-INF/workflow/taskMonitor.jsp</result>  
+            <result name="showHistoryPage" type="dispatcher">/WEB-INF/workflow/taskHistory.jsp</result>  
+			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        <!-- 派工单 -->
+		<action name="jobOpForm" class="com.tstar.crm.action.JobOpFormAction" >  
+            <result name="showHomePage" type="dispatcher">/WEB-INF/workflow/jobOpFormList.jsp</result>  
+            <result name="showDetailPage" type="dispatcher">/WEB-INF/workflow/jobOpForm.jsp</result>  
+			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="jobOpMaterial" class="com.tstar.crm.action.JobOpMaterialAction" >  
+			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+		<action name="jobOpWorkload" class="com.tstar.crm.action.JobOpWorkloadAction" >  
+			<result name="getRecords" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>  
+    </package>
+</struts>

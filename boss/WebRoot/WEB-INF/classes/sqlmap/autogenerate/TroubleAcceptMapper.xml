@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.TroubleAcceptMapper" >
+  
+<resultMap id="ResultMap" type="com.tstar.callcenter.pub.data.ResultMap">
+</resultMap>
+
+<resultMap id="userMap" type="com.tstar.callcenter.pub.data.ResultMap">
+	<result column ="account" property="account" />  
+	<result column ="username" property="username" />  
+	<result column ="address" property="address" />  
+	<result column ="bm1" property="bm1" />  
+	<result column ="bm2" property="bm2" />  
+	<result column ="bm3" property="bm3" />  
+	<result column ="bm4" property="bm4" />  
+	<result column ="cardtype" property="cardtype" />  
+	<result column ="cardnum" property="cardnum" />  
+	<result column ="dhgn" property="dhgn" />  
+	<result column ="installdate" property="installdate" />  
+	<result column ="startdate" property="startdate" />  
+	<result column ="enddate" property="enddate" />  
+	<result column ="delflag" property="delflag" />  
+	<result column ="deldate" property="deldate" />  
+	<result column ="status" property="status" />  
+	<result column ="uflag" property="uflag" />  
+</resultMap>
+
+<resultMap id="typeMap" type="com.tstar.callcenter.pub.data.ResultMap">
+	<result column ="id" property="id" />  
+	<result column ="faultname" property="faultname" />  
+	<result column ="faultdesc" property="faultdesc" />  
+	<result column ="faultdeal" property="faultdeal" />  
+</resultMap>
+
+<resultMap id="loginUser" type="com.tstar.callcenter.pub.data.ResultMap">
+	<result column ="userid" property="userid" />  
+	<result column ="password" property="password" />  
+	<result column ="userarea" property="userarea" />  
+	<result column ="departname" property="departname" />  
+	<result column ="bmid" property="bmid" />  
+</resultMap>
+
+<resultMap id="workFlow" type="com.tstar.callcenter.pub.data.ResultMap">
+	<result column ="id" property="id" />  
+	<result column ="state" property="state" />  
+	<result column ="fsbm" property="fsbm" />  
+	<result column ="fsry" property="fsry" />  
+	<result column ="fsrq" property="fsrq" />  
+	<result column ="bm" property="bm" />  
+	<result column ="ry" property="ry" />  
+	<result column ="opertime" property="opertime" />  
+	<result column ="bz" property="bz" jdbcType="CLOB" javaType="java.lang.String" />  
+</resultMap>
+
+<resultMap id="trouHist" type="com.tstar.callcenter.pub.data.ResultMap">
+	<result column ="id" property="id" />  
+	<result column ="account" property="account" />  
+	<result column ="faultinfo" property="faultinfo" />  
+	<result column ="linkman" property="linkman" />  
+	<result column ="linkphone" property="linkphone" />  
+	<result column ="username" property="username" />  
+	<result column ="address" property="address" />  
+	<result column ="iscomplete" property="iscomplete" />  
+	<result column ="userid" property="userid" />  
+	<result column ="operdate" property="operdate" />  
+	<result column ="completeuserid" property="completeuserid" />  
+	<result column ="completedate" property="completedate" />  
+</resultMap>
+
+<resultMap id="insertres" type="com.tstar.callcenter.pub.data.ResultMap">
+	<result column ="res" property="res" />  
+</resultMap>
+
+
+	<select id="selectTrouUser" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		{call interface_getUserInfo(
+		                        #{v_faulttype, jdbcType=VARCHAR, mode=IN},  
+   								#{v_value, jdbcType=VARCHAR, mode=IN},  
+   								#{v_querytype, jdbcType=VARCHAR, mode=IN},
+   								#{v_morefield, jdbcType=VARCHAR, mode=IN},
+   								#{v_exact, jdbcType=VARCHAR, mode=IN},
+   								#{v_start, jdbcType=VARCHAR, mode=IN},
+   								#{v_end, jdbcType=VARCHAR, mode=IN},  
+   								#{v_count, jdbcType=INTEGER, mode=OUT},
+     							#{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=userMap})}
+	</select>
+
+  <select id="selectTrouType" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+    	{call INTERFACE_GETFAULTTYPEINFO(	#{v_businesstype, jdbcType=INTEGER, mode=IN},  
+   								
+     							#{v_f, mode=OUT, jdbcType=CURSOR, resultMap=typeMap})}
+  </select>
+  
+  <select id="selectTrouHist" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+    	{call INTERFACE_GETJOBINFO(	#{v_faulttype, jdbcType=VARCHAR, mode=IN},  
+   								#{v_account, jdbcType=VARCHAR, mode=IN},  
+     							#{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=trouHist})}
+  </select>
+  
+  <select id="selectWorkFlow" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+    	{call INTERFACE_GETJOBFLOWDETAIL(	#{v_QueryStr, jdbcType=VARCHAR, mode=IN},
+    	                        #{v_count, jdbcType=INTEGER, mode=OUT},
+     							#{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=workFlow})}
+     							
+  </select>
+  
+    <select id="insertTrouble"  statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+    	{call INTERFACE_FAULTJOB(	#{v_querystr, jdbcType=VARCHAR, mode=IN},  
+     							#{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=insertres})}
+  	</select>
+
+  <select id="selectLoginUser" statementType="CALLABLE" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+    	{call INTERFACE_GETOPERATORINFO(	#{v_userid, jdbcType=VARCHAR, mode=IN}, 
+    							#{v_password, jdbcType=VARCHAR, mode=IN},  
+    							#{v_loginip, jdbcType=VARCHAR, mode=IN},  
+     							#{cv_1, mode=OUT, jdbcType=CURSOR, resultMap=loginUser})}
+  </select>
+  
+  <select id="checkDh" resultMap="ResultMap"  parameterType="java.lang.String">
+        select P_CC_112_SELF_CHECK_TEL_NO(#{dh}) F from dual
+  </select>
+  
+  <select id="checkBroad" resultMap="ResultMap"  parameterType="java.lang.String">
+        select P_CC_112_SELF_CHECK_BROAD_NO(#{account}) F from dual
+  </select>
+  
+  
+  
+</mapper>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tstar.callcenter.dao.admin.AdminConfMapper">
+	<resultMap id="ResultMap" type="com.tstar.callcenter.pub.data.ResultMap">
+	</resultMap>
+	<!-- 
+	<select id="selectEmplByPage" resultType="map" parameterType="Map">
+	 -->
+	<select id="selectEmplByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		a.employee_id as employeeId,
+		a.employee_no as employeeNo,
+		a.password,
+		a.type,
+		a.boss_pwd,
+		a.dept_id as deptId,
+		b.dept_name as deptName,
+		a.name,
+		a.gender,
+		a.age,
+		to_char(a.birthday, 'YYYY-MM-DD') as birthday,
+		to_char(a.join_date, 'YYYY-MM-DD') as joinDate,
+		a.tel,
+		a.mobile,
+		a.email,
+		a.certificate_id as certificateId,
+		a.is_agent as isAgent,
+		a.monitor_dept as monitorDept,
+		a.memo1
+		from t_cc_employee_info a left join t_cc_dept_info b
+		on a.dept_id = b.dept_id where 1 = 1
+		<if test="name != null and name != '' ">
+			and a.name like '%'||#{name}||'%'
+	  	</if>
+		<if test="employee_no != null and employee_no != '' ">
+			and a.employee_no=#{employee_no}
+	  	</if>
+		<if test="type != null and type != '' ">
+			and a.type=#{type}
+	  	</if>
+		<if test="dept_id != null and dept_id != 0 ">
+			and a.dept_id=#{dept_id}
+	  	</if>
+		ORDER BY a.employee_id DESC
+		<!-- 
+		limit #{pageSize} offset #{offset}
+		 -->
+
+	</select>
+
+	<select id="selectEmplByCount" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		count(*)
+		from t_cc_employee_info a,t_cc_dept_info b
+		where a.dept_id = b.dept_id
+		<if test="name != null and name != '' ">
+			and a.name like '%'||#{name}||'%'
+	  	</if>
+		<if test="employee_no != null and employee_no != '' ">
+			and a.employee_no=#{employee_no}
+	  	</if>
+		<if test="type != null and type != '' ">
+			and a.type=#{type}
+	  	</if>
+		<if test="dept_id != null and dept_id != 0 ">
+			and a.dept_id=#{dept_id}
+	  	</if>
+	</select>
+	
+	<select id="selectSkillIdByEmplId" resultType="java.lang.Long"
+		parameterType="long">
+		select
+		skill_id
+		from t_cc_employee_skill
+		where employee_id=#{employeeId}
+ 	</select>
+ 	
+ 	<select id="selectSkillTreeChild" resultMap="ResultMap">
+ 		select
+		a.skill_id ,
+		a.skill_code,
+		a.skill_name,
+		a.group_id
+		from  t_cc_skill_info a,t_cc_skill_groups b
+		where a.group_id = b.group_id 
+ 	</select>
+ 	
+ 	<select id="selectSkillGroups" resultMap="ResultMap">
+ 		select
+ 		group_id,
+ 		group_name,
+		parent_id
+		from  t_cc_skill_groups 
+ 	</select>
+ 	
+ 	
+ 	<select id="selectDeptByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select 
+		dept_id,
+		dept_name,
+		parent_id,
+		full_path_id
+		from t_cc_dept_info
+		where 1=1
+		<if test="dept_name != null and dept_name != '' ">
+			and dept_name like '%'||#{dept_name}||'%'
+	  	</if>
+		<if test="parent_id != null and parent_id != -1 ">
+			and parent_id=#{parent_id}
+	  	</if>
+		ORDER BY dept_id DESC
+		<!-- 
+		limit #{pageSize} offset #{offset}
+		 -->
+	</select>
+
+	<select id="selectDeptByCount" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		count(*)
+		from t_cc_dept_info
+		where 1=1
+		<if test="dept_name != null and dept_name != '' ">
+			and dept_name like '%'||#{dept_name}||'%'
+	  	</if>
+		<if test="parent_id != null and parent_id != -1 ">
+			and parent_id=#{parent_id}
+	  	</if>
+	</select>
+ 	
+ 	<select id="deptSelectList" resultMap="ResultMap">
+		select 
+		dept_id,
+		dept_name
+		from t_cc_dept_info
+	</select>
+ 	
+ 	
+ 	
+ 	<select id="selectSkillByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select 
+		skill_id,
+		skill_code,
+		skill_name,
+		skill_desc,
+		url
+		from t_cc_skill_info
+		where 1=1
+		<if test="skill_name != null and skill_name != '' ">
+			and skill_name like '%'||#{skill_name}||'%'
+	  	</if>
+		<if test="skill_code != null and skill_code != -1 ">
+			and skill_code=#{skill_code}
+	  	</if>
+		ORDER BY skill_id DESC
+		<!-- 
+		limit #{pageSize} offset #{offset}
+		 -->
+	</select>
+
+	<select id="selectAllSkillCount" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		count(*)
+		from t_cc_skill_info
+		where 1=1
+		<if test="skill_name != null and skill_name != '' ">
+			and skill_name like '%'||#{skill_name}||'%'
+	  	</if>
+		<if test="skill_code != null and skill_code != -1 ">
+			and skill_code=#{skill_code}
+	  	</if>
+	</select>
+
+	
+	
+	
+	
+	<select id="select114ByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select 
+		* 
+		from v_t_114_userinfo
+		where 1=1
+		<if test="phone != null and phone != '' ">
+			and phone like '%'||#{phone}||'%'
+	  	</if>
+		<if test="index1 != null and index1 != '' ">
+			and index1 like '%'||#{index1}||'%'
+	  	</if>
+		<if test="index2 != null and index2 != '' ">
+			and index2 like '%'||#{index2}||'%'
+	  	</if>
+		<if test="index3 != null and index3 != '' ">
+			and index3 like '%'||#{index3}||'%'
+	  	</if>
+		<if test="index4 != null and index4 != '' ">
+			and index4 like '%'||#{index4}||'%'
+	  	</if>
+		<if test="index5 != null and index5 != '' ">
+			and index5 like '%'||#{index5}||'%'
+	  	</if>
+		<if test="index6 != null and index6 != '' ">
+			and index6 like '%'||#{index6}||'%'
+	  	</if>
+		<if test="code != null and code != '' ">
+			and code like '%'||#{code}||'%'
+	  	</if>
+	  	order by NQUERYTIMES desc
+	</select>
+
+	<select id="select114ByCount" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select
+		count(*)
+		from v_t_114_userinfo
+		where 1=1
+		<if test="phone != null and phone != '' ">
+			and phone like '%'||#{phone}||'%'
+	  	</if>
+		<if test="index1 != null and index1 != '' ">
+			and index1 like '%'||#{index1}||'%'
+	  	</if>
+		<if test="index2 != null and index2 != '' ">
+			and index2 like '%'||#{index2}||'%'
+	  	</if>
+		<if test="index3 != null and index3 != '' ">
+			and index3 like '%'||#{index3}||'%'
+	  	</if>
+		<if test="index4 != null and index4 != '' ">
+			and index4 like '%'||#{index4}||'%'
+	  	</if>
+		<if test="index5 != null and index5 != '' ">
+			and index5 like '%'||#{index5}||'%'
+	  	</if>
+		<if test="index6 != null and index6 != '' ">
+			and index6 like '%'||#{index6}||'%'
+	  	</if>
+		<if test="code != null and code != '' ">
+			and code like '%'||#{code}||'%'
+	  	</if>
+	</select>
+ 	
+ 	
+ 	<select id="selectDeptChildByCount" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select count(*) from t_cc_dept_info where parent_id=#{dept_id}
+	</select>
+ 	
+ 	
+ 	<select id="selectEmplCountByDept" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+		select count(*) from t_cc_employee_info where dept_id=#{dept_id}
+	</select>
+ 	
+ 	<select id="selectoral" resultType="int">
+		select count(*) from v_t_114_userinfo
+	</select>
+ 	
+ 	<insert id="insertRecord" parameterType="com.tstar.callcenter.pub.data.ResultMap" >
+    	<selectKey resultType="long" keyProperty="id" order="BEFORE" >
+      		select t_cc_record_histroy_id_seq.nextval from dual
+    	</selectKey>
+   	 	insert into t_cc_record_histroy (id, file_path, creat_time, 
+      		empl_no, empl_name, user_tel,customer_tel
+      		)
+    		values (#{id,jdbcType=DECIMAL}, #{file_path,jdbcType=VARCHAR}, #{creat_time,jdbcType=TIMESTAMP}, 
+      			#{empl_no,jdbcType=VARCHAR}, #{empl_name,jdbcType=VARCHAR}, #{user_tel,jdbcType=VARCHAR},
+      			#{customer_tel,jdbcType=VARCHAR}
+      		)
+  </insert>
+  
+  <select id="selectRecordByPage" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+  	select 
+  	id,file_path,empl_no,empl_name,user_tel,customer_tel,
+  	to_char(creat_time,'yyyy-mm-dd hh24:mi:ss') as creat_time
+  	from t_cc_record_histroy
+  	where 1=1
+  	<if test="empl_no != null and empl_no != '' ">
+			and empl_no = #{empl_no}
+	</if>
+  	<if test="empl_name != null and empl_name != '' ">
+			and empl_name = #{empl_name}
+	</if>
+	<if test="customer_tel != null and customer_tel != '' ">
+			and customer_tel=#{customer_tel}
+	</if>
+	<if test="start_time != null and start_time != '' ">
+			and creat_time &gt;= to_date(#{start_time},'yyyy-mm-dd hh24:mi:ss')
+	</if>
+	<if test="end_time != null and end_time != '' ">
+			and creat_time &lt;= to_date(#{end_time},'yyyy-mm-dd hh24:mi:ss') 
+	</if>
+	ORDER BY id DESC
+  </select>
+  
+  <select id="selectAllRecordCount" resultType="int" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+  	select 
+  	count(*)
+  	from t_cc_record_histroy
+  	where 1=1
+  	<if test="empl_no != null and empl_no != '' ">
+			and empl_no = #{empl_no}
+	</if>
+  	<if test="empl_name != null and empl_name != '' ">
+			and empl_name = #{empl_name}
+	</if>
+	<if test="customer_tel != null and customer_tel != '' ">
+			and customer_tel=#{customer_tel}
+	</if>
+	<if test="start_time != null and start_time != '' ">
+			and creat_time &gt;= to_date(#{start_time},'yyyy-mm-dd hh24:mi:ss')
+	</if>
+	<if test="end_time != null and end_time != '' ">
+			and creat_time &lt;= to_date(#{end_time},'yyyy-mm-dd hh24:mi:ss') 
+	</if>
+  </select>
+  
+  <select id="selectEmplByLog" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+  	select empl_no,empl_name from
+  	 (select * from t_bs_user_login_log where phone=#{phone}
+  	 and login_time &lt; to_date(#{time},'yyyy-mm-dd hh24:mi:ss') order by login_time desc)
+  	 where rownum &lt;= 1
+  </select>
+  
+  <select id="selectEmplNameByEmplNo" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+  	select name from t_cc_employee_info where employee_no=#{empl_no}
+  </select>
+  <insert id="insertLoginLog" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+  	<selectKey resultType="long" keyProperty="id" order="BEFORE" >
+      		select t_bs_user_login_log_id_seq.nextval from dual
+    </selectKey>
+
+  	insert into t_bs_user_login_log (id,empl_no,login_time,phone,empl_name) 
+  	values (#{id,jdbcType=DECIMAL}, #{empl_no,jdbcType=VARCHAR}, #{login_time,jdbcType=TIMESTAMP}, 
+      			#{phone,jdbcType=VARCHAR},
+      		#{empl_name}
+      			
+      		)
+  </insert>
+ 	
+	<select id="selectSysConf" resultMap="ResultMap" parameterType="com.tstar.callcenter.pub.data.ResultMap">
+  		select record_save_time,system_ip, memo1 gw_ip from t_bs_system_conf
+  </select> 	
+ 	
+ 	<update id="updateSysConf" parameterType="com.tstar.callcenter.pub.data.ResultMap" >
+   	 	update t_bs_system_conf 
+    	<set>
+      		<if test="record_save_time != null and record_save_time != ''" >
+        		record_save_time = #{record_save_time},
+      		</if>
+      		<if test="system_ip != null and system_ip != ''" >
+        		system_ip = #{system_ip},
+      		</if>
+      		<if test="gw_ip != null and gw_ip != ''" >
+                memo1 = #{gw_ip}
+            </if>
+      	</set>
+  </update>
+ 	
+ 
+ <select id="selectSystemIp" resultMap="ResultMap" >
+  	select system_ip, memo1 gw_ip from t_bs_system_conf
+ </select>
+ 	
+</mapper>	

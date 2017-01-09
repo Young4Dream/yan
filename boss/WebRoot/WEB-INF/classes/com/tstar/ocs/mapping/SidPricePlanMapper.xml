@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidPricePlanMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidPricePlan">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PLAN_TYPE" jdbcType="INTEGER" property="planType" />
+    <result column="TERM" jdbcType="VARCHAR" property="term" />
+    <result column="PLAN_FEE" jdbcType="DECIMAL" property="planFee" />
+    <result column="DURATION_LIMIT" jdbcType="INTEGER" property="durationLimit" />
+    <result column="DURATION_FREE" jdbcType="INTEGER" property="durationFree" />
+    <result column="TRAFFIC_LIMIT" jdbcType="INTEGER" property="trafficLimit" />
+    <result column="TRAFFIC_FREE" jdbcType="INTEGER" property="trafficFree" />
+    <result column="OCCURANCE_LIMIT" jdbcType="INTEGER" property="occuranceLimit" />
+    <result column="OCCURANCE_FREE" jdbcType="INTEGER" property="occuranceFree" />
+    <result column="PLAN_DESC" jdbcType="VARCHAR" property="planDesc" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="BEARABLE" jdbcType="VARCHAR" property="bearable" />
+    <result column="ACCOUNT_ITEM_ID" jdbcType="VARCHAR" property="accountItemId" />
+    <result column="ACCOUNT_ITEM_NAME" jdbcType="VARCHAR" property="accountItemName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, PLAN_TYPE, TERM, PLAN_FEE, DURATION_LIMIT, DURATION_FREE, TRAFFIC_LIMIT, 
+    TRAFFIC_FREE, OCCURANCE_LIMIT, OCCURANCE_FREE, PLAN_DESC, STATUS, CREATE_TIME, UPDATE_TIME, 
+    REMARK, BEARABLE, ACCOUNT_ITEM_ID,
+    (select ITEM_NAME from sys_account_item where sys_account_item.ID=ACCOUNT_ITEM_ID) AS ACCOUNT_ITEM_NAME
+  </sql>
+  <select id="countAll" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from sid_price_plan
+    where 1=1
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="planType != null and planType != -1 ">
+    	and PLAN_TYPE = #{planType} 
+    </if>
+    <if test="status != null and status != -1 ">
+    	and STATUS = #{status}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_price_plan
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_price_plan
+    where 1=1
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="planType != null and planType != -1 ">
+    	and PLAN_TYPE = #{planType} 
+    </if>
+    <if test="status != null and status != -1 ">
+    	and STATUS = #{status}
+    </if>
+    limit #{start}, #{length}
+  </select>
+  <select id="selectReleasedPublicPlan" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_price_plan
+    where PLAN_TYPE = 1 and STATUS = 1
+  </select>
+  <select id="selectOrderableByBusiness" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_price_plan
+    where PLAN_TYPE = 1 and STATUS = 1
+    and (BEARABLE is null or BEARABLE = '' or instr(BEARABLE, #{0}) > 0)
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_price_plan
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidPricePlan">
+    insert into sid_price_plan (ID, NAME, PLAN_TYPE, 
+      TERM, PLAN_FEE, DURATION_LIMIT, 
+      DURATION_FREE, TRAFFIC_LIMIT, TRAFFIC_FREE, 
+      OCCURANCE_LIMIT, OCCURANCE_FREE, PLAN_DESC, 
+      STATUS, CREATE_TIME, UPDATE_TIME, 
+      REMARK, BEARABLE, ACCOUNT_ITEM_ID)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{planType,jdbcType=INTEGER}, 
+      #{term,jdbcType=VARCHAR}, #{planFee,jdbcType=DECIMAL}, #{durationLimit,jdbcType=INTEGER}, 
+      #{durationFree,jdbcType=INTEGER}, #{trafficLimit,jdbcType=INTEGER}, #{trafficFree,jdbcType=INTEGER}, 
+      #{occuranceLimit,jdbcType=INTEGER}, #{occuranceFree,jdbcType=INTEGER}, #{planDesc,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{bearable,jdbcType=VARCHAR}, #{accountItemId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidPricePlan">
+    insert into sid_price_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="planType != null">
+        PLAN_TYPE,
+      </if>
+      <if test="term != null">
+        TERM,
+      </if>
+      <if test="planFee != null">
+        PLAN_FEE,
+      </if>
+      <if test="durationLimit != null">
+        DURATION_LIMIT,
+      </if>
+      <if test="durationFree != null">
+        DURATION_FREE,
+      </if>
+      <if test="trafficLimit != null">
+        TRAFFIC_LIMIT,
+      </if>
+      <if test="trafficFree != null">
+        TRAFFIC_FREE,
+      </if>
+      <if test="occuranceLimit != null">
+        OCCURANCE_LIMIT,
+      </if>
+      <if test="occuranceFree != null">
+        OCCURANCE_FREE,
+      </if>
+      <if test="planDesc != null">
+        PLAN_DESC,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="bearable != null">
+        BEARABLE,
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null">
+        #{planType,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="planFee != null">
+        #{planFee,jdbcType=DECIMAL},
+      </if>
+      <if test="durationLimit != null">
+        #{durationLimit,jdbcType=INTEGER},
+      </if>
+      <if test="durationFree != null">
+        #{durationFree,jdbcType=INTEGER},
+      </if>
+      <if test="trafficLimit != null">
+        #{trafficLimit,jdbcType=INTEGER},
+      </if>
+      <if test="trafficFree != null">
+        #{trafficFree,jdbcType=INTEGER},
+      </if>
+      <if test="occuranceLimit != null">
+        #{occuranceLimit,jdbcType=INTEGER},
+      </if>
+      <if test="occuranceFree != null">
+        #{occuranceFree,jdbcType=INTEGER},
+      </if>
+      <if test="planDesc != null">
+        #{planDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bearable != null">
+        #{bearable,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        #{accountItemId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidPricePlan">
+    update sid_price_plan
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null">
+        PLAN_TYPE = #{planType,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        TERM = #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="planFee != null">
+        PLAN_FEE = #{planFee,jdbcType=DECIMAL},
+      </if>
+      <if test="durationLimit != null">
+        DURATION_LIMIT = #{durationLimit,jdbcType=INTEGER},
+      </if>
+      <if test="durationFree != null">
+        DURATION_FREE = #{durationFree,jdbcType=INTEGER},
+      </if>
+      <if test="trafficLimit != null">
+        TRAFFIC_LIMIT = #{trafficLimit,jdbcType=INTEGER},
+      </if>
+      <if test="trafficFree != null">
+        TRAFFIC_FREE = #{trafficFree,jdbcType=INTEGER},
+      </if>
+      <if test="occuranceLimit != null">
+        OCCURANCE_LIMIT = #{occuranceLimit,jdbcType=INTEGER},
+      </if>
+      <if test="occuranceFree != null">
+        OCCURANCE_FREE = #{occuranceFree,jdbcType=INTEGER},
+      </if>
+      <if test="planDesc != null">
+        PLAN_DESC = #{planDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bearable != null">
+        BEARABLE = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidPricePlan">
+    update sid_price_plan
+    set NAME = #{name,jdbcType=VARCHAR},
+      PLAN_TYPE = #{planType,jdbcType=INTEGER},
+      TERM = #{term,jdbcType=VARCHAR},
+      PLAN_FEE = #{planFee,jdbcType=DECIMAL},
+      DURATION_LIMIT = #{durationLimit,jdbcType=INTEGER},
+      DURATION_FREE = #{durationFree,jdbcType=INTEGER},
+      TRAFFIC_LIMIT = #{trafficLimit,jdbcType=INTEGER},
+      TRAFFIC_FREE = #{trafficFree,jdbcType=INTEGER},
+      OCCURANCE_LIMIT = #{occuranceLimit,jdbcType=INTEGER},
+      OCCURANCE_FREE = #{occuranceFree,jdbcType=INTEGER},
+      PLAN_DESC = #{planDesc,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      BEARABLE = #{bearable,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

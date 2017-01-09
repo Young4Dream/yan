@@ -1,0 +1,150 @@
+/*-------------------------------------
+zTree Style
+
+version:	2.0
+author:		Hunter.z
+email:		hunter.z@263.net
+website:	http://code.google.com/p/jquerytree/
+
+-------------------------------------*/
+
+.treemove{
+	margin:0; 
+	padding: 5px, 10px, 15px,11px;
+	color:#333;
+	font-size:12px;
+	font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+	}
+
+.treemove li{
+	padding:0px; margin:0px; 
+	list-style:none;
+	line-height:18px; 
+	text-align:left; 
+	white-space:nowrap;
+	}
+
+.treemove li ul{ margin:0; padding:0 0 0 18px;}
+.treemove li ul.line{ background:url(./img/line_conn.gif) 0 0 repeat-y;}
+
+.treemove li a {
+	padding:0; margin:0 10px 0 0; 
+	cursor:pointer; 
+	color:#333; 
+	text-decoration:none;
+	}
+.treemove li a:hover {text-decoration:underline;}
+.treemove li a.curSelectedNode {
+	margin:0; padding:3px 3px 2px 0; 
+	background-color:#FFE6B0; 
+	color:black;
+	border:1px #FFB951 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+.treemove li a.curSelectedNode_Edit {
+	line-height: 25px;
+	margin:0; padding:3px 3px 2px 0; 
+	background-color:#FFE6B0; 
+	color:black;
+	border:1px #FFB951 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+.treemove li a.tmpTargetNode {
+	margin:0; padding:3px 3px 2px 0; 
+	background-color:#316AC5; 
+	color:white;
+	border:1px #316AC5 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+.treemove li a input.rename {height:13px; width:80px; padding:0; margin:0; font-size:12px;}	
+
+.treemove li input {
+	width:18px; height:18px; 
+	padding:0; margin:0; 
+	vertical-align:middle;
+	border:0 none; 
+	background-color: transparent; 
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	cursor: pointer;
+	}
+.treemove li input.ico {
+	padding:0; margin:0 2px 0 0; 
+	}
+	
+.treemove li input.edit {background:url("./img/edit.png") no-repeat scroll 0 0 transparent;}	
+.treemove li input.remove {background:url("./img/remove.png") no-repeat scroll 0 0 transparent;}	
+
+.treemove li input.chk {
+	width:13px; height:13px; 
+	padding:0; margin:0 3px 0 0; 
+	vertical-align:middle;
+	border:0 none;
+	cursor: auto;
+	}
+.treemove li input.chk.checkbox_false_full { background:url("./img/checkbox.png") no-repeat scroll 0 0 transparent;}	
+.treemove li input.chk.checkbox_false_full_focus { background:url("./img/checkbox.png") no-repeat scroll 0 -12px transparent;}	
+.treemove li input.chk.checkbox_false_part { background:url("./img/checkbox.png") no-repeat scroll 0 -72px transparent;}	
+.treemove li input.chk.checkbox_false_part_focus { background:url("./img/checkbox.png") no-repeat scroll 0 -84px transparent;}	
+.treemove li input.chk.checkbox_true_full { background:url("./img/checkbox.png") no-repeat scroll 0 -24px transparent;}	
+.treemove li input.chk.checkbox_true_full_focus { background:url("./img/checkbox.png") no-repeat scroll 0 -36px transparent;}	
+.treemove li input.chk.checkbox_true_part { background:url("./img/checkbox.png") no-repeat scroll 0 -48px transparent;}	
+.treemove li input.chk.checkbox_true_part_focus { background:url("./img/checkbox.png") no-repeat scroll 0 -60px transparent;}	
+
+.treemove li input.chk.radio_false_full { background:url("./img/radio.png") no-repeat scroll 0 0 transparent;}	
+.treemove li input.chk.radio_false_full_focus { background:url("./img/radio.png") no-repeat scroll 0 -12px transparent;}	
+.treemove li input.chk.radio_false_part { background:url("./img/radio.png") no-repeat scroll 0 -72px transparent;}	
+.treemove li input.chk.radio_false_part_focus { background:url("./img/radio.png") no-repeat scroll 0 -84px transparent;}	
+.treemove li input.chk.radio_true_full { background:url("./img/radio.png") no-repeat scroll 0 -24px transparent;}	
+.treemove li input.chk.radio_true_full_focus { background:url("./img/radio.png") no-repeat scroll 0 -36px transparent;}	
+.treemove li input.chk.radio_true_part { background:url("./img/radio.png") no-repeat scroll 0 -48px transparent;}	
+.treemove li input.chk.radio_true_part_focus { background:url("./img/radio.png") no-repeat scroll 0 -60px transparent;}	
+
+.treemove li input.switch_root_open{ background:url(./img/minus_root.gif);}
+.treemove li input.switch_root_close{ background:url(./img/plus_root.gif);}
+.treemove li input.switch_roots_open{ background:url(./img/minus_top.gif);}
+.treemove li input.switch_roots_close{ background:url(./img/plus_top.gif);}
+.treemove li input.switch_center_open{ background:url(./img/minus_center.gif);}
+.treemove li input.switch_center_close{ background:url(./img/plus_center.gif);}
+.treemove li input.switch_bottom_open{ background:url(./img/minus_bottom.gif);}
+.treemove li input.switch_bottom_close{ background:url(./img/plus_bottom.gif);}
+.treemove li input.switch_noLine_open{ background:url(./img/minus_noLine.gif);}
+.treemove li input.switch_noLine_close{ background:url(./img/plus_noLine.gif);}
+
+.treemove li input.switch_root_docu{ background:none;}
+.treemove li input.switch_roots_docu{ background:url(./img/line_top.gif);}
+.treemove li input.switch_center_docu{ background:url(./img/line_center.gif);}
+.treemove li input.switch_bottom_docu{ background:url(./img/line_bottom.gif);}
+.treemove li input.switch_noLine_docu{ background:none;}
+
+.treemove li input.ico_open{ background:url(./img/folder_Open.gif);}
+.treemove li input.ico_close{ background:url(./img/folder_Close.gif);}
+.treemove li input.ico_docu{ background:url(./img/page.gif);}
+
+.treemove INPUT.checkbox {
+	padding:0; margin:0 2px 0 0; 
+	width:18px; height:18px; 
+	vertical-align:middle; 
+	}
+
+.tmpTargetTree {
+	background-color:#FFE6B0; 
+	border:1px #FFB951 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+
+.zTreeDragUL {
+	margin:0; padding:0; 
+	position:absolute; 
+	background-color:#cfcfcf; 
+	border:1px #00B83F dotted; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+
+.zTreeMask {
+	 z-index:10000; 
+	 background-color:#cfcfcf; 
+	 opacity:0.0; filter:alpha(opacity=0); 
+	 position:absolute;
+}
+

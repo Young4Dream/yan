@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.OcsInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.OcsInvoice">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="INVOICE_NO" jdbcType="VARCHAR" property="invoiceNo" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_KEY" jdbcType="VARCHAR" property="userKey" />
+    <result column="CUSTOMER_NO" jdbcType="VARCHAR" property="customerNo" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="LINKER" jdbcType="VARCHAR" property="linker" />
+    <result column="LINK_PHONE" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="PRINT_FLAG" jdbcType="INTEGER" property="printFlag" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CHECKER" jdbcType="VARCHAR" property="checker" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="PRINT_TIME" jdbcType="TIMESTAMP" property="printTime" />
+    <result column="CHECK_TIME" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="DUE_TIME" jdbcType="TIMESTAMP" property="dueTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="INVOICE_TYPE" jdbcType="VARCHAR" property="invoiceType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, INVOICE_NO, CUSTOMER_ID, ACCOUNT_ID, USER_NAME, USER_KEY, CUSTOMER_NO, CUSTOMER_NAME, 
+    LINKER, LINK_PHONE, AMOUNT, STATUS, PRINT_FLAG, CREATOR, CHECKER, CREATE_TIME, PRINT_TIME, 
+    CHECK_TIME, DUE_TIME, REMARK, INVOICE_TYPE
+  </sql>
+
+  <select id="countByInvoiceNo" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from ocs_invoice
+    where INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from ocs_invoice
+    where 1=1
+    <if test="invoiceNo != null">
+      and INVOICE_NO like concat(#{invoiceNo}, '%')
+    </if>
+    <if test="status != null">
+      and STATUS = #{status}
+    </if>
+    <if test="invoiceType != null">
+      and INVOICE_TYPE = #{invoiceType}
+    </if>
+    <if test="customerNo != null">
+      and CUSTOMER_NO like concat(#{customerNo}, '%')
+    </if>
+    <if test="fullText != null">
+      and (
+      	CUSTOMER_NAME like concat('%', #{fullText}, '%') or
+      	USER_NAME like concat('%', #{fullText}, '%') or
+      	USER_KEY like concat(#{fullText}, '%')
+      )
+    </if>
+  </select>
+    
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_invoice
+    where 1=1
+    <if test="invoiceNo != null">
+      and INVOICE_NO like concat(#{invoiceNo}, '%')
+    </if>
+    <if test="status != null">
+      and STATUS = #{status}
+    </if>
+    <if test="invoiceType != null">
+      and INVOICE_TYPE = #{invoiceType}
+    </if>
+    <if test="customerNo != null">
+      and CUSTOMER_NO like concat(#{customerNo}, '%')
+    </if>
+    <if test="fullText != null">
+      and (
+      	CUSTOMER_NAME like concat('%', #{fullText}, '%') or
+      	USER_NAME like concat('%', #{fullText}, '%') or
+      	USER_KEY like concat(#{fullText}, '%')
+      )
+    </if>
+    order by CREATE_TIME desc
+    limit #{start}, #{length}
+  </select>
+    
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ocs_invoice
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ocs_invoice
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.OcsInvoice">
+    insert into ocs_invoice (ID, INVOICE_NO, CUSTOMER_ID, 
+      ACCOUNT_ID, USER_NAME, USER_KEY, 
+      CUSTOMER_NO, CUSTOMER_NAME, LINKER, 
+      LINK_PHONE, AMOUNT, STATUS, 
+      PRINT_FLAG, CREATOR, CHECKER, 
+      CREATE_TIME, PRINT_TIME, CHECK_TIME, 
+      DUE_TIME, REMARK, INVOICE_TYPE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{invoiceNo,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{accountId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userKey,jdbcType=VARCHAR}, 
+      #{customerNo,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{linker,jdbcType=VARCHAR}, 
+      #{linkPhone,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{printFlag,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{checker,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{printTime,jdbcType=TIMESTAMP}, #{checkTime,jdbcType=TIMESTAMP}, 
+      #{dueTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{invoiceType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.OcsInvoice">
+    insert into ocs_invoice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="invoiceNo != null">
+        INVOICE_NO,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userKey != null">
+        USER_KEY,
+      </if>
+      <if test="customerNo != null">
+        CUSTOMER_NO,
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME,
+      </if>
+      <if test="linker != null">
+        LINKER,
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="printFlag != null">
+        PRINT_FLAG,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="checker != null">
+        CHECKER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="printTime != null">
+        PRINT_TIME,
+      </if>
+      <if test="checkTime != null">
+        CHECK_TIME,
+      </if>
+      <if test="dueTime != null">
+        DUE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="invoiceType != null">
+        INVOICE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null">
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNo != null">
+        #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="linker != null">
+        #{linker,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="printFlag != null">
+        #{printFlag,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null">
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="printTime != null">
+        #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dueTime != null">
+        #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.OcsInvoice">
+    update ocs_invoice
+    <set>
+      <if test="invoiceNo != null">
+        INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        USER_KEY = #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNo != null">
+        CUSTOMER_NO = #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="linker != null">
+        LINKER = #{linker,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="printFlag != null">
+        PRINT_FLAG = #{printFlag,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null">
+        CHECKER = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="printTime != null">
+        PRINT_TIME = #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null">
+        CHECK_TIME = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dueTime != null">
+        DUE_TIME = #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.OcsInvoice">
+    update ocs_invoice
+    set INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_KEY = #{userKey,jdbcType=VARCHAR},
+      CUSTOMER_NO = #{customerNo,jdbcType=VARCHAR},
+      CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      LINKER = #{linker,jdbcType=VARCHAR},
+      LINK_PHONE = #{linkPhone,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=INTEGER},
+      PRINT_FLAG = #{printFlag,jdbcType=INTEGER},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CHECKER = #{checker,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PRINT_TIME = #{printTime,jdbcType=TIMESTAMP},
+      CHECK_TIME = #{checkTime,jdbcType=TIMESTAMP},
+      DUE_TIME = #{dueTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateStatus">
+    update ocs_invoice
+    set 
+      STATUS = #{1}
+    where ID = #{0}
+  </update>
+</mapper>

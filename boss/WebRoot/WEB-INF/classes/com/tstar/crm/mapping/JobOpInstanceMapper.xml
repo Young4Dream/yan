@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.crm.dao.JobOpInstanceMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.crm.model.JobOpInstance">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="BUSINESS_OP_KEY" jdbcType="VARCHAR" property="businessOpKey" />
+    <result column="BUSINESS_OP_NAME" jdbcType="VARCHAR" property="businessOpName" />
+    <result column="BUSINESS_OP_PARMS" jdbcType="VARCHAR" property="businessOpParms" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_KEY" jdbcType="VARCHAR" property="userKey" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="ORIGINATOR" jdbcType="VARCHAR" property="originator" />
+    <result column="ORIGINATE_TIME" jdbcType="TIMESTAMP" property="originateTime" />
+    <result column="PROCESS_DEFINITION_KEY" jdbcType="VARCHAR" property="processDefinitionKey" />
+    <result column="PROCESS_DEFINITION_NAME" jdbcType="VARCHAR" property="processDefinitionName" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENT_ID, BUSINESS_OP_KEY, BUSINESS_OP_NAME, BUSINESS_OP_PARMS, CUSTOMER_ID, 
+    CUSTOMER_NAME, USER_ID, USER_KEY, ORDER_ID, ORIGINATOR, ORIGINATE_TIME, PROCESS_DEFINITION_KEY, 
+    PROCESS_DEFINITION_NAME, PROCESS_INSTANCE_ID, STATUS, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job_op_instance
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from job_op_instance
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.crm.model.JobOpInstance">
+    insert into job_op_instance (ID, PARENT_ID, BUSINESS_OP_KEY, 
+      BUSINESS_OP_NAME, BUSINESS_OP_PARMS, CUSTOMER_ID, 
+      CUSTOMER_NAME, USER_ID, USER_KEY, 
+      ORDER_ID, ORIGINATOR, ORIGINATE_TIME, 
+      PROCESS_DEFINITION_KEY, PROCESS_DEFINITION_NAME, 
+      PROCESS_INSTANCE_ID, STATUS, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{businessOpKey,jdbcType=VARCHAR}, 
+      #{businessOpName,jdbcType=VARCHAR}, #{businessOpParms,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{customerName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userKey,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{originator,jdbcType=VARCHAR}, #{originateTime,jdbcType=TIMESTAMP}, 
+      #{processDefinitionKey,jdbcType=VARCHAR}, #{processDefinitionName,jdbcType=VARCHAR}, 
+      #{processInstanceId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.crm.model.JobOpInstance">
+    insert into job_op_instance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="businessOpKey != null">
+        BUSINESS_OP_KEY,
+      </if>
+      <if test="businessOpName != null">
+        BUSINESS_OP_NAME,
+      </if>
+      <if test="businessOpParms != null">
+        BUSINESS_OP_PARMS,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userKey != null">
+        USER_KEY,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="originator != null">
+        ORIGINATOR,
+      </if>
+      <if test="originateTime != null">
+        ORIGINATE_TIME,
+      </if>
+      <if test="processDefinitionKey != null">
+        PROCESS_DEFINITION_KEY,
+      </if>
+      <if test="processDefinitionName != null">
+        PROCESS_DEFINITION_NAME,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpKey != null">
+        #{businessOpKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpName != null">
+        #{businessOpName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpParms != null">
+        #{businessOpParms,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="originator != null">
+        #{originator,jdbcType=VARCHAR},
+      </if>
+      <if test="originateTime != null">
+        #{originateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processDefinitionKey != null">
+        #{processDefinitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="processDefinitionName != null">
+        #{processDefinitionName,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.crm.model.JobOpInstance">
+    update job_op_instance
+    <set>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpKey != null">
+        BUSINESS_OP_KEY = #{businessOpKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpName != null">
+        BUSINESS_OP_NAME = #{businessOpName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessOpParms != null">
+        BUSINESS_OP_PARMS = #{businessOpParms,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        USER_KEY = #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="originator != null">
+        ORIGINATOR = #{originator,jdbcType=VARCHAR},
+      </if>
+      <if test="originateTime != null">
+        ORIGINATE_TIME = #{originateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processDefinitionKey != null">
+        PROCESS_DEFINITION_KEY = #{processDefinitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="processDefinitionName != null">
+        PROCESS_DEFINITION_NAME = #{processDefinitionName,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.crm.model.JobOpInstance">
+    update job_op_instance
+    set PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      BUSINESS_OP_KEY = #{businessOpKey,jdbcType=VARCHAR},
+      BUSINESS_OP_NAME = #{businessOpName,jdbcType=VARCHAR},
+      BUSINESS_OP_PARMS = #{businessOpParms,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_KEY = #{userKey,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      ORIGINATOR = #{originator,jdbcType=VARCHAR},
+      ORIGINATE_TIME = #{originateTime,jdbcType=TIMESTAMP},
+      PROCESS_DEFINITION_KEY = #{processDefinitionKey,jdbcType=VARCHAR},
+      PROCESS_DEFINITION_NAME = #{processDefinitionName,jdbcType=VARCHAR},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

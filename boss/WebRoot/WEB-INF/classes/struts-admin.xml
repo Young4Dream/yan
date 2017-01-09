@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<!--采用json数据格式，package的extends必须是extends="json-default"-->  
+    <!--并且必须要用到struts2的json-lib，struts2-json-plugin包-->
+    <!--采用异步提交方式，result的type="json"，并且result节点值为空--> 
+ 	<package name="struts-admin" extends="json-default">
+ 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->  
+        <interceptors>  
+            <interceptor name="loginedCheck" class="com.tstar.callcenter.interceptor.SessionInterceptor"/>  
+            <interceptor-stack name="sessionstack">  
+                <interceptor-ref name="loginedCheck" />  
+                <interceptor-ref name="defaultStack" />  
+            </interceptor-stack>  
+        </interceptors>
+ 		 
+ 		<!-- 定义全局result --> 
+ 		 
+        <global-results>  
+            <result name="loginPage" type="redirect">login.jsp</result>  
+        </global-results> 
+ 		 
+        
+        
+        
+ 		<!-- 登录操作 -->
+ 		
+ 		<action name="login" class="com.tstar.callcenter.action.LoginAction">
+ 			<result name="login" type="json"></result>
+			<result name="fail" type="dispatcher">login.jsp</result>
+			<!-- 
+			<result name="fail" type="dispatcher">login.jsp</result>
+			<result name="success" type="dispatcher">main.jsp</result>
+			<result name="adminSuccess" type="dispatcher">adminMain.jsp</result>
+			 -->
+			<result name="success" type="redirect">sysIndex!goToIndexPage.do</result>
+			<result name="adminSuccess" type="redirect">sysIndex!goToAdminPage.do</result>
+			<interceptor-ref name="sessionstack" />
+ 		</action>
+ 		 
+ 		
+ 		<!-- 登录后首页 -->
+ 		
+ 		<action name="sysIndex" class="com.tstar.callcenter.action.SystemAction">
+			<result name="indexPage" type="dispatcher">main.jsp</result>
+			<result name="adminPage" type="dispatcher">adminMain.jsp</result>
+			
+			<interceptor-ref name="sessionstack" />
+ 		</action> 		 
+ 		 
+ 		<action name="index" class="com.tstar.callcenter.action.SystemAction">
+			<result name="menuTree" type="json"></result>
+			<interceptor-ref name="sessionstack" />
+ 		</action>
+ 		 
+ 		<action name="user" class="com.tstar.callcenter.action.UserAction">
+ 			<result name="userPage" type="dispatcher">/WEB-INF/jsp/system/userConf.jsp</result>
+ 			<result name="userJson" type="json"></result>
+ 			<result name="roleJson" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+ 		<action name="system" class="com.tstar.callcenter.action.SystemConfAction">
+ 			<result name="systemConfPage" type="dispatcher">/WEB-INF/jsp/system/systemConf.jsp</result>
+ 			<result name="systemConf" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+
+		<action name="menu" class="com.tstar.callcenter.action.MenuAction">
+ 			<result name="menuPage" type="dispatcher">/WEB-INF/jsp/system/menuConf.jsp</result>
+ 			<result name="menuTree" type="json"></result>
+ 			<result name="menuInfo" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="role" class="com.tstar.callcenter.action.RoleAction">
+ 			<result name="rolePage" type="dispatcher">/WEB-INF/jsp/system/roleConf.jsp</result>
+ 			<result name="allRole" type="json"></result>
+ 			<result name="checked" type="json"></result> 
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="menucheck" class="com.tstar.callcenter.action.RoleAction" >  
+            <result name="checked" type="json"></result>  
+            <interceptor-ref name="sessionstack" />
+        </action>  
+        
+        <action name="empl" class="com.tstar.callcenter.action.EmployeeAction">
+ 			<result name="emplPage" type="dispatcher">/WEB-INF/jsp/admin/deptEmployeeConf.jsp</result>
+ 			<result name="emplList" type="json"></result>
+ 			<result name="skillTree" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="skill" class="com.tstar.callcenter.action.SkillAction">
+ 			<result name="skillPage" type="dispatcher">/WEB-INF/jsp/admin/skillConf.jsp</result>
+ 			<result name="skillJson" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>		
+		
+		<action name="querynum" class="com.tstar.callcenter.action.Query114Action">
+ 			<result name="numPage" type="dispatcher">/WEB-INF/jsp/114/numberSearch.jsp</result>
+ 			<result name="telMgrPage" type="dispatcher">/WEB-INF/jsp/114/query114TelMgr.jsp</result>
+ 			<result name="queryNumInsert" type="json"></result>
+ 			<result name="queryNumUpdate" type="json"></result>
+ 			<result name="queryNumDelete" type="json"></result>
+ 			<result name="numJson" type="json"></result>
+ 			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="trou" class="com.tstar.callcenter.action.TroubleAcceptAction">
+			<result name="trouPage" type="dispatcher">/WEB-INF/jsp/admin/troubleAccept.jsp</result>
+			<result name="userInfoList" type="json"></result>
+			<result name="trouTypeList" type="json"></result>
+			<result name="trouHistList" type="json"></result>
+			<result name="workFlowList" type="json"></result>
+			<result name="insertTrouble" type="json"></result>
+			<result name="checkDh" type="json"></result>
+            <result name="checkBroad" type="json"></result>
+			<interceptor-ref name="sessionstack" />
+		</action>
+		
+		<action name="param" class="com.tstar.callcenter.action.ParamsAction">
+            <result name="paramConfPage" type="dispatcher">/WEB-INF/jsp/admin/paramConf.jsp</result>
+            <result name="paramsInsert" type="json"></result>
+            <result name="paramsUpdate" type="json"></result>
+            <result name="paramsDelete" type="json"></result>
+            <result name="numJson" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>        
+        
+        <action name="advise" class="com.tstar.callcenter.action.AdviseAction">
+            <result name="advisePage" type="dispatcher">/WEB-INF/jsp/admin/advise.jsp</result>
+            <result name="adviseInsert" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>
+        
+        <action name="record" class="com.tstar.callcenter.action.RecordAction">
+            <result name="recordPage" type="dispatcher">/WEB-INF/jsp/admin/recordHist.jsp</result>
+            <result name="recordList" type="json"></result>
+            <!-- 
+            <result name="downRcord" type="stream">
+            	<param name="contentType">${mimeType}</param>  
+        		<param name="inputName">inStream</param>  
+        		<param name="contentDisposition">attachment;filename="${filename}"</param>
+            </result>
+             -->
+            <interceptor-ref name="sessionstack" />
+        </action>
+        
+        <action name="review" class="com.tstar.callcenter.action.ReviewAction">
+            <result name="reviewPage" type="dispatcher">/WEB-INF/jsp/admin/customerReview.jsp</result>
+            <result name="telJobList" type="json"></result>
+            <result name="faultJobList" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>
+        
+        <action name="monitor" class="com.tstar.callcenter.action.ReviewAction">
+            <result name="monitorPage" type="dispatcher">/WEB-INF/jsp/admin/orderMonitor.jsp</result>
+            <result name="telJobList" type="json"></result>
+            <result name="faultJobList" type="json"></result>
+            <interceptor-ref name="sessionstack" />
+        </action>
+        
+        <action name="download" class="com.tstar.callcenter.action.DownloadAction">  
+    		<result name="downLoad" type="stream">  
+        		<param name="contentType">${mimeType}</param>  
+        		<param name="inputName">inStream</param> 
+        		<param name="contentDisposition">attachment;filename="${fileName}"</param>  
+    		</result>  
+    		<interceptor-ref name="sessionstack" />
+		</action> 
+        <!-- 知识库模块 -->
+        <action name="knowledge" class="com.tstar.callcenter.action.KnowledgeAction">  
+    		<result name="showKnowledge" type="dispatcher">/WEB-INF/jsp/admin/knowledge.jsp</result>
+    		
+    		<result name="jsonKnow" type="json"></result>
+    		<interceptor-ref name="sessionstack" />
+		</action> 
+		
+    </package>
+    
+    
+    
+    
+    
+</struts>

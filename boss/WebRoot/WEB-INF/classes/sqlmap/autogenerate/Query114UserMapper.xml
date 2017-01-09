@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.callcenter.dao.autogenerate.Query114UserMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.callcenter.model.autogenerate.Query114User">
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="BM1" jdbcType="VARCHAR" property="bm1" />
+    <result column="BM2" jdbcType="VARCHAR" property="bm2" />
+    <result column="BM3" jdbcType="VARCHAR" property="bm3" />
+    <result column="BM4" jdbcType="VARCHAR" property="bm4" />
+    <result column="INDEX1" jdbcType="VARCHAR" property="index1" />
+    <result column="INDEX2" jdbcType="VARCHAR" property="index2" />
+    <result column="INDEX3" jdbcType="VARCHAR" property="index3" />
+    <result column="INDEX4" jdbcType="VARCHAR" property="index4" />
+    <result column="INDEX5" jdbcType="VARCHAR" property="index5" />
+    <result column="INDEX6" jdbcType="VARCHAR" property="index6" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PHONE, USERNAME, ADDRESS, BM1, BM2, BM3, BM4, INDEX1, INDEX2, INDEX3, INDEX4, INDEX5, 
+    INDEX6, CODE
+  </sql>
+  <select id="selectByExample" parameterType="com.tstar.callcenter.model.autogenerate.Query114UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from V_T_114_USERINFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.tstar.callcenter.model.autogenerate.Query114UserExample">
+    delete from V_T_114_USERINFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tstar.callcenter.model.autogenerate.Query114User">
+    insert into V_T_114_USERINFO (PHONE, USERNAME, ADDRESS, 
+      BM1, BM2, BM3, BM4, 
+      INDEX1, INDEX2, INDEX3, 
+      INDEX4, INDEX5, INDEX6, 
+      CODE)
+    values (#{phone,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{bm1,jdbcType=VARCHAR}, #{bm2,jdbcType=VARCHAR}, #{bm3,jdbcType=VARCHAR}, #{bm4,jdbcType=VARCHAR}, 
+      #{index1,jdbcType=VARCHAR}, #{index2,jdbcType=VARCHAR}, #{index3,jdbcType=VARCHAR}, 
+      #{index4,jdbcType=VARCHAR}, #{index5,jdbcType=VARCHAR}, #{index6,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.callcenter.model.autogenerate.Query114User">
+    insert into V_T_114_USERINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="bm1 != null">
+        BM1,
+      </if>
+      <if test="bm2 != null">
+        BM2,
+      </if>
+      <if test="bm3 != null">
+        BM3,
+      </if>
+      <if test="bm4 != null">
+        BM4,
+      </if>
+      <if test="index1 != null">
+        INDEX1,
+      </if>
+      <if test="index2 != null">
+        INDEX2,
+      </if>
+      <if test="index3 != null">
+        INDEX3,
+      </if>
+      <if test="index4 != null">
+        INDEX4,
+      </if>
+      <if test="index5 != null">
+        INDEX5,
+      </if>
+      <if test="index6 != null">
+        INDEX6,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bm1 != null">
+        #{bm1,jdbcType=VARCHAR},
+      </if>
+      <if test="bm2 != null">
+        #{bm2,jdbcType=VARCHAR},
+      </if>
+      <if test="bm3 != null">
+        #{bm3,jdbcType=VARCHAR},
+      </if>
+      <if test="bm4 != null">
+        #{bm4,jdbcType=VARCHAR},
+      </if>
+      <if test="index1 != null">
+        #{index1,jdbcType=VARCHAR},
+      </if>
+      <if test="index2 != null">
+        #{index2,jdbcType=VARCHAR},
+      </if>
+      <if test="index3 != null">
+        #{index3,jdbcType=VARCHAR},
+      </if>
+      <if test="index4 != null">
+        #{index4,jdbcType=VARCHAR},
+      </if>
+      <if test="index5 != null">
+        #{index5,jdbcType=VARCHAR},
+      </if>
+      <if test="index6 != null">
+        #{index6,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tstar.callcenter.model.autogenerate.Query114UserExample" resultType="java.lang.Integer">
+    select count(*) from V_T_114_USERINFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update V_T_114_USERINFO
+    <set>
+      <if test="record.phone != null">
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bm1 != null">
+        BM1 = #{record.bm1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bm2 != null">
+        BM2 = #{record.bm2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bm3 != null">
+        BM3 = #{record.bm3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bm4 != null">
+        BM4 = #{record.bm4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.index1 != null">
+        INDEX1 = #{record.index1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.index2 != null">
+        INDEX2 = #{record.index2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.index3 != null">
+        INDEX3 = #{record.index3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.index4 != null">
+        INDEX4 = #{record.index4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.index5 != null">
+        INDEX5 = #{record.index5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.index6 != null">
+        INDEX6 = #{record.index6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update V_T_114_USERINFO
+    set PHONE = #{record.phone,jdbcType=VARCHAR},
+      USERNAME = #{record.username,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      BM1 = #{record.bm1,jdbcType=VARCHAR},
+      BM2 = #{record.bm2,jdbcType=VARCHAR},
+      BM3 = #{record.bm3,jdbcType=VARCHAR},
+      BM4 = #{record.bm4,jdbcType=VARCHAR},
+      INDEX1 = #{record.index1,jdbcType=VARCHAR},
+      INDEX2 = #{record.index2,jdbcType=VARCHAR},
+      INDEX3 = #{record.index3,jdbcType=VARCHAR},
+      INDEX4 = #{record.index4,jdbcType=VARCHAR},
+      INDEX5 = #{record.index5,jdbcType=VARCHAR},
+      INDEX6 = #{record.index6,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+</mapper>

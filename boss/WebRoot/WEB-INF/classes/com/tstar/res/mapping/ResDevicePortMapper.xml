@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResDevicePortMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResDevicePort">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="PORT_CODE" jdbcType="VARCHAR" property="portCode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="BEARABLE" jdbcType="VARCHAR" property="bearable" />
+    <result column="BEARING" jdbcType="VARCHAR" property="bearing" />
+    <result column="PARENT_DEVICE_CODE" jdbcType="VARCHAR" property="parentDeviceCode" />
+    <result column="PARENT_PORT_CODE" jdbcType="VARCHAR" property="parentPortCode" />
+    <result column="BUSINESS_KEY" jdbcType="VARCHAR" property="businessKey" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="STATUS_DESC" jdbcType="VARCHAR" property="statusDesc" />
+    <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DEVICE_CODE, PORT_CODE, STATUS, BEARABLE, BEARING, PARENT_DEVICE_CODE, PARENT_PORT_CODE, 
+    BUSINESS_KEY, REMARK,
+    (SELECT NAME FROM ref_port_status WHERE ref_port_status.ID=STATUS) AS STATUS_DESC,
+    (SELECT NAME FROM res_device WHERE res_device.DEVICE_CODE=res_device_port.DEVICE_CODE) AS DEVICE_NAME
+  </sql>
+  <select id="countByDevice" parameterType="String" resultType="int">
+    select 
+    count(*)
+    from res_device_port
+    where DEVICE_CODE = #{0}
+  </select>
+  <select id="countByCriteria" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from res_device_port
+    where 1=1
+    <if test="deviceCode != null and deviceCode != ''">
+    	and DEVICE_CODE LIKE concat(#{deviceCode}, '%')
+    </if>
+    <if test="portCode != null and portCode != ''">
+    	and PORT_CODE LIKE concat('%', #{portCode}, '%')
+    </if>
+    <if test="status != null and status != ''">
+    	and STATUS = #{status}
+    </if>
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device_port
+    where 1=1
+    <if test="deviceCode != null and deviceCode != ''">
+    	and DEVICE_CODE LIKE concat(#{deviceCode}, '%')
+    </if>
+    <if test="portCode != null and portCode != ''">
+    	and PORT_CODE LIKE concat('%', #{portCode}, '%')
+    </if>
+    <if test="status != null and status != ''">
+    	and STATUS = #{status}
+    </if>
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="countUsable" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from res_device_port
+    where 1=1
+    <if test="deviceCode != null and deviceCode != ''">
+    	and DEVICE_CODE LIKE concat(#{deviceCode}, '%')
+    </if>
+    <if test="portCode != null and portCode != ''">
+    	and PORT_CODE LIKE concat('%', #{portCode}, '%')
+    </if>
+    and STATUS='1'
+    and INSTR(BEARABLE, #{bearing}) > 0
+    and INSTR(BEARING, #{bearing}) = 0
+  </select>
+  <select id="selectUsable" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device_port
+    where 1=1
+    <if test="deviceCode != null and deviceCode != ''">
+    	and DEVICE_CODE LIKE concat(#{deviceCode}, '%')
+    </if>
+    <if test="portCode != null and portCode != ''">
+    	and PORT_CODE LIKE concat('%', #{portCode}, '%')
+    </if>
+    and STATUS='1'
+    and INSTR(BEARABLE, #{bearing}) > 0
+    and INSTR(BEARING, #{bearing}) = 0
+    order by PORT_CODE
+    limit #{start}, #{length}
+  </select>
+  
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device_port
+    where DEVICE_CODE = #{0}
+    and PORT_CODE  = #{1}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_device_port
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_device_port
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResDevicePort">
+    insert into res_device_port (ID, DEVICE_CODE, PORT_CODE, 
+      STATUS, BEARABLE, BEARING, PARENT_DEVICE_CODE, 
+      PARENT_PORT_CODE, BUSINESS_KEY, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{deviceCode,jdbcType=VARCHAR}, #{portCode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{bearable,jdbcType=VARCHAR}, #{bearing,jdbcType=VARCHAR}, #{parentDeviceCode,jdbcType=VARCHAR}, 
+      #{parentPortCode,jdbcType=VARCHAR}, #{businessKey,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResDevicePort">
+    insert into res_device_port
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE,
+      </if>
+      <if test="portCode != null">
+        PORT_CODE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="bearable != null">
+        BEARABLE,
+      </if>
+      <if test="bearing != null">
+        BEARING,
+      </if>
+      <if test="parentDeviceCode != null">
+        PARENT_DEVICE_CODE,
+      </if>
+      <if test="parentPortCode != null">
+        PARENT_PORT_CODE,
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portCode != null">
+        #{portCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bearable != null">
+        #{bearable,jdbcType=VARCHAR},
+      </if>
+      <if test="bearing != null">
+        #{bearing,jdbcType=VARCHAR},
+      </if>
+      <if test="parentDeviceCode != null">
+        #{parentDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPortCode != null">
+        #{parentPortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResDevicePort">
+    update res_device_port
+    <set>
+      <if test="deviceCode != null">
+        DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portCode != null">
+        PORT_CODE = #{portCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bearable != null">
+        BEARABLE = #{bearable,jdbcType=VARCHAR},
+      </if>
+      <if test="bearing != null">
+        BEARING = #{bearing,jdbcType=VARCHAR},
+      </if>
+      <if test="parentDeviceCode != null">
+        PARENT_DEVICE_CODE = #{parentDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPortCode != null">
+        PARENT_PORT_CODE = #{parentPortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResDevicePort">
+    update res_device_port
+    set DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      PORT_CODE = #{portCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      BEARABLE = #{bearable,jdbcType=VARCHAR},
+      BEARING = #{bearing,jdbcType=VARCHAR},
+      PARENT_DEVICE_CODE = #{parentDeviceCode,jdbcType=VARCHAR},
+      PARENT_PORT_CODE = #{parentPortCode,jdbcType=VARCHAR},
+      BUSINESS_KEY = #{businessKey,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

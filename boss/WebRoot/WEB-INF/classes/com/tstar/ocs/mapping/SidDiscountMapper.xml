@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidDiscountMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidDiscount">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="START_DATE" jdbcType="DATE" property="startDate" />
+    <result column="END_DATE" jdbcType="DATE" property="endDate" />
+    <result column="START_TIME" jdbcType="VARCHAR" property="startTime" />
+    <result column="END_TIME" jdbcType="VARCHAR" property="endTime" />
+    <result column="TOTAL_VALUE" jdbcType="DECIMAL" property="totalValue" />
+    <result column="TOTAL_PERCENT" jdbcType="DECIMAL" property="totalPercent" />
+    <result column="UNIT_VALUE" jdbcType="DECIMAL" property="unitValue" />
+    <result column="UNIT_PERCENT" jdbcType="DECIMAL" property="unitPercent" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="RATE_ID" jdbcType="VARCHAR" property="rateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, START_DATE, END_DATE, START_TIME, END_TIME, TOTAL_VALUE, TOTAL_PERCENT, 
+    UNIT_VALUE, UNIT_PERCENT, STATUS, CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+  <select id="selectRateDiscountByDateTime" resultMap="BaseResultMap">
+    select 
+    b.ID, b.NAME, b.START_DATE, b.END_DATE, b.START_TIME, b.END_TIME, b.TOTAL_VALUE, b.TOTAL_PERCENT, 
+    b.UNIT_VALUE, b.UNIT_PERCENT, b.STATUS, b.CREATE_TIME, b.UPDATE_TIME, b.REMARK,
+    a.RATE_ID
+    from sid_rate_discount a
+	left join sid_discount b on a.discount_id=b.id
+	where b.status=1
+	and a.RATE_ID=#{0}
+	and #{1} between b.START_DATE and b.END_DATE
+	and #{2} between b.START_TIME and b.END_TIME
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_discount
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_discount
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidDiscount">
+    insert into sid_discount (ID, NAME, START_DATE, 
+      END_DATE, START_TIME, END_TIME, 
+      TOTAL_VALUE, TOTAL_PERCENT, UNIT_VALUE, 
+      UNIT_PERCENT, STATUS, CREATE_TIME, 
+      UPDATE_TIME, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, 
+      #{endDate,jdbcType=DATE}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{totalValue,jdbcType=DECIMAL}, #{totalPercent,jdbcType=DECIMAL}, #{unitValue,jdbcType=DECIMAL}, 
+      #{unitPercent,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidDiscount">
+    insert into sid_discount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="totalValue != null">
+        TOTAL_VALUE,
+      </if>
+      <if test="totalPercent != null">
+        TOTAL_PERCENT,
+      </if>
+      <if test="unitValue != null">
+        UNIT_VALUE,
+      </if>
+      <if test="unitPercent != null">
+        UNIT_PERCENT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="totalValue != null">
+        #{totalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPercent != null">
+        #{totalPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="unitValue != null">
+        #{unitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPercent != null">
+        #{unitPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidDiscount">
+    update sid_discount
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="totalValue != null">
+        TOTAL_VALUE = #{totalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPercent != null">
+        TOTAL_PERCENT = #{totalPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="unitValue != null">
+        UNIT_VALUE = #{unitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPercent != null">
+        UNIT_PERCENT = #{unitPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidDiscount">
+    update sid_discount
+    set NAME = #{name,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=DATE},
+      END_DATE = #{endDate,jdbcType=DATE},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      TOTAL_VALUE = #{totalValue,jdbcType=DECIMAL},
+      TOTAL_PERCENT = #{totalPercent,jdbcType=DECIMAL},
+      UNIT_VALUE = #{unitValue,jdbcType=DECIMAL},
+      UNIT_PERCENT = #{unitPercent,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

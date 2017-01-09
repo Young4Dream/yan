@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.ocs.dao.SidRateMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.ocs.model.SidRate">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SERVICE_ID" jdbcType="VARCHAR" property="serviceId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="RATE_TYPE" jdbcType="INTEGER" property="rateType" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="SERVICE_NAME" jdbcType="VARCHAR" property="serviceName" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="BASE_DURATION" jdbcType="INTEGER" property="baseDuration" />
+    <result column="BASE_FEE" jdbcType="DECIMAL" property="baseFee" />
+    <result column="BASE_USAGE" jdbcType="INTEGER" property="baseUsage" />
+    <result column="THRESHOLD" jdbcType="INTEGER" property="threshold" />
+    <result column="ATTACH_PRICE" jdbcType="DECIMAL" property="attachPrice" />
+    <result column="ATTACH_UNIT_COUNT" jdbcType="INTEGER" property="attachUnitCount" />
+    <result column="PLAN_ID" jdbcType="VARCHAR" property="planId" />
+    <result column="ACCOUNT_ITEM_ID" jdbcType="VARCHAR" property="accountItemId" />
+    <result column="ACCOUNT_ITEM_NAME" jdbcType="VARCHAR" property="accountItemName" />
+    <result column="ATTACH_ITEM_ID" jdbcType="VARCHAR" property="attachItemId" />
+    <result column="ATTACH_ITEM_NAME" jdbcType="VARCHAR" property="attachItemName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SERVICE_ID, NAME, RATE_TYPE, CREATE_TIME, UPDATE_TIME, REMARK, ACCOUNT_ITEM_ID,ATTACH_ITEM_ID,
+    (select NAME from sid_service where ID=SERVICE_ID) AS SERVICE_NAME,
+    (select ITEM_NAME from sys_account_item where sys_account_item.ID=ACCOUNT_ITEM_ID) AS ACCOUNT_ITEM_NAME,
+    (select ITEM_NAME from sys_account_item where sys_account_item.ID=ATTACH_ITEM_ID) AS ATTACH_ITEM_NAME
+  </sql>
+  
+  <select id="countAll" parameterType="map" resultType="int">
+    select 
+    count(*)
+    from sid_rate
+    where 1=1
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="rateType != null and rateType != -1 ">
+    	and RATE_TYPE = #{rateType} 
+    </if>
+    <if test="serviceId != null and serviceId != '' ">
+    	and SERVICE_ID = #{serviceId}
+    </if>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_rate
+    where 1=1
+  </select>
+  <select id="selectByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sid_rate
+    where 1=1
+    <if test="name != null and name != ''">
+    	and NAME LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="rateType != null and rateType != -1 ">
+    	and RATE_TYPE = #{rateType} 
+    </if>
+    <if test="serviceId != null and serviceId != '' ">
+    	and SERVICE_ID = #{serviceId}
+    </if>
+    limit #{start}, #{length}
+  </select>
+  <select id="selectDefaultRates" resultMap="BaseResultMap">
+    select 
+    c.ID, c.SERVICE_ID, c.NAME, c.RATE_TYPE, c.CREATE_TIME, c.UPDATE_TIME, c.REMARK,
+    d.PRICE, d.BASE_DURATION, d.BASE_FEE, d.BASE_USAGE, d.THRESHOLD,
+    d.ATTACH_PRICE, d.ATTACH_UNIT_COUNT, c.ACCOUNT_ITEM_ID, c.ATTACH_ITEM_ID,
+    a.id as PLAN_ID
+    from sid_price_plan a, sid_plan_rate b, sid_rate c
+    left join sid_rate_item d on d.rate_id=c.id
+    where a.plan_type=0 and a.id=b.plan_id and b.rate_id=c.id
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    c.ID, c.SERVICE_ID, c.NAME, c.RATE_TYPE, c.CREATE_TIME, c.UPDATE_TIME, c.REMARK,
+    d.PRICE, d.BASE_DURATION, d.BASE_FEE, d.BASE_USAGE, d.THRESHOLD,
+    d.ATTACH_PRICE, d.ATTACH_UNIT_COUNT, c.ACCOUNT_ITEM_ID, c.ATTACH_ITEM_ID
+    from sid_rate c
+    left join sid_rate_item d on d.rate_id=c.id
+    where c.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sid_rate
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.ocs.model.SidRate">
+    insert into sid_rate (ID, SERVICE_ID, NAME, 
+      RATE_TYPE, CREATE_TIME, UPDATE_TIME, 
+      REMARK, ACCOUNT_ITEM_ID, ATTACH_ITEM_ID)
+    values (#{id,jdbcType=VARCHAR}, #{serviceId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{rateType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{accountItemId,jdbcType=VARCHAR}, #{attachItemId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.ocs.model.SidRate">
+    insert into sid_rate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="serviceId != null">
+        SERVICE_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID,
+      </if>
+      <if test="attachItemId != null">
+        ATTACH_ITEM_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        #{accountItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="attachItemId != null">
+        #{attachItemId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.ocs.model.SidRate">
+    update sid_rate
+    <set>
+      <if test="serviceId != null">
+        SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE = #{rateType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountItemId != null">
+        ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="attachItemId != null">
+        ATTACH_ITEM_ID = #{attachItemId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.ocs.model.SidRate">
+    update sid_rate
+    set SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      RATE_TYPE = #{rateType,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ACCOUNT_ITEM_ID = #{accountItemId,jdbcType=VARCHAR},
+      ATTACH_ITEM_ID = #{attachItemId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

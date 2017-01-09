@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.dao.ResUserPortMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResUserPort">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_KEY" jdbcType="VARCHAR" property="userKey" />
+    <result column="BUSINESS_TYPE" jdbcType="VARCHAR" property="businessType" />
+    <result column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="PORT_CODE" jdbcType="VARCHAR" property="portCode" />
+    <result column="PORT_INDEX" jdbcType="INTEGER" property="portIndex" />
+    <result column="CTRL_SET_NAME" jdbcType="VARCHAR" property="ctrlSetName" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, USER_KEY, BUSINESS_TYPE, DEVICE_CODE, PORT_CODE, PORT_INDEX, CTRL_SET_NAME, 
+    CREATOR, CREATE_TIME, REMARK,
+    (SELECT NAME FROM res_device WHERE res_device.DEVICE_CODE = res_user_port.DEVICE_CODE) AS DEVICE_NAME 
+  </sql>
+  <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_user_port
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+    ORDER BY PORT_INDEX
+  </select>
+  <select id="selectMaxPortIndex" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select 
+    max(PORT_INDEX)
+    from res_user_port
+    where USER_ID = #{0}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_user_port
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from res_user_port
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tstar.res.model.ResUserPort">
+    insert into res_user_port (ID, USER_ID, USER_KEY, 
+      BUSINESS_TYPE, DEVICE_CODE, PORT_CODE, 
+      PORT_INDEX, CTRL_SET_NAME, CREATOR, 
+      CREATE_TIME, REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userKey,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{deviceCode,jdbcType=VARCHAR}, #{portCode,jdbcType=VARCHAR}, 
+      #{portIndex,jdbcType=INTEGER}, #{ctrlSetName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tstar.res.model.ResUserPort">
+    insert into res_user_port
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userKey != null">
+        USER_KEY,
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE,
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE,
+      </if>
+      <if test="portCode != null">
+        PORT_CODE,
+      </if>
+      <if test="portIndex != null">
+        PORT_INDEX,
+      </if>
+      <if test="ctrlSetName != null">
+        CTRL_SET_NAME,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portCode != null">
+        #{portCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portIndex != null">
+        #{portIndex,jdbcType=INTEGER},
+      </if>
+      <if test="ctrlSetName != null">
+        #{ctrlSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tstar.res.model.ResUserPort">
+    update res_user_port
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        USER_KEY = #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceCode != null">
+        DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portCode != null">
+        PORT_CODE = #{portCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portIndex != null">
+        PORT_INDEX = #{portIndex,jdbcType=INTEGER},
+      </if>
+      <if test="ctrlSetName != null">
+        CTRL_SET_NAME = #{ctrlSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tstar.res.model.ResUserPort">
+    update res_user_port
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_KEY = #{userKey,jdbcType=VARCHAR},
+      BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+      PORT_CODE = #{portCode,jdbcType=VARCHAR},
+      PORT_INDEX = #{portIndex,jdbcType=INTEGER},
+      CTRL_SET_NAME = #{ctrlSetName,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.portal.dao.RefMapper">
+  <select id="selectAll" parameterType="map" resultType="map" statementType="STATEMENT">
+  	<![CDATA[ 
+    select 
+    id, name
+    from ${tableName}
+    order by ID
+    ]]>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultType="map">
+  	<![CDATA[ 
+    select 
+    id, name
+    from ${tableName}
+    where ID = ${id}
+    ]]>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+  	<![CDATA[ 
+    delete from ${tableName}
+    where ID = ${id}
+    ]]>
+  </delete>
+  <insert id="insert" parameterType="map">
+  	<![CDATA[ 
+    insert into ${tableName} (ID, NAME)
+    values (${id}, ${name})
+    ]]>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="map">
+  	<![CDATA[ 
+    update ${tableName}
+    set NAME = ${name}
+    where ID = ${id}
+    ]]>
+  </update>
+</mapper>
