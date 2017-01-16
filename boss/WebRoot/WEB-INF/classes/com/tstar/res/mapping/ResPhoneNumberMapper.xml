@@ -12,6 +12,29 @@
     <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
     <result column="REMARK" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="associationResultMap" type="com.tstar.res.model.ResPhoneNumber">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="ROOT_DEVICE_CODE" jdbcType="VARCHAR" property="rootDeviceCode" />
+    <result column="NUMBER_LEVEL" jdbcType="INTEGER" property="numberLevel" />
+    <result column="RESERVED" jdbcType="INTEGER" property="reserved" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="UNLOCK_TIME" jdbcType="TIMESTAMP" property="unlockTime" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <association property="refBusinessArea" resultMap="mRefBusinessArea"></association>
+    <association property="resBillingArea" resultMap="mResBillingArea"></association>
+    
+  </resultMap>
+  <resultMap id="mRefBusinessArea" type="com.tstar.res.model.RefBusinessArea" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="BILLING_ID" property="billingId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="mResBillingArea" type="com.tstar.res.model.ResBillingArea">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BILLING_AREA" jdbcType="VARCHAR" property="billingArea" />
+  </resultMap>
   <sql id="Base_Column_List">
     ID, PHONE_NUMBER, ROOT_DEVICE_CODE, NUMBER_LEVEL, RESERVED, STATUS, UNLOCK_TIME, 
     CUSTOMER_NAME, REMARK
@@ -66,6 +89,10 @@
     from res_phone_number
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+   <select id="findAreaByPhoneNumber" parameterType="java.lang.String" resultMap="associationResultMap">
+  	SELECT * FROM res_phone_number a,ref_business_area b ,res_billing_area c
+		WHERE a.remark=b.id AND b.BILLING_ID=c.ID AND  a.phone_number=#{phoneNumber,jdbcType=VARCHAR}
+  </select> 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from res_phone_number
     where ID = #{id,jdbcType=VARCHAR}

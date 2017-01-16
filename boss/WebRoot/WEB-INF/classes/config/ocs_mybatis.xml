@@ -3,7 +3,9 @@
 <configuration>
  
    <properties resource="config/db.properties"/>
- 	
+ 	<settings>
+ 		<setting name="logImpl" value="LOG4J" /> 
+ 	</settings>
    <environments default="development">
      <environment id="development">
        <transactionManager type="JDBC" />
@@ -60,6 +62,11 @@
     	<mapper resource="com/tstar/ac/mapping/AcCommandMapper.xml"/>
     	<mapper resource="com/tstar/res/mapping/ResUserPortMapper.xml"/>
     	<mapper resource="com/tstar/res/mapping/ResDeviceMapper.xml"/>
+    	<!--  -->
+    	
+    	<mapper resource="com/tstar/res/mapping/ResPhoneNumberMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResBillingAreaMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/RefBusinessAreaMapper.xml"/>
   </mappers>
   
 </configuration>

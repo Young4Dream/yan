@@ -20,8 +20,26 @@ public class ResPhoneNumber {
     private String customerName;
 
     private String remark;
+    private RefBusinessArea refBusinessArea;
+    private ResBillingArea resBillingArea;
 
-    public String getId() {
+    public RefBusinessArea getRefBusinessArea() {
+		return refBusinessArea;
+	}
+
+	public void setRefBusinessArea(RefBusinessArea refBusinessArea) {
+		this.refBusinessArea = refBusinessArea;
+	}
+
+	public ResBillingArea getResBillingArea() {
+		return resBillingArea;
+	}
+
+	public void setResBillingArea(ResBillingArea resBillingArea) {
+		this.resBillingArea = resBillingArea;
+	}
+
+	public String getId() {
         return id;
     }
 

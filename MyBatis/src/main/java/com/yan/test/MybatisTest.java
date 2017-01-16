@@ -34,11 +34,11 @@ public static void main(String[] args) throws ParseException {
 	/******************************************
 	 * 通过association获取部门信息
 	 *******************************************/
-//	emp=empMapper.findByAss((short)7369);
-//	/*取得部门名称*/
-//	System.out.println("编号为7369的员工的部门为："+emp.getDept().getDname());
-//	/*取得部门位置*/
-//	System.out.println("编号为7369的员工的地址为："+emp.getDept().getLoc());
+	emp=empMapper.findByAss((short)7369);
+	/*取得部门名称*/
+	System.out.println("编号为7369的员工的部门为："+emp.getDept().getDname());
+	/*取得部门位置*/
+	System.out.println("编号为7369的员工的地址为："+emp.getDept().getLoc());
 	
 	/********************************************
 	 * 通过collection获取员工信息

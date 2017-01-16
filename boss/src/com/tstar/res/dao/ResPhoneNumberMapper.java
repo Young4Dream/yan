@@ -30,5 +30,5 @@ public interface ResPhoneNumberMapper {
     int lockPhoneNumber(String phoneNo, Date unlockTime);
     
     int unlockPhoneNumber(String phoneNo);
-    
+    ResPhoneNumber findAreaByPhoneNumber(String phoneNumber);
 }

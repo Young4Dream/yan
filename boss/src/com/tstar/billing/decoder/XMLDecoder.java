@@ -12,6 +12,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.tstar.billing.pricer.InnerPhoneFilter;
 import com.tstar.ocs.model.Cdr;
 import com.tstar.util.BeanHelper;
 import com.tstar.util.ExceptionUtil;
@@ -130,7 +131,9 @@ public class XMLDecoder implements IDecoder {
 				} // if (node instanceof DecoderConfigTrunk)
 			} // while (iter.hasNext()) {
 		} // for
-		
+//		for(Cdr c : cdrs){
+//			cdr=InnerPhoneFilter.filt(cdr);
+//		}
 		return cdrs;
 	}
 

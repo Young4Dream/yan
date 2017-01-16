@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.tstar.billing.pricer.InnerPhoneFilter;
 import com.tstar.ocs.model.Cdr;
 import com.tstar.util.BeanHelper;
 import com.tstar.util.ByteHelper;
@@ -74,15 +75,18 @@ public class BinaryDecoder implements IDecoder {
 		String decodeName = config.name;
 		if (decodeName.equalsIgnoreCase("ZTE")) {
 			// 调用ZTEFilter
-			ZTEFilter zf = new ZTEFilter();
-			zf.filt(cdrs);
+			ZTEFilter filter = new ZTEFilter();
+			filter.filt(cdrs);
 		} else if (decodeName.equalsIgnoreCase("mgcf")) {
-			MgcfFilter mf = new MgcfFilter();
-			mf.filt(cdrs);
+			MgcfFilter filter = new MgcfFilter();
+			filter.filt(cdrs);
 		} else if (decodeName.equalsIgnoreCase("ats")) {
-			AtsFilter mf = new AtsFilter();
-			mf.filt(cdrs);
-		}
+			AtsFilter filter = new AtsFilter();
+			filter.filt(cdrs);
+		} else if (decodeName.equalsIgnoreCase("cc08_66")) {
+			CC08_66Filter filter = new CC08_66Filter();
+			filter.filt(cdrs);
+			}
 		return cdrs;
 	}
 

@@ -95,6 +95,8 @@
     	<mapper resource="com/tstar/res/mapping/ResHisPortMapper.xml"/>
     	<mapper resource="com/tstar/res/mapping/ResAccMapper.xml"/>
     	<mapper resource="com/tstar/res/mapping/ResAddressMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/ResBillingAreaMapper.xml"/>
+    	<mapper resource="com/tstar/res/mapping/RefBusinessAreaMapper.xml"/>
     	<!-- 报表管理 -->
     	<mapper resource="com/tstar/res/mapping/ResReportMapper.xml"/>
     	<!-- CRM -->

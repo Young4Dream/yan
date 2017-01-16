@@ -119,8 +119,12 @@ public class PhonePricer implements IPricer {
 				abnormal++;
 				continue;
 			} 
-			cdr.setCalleeLocation(item.getCalleeLocation());
-			cdr.setCallType(SidServiceBus.findCallTypeName(item.getConfigId()));
+			String calleeLocation = item.getCalleeLocation();
+			String callType =SidServiceBus.findCallTypeName(item.getConfigId());
+			
+			cdr.setCalleeLocation(calleeLocation);
+			cdr.setCallType(callType);
+			cdr=InnerPhoneFilter.filt(cdr);
 			
 			// 根据业务类别和呼叫类型查找业务
 			SidService service = SidServiceBus.findService(category.getId(), item.getConfigId(), null);
@@ -166,7 +170,7 @@ public class PhonePricer implements IPricer {
 			int usageCount = (int)Math.ceil((double)cdr.getDuration() / service.getMeterCount());
 			cdr.setUsageCount(usageCount);
 			cdr.setServiceId(service.getId());
-			
+			cdr=InnerPhoneFilter.filt(cdr);
 			cdr.setHashCode(cdr.hashCode());
 		}
 		log.setAbnormalCount(abnormal);
@@ -175,6 +179,7 @@ public class PhonePricer implements IPricer {
 	public void pricing(CdrLog log, List<Cdr> cdrs) {
 		int abnormal = log.getAbnormalCount();
 		for (Cdr cdr : cdrs) {
+			cdr=InnerPhoneFilter.filt(cdr);
 			if (cdr.getAbnormalCode() > 0) continue;
 			SidRate rate = SidRateBus.findDefaultRate(cdr.getServiceId());
 			if (rate == null) {

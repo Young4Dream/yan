@@ -175,24 +175,24 @@ public class SidServiceBus {
 	}
 	
 	public static void main(String[] args) {
-		SidVoiceConfigItem item = findCallTypeItem("6221");
+		SidVoiceConfigItem item = findCallTypeItem("4861141");
 		System.out.println(item.getCalleeLocation());
-		item = findCallTypeItem("020661");
-		System.out.println(item.getCalleeLocation());
-		item = findCallTypeItem("021661");
-		System.out.println(item.getCalleeLocation());
-		item = findCallTypeItem("05960661");
-		System.out.println(item.getCalleeLocation());
-		item = findCallTypeItem("008520661");
-		System.out.println(item.getCalleeLocation());
-		item = findCallTypeItem("006520661");
-		System.out.println(item.getCalleeLocation());
-		System.out.println("service:");
-		SidService sv = findService("1", "1", null);
-		System.out.println("id=" + sv.getId() + ", name=" + sv.getName());
-		sv = findService("2", null, "1");
-		System.out.println("id=" + sv.getId() + ", name=" + sv.getName());	
-		sv = findService("3", null, null);
-		System.out.println(sv == null ? "null" : sv.getName());
+//		item = findCallTypeItem("020661");
+//		System.out.println(item.getCalleeLocation());
+//		item = findCallTypeItem("021661");
+//		System.out.println(item.getCalleeLocation());
+//		item = findCallTypeItem("05960661");
+//		System.out.println(item.getCalleeLocation());
+//		item = findCallTypeItem("008520661");
+//		System.out.println(item.getCalleeLocation());
+//		item = findCallTypeItem("006520661");
+//		System.out.println(item.getCalleeLocation());
+//		System.out.println("service:");
+//		SidService sv = findService("1", "1", null);
+//		System.out.println("id=" + sv.getId() + ", name=" + sv.getName());
+//		sv = findService("2", null, "1");
+//		System.out.println("id=" + sv.getId() + ", name=" + sv.getName());	
+//		sv = findService("3", null, null);
+//		System.out.println(sv == null ? "null" : sv.getName());
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.tstar.billing.business.CdrBus;
 import com.tstar.billing.business.OcsBillBus;
 import com.tstar.billing.business.SidRateBus;
+import com.tstar.billing.pricer.InnerPhoneFilter;
 import com.tstar.crm.model.OcsBill;
 import com.tstar.crm.model.OcsBillItem;
 import com.tstar.ocs.model.Cdr;
@@ -18,6 +19,7 @@ public class GeneralBiller implements IBiller {
 
 	public void billing(List<Cdr> cdrs) {
 		for (Cdr cdr : cdrs) {
+//			cdr=InnerPhoneFilter.filt(cdr);
 			// 获取重复话单
 			Cdr obj = CdrBus.getDuplicatedCdr(cdr);
 			double lastAmount = 0;	
