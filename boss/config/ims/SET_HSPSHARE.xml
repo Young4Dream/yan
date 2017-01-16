@@ -1,0 +1,16 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<Authentication>
+			<Username>#{user}</Username>
+			<Password>#{password}</Password>
+		</Authentication>
+		<MessageID>#{seq}</MessageID>
+		<MEName>HSS</MEName>
+	</soap:Header>
+	<soap:Body>
+		<SET_HSPSHARE xmlns="http://www.huawei.com/IMS/HSSV900R009C00SPC200">
+			<BASEIMPU>sip:+8620#{businessKey}@ims.kongguanju.com</BASEIMPU>
+			<IMPU>tel:+8620#{businessKey}</IMPU>
+		</SET_HSPSHARE>
+	</soap:Body>
+</soap:Envelope> 

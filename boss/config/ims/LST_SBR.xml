@@ -1,0 +1,16 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Header>
+  <Authentication>
+   <Username>BSS_kongguanju</Username>
+   <Password>417012FCEDE69848D316E21EAA1E76FC</Password>
+  </Authentication>
+  <MessageID>1</MessageID>
+ </soap:Header>
+ <soap:Body>
+	<LST_SBR xmlns="http://www.huawei.com/SPG">
+         <IMPU>sip:+862022016@ims.kongguanju.com</IMPU>
+         <DSPMODE>0</DSPMODE>
+         <DSPOPTIMIZE>0</DSPOPTIMIZE>
+	</LST_SBR>
+ </soap:Body>
+</soap:Envelope> 

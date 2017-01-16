@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<decoders>
+<!-- IMS话单 ASN.1格式话单 -->
+<!-- ATS话单 TAG=0xBF45 48965 -->
+<decoder name="ATS" class="com.tstar.billing.decoder.ASN1" tag="48963" business="PHONE" 
+	filter="com.tstar.billing.decoder.AtsFilter"
+	pricer="com.tstar.billing.pricer.PhonePricer">
+	<!-- numberFormatter="com.tstar.billing.pricer.AtsFormatter" -->
+	<!-- role-of-node TAG=0x83 131 -->
+	<!-- 0: MO主叫话单 -->
+	<!-- 1: MT被叫话单 忽略计费 -->
+	<!--<leaf tag="131" field="rolfOfNode" datatype="date"/>-->
+	<!-- 主叫号码 list-Of-Calling-Party-Address TAG=0xA6 -->
+	<trunk tag="166">
+		<!-- TEL格式的主叫号码 tEL-URI TAG=0x81-->
+		<leaf tag="129" field="caller" datatype="string" pattern="^(tel:)?\+?(86(20)?)?(\d+)" patternIndex="4" /> 
+	</trunk>
+	<!-- 被叫号码 list-Of-Called-Party-Address TAG=0xA7 -->
+	<trunk tag="167">
+		<!-- TEL格式的被叫号码 tEL-URI TAG=0x81-->
+		<leaf tag="129" field="callee" datatype="string" pattern="^(tel:)?\+?(86(20)?)?(\d+)" patternIndex="4" /> 
+	</trunk>
+	<!-- 呼起时间 TAG=0x9A-->
+	<leaf tag="138" field="startTime" datatype="date"/>
+	<!-- 呼止时间 TAG=0x8B-->
+	<leaf tag="139" field="endTime" datatype="date"/>
+	<!-- 通话时长 单位毫秒 TAG=0x9F8148-->
+	<leaf tag="10453320" field="duration" datatype="integer" format="ms"/>
+</decoder>
+
+<!-- MGCF话单 TAG=0xBF43 48963-->
+<decoder name="MGCF" class="com.tstar.billing.decoder.ASN1" tag="48963" business="PHONE"
+	filter="com.tstar.billing.decoder.MgcfFilter"
+	pricer="com.tstar.billing.pricer.PhonePricer"
+	numberFormatter="com.tstar.billing.pricer.MgcfFormatter" >
+	<!-- 主叫号码 list-Of-Calling-Party-Address TAG=0xA6 -->
+	<trunk tag="166">
+		<!-- TEL格式的主叫号码 tEL-URI TAG=0x81-->
+		<leaf tag="129" field="caller" datatype="string" pattern="^(tel:)?\+?(86(20)?)?(\d+)" patternIndex="4" /> 
+	</trunk>
+	<!-- 被叫号码 list-Of-Called-Party-Address TAG=0xA7 -->
+	<trunk tag="167">
+		<!-- TEL格式的被叫号码 tEL-URI TAG=0x81-->
+		<leaf tag="129" field="callee" datatype="string" pattern="^(tel:)?\+?(86(20)?)?(\d+)" patternIndex="4" /> 
+	</trunk>
+	<!-- 呼起时间 TAG=0x9A-->
+	<leaf tag="138" field="startTime" datatype="date"/>
+	<!-- 呼止时间 TAG=0x8B-->
+	<leaf tag="139" field="endTime" datatype="date"/>
+	<!-- 通话时长 单位毫秒 TAG=0x9F8148-->
+	<leaf tag="10453320" field="duration" datatype="integer" format="ms"/>
+	<!-- 中继trunkGroupID(Incoming/Outgoing)  TAG=0xAE -->
+	<trunk tag="48976">
+		<!-- 入中继trunkGroupIn TAG=0x80 128-->
+		<!-- 注1：入中继只对MT被叫话单有效 -->
+		<!-- 注2：role-of-Node TAG=0x83 用于标识MO/MT -->
+		<leaf tag="128" field="trunkGroupIn" datatype="string"/>
+		<!-- 出中继trunkGroupOut TAG=0x81 129-->
+		<!-- 注：出中继只对MO主叫话单有效 -->
+		<leaf tag="129" field="trunkGroupOut" datatype="string"/>
+	</trunk>
+</decoder>
+
+<!-- MediaX TAG=0xBF814C 12550476 -->
+
+<!-- CC08B V610R003及以后版本 二进制定长(118字节)话单 -->
+<!-- <decoder name="CC08" class="com.tstar.billing.decoder.BinaryDecoder" tag="CC08" size="118" business="CC08_PHONE"
+	pricer="com.tstar.billing.pricer.PhonePricer"
+	numberFormatter="com.tstar.billing.pricer.MgcfFormatter" >
+	主叫号码 第27个字节 长10字节 BCD压缩码，多余补0xF
+	<leaf tag="26" size="10" field="caller" datatype="bcd" />
+	被叫号码 第39个字节 长10字节 BCD压缩码，多余补0xF
+	<leaf tag="38" size="10" field="callee" datatype="bcd" />
+	话始时间 第9个字节 长6字节 格式为yyMMddhhmmss
+	<leaf tag="8" size="6" field="startTime" datatype="octal-date" />
+	话止时间 第15个字节 长6字节 格式为yyMMddhhmmss
+	<leaf tag="14" size="6" field="endTime" datatype="octal-date" />
+	通话时长 第21个字节 长4字节 格式为LITTLE-END顺序的长整数
+	<leaf tag="20" size="4" field="duration" datatype="le-integer" />
+	入中继号 第61个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型
+	<leaf tag="60" size="2" field="trunkGroupIn" datatype="le-integer-string" />
+	出中继号 第63个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型
+	<leaf tag="62" size="2" field="trunkGroupOut" datatype="le-integer-string" />
+</decoder> -->
+<decoder name="CC08" class="com.tstar.billing.decoder.BinaryDecoder" tag="CC08" size="132" business="PHONE"
+	pricer="com.tstar.billing.pricer.PhonePricer"
+	numberFormatter="com.tstar.billing.pricer.MgcfFormatter" >
+	<!-- 主叫号码 第27个字节 长10字节 BCD压缩码，多余补0xF -->
+	<leaf tag="24" size="12" field="caller" datatype="bcd" />
+	<!-- 被叫号码 第39个字节 长10字节 BCD压缩码，多余补0xF -->
+	<leaf tag="54" size="12" field="callee" datatype="bcd" />
+	<!-- 话始时间 第9个字节 长6字节 格式为yyMMddhhmmss -->
+	<!-- <leaf tag="8" size="6" field="startTime" datatype="octal-date" /> -->
+	<!-- 话止时间 第15个字节 长6字节 格式为yyMMddhhmmss -->
+	<leaf tag="10" size="13" field="endTime" datatype="octal-date" />
+	<!-- 通话时长 第21个字节 长4字节 格式为LITTLE-END顺序的长整数 -->
+	<leaf tag="108" size="8" field="duration" datatype="le-integer" />
+	<!-- 入中继号 第61个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型 -->
+	<leaf tag="102" size="2" field="trunkGroupIn" datatype="le-integer-string" />
+	<!-- 出中继号 第63个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型 -->
+	<leaf tag="104" size="2" field="trunkGroupOut" datatype="le-integer-string" />
+</decoder>
+
+<!-- CC08B V610R001 V610R002 二进制定长(66字节)话单 -->
+<decoder name="CC08_66" class="com.tstar.billing.decoder.BinaryDecoder" tag="CC08_66" size="66" business="PHONE"
+	pricer="com.tstar.billing.pricer.PhonePricer"
+	numberFormatter="com.tstar.billing.pricer.MgcfFormatter" >
+	<!-- 主叫号码 第27个字节 长10字节 BCD压缩码，多余补0xF -->
+	<leaf tag="12" size="12" field="caller" datatype="bcd" />
+	<!-- 被叫号码 第39个字节 长10字节 BCD压缩码，多余补0xF -->
+	<leaf tag="27" size="12" field="callee" datatype="bcd" />
+	<!-- 话始时间 详单中未定义话始时间 -->
+	<!-- <leaf tag="5" size="6" field="startTime" datatype="octal-date" /> -->
+	<!-- 话止时间 第15个字节 长6字节 格式为yyMMddhhmmss -->
+	<leaf tag="5" size="6" field="endTime" datatype="octal-date" />
+	<!-- 通话时长 第21个字节 长4字节 格式为LITTLE-END顺序的长整数 -->
+	<leaf tag="54" size="4" field="duration" datatype="le-integer" />
+	<!-- 入中继号 第61个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型 -->
+	<!--<leaf tag="60" size="2" field="trunkGroupIn" datatype="le-integer-string" />-->
+	<!-- 出中继号 第63个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型 -->
+	<!--<leaf tag="62" size="2" field="trunkGroupOut" datatype="le-integer-string" />-->
+</decoder>
+
+<!-- 中兴软交换 二进制定长(118字节)话单 -->
+<decoder name="ZTE" class="com.tstar.billing.decoder.BinaryDecoder" tag="ZTE" size="278" headerSize="278" business="PHONE"
+	pricer="com.tstar.billing.pricer.PhonePricer"
+	filter="com.tstar.billing.decoder.ZTEFilter">
+	<!-- 主叫号码 第27个字节 长10字节 BCD压缩码，多余补0xF -->
+	<leaf tag="6" size="14" field="caller" datatype="bcd" />
+	<!-- 被叫号码 第39个字节 长10字节 BCD压缩码，多余补0xF -->
+	<leaf tag="21" size="14" field="callee" datatype="bcd" />
+	<!-- 话始时间 第9个字节 长6字节 格式为yyMMddhhmmss -->
+	<leaf tag="35" size="7" field="startTime" datatype="bcd-datetime" />
+	<!-- 话止时间 第15个字节 长6字节 格式为yyMMddhhmmss -->
+	<leaf tag="44" size="7" field="endTime" datatype="bcd-datetime" />
+	<!-- 通话时长 第21个字节 长4字节 格式为LITTLE-END顺序的长整数 -->
+	<leaf tag="52" size="4" field="duration" datatype="bcd-duration" /> 
+	<!-- 入中继号 第61个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型 -->
+	<leaf tag="58" size="2" field="trunkGroupIn" datatype="bcd" />
+	<!-- 出中继号 第63个字节 长2字节 格式为LITTLE-END顺序的整数，保存时转化为字符串类型 -->
+	<leaf tag="60" size="2" field="trunkGroupOut" datatype="bcd" />
+</decoder>
+
+
+<!-- TROPO网元 XML格式-->
+<decoder name="tropo" class="com.tstar.billing.decoder.XMLDecoder" tag="CDR" business="Call Control" pricer="com.tstar.billing.pricer.PhonePricer">
+	<leaf tag="SessionID" field="sessionId" datatype="string"/>
+	<leaf tag="ParentSessionID" field="parentSessionId" datatype="string"/>
+	<leaf tag="Status" field="status" datatype="string"/>
+	<leaf tag="Flags" field="flags" datatype="string"/>
+	<trunk tag="RecordingDuration" field="duration" action="new" class="com.tsd.cdr.decoder.FlatTextDecoder" business="RECORDING">
+	</trunk>
+	<leaf tag="ApplicationId" field="applicationId" datatype="integer"/>
+	<leaf tag="Role-of-Node" field="roleOfNode" datatype="integer"/>
+	<leaf tag="IMS-Charging-Identifier" field="icid" datatype="string" pattern='^icid-value="(.*)";.*' patternIndex="1"/>
+	<leaf tag="Tag" field="appKey" datatype="string" pattern="^APP_KEY-(.*)\s+userID-(.*)\s+.*" patternIndex="1"/>
+	<leaf tag="Tag1" field="userId" source="Tag" datatype="string" pattern="^APP_KEY-(.*)\s+userID-(.*)\s+.*" patternIndex="2"/>
+	<leaf tag="Tag2" field="ttsfree" source="Tag" datatype="string" pattern="^APP_KEY-.*(TTSFree).*" patternIndex="1"/>
+	<leaf tag="Caller" field="callerNumber" datatype="string" pattern="^(tel:)?\+?(\d+)" patternIndex="2"/>
+	<leaf tag="Called" field="calleeNumber" datatype="string" pattern="^(tel:)?\+?(\d+)" patternIndex="2"/>
+	<leaf tag="StartTime" field="startTime" datatype="date" format="EEE, dd MMM yyyy HH:mm:ss +SSSS"/>
+	<leaf tag="EndTime" field="endTime" datatype="date" format="EEE, dd MMM yyyy HH:mm:ss +SSSS"/>
+	<leaf tag="Duration" field="duration" datatype="integer" format="ms"/>
+	<trunk tag="Tts" action="new" class="com.tsd.cdr.decoder.JsonDecoder" business="TTS">
+		<leaf tag="StartTime" field="startTime" datatype="date" format="EEE, dd MMM yyyy HH:mm:ss +SSSS"/>
+		<leaf tag="EndTime" field="endTime" datatype="date" format="EEE, dd MMM yyyy HH:mm:ss +SSSS"/>
+		<leaf tag="Duration" field="duration" datatype="integer" format="ms"/>
+	</trunk>
+	<leaf tag="Channel" field="channel" datatype="string" />
+</decoder>
+
+<!-- UC240 -->
+<decoder name="uc_240" class="com.tstar.billing.decoder.BinaryDecoder" tag="uc_240" size="240" pricer="com.tstar.billing.pricer.PhonePricer">
+	<leaf tag="0" size="12" field="callerNumber" datatype="bcd" />
+	<leaf tag="14" size="24" field="calleeNumber" datatype="bcd" />
+	<leaf tag="38" size="19" field="startTime" datatype="octal-date" />
+	<leaf tag="58" size="19" field="endTime" datatype="octal-date" />
+	<leaf tag="78" size="4" field="duration" datatype="le-integer" />
+</decoder>
+<!-- 西门子AMA -->
+<decoder name="EWSD" class="com.tstar.billing.decoder.EwsdDecoder" tag="132" business="PHONE"
+	pricer="com.tstar.billing.pricer.PhonePricer">
+	<leaf tag="6" size="14" field="caller" datatype="bcd" />
+</decoder>
+<!-- UB -->
+<decoder name="UB" class="com.tstar.billing.decoder.UBDecoder" tag="UB" size="100" business="PHONE" pricer="com.tstar.billing.pricer.PhonePricer">
+         <leaf tag="0" size="14" field="caller" datatype="bcd" />
+</decoder>
+
+</decoders>

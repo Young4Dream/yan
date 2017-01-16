@@ -1,0 +1,2839 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mediax="http://mediax.huawei.com/" xmlns:tns="http://mediax.huawei.com/standard/provision/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.huawei.com/ims/mediax" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" name="MediaX3600V300R008C02" targetNamespace="http://mediax.huawei.com/standard/provision/">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+			<xsd:import namespace="http://www.huawei.com/ims/mediax" schemaLocation="MediaX3600V300R008C02NBISchema.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CreateUserRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateUserResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListUserRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListUserResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayUserRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayUserResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyUserRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyUserResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveUserRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveUserResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveUserResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="CreateRegionAreaRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateRegionAreaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateRegionAreaResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateRegionAreaResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListRegionAreaRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListRegionAreaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListRegionAreaResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListRegionAreaResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRegionAreaRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyRegionAreaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRegionAreaResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyRegionAreaResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveRegionAreaRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveRegionAreaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveRegionAreaResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveRegionAreaResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="CreateGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateRoleRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateRoleResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateRoleResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRoleRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRoleResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyRoleResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListRoleRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListRoleResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListRoleResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveRoleRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveRoleResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveRoleResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayRoleRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayRoleResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayRoleResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListPurviewRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListPurviewRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListPurviewResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListPurviewResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayPurviewRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayPurviewRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayPurviewResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayPurviewResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrganizationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrganizationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrganizationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrganizationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrganizationV2Request">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrganizationV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrganizationV2Response">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrganizationV2Response"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrganizationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrganizationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationV2Request">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrganizationV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationV2Response">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrganizationV2Response"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrganizationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrganizationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrganizationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrganizationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrganizationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrganizationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrganizationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrganizationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrganizationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrganizationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationV2Request">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrganizationV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationV2Response">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrganizationV2Response"/>
+	</wsdl:message>
+	<wsdl:message name="InitializeAccountRequest">
+	  <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:InitializeAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="InitializeAccountResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:InitializeAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UnlockAccountRequest">
+	  <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:UnlockAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="UnlockAccountResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:UnlockAccountResponse"/>
+	</wsdl:message>	
+	<wsdl:message name="ModifyAccessNumberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyAccessNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyAccessNumberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyAccessNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateAccessNumberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateAccessNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateAccessNumberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateAccessNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListAccessNumberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListAccessNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListAccessNumberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListAccessNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveAccessNumberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveAccessNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveAccessNumberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveAccessNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayAccessNumberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayAccessNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayAccessNumberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayAccessNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayLogRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayLogRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayLogResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayLogResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListLogRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListLogRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListLogResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListLogResponse"/>
+	</wsdl:message>
+	<wsdl:message name="LoginRequest">
+	    <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:LoginRequest"/>
+	</wsdl:message>
+	<wsdl:message name="LoginResponse">
+	    <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:LoginResponse"/>
+	</wsdl:message>
+	<wsdl:message name="LogoutRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:LogoutRequest"/>
+	</wsdl:message>
+	<wsdl:message name="LogoutResponse">
+		<wsdl:part name="body" element="xsd1:LogoutResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplaySystemInfomationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplaySystemInfomationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplaySystemInfomationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplaySystemInfomationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="HEARTBEAT">
+	  <wsdl:part name="header" element="xsd1:Header"/>
+	  <wsdl:part name="body" element="xsd1:HEARTBEAT"/>
+	</wsdl:message>
+	<wsdl:message name="HEARTBEATResponse">
+	   <wsdl:part name="body" element="xsd1:HEARTBEATResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetMobilePwdRequest">
+	    <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:GetMobilePwdRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetMobilePwdResponse">
+	    <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:GetMobilePwdResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateConfigParamsRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:UpdateConfigParamsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateConfigParamsResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:UpdateConfigParamsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateConfigParamsRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateConfigParamsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateConfigParamsResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateConfigParamsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListConfigParamsRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListConfigParamsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListConfigParamsResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListConfigParamsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayConfigParamsRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayConfigParamsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayConfigParamsResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayConfigParamsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveConfigParamsRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveConfigParamsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveConfigParamsResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveConfigParamsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateContactorRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateContactorResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateContactorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListContactorRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListContactorResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListContactorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayContactorRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayContactorResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayContactorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveContactorRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveContactorResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveContactorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyContactorRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyContactorResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyContactorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateContactorGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateContactorGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateContactorGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveContactorGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveContactorGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveContactorGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyContactorGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyContactorGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyContactorGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListContactorGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListContactorGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListContactorGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayContactorGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayContactorGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayContactorGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateMobilePrefixInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateMobilePrefixInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateMobilePrefixInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateMobilePrefixInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListMobilePrefixInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListMobilePrefixInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListMobilePrefixInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListMobilePrefixInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="SetOrgAccessNoPoolRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:SetOrgAccessNoPoolRequest"/>
+	</wsdl:message>
+	<wsdl:message name="SetOrgAccessNoPoolResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:SetOrgAccessNoPoolResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetOrgAccessNoPoolRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:GetOrgAccessNoPoolRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetOrgAccessNoPoolResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:GetOrgAccessNoPoolResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyPasswordRequest">
+	    <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyPasswordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyPasswordResponse">
+	    <wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyPasswordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCurrUserProfileRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:GetCurrUserProfileRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetCurrUserProfileResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:GetCurrUserProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateDirectoryRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayUserV2Request">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayUserV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayUserV2Response">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayUserV2Response"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyUserV2Request">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyUserV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyUserV2Response">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyUserV2Response"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveUserV2Request">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveUserV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveUserV2Response">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveUserV2Response"/>
+	</wsdl:message>
+	<wsdl:message name="CreateDirectoryResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateDirectoryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyDirectoryRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyDirectoryResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyDirectoryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListDirectoryRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListDirectoryResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListDirectoryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveDirectoryRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveDirectoryResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveDirectoryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayDirectoryRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayDirectoryResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayDirectoryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateTerminalRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateTerminalResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateTerminalResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyTerminalResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListTerminalRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListTerminalResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListTerminalResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveTerminalRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveTerminalResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveTerminalResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayTerminalRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayTerminalResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayTerminalResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalVerInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyTerminalVerInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalVerInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyTerminalVerInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListTerminalVerInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListTerminalVerInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListTerminalVerInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListTerminalVerInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalConfigInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyTerminalConfigInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalConfigInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyTerminalConfigInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayTerminalConfigInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayTerminalConfigInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayTerminalConfigInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayTerminalConfigInfoResponse"/>
+	</wsdl:message>	
+	<wsdl:message name="ModifyAuthorTermialToOrgRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyAuthorTermialToOrgRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyAuthorTermialToOrgResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyAuthorTermialToOrgResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayAuthorTermialToOrgRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayAuthorTermialToOrgRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayAuthorTermialToOrgResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayAuthorTermialToOrgResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListRegionRelationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListRegionRelationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListRegionRelationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListRegionRelationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRegionRelationRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyRegionRelationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRegionRelationResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyRegionRelationResponse"/>
+	</wsdl:message>
+	<!-- 8.3 begin -->
+	<wsdl:message name="CreateWebUEAccountRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateWebUEAccountResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateWebUEAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListWebUEAccountRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListWebUEAccountResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListWebUEAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyWebUEAccountRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyWebUEAccountResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyWebUEAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveWebUEAccountRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveWebUEAccountResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveWebUEAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationVideoLevelRequest">
+		<wsdl:part name="header" element="xsd1:Header">
+		</wsdl:part>
+		<wsdl:part name="body" element="xsd1:DisplayOrganizationVideoLevelRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationVideoLevelResponse">
+		<wsdl:part name="header" element="xsd1:Header"></wsdl:part>
+		<wsdl:part name="body" element="xsd1:DisplayOrganizationVideoLevelResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationVideoLevelRequest">
+		<wsdl:part name="header" element="xsd1:Header">
+		</wsdl:part>
+		<wsdl:part name="body" element="xsd1:ModifyOrganizationVideoLevelRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationVideoLevelResponse">
+		<wsdl:part name="header" element="xsd1:Header"></wsdl:part>
+		<wsdl:part name="body" element="xsd1:ModifyOrganizationVideoLevelResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ListResourceScheduleInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header">
+		</wsdl:part>
+		<wsdl:part name="body" element="xsd1:ListResourceScheduleInfoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ListResourceScheduleInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"></wsdl:part>
+		<wsdl:part name="body" element="xsd1:ListResourceScheduleInfoResponse"></wsdl:part>
+	</wsdl:message>
+	<!-- 8.3 end -->
+	<!-- 9.0 begin-->
+	<wsdl:message name="DisplayBoardRuntimeInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayBoardRuntimeInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayBoardRuntimeInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayBoardRuntimeInfoResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="DisplayConferenceRuntimeInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayConferenceRuntimeInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayConferenceRuntimeInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayConferenceRuntimeInfoResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="DisplayWebCountRuntimeInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayWebCountRuntimeInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayWebCountRuntimeInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayWebCountRuntimeInfoResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="DisplayNrsRuntimeInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayNrsRuntimeInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayNrsRuntimeInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayNrsRuntimeInfoResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="DisplayMrsRuntimeInfoRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayMrsRuntimeInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayMrsRuntimeInfoResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayMrsRuntimeInfoResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="ListStatisticDataRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListStatisticDataRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListStatisticDataResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListStatisticDataResponse"/>
+	</wsdl:message>
+	<!-- add terminal list query port which without directory -->
+	<wsdl:message name="ListTerminalWithoutDirectoryRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListTerminalWithoutDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListTerminalWithoutDirectoryResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListTerminalWithoutDirectoryResponse"/>
+	</wsdl:message>
+	
+	<!-- 9.0 end -->
+	<!-- 9.1 begin -->
+	<wsdl:message name="CreateOrgGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrgGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrgGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrgGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrgGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrgGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrgGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrgGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrgGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrgGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrgGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrgGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrgGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrgGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrgGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrgGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrgGroupRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrgGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrgGroupResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrgGroupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrgGroupMemberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrgGroupMemberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrgGroupMemberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrgGroupMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrgGroupMemberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrgGroupMemberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrgGroupMemberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrgGroupMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrgGroupMemberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrgGroupMemberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrgGroupMemberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrgGroupMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrgGroupMemberRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrgGroupMemberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrgGroupMemberResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrgGroupMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrgSoundRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrgSoundRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrgSoundResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateOrgSoundResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrgSoundRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrgSoundRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrgSoundResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveOrgSoundResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrgSoundRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrgSoundRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrgSoundResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyOrgSoundResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrgSoundRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrgSoundRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrgSoundResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayOrgSoundResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrgSoundRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrgSoundRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListOrgSoundResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListOrgSoundResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ListAbnormalAccessDataRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListAbnormalAccessDataRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListAbnormalAccessDataResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListAbnormalAccessDataResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="DisplayDataSyncProgressRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayDataSyncProgressRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayDataSyncProgressResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:DisplayDataSyncProgressResponse"/>
+	</wsdl:message>
+
+	<!-- 9.1 end -->
+	<!-- 9.2 begin -->
+    <wsdl:message name="CreateLevelIDPercentageRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateLevelIDPercentageRequest"/>
+	</wsdl:message>
+    <wsdl:message name="CreateLevelIDPercentageResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:CreateLevelIDPercentageResponse"/>
+	</wsdl:message>
+    <wsdl:message name="ModifyLevelIDPercentageRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyLevelIDPercentageRequest"/>
+	</wsdl:message>
+    <wsdl:message name="ModifyLevelIDPercentageResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ModifyLevelIDPercentageResponse"/>
+	</wsdl:message>
+    <wsdl:message name="RemoveLevelIDPercentageRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveLevelIDPercentageRequest"/>
+	</wsdl:message>
+    <wsdl:message name="RemoveLevelIDPercentageResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:RemoveLevelIDPercentageResponse"/>
+	</wsdl:message>
+    <wsdl:message name="ListLevelIDPercentageRequest">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListLevelIDPercentageRequest"/>
+	</wsdl:message>
+    <wsdl:message name="ListLevelIDPercentageResponse">
+		<wsdl:part name="header" element="xsd1:Header"/>
+		<wsdl:part name="body" element="xsd1:ListLevelIDPercentageResponse"/>
+	</wsdl:message>
+	<!-- 9.2 end -->
+	<wsdl:portType name="MediaXPortType">
+		<wsdl:operation name="CreateUser">
+			<wsdl:input message="tns:CreateUserRequest"/>
+			<wsdl:output message="tns:CreateUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListUser">
+			<wsdl:input message="tns:ListUserRequest"/>
+			<wsdl:output message="tns:ListUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayUser">
+			<wsdl:input message="tns:DisplayUserRequest"/>
+			<wsdl:output message="tns:DisplayUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyUser">
+			<wsdl:input message="tns:ModifyUserRequest"/>
+			<wsdl:output message="tns:ModifyUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveUser">
+			<wsdl:input message="tns:RemoveUserRequest"/>
+			<wsdl:output message="tns:RemoveUserResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="CreateRegionArea">
+			<wsdl:input message="tns:CreateRegionAreaRequest"/>
+			<wsdl:output message="tns:CreateRegionAreaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListRegionArea">
+			<wsdl:input message="tns:ListRegionAreaRequest"/>
+			<wsdl:output message="tns:ListRegionAreaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyRegionArea">
+			<wsdl:input message="tns:ModifyRegionAreaRequest"/>
+			<wsdl:output message="tns:ModifyRegionAreaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveRegionArea">
+			<wsdl:input message="tns:RemoveRegionAreaRequest"/>
+			<wsdl:output message="tns:RemoveRegionAreaResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="CreateGroup">
+			<wsdl:input message="tns:CreateGroupRequest"/>
+			<wsdl:output message="tns:CreateGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyGroup">
+			<wsdl:input message="tns:ModifyGroupRequest"/>
+			<wsdl:output message="tns:ModifyGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveGroup">
+			<wsdl:input message="tns:RemoveGroupRequest"/>
+			<wsdl:output message="tns:RemoveGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListGroup">
+			<wsdl:input message="tns:ListGroupRequest"/>
+			<wsdl:output message="tns:ListGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayGroup">
+			<wsdl:input message="tns:DisplayGroupRequest"/>
+			<wsdl:output message="tns:DisplayGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateRole">
+			<wsdl:input message="tns:CreateRoleRequest"/>
+			<wsdl:output message="tns:CreateRoleResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyRole">
+			<wsdl:input message="tns:ModifyRoleRequest"/>
+			<wsdl:output message="tns:ModifyRoleResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListRole">
+			<wsdl:input message="tns:ListRoleRequest"/>
+			<wsdl:output message="tns:ListRoleResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveRole">
+			<wsdl:input message="tns:RemoveRoleRequest"/>
+			<wsdl:output message="tns:RemoveRoleResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayRole">
+			<wsdl:input message="tns:DisplayRoleRequest"/>
+			<wsdl:output message="tns:DisplayRoleResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListPurview">
+			<wsdl:input message="tns:ListPurviewRequest"/>
+			<wsdl:output message="tns:ListPurviewResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayPurview">
+			<wsdl:input message="tns:DisplayPurviewRequest"/>
+			<wsdl:output message="tns:DisplayPurviewResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrganization">
+			<wsdl:input message="tns:CreateOrganizationRequest"/>
+			<wsdl:output message="tns:CreateOrganizationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrganizationV2">
+			<wsdl:input message="tns:CreateOrganizationV2Request"/>
+			<wsdl:output message="tns:CreateOrganizationV2Response"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganization">
+			<wsdl:input message="tns:ModifyOrganizationRequest"/>
+			<wsdl:output message="tns:ModifyOrganizationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganizationV2">
+			<wsdl:input message="tns:ModifyOrganizationV2Request"/>
+			<wsdl:output message="tns:ModifyOrganizationV2Response"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveOrganization">
+			<wsdl:input message="tns:RemoveOrganizationRequest"/>
+			<wsdl:output message="tns:RemoveOrganizationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListOrganization">
+			<wsdl:input message="tns:ListOrganizationRequest"/>
+			<wsdl:output message="tns:ListOrganizationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganization">
+			<wsdl:input message="tns:DisplayOrganizationRequest"/>
+			<wsdl:output message="tns:DisplayOrganizationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganizationV2">
+			<wsdl:input message="tns:DisplayOrganizationV2Request"/>
+			<wsdl:output message="tns:DisplayOrganizationV2Response"/>
+		</wsdl:operation>
+		<wsdl:operation name="InitializeAccount">
+			<wsdl:input message="tns:InitializeAccountRequest"/>
+			<wsdl:output message="tns:InitializeAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="UnlockAccount">
+			<wsdl:input message="tns:UnlockAccountRequest"/>
+			<wsdl:output message="tns:UnlockAccountResponse"/>
+		</wsdl:operation>		
+		<wsdl:operation name="ModifyAccessNumber">
+			<wsdl:input message="tns:ModifyAccessNumberRequest"/>
+			<wsdl:output message="tns:ModifyAccessNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateAccessNumber">
+			<wsdl:input message="tns:CreateAccessNumberRequest"/>
+			<wsdl:output message="tns:CreateAccessNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListAccessNumber">
+			<wsdl:input message="tns:ListAccessNumberRequest"/>
+			<wsdl:output message="tns:ListAccessNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveAccessNumber">
+			<wsdl:input message="tns:RemoveAccessNumberRequest"/>
+			<wsdl:output message="tns:RemoveAccessNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayAccessNumber">
+			<wsdl:input message="tns:DisplayAccessNumberRequest"/>
+			<wsdl:output message="tns:DisplayAccessNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayLog">
+			<wsdl:input message="tns:DisplayLogRequest"/>
+			<wsdl:output message="tns:DisplayLogResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListLog">
+			<wsdl:input message="tns:ListLogRequest"/>
+			<wsdl:output message="tns:ListLogResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Login">
+			<wsdl:input message="tns:LoginRequest"/>
+			<wsdl:output message="tns:LoginResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Logout">
+			<wsdl:input message="tns:LogoutRequest"/>
+			<wsdl:output message="tns:LogoutResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplaySystemInfomation">
+			<wsdl:input message="tns:DisplaySystemInfomationRequest"/>
+			<wsdl:output message="tns:DisplaySystemInfomationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="HEARTBEAT">
+			<wsdl:input message="tns:HEARTBEAT"/>
+			<wsdl:output message="tns:HEARTBEATResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetMobilePwd">
+			<wsdl:input message="tns:GetMobilePwdRequest"/>
+			<wsdl:output message="tns:GetMobilePwdResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateConfigParams">
+			<wsdl:input message="tns:UpdateConfigParamsRequest"/>
+			<wsdl:output message="tns:UpdateConfigParamsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateConfigParams">
+			<wsdl:input message="tns:CreateConfigParamsRequest"/>
+			<wsdl:output message="tns:CreateConfigParamsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListConfigParams">
+			<wsdl:input message="tns:ListConfigParamsRequest"/>
+			<wsdl:output message="tns:ListConfigParamsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayConfigParams">
+			<wsdl:input message="tns:DisplayConfigParamsRequest"/>
+			<wsdl:output message="tns:DisplayConfigParamsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveConfigParams">
+			<wsdl:input message="tns:RemoveConfigParamsRequest"/>
+			<wsdl:output message="tns:RemoveConfigParamsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateContactor">
+			<wsdl:input message="tns:CreateContactorRequest"/>
+			<wsdl:output message="tns:CreateContactorResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListContactor">
+			<wsdl:input message="tns:ListContactorRequest"/>
+			<wsdl:output message="tns:ListContactorResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayContactor">
+			<wsdl:input message="tns:DisplayContactorRequest"/>
+			<wsdl:output message="tns:DisplayContactorResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveContactor">
+			<wsdl:input message="tns:RemoveContactorRequest"/>
+			<wsdl:output message="tns:RemoveContactorResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyContactor">
+			<wsdl:input message="tns:ModifyContactorRequest"/>
+			<wsdl:output message="tns:ModifyContactorResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateContactorGroup">
+			<wsdl:input message="tns:CreateContactorGroupRequest"/>
+			<wsdl:output message="tns:CreateContactorGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveContactorGroup">
+			<wsdl:input message="tns:RemoveContactorGroupRequest"/>
+			<wsdl:output message="tns:RemoveContactorGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyContactorGroup">
+			<wsdl:input message="tns:ModifyContactorGroupRequest"/>
+			<wsdl:output message="tns:ModifyContactorGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListContactorGroup">
+			<wsdl:input message="tns:ListContactorGroupRequest"/>
+			<wsdl:output message="tns:ListContactorGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayContactorGroup">
+			<wsdl:input message="tns:DisplayContactorGroupRequest"/>
+			<wsdl:output message="tns:DisplayContactorGroupResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateMobilePrefixInfo">
+			<wsdl:input message="tns:CreateMobilePrefixInfoRequest"/>
+			<wsdl:output message="tns:CreateMobilePrefixInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListMobilePrefixInfo">
+			<wsdl:input message="tns:ListMobilePrefixInfoRequest"/>
+			<wsdl:output message="tns:ListMobilePrefixInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetOrgAccessNoPool">
+			<wsdl:input message="tns:SetOrgAccessNoPoolRequest"/>
+			<wsdl:output message="tns:SetOrgAccessNoPoolResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrgAccessNoPool">
+			<wsdl:input message="tns:GetOrgAccessNoPoolRequest"/>
+			<wsdl:output message="tns:GetOrgAccessNoPoolResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyPassword">
+			<wsdl:input message="tns:ModifyPasswordRequest"/>
+			<wsdl:output message="tns:ModifyPasswordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetCurrUserProfile">
+			<wsdl:input message="tns:GetCurrUserProfileRequest"/>
+			<wsdl:output message="tns:GetCurrUserProfileResponse"/>
+		</wsdl:operation>
+		<!-- 8.2 rongzai -->
+		<wsdl:operation name="DisplayUserV2">
+			<wsdl:input message="tns:DisplayUserV2Request"/>
+			<wsdl:output message="tns:DisplayUserV2Response"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyUserV2">
+			<wsdl:input message="tns:ModifyUserV2Request"/>
+			<wsdl:output message="tns:ModifyUserV2Response"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveUserV2">
+			<wsdl:input message="tns:RemoveUserV2Request"/>
+			<wsdl:output message="tns:RemoveUserV2Response"/>
+		</wsdl:operation>
+		<!-- 8.2 rongzai -->
+		<wsdl:operation name="CreateDirectory">
+			<wsdl:input message="tns:CreateDirectoryRequest"/>
+			<wsdl:output message="tns:CreateDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyDirectory">
+			<wsdl:input message="tns:ModifyDirectoryRequest"/>
+			<wsdl:output message="tns:ModifyDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListDirectory">
+			<wsdl:input message="tns:ListDirectoryRequest"/>
+			<wsdl:output message="tns:ListDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveDirectory">
+			<wsdl:input message="tns:RemoveDirectoryRequest"/>
+			<wsdl:output message="tns:RemoveDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayDirectory">
+			<wsdl:input message="tns:DisplayDirectoryRequest"/>
+			<wsdl:output message="tns:DisplayDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTerminal">
+			<wsdl:input message="tns:CreateTerminalRequest"/>
+			<wsdl:output message="tns:CreateTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminal">
+			<wsdl:input message="tns:ModifyTerminalRequest"/>
+			<wsdl:output message="tns:ModifyTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListTerminal">
+			<wsdl:input message="tns:ListTerminalRequest"/>
+			<wsdl:output message="tns:ListTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveTerminal">
+			<wsdl:input message="tns:RemoveTerminalRequest"/>
+			<wsdl:output message="tns:RemoveTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayTerminal">
+			<wsdl:input message="tns:DisplayTerminalRequest"/>
+			<wsdl:output message="tns:DisplayTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminalVerInfo">
+			<wsdl:input message="tns:ModifyTerminalVerInfoRequest"/>
+			<wsdl:output message="tns:ModifyTerminalVerInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListTerminalVerInfo">
+			<wsdl:input message="tns:ListTerminalVerInfoRequest"/>
+			<wsdl:output message="tns:ListTerminalVerInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminalConfigInfo">
+			<wsdl:input message="tns:ModifyTerminalConfigInfoRequest"/>
+			<wsdl:output message="tns:ModifyTerminalConfigInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayTerminalConfigInfo">
+			<wsdl:input message="tns:DisplayTerminalConfigInfoRequest"/>
+			<wsdl:output message="tns:DisplayTerminalConfigInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyAuthorTermialToOrg">
+			<wsdl:input message="tns:ModifyAuthorTermialToOrgRequest"/>
+			<wsdl:output message="tns:ModifyAuthorTermialToOrgResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayAuthorTermialToOrg">
+			<wsdl:input message="tns:DisplayAuthorTermialToOrgRequest"/>
+			<wsdl:output message="tns:DisplayAuthorTermialToOrgResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListRegionRelation">
+			<wsdl:input message="tns:ListRegionRelationRequest"/>
+			<wsdl:output message="tns:ListRegionRelationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyRegionRelation">
+			<wsdl:input message="tns:ModifyRegionRelationRequest"/>
+			<wsdl:output message="tns:ModifyRegionRelationResponse"/>
+		</wsdl:operation>
+		<!-- 8.3 begin -->
+		<wsdl:operation name="CreateWebUEAccount">
+			<wsdl:input message="tns:CreateWebUEAccountRequest"/>
+			<wsdl:output message="tns:CreateWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListWebUEAccount">
+			<wsdl:input message="tns:ListWebUEAccountRequest"/>
+			<wsdl:output message="tns:ListWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyWebUEAccount">
+			<wsdl:input message="tns:ModifyWebUEAccountRequest"/>
+			<wsdl:output message="tns:ModifyWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveWebUEAccount">
+			<wsdl:input message="tns:RemoveWebUEAccountRequest"/>
+			<wsdl:output message="tns:RemoveWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganizationVideoLevel">
+			<wsdl:input message="tns:DisplayOrganizationVideoLevelRequest"></wsdl:input>
+			<wsdl:output message="tns:DisplayOrganizationVideoLevelResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganizationVideoLevel">
+			<wsdl:input message="tns:ModifyOrganizationVideoLevelRequest"></wsdl:input>
+			<wsdl:output message="tns:ModifyOrganizationVideoLevelResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListResourceScheduleInfo">
+			<wsdl:input message="tns:ListResourceScheduleInfoRequest"></wsdl:input>
+			<wsdl:output message="tns:ListResourceScheduleInfoResponse"></wsdl:output>
+		</wsdl:operation>
+		<!-- 8.3 end -->
+		<!-- 9.0 begin -->
+		<wsdl:operation name="DisplayBoardRuntimeInfo">
+			<wsdl:input message="tns:DisplayBoardRuntimeInfoRequest"/>
+			<wsdl:output message="tns:DisplayBoardRuntimeInfoResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayConferenceRuntimeInfo">
+			<wsdl:input message="tns:DisplayConferenceRuntimeInfoRequest"/>
+			<wsdl:output message="tns:DisplayConferenceRuntimeInfoResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayWebCountRuntimeInfo">
+			<wsdl:input message="tns:DisplayWebCountRuntimeInfoRequest"/>
+			<wsdl:output message="tns:DisplayWebCountRuntimeInfoResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayNrsRuntimeInfo">
+			<wsdl:input message="tns:DisplayNrsRuntimeInfoRequest"/>
+			<wsdl:output message="tns:DisplayNrsRuntimeInfoResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayMrsRuntimeInfo">
+			<wsdl:input message="tns:DisplayMrsRuntimeInfoRequest"/>
+			<wsdl:output message="tns:DisplayMrsRuntimeInfoResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="ListStatisticData">
+			<wsdl:input message="tns:ListStatisticDataRequest"/>
+			<wsdl:output message="tns:ListStatisticDataResponse"/>
+		</wsdl:operation>
+		
+		<!--  -->
+	  <wsdl:operation name="ListTerminalWithoutDirectory">
+			<wsdl:input message="tns:ListTerminalWithoutDirectoryRequest"/>
+			<wsdl:output message="tns:ListTerminalWithoutDirectoryResponse"/>
+		</wsdl:operation>		
+		<!-- 9.0 end -->
+		<!-- 9.1 begin -->
+	  <wsdl:operation name="CreateOrgGroup">
+			<wsdl:input message="tns:CreateOrgGroupRequest"/>
+			<wsdl:output message="tns:CreateOrgGroupResponse"/>
+	  </wsdl:operation>	
+	  <wsdl:operation name="RemoveOrgGroup">
+			<wsdl:input message="tns:RemoveOrgGroupRequest"/>
+			<wsdl:output message="tns:RemoveOrgGroupResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ModifyOrgGroup">
+	    <wsdl:input message="tns:ModifyOrgGroupRequest"/>
+			<wsdl:output message="tns:ModifyOrgGroupResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="DisplayOrgGroup">
+	    <wsdl:input message="tns:DisplayOrgGroupRequest"/>
+			<wsdl:output message="tns:DisplayOrgGroupResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ListOrgGroup">
+	    <wsdl:input message="tns:ListOrgGroupRequest"/>
+			<wsdl:output message="tns:ListOrgGroupResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="CreateOrgGroupMember">
+	    <wsdl:input message="tns:CreateOrgGroupMemberRequest"/>
+			<wsdl:output message="tns:CreateOrgGroupMemberResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="RemoveOrgGroupMember">
+	    <wsdl:input message="tns:RemoveOrgGroupMemberRequest"/>
+			<wsdl:output message="tns:RemoveOrgGroupMemberResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ModifyOrgGroupMember">
+	    <wsdl:input message="tns:ModifyOrgGroupMemberRequest"/>
+			<wsdl:output message="tns:ModifyOrgGroupMemberResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ListOrgGroupMember">
+	    <wsdl:input message="tns:ListOrgGroupMemberRequest"/>
+			<wsdl:output message="tns:ListOrgGroupMemberResponse"/>	
+	  </wsdl:operation>
+	  <wsdl:operation name="CreateOrgSound">
+	    <wsdl:input message="tns:CreateOrgSoundRequest"/>
+			<wsdl:output message="tns:CreateOrgSoundResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="RemoveOrgSound">
+	    <wsdl:input message="tns:RemoveOrgSoundRequest"/>
+			<wsdl:output message="tns:RemoveOrgSoundResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ModifyOrgSound">
+	    <wsdl:input message="tns:ModifyOrgSoundRequest"/>
+			<wsdl:output message="tns:ModifyOrgSoundResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="DisplayOrgSound">
+	    <wsdl:input message="tns:DisplayOrgSoundRequest"/>
+			<wsdl:output message="tns:DisplayOrgSoundResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ListOrgSound">
+	    <wsdl:input message="tns:ListOrgSoundRequest"/>
+			<wsdl:output message="tns:ListOrgSoundResponse"/>
+	  </wsdl:operation>
+	  <wsdl:operation name="ListAbnormalAccessData">
+	    <wsdl:input message="tns:ListAbnormalAccessDataRequest"/>
+			<wsdl:output message="tns:ListAbnormalAccessDataResponse"/>
+	  </wsdl:operation>
+	  
+	  <wsdl:operation name="DisplayDataSyncProgress">
+	    <wsdl:input message="tns:DisplayDataSyncProgressRequest"/>
+			<wsdl:output message="tns:DisplayDataSyncProgressResponse"/>
+	  </wsdl:operation>
+	<!-- 9.1 end -->
+    <!-- 9.2 begin -->
+      <wsdl:operation name="CreateLevelIDPercentage">
+	    <wsdl:input message="tns:CreateLevelIDPercentageRequest"/>
+			<wsdl:output message="tns:CreateLevelIDPercentageResponse"/>
+	  </wsdl:operation>
+      <wsdl:operation name="ModifyLevelIDPercentage">
+	    <wsdl:input message="tns:ModifyLevelIDPercentageRequest"/>
+			<wsdl:output message="tns:ModifyLevelIDPercentageResponse"/>
+	  </wsdl:operation>
+      <wsdl:operation name="RemoveLevelIDPercentage">
+	    <wsdl:input message="tns:RemoveLevelIDPercentageRequest"/>
+			<wsdl:output message="tns:RemoveLevelIDPercentageResponse"/>
+	  </wsdl:operation>
+      <wsdl:operation name="ListLevelIDPercentage">
+	    <wsdl:input message="tns:ListLevelIDPercentageRequest"/>
+			<wsdl:output message="tns:ListLevelIDPercentageResponse"/>
+	  </wsdl:operation>
+    <!-- 9.2 end -->
+	</wsdl:portType>
+	<wsdl:binding name="MediaXBinding" type="tns:MediaXPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreateUser">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateUser"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateUserRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateUserResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListUser">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListUser"/>
+			<wsdl:input>
+				<soap:header message="tns:ListUserRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListUserResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayUser">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayUser"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayUserRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayUserResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyUser">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyUser"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyUserRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyUserResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveUser">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveUser"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveUserRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveUserResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="CreateRegionArea">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateRegionArea"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateRegionAreaRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateRegionAreaResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListRegionArea">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListRegionArea"/>
+			<wsdl:input>
+				<soap:header message="tns:ListRegionAreaRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListRegionAreaResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+		<wsdl:operation name="ModifyRegionArea">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyRegionArea"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyRegionAreaRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyRegionAreaResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveRegionArea">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveRegionArea"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveRegionAreaRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveRegionAreaResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="CreateGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:ListGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateRole">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateRole"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateRoleRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateRoleResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyRole">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyRole"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyRoleRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyRoleResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListRole">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListRole"/>
+			<wsdl:input>
+				<soap:header message="tns:ListRoleRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListRoleResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveRole">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveRole"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveRoleRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveRoleResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayRole">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayRole"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayRoleRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayRoleResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListPurview">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListPurview"/>
+			<wsdl:input>
+				<soap:header message="tns:ListPurviewRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListPurviewResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayPurview">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayPurview"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayPurviewRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayPurviewResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrganization">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateOrganization"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateOrganizationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateOrganizationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrganizationV2">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateOrganizationV2"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateOrganizationV2Request" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateOrganizationV2Response" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganization">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyOrganization"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyOrganizationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyOrganizationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganizationV2">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyOrganizationV2"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyOrganizationV2Request" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyOrganizationV2Response" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveOrganization">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveOrganization"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveOrganizationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveOrganizationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListOrganization">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListOrganization"/>
+			<wsdl:input>
+				<soap:header message="tns:ListOrganizationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListOrganizationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganization">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayOrganization"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayOrganizationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayOrganizationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganizationV2">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayOrganizationV2"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayOrganizationV2Request" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayOrganizationV2Response" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InitializeAccount">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/InitializeAccount"/>
+			<wsdl:input>
+				<soap:header message="tns:InitializeAccountRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:InitializeAccountResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="UnlockAccount">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/UnlockAccount"/>
+			<wsdl:input>
+				<soap:header message="tns:UnlockAccountRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:UnlockAccountResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+		
+		<wsdl:operation name="ModifyAccessNumber">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyAccessNumber"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyAccessNumberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyAccessNumberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateAccessNumber">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateAccessNumber"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateAccessNumberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateAccessNumberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListAccessNumber">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListAccessNumber"/>
+			<wsdl:input>
+				<soap:header message="tns:ListAccessNumberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListAccessNumberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveAccessNumber">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveAccessNumber"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveAccessNumberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveAccessNumberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayAccessNumber">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayAccessNumber"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayAccessNumberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayAccessNumberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayLog">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayLog"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayLogRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayLogResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListLog">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListLog"/>
+			<wsdl:input>
+				<soap:header message="tns:ListLogRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListLogResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Login">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/Login"/>
+			<wsdl:input>
+			    <soap:header message="tns:LoginRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+			    <soap:header message="tns:LoginResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Logout">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/Logout"/>
+			<wsdl:input>
+				<soap:header message="tns:LogoutRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplaySystemInfomation">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplaySystemInfomation"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplaySystemInfomationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplaySystemInfomationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="HEARTBEAT">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/HEARTBEAT"/>
+			<wsdl:input>
+        <soap:header message="tns:HEARTBEAT" part="header" use="literal"/>
+        <soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMobilePwd">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/GetMobilePwd"/>
+			<wsdl:input>
+			    <soap:header message="tns:GetMobilePwdRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+			    <soap:header message="tns:GetMobilePwdResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateConfigParams">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/UpdateConfigParams"/>
+			<wsdl:input>
+				<soap:header message="tns:UpdateConfigParamsRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:UpdateConfigParamsResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateConfigParams">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateConfigParams"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateConfigParamsRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateConfigParamsResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListConfigParams">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListConfigParams"/>
+			<wsdl:input>
+				<soap:header message="tns:ListConfigParamsRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListConfigParamsResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayConfigParams">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayConfigParams"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayConfigParamsRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayConfigParamsResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveConfigParams">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveConfigParams"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveConfigParamsRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveConfigParamsResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateContactor">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateContactor"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateContactorRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateContactorResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListContactor">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListContactor"/>
+			<wsdl:input>
+				<soap:header message="tns:ListContactorRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListContactorResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayContactor">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayContactor"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayContactorRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayContactorResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveContactor">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveContactor"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveContactorRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveContactorResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyContactor">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyContactor"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyContactorRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyContactorResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateContactorGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateContactorGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateContactorGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateContactorGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveContactorGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveContactorGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveContactorGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveContactorGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyContactorGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyContactorGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyContactorGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyContactorGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListContactorGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListContactorGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:ListContactorGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListContactorGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayContactorGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayContactorGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayContactorGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayContactorGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateMobilePrefixInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateMobilePrefixInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateMobilePrefixInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateMobilePrefixInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListMobilePrefixInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListMobilePrefixInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:ListMobilePrefixInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListMobilePrefixInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetOrgAccessNoPool">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/SetOrgAccessNoPool"/>
+			<wsdl:input>
+				<soap:header message="tns:SetOrgAccessNoPoolRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:SetOrgAccessNoPoolResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrgAccessNoPool">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/GetOrgAccessNoPool"/>
+			<wsdl:input>
+				<soap:header message="tns:GetOrgAccessNoPoolRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:GetOrgAccessNoPoolResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyPassword">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyPassword"/>
+			<wsdl:input>
+			    <soap:header message="tns:ModifyPasswordRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+			    <soap:header message="tns:ModifyPasswordResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCurrUserProfile">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/GetCurrUserProfile"/>
+			<wsdl:input>
+				<soap:header message="tns:GetCurrUserProfileRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:GetCurrUserProfileResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 8.2 rongzai -->
+		<wsdl:operation name="DisplayUserV2">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayUserV2"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayUserV2Request" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayUserV2Response" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyUserV2">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyUserV2"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyUserV2Request" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyUserV2Response" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveUserV2">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveUserV2"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveUserV2Request" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveUserV2Response" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 8.2 rongzai end-->
+		<wsdl:operation name="CreateDirectory">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateDirectory"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateDirectoryRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateDirectoryResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyDirectory">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyDirectory"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyDirectoryRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyDirectoryResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListDirectory">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListDirectory"/>
+			<wsdl:input>
+				<soap:header message="tns:ListDirectoryRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListDirectoryResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveDirectory">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveDirectory"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveDirectoryRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveDirectoryResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayDirectory">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayDirectory"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayDirectoryRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayDirectoryResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTerminal">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateTerminal"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateTerminalRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateTerminalResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminal">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyTerminal"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyTerminalRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyTerminalResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveTerminal">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveTerminal"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveTerminalRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveTerminalResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListTerminal">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListTerminal"/>
+			<wsdl:input>
+				<soap:header message="tns:ListTerminalRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListTerminalResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayTerminal">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayTerminal"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayTerminalRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayTerminalResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminalVerInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyTerminalVerInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyTerminalVerInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyTerminalVerInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	    <wsdl:operation name="ListTerminalVerInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListTerminalVerInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:ListTerminalVerInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListTerminalVerInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminalConfigInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyTerminalConfigInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyTerminalConfigInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyTerminalConfigInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	    <wsdl:operation name="DisplayTerminalConfigInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayTerminalConfigInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayTerminalConfigInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayTerminalConfigInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+		<wsdl:operation name="ModifyAuthorTermialToOrg">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyAuthorTermialToOrg"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyAuthorTermialToOrgRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyAuthorTermialToOrgResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayAuthorTermialToOrg">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayAuthorTermialToOrg"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayAuthorTermialToOrgRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayAuthorTermialToOrgResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListRegionRelation">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListRegionRelation"/>
+			<wsdl:input>
+				<soap:header message="tns:ListRegionRelationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListRegionRelationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyRegionRelation">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyRegionRelation"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyRegionRelationRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyRegionRelationResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 8.2 -->
+		<!-- 8.3 begin -->
+		<wsdl:operation name="CreateWebUEAccount">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateWebUEAccountRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateWebUEAccountResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListWebUEAccount">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="tns:ListWebUEAccountRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListWebUEAccountResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyWebUEAccount">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyWebUEAccountRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyWebUEAccountResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveWebUEAccount">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveWebUEAccountRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveWebUEAccountResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganizationVideoLevel">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayOrganizationVideoLevel"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayOrganizationVideoLevelRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayOrganizationVideoLevelResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganizationVideoLevel">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyOrganizationVideoLevel"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyOrganizationVideoLevelRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyOrganizationVideoLevelResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListResourceScheduleInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListResourceScheduleInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:ListResourceScheduleInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListResourceScheduleInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 8.3 end -->
+		<!-- 9.0 begin -->
+		<wsdl:operation name="DisplayBoardRuntimeInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayBoardRuntimeInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayBoardRuntimeInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayBoardRuntimeInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayConferenceRuntimeInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayConferenceRuntimeInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayConferenceRuntimeInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayConferenceRuntimeInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayWebCountRuntimeInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayWebCountRuntimeInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayWebCountRuntimeInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayWebCountRuntimeInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayNrsRuntimeInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayNrsRuntimeInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayNrsRuntimeInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayNrsRuntimeInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayMrsRuntimeInfo">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayMrsRuntimeInfo"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayMrsRuntimeInfoRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayMrsRuntimeInfoResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="ListStatisticData">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListStatisticData"/>
+			<wsdl:input>
+				<soap:header message="tns:ListStatisticDataRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListStatisticDataResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="ListTerminalWithoutDirectory">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListTerminalWithoutDirectory"/>
+			<wsdl:input>
+				<soap:header message="tns:ListTerminalWithoutDirectoryRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListTerminalWithoutDirectoryResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+		<!-- 9.0 end -->
+		<!-- 9.1 begin -->
+		<wsdl:operation name="CreateOrgGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateOrgGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateOrgGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateOrgGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>	
+		<wsdl:operation name="RemoveOrgGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveOrgGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveOrgGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveOrgGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrgGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyOrgGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyOrgGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyOrgGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrgGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayOrgGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayOrgGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayOrgGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListOrgGroup">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListOrgGroup"/>
+			<wsdl:input>
+				<soap:header message="tns:ListOrgGroupRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListOrgGroupResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrgGroupMember">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateOrgGroupMember"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateOrgGroupMemberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateOrgGroupMemberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveOrgGroupMember">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveOrgGroupMember"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveOrgGroupMemberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveOrgGroupMemberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrgGroupMember">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyOrgGroupMember"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyOrgGroupMemberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyOrgGroupMemberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListOrgGroupMember">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListOrgGroupMember"/>
+			<wsdl:input>
+				<soap:header message="tns:ListOrgGroupMemberRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListOrgGroupMemberResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrgSound">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateOrgSound"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateOrgSoundRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateOrgSoundResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveOrgSound">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveOrgSound"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveOrgSoundRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveOrgSoundResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrgSound">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyOrgSound"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyOrgSoundRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyOrgSoundResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrgSound">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayOrgSound"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayOrgSoundRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayOrgSoundResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ListOrgSound">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListOrgSound"/>
+			<wsdl:input>
+				<soap:header message="tns:ListOrgSoundRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListOrgSoundResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>	
+		<wsdl:operation name="ListAbnormalAccessData">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListAbnormalAccessData"/>
+			<wsdl:input>
+				<soap:header message="tns:ListAbnormalAccessDataRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListAbnormalAccessDataResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayDataSyncProgress">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/DisplayDataSyncProgress"/>
+			<wsdl:input>
+				<soap:header message="tns:DisplayDataSyncProgressRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:DisplayDataSyncProgressResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 9.1 end -->
+        
+        <!-- 9.2 begin -->
+        <wsdl:operation name="CreateLevelIDPercentage">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/CreateLevelIDPercentage"/>
+			<wsdl:input>
+				<soap:header message="tns:CreateLevelIDPercentageRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:CreateLevelIDPercentageResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+        <wsdl:operation name="ModifyLevelIDPercentage">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ModifyLevelIDPercentage"/>
+			<wsdl:input>
+				<soap:header message="tns:ModifyLevelIDPercentageRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ModifyLevelIDPercentageResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+        <wsdl:operation name="RemoveLevelIDPercentage">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/RemoveLevelIDPercentage"/>
+			<wsdl:input>
+				<soap:header message="tns:RemoveLevelIDPercentageRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:RemoveLevelIDPercentageResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+        <wsdl:operation name="ListLevelIDPercentage">
+			<soap:operation soapAction="http://www.huawei.com/ims/mediax/ListLevelIDPercentage"/>
+			<wsdl:input>
+				<soap:header message="tns:ListLevelIDPercentageRequest" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="tns:ListLevelIDPercentageResponse" part="header" use="literal"/>
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+        <!-- 9.2 end -->
+        
+	</wsdl:binding>
+	<wsdl:service name="MediaX_Provision">
+		<wsdl:port name="MediaXStandardProvisionPort" binding="tns:MediaXBinding">
+			<soap:address location="http://127.0.0.1:8666/axis/services/MediaXStandardProvisionPort"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!-- 8.2 rongzai -->
+	<!-- 8.2 rongzai -->
+	<!-- 8.2  -->
+	<!-- 8.2 end -->
+	<!--========================================-->
+	<!--============  TYPES ====================-->
+	<!--========================================-->
+	<!--========================================-->
+	<!--============  MESSAGES =================-->
+	<!--========================================-->
+	<!--=======================================-->
+	<!--============= portType ================-->
+	<!--=======================================-->
+	<!--=======================================-->
+	<!--============= BINDING =================-->
+	<!--=======================================-->
+	<!--========================================-->
+	<!--============  SERVICE ==================-->
+	<!--========================================-->
+</wsdl:definitions>

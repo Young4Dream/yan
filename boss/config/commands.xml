@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<configuration>
+
+	<!-- CC08指令集 -->
+	<ctrl-set id="CC08_B">
+		<!-- 登录指令，将附加在每个指令集的最前面 -->
+		<commands id="login">
+			<command index="0" key="1"><![CDATA[
+				LGI:OP=#{user},PWD=#{password};
+			]]></command>
+		</commands>
+		 
+		<!-- 单向停机 -->
+		<commands id="stop_1">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},UT=OF;
+			]]></command>
+		</commands>
+		
+		<!-- 单向复通 -->
+		<commands id="res_1">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},UT=NRM;
+			]]></command>
+		</commands>
+		
+		<!-- 双向停机 -->
+		<commands id="stop">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},PS=STOP;
+			]]></command>
+		</commands>
+		
+		<!-- 双向复机 -->
+		<commands id="res">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},PS=RES;
+			]]></command>
+		</commands>
+		
+		<!-- 来电显示 -->
+		<commands id="dsp">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},NS=RIS-1;
+			]]></command>
+		</commands>
+		<!-- 取消来电显示 -->
+		<commands id="c_dsp">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},NS=RIS-0;
+			]]></command>
+		</commands>
+		
+		<!-- 本局 -->
+		<commands id="J0">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},LMTGRP=9;
+			]]></command>
+		</commands>
+		<!-- 市话 -->
+		<commands id="J1">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},LMTGRP=0;
+			]]></command>
+		</commands>
+		<!-- IP -->
+		<commands id="J2">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},LMTGRP=5;
+			]]></command>
+		</commands>
+		<!-- 国内 -->
+		<commands id="J3">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},LMTGRP=2;
+			]]></command>
+		</commands>
+		<!-- 国际 -->
+		<commands id="J4">
+			<command><![CDATA[
+				MOD ST:D=K'#{businessKey},LMTGRP=3;
+			]]></command>
+		</commands>
+	</ctrl-set>
+
+	<!-- IMS指令集 -->
+	<ctrl-set id="IMS_V9">
+		<!-- 装机 -->
+		<commands id="setup">
+			<command index="1"><![CDATA[
+				file:ims/ADD_HSDAINF.xml
+			]]></command>
+			<command index="2"><![CDATA[
+				file:ims/ADD_HSUB.xml
+			]]></command>
+			<command index="3"><![CDATA[
+				file:ims/ADD_HIMPU.xml
+			]]></command>
+			<command index="4" key="0"><![CDATA[
+				file:ims/SET_HMOCAP.xml
+			]]></command>
+			<command index="5" key="0"><![CDATA[
+				file:ims/SET_HIRS.xml
+			]]></command>
+			<command index="6" key="0"><![CDATA[
+				file:ims/SET_HREGAUTH.xml
+			]]></command>
+			<command index="7" key="0"><![CDATA[
+				file:ims/SET_HVNTPLID.xml
+			]]></command>
+			<command index="8" key="0"><![CDATA[
+				file:ims/SET_HVNCFLAG.xml
+			]]></command>
+			<command index="9" key="0"><![CDATA[
+				file:ims/SET_HSPSHARE.xml
+			]]></command>
+			<command index="10" key="0"><![CDATA[
+				file:ims/SET_HALIASPU.xml
+			]]></command>
+			<command index="11" key="0"><![CDATA[
+				file:ims/ADD_HSIFC.xml
+			]]></command>
+			<command index="12" key="1"><![CDATA[
+				file:ims/ADD_SBR.xml
+			]]></command>
+		</commands>
+		
+		<!-- 拆机 -->
+		<commands id="delete">
+			<command index="1"><![CDATA[
+				file:ims/RMV_SBR.xml
+			]]></command>
+			<command index="2"><![CDATA[
+				file:ims/RMV_HIMPU.xml
+			]]></command>
+			<command index="3"><![CDATA[
+				file:ims/RMV_HSUB.xml
+			]]></command>
+			<command index="4"><![CDATA[
+				file:ims/RMV_HSDAINF.xml
+			]]></command>
+		</commands>
+		
+		<!-- 单向停机 -->
+		<commands id="stop_1">
+			<command><![CDATA[
+				file:ims/PRK_OWSBR.xml
+			]]></command>
+		</commands>
+		
+		<!-- 单向复通 -->
+		<commands id="res_1">
+			<command><![CDATA[
+				file:ims/RES_OWSBR.xml
+			]]></command>
+		</commands>
+		
+		<!-- 双向停机 -->
+		<commands id="stop">
+			<command><![CDATA[
+				file:ims/PRK_SBR.xml
+			]]></command>
+		</commands>
+		
+		<!-- 双向复机 -->
+		<commands id="res">
+			<command><![CDATA[
+				file:ims/RES_PRKSBR.xml
+			]]></command>
+		</commands>
+		
+		<!-- 来电显示 -->
+		<commands id="dsp">
+			<command><![CDATA[
+				file:ims/DSP.xml
+			]]></command>
+		</commands>
+		<!-- 取消来电显示 -->
+		<commands id="c_dsp">
+			<command><![CDATA[
+				file:ims/RMV_DSP.xml
+			]]></command>
+		</commands>
+		
+		<!-- 闹铃 -->
+		<commands id="alarm">
+			<command><![CDATA[
+				file:ims/ALARM.xml
+			]]></command>
+		</commands>
+		<!-- 取消闹铃 -->
+		<commands id="c_alarm">
+			<command><![CDATA[
+				file:ims/RMV_ALARM.xml
+			]]></command>
+		</commands>
+		
+		<!-- 无应答前转 -->
+		<commands id="na_trans">
+			<command><![CDATA[
+				file:ims/NA_TRANS.xml
+			]]></command>
+		</commands>
+		<!-- 取消无应答前转 -->
+		<commands id="c_na_trans">
+			<command><![CDATA[
+				file:ims/RMV_NA_TRANS.xml
+			]]></command>
+		</commands>
+		
+		<!-- 无条件前转 -->
+		<commands id="nr_trans">
+			<command><![CDATA[
+				file:ims/NR_TRANS.xml
+			]]></command>
+		</commands>
+		<!-- 取消无条件前转 -->
+		<commands id="c_nr_trans">
+			<command><![CDATA[
+				file:ims/RMV_NR_TRANS.xml
+			]]></command>
+		</commands>
+		
+		<!-- 遇忙前转 -->
+		<commands id="busy_trans">
+			<command><![CDATA[
+				file:ims/BUSY_TRANS.xml
+			]]></command>
+		</commands>
+		<!-- 取消遇忙前转 -->
+		<commands id="c_busy_trans">
+			<command><![CDATA[
+				file:ims/RMV_BUSY_TRANS.xml
+			]]></command>
+		</commands>
+		
+		<!-- 视频通话 -->
+		<commands id="video">
+			<command><![CDATA[
+				file:ims/VIDEO.xml
+			]]></command>
+		</commands>
+		<!-- 取消视频通话 -->
+		<commands id="c_video">
+			<command><![CDATA[
+				file:ims/RMV_VIDEO.xml
+			]]></command>
+		</commands>
+		
+		<!-- 热线 -->
+		<commands id="hotline">
+			<command><![CDATA[
+				file:ims/HOTLINE.xml
+			]]></command>
+		</commands>
+		<!-- 取消热线 -->
+		<commands id="c_hotline">
+			<command><![CDATA[
+				file:ims/RMV_HOTLINE.xml
+			]]></command>
+		</commands>
+		
+		<!-- 指定待答 -->
+		<commands id="nsdan">
+			<command><![CDATA[
+				file:ims/NSDAN.xml
+			]]></command>
+		</commands>
+		<!-- 取消指定待答 -->
+		<commands id="c_nsdan">
+			<command><![CDATA[
+				file:ims/RMV_NSDAN.xml
+			]]></command>
+		</commands>
+		
+		<!-- 三方通话 -->
+		<commands id="third_pty">
+			<command><![CDATA[
+				file:ims/THIRD_PTY.xml
+			]]></command>
+		</commands>
+		<!-- 取消三方通话 -->
+		<commands id="c_third_pty">
+			<command><![CDATA[
+				file:ims/RMV_THIRD_PTY.xml
+			]]></command>
+		</commands>
+		
+		<!-- 电话会议 -->
+		<commands id="conference">
+			<command><![CDATA[
+				file:ims/CONFERENCE.xml
+			]]></command>
+		</commands>
+		<!-- 取消电话会议 -->
+		<commands id="c_conference">
+			<command><![CDATA[
+				file:ims/RMV_CONFERENCE.xml
+			]]></command>
+		</commands>
+		
+		<!-- 修改密码 -->
+		<commands id="ch_pwd">
+			<command><![CDATA[
+				file:ims/CH_PWD.xml
+			]]></command>
+		</commands>
+		
+		<!-- 本局 -->
+		<commands id="J0">
+			<command><![CDATA[
+				file:ims/J0.xml
+			]]></command>
+		</commands>
+		<!-- 市话 -->
+		<commands id="J1">
+			<command><![CDATA[
+				file:ims/J1.xml
+			]]></command>
+		</commands>
+		<!-- IP -->
+		<commands id="J2">
+			<command><![CDATA[
+				file:ims/J2.xml
+			]]></command>
+		</commands>
+		<!-- 国内 -->
+		<commands id="J3">
+			<command><![CDATA[
+				file:ims/J3.xml
+			]]></command>
+		</commands>
+		<!-- 国际 -->
+		<commands id="J4">
+			<command><![CDATA[
+				file:ims/J4.xml
+			]]></command>
+		</commands>
+		
+	</ctrl-set>
+
+	<!-- 宽带指令集 -->
+	<ctrl-set id="AAA">
+		<!-- 装机 -->
+		<commands id="setup">
+			<command ><![CDATA[
+			insert into t_user(user_id, user_name, address, phone, class_id, credit, remain_fee, 
+				total_flow, total_time, total_fee, last_flow, last_time, last_fee, 
+				curr_flow, curr_time, curr_fee, curr_max_flow, curr_max_time, remain_days, 
+				issmsenable, other_fee, passwd, open_date, limitdate_start, limitdate_end, 
+				firstuseflag, charge_circle_date, group_id, depart_flag, cardflag, computeflag, 
+				userbindflag1, usermac1, userbindflag2, serverflag1, servervlan1, serverflag2,
+				userstate, firstexuseflag, grp_chg_flag, otherbindflag) 
+			values('#{businessKey}', '#{name}', '#{address}', '#{linkPhone}', #{userArea}, 0, 0, 
+				0, 0, 0, 0, 0, 0, 
+				0, 0, 0, 0, 0, 0,
+				'0', 0, '#{pwd}', '#{createTime}', '#{createTime}', '#{createTime}', 
+				'1', '#{createTime}', #{speed}, '0', '0', '0',
+				'#{macFlag}', '#{macAddress}', '000', '#{vlanFlag}', '#{outerVlan}', '000',
+				'1', '0', '0', '0')
+			]]></command>
+		</commands>
+		<!-- 拆机 -->
+		<commands id="delete">
+			<command ><![CDATA[
+				delete from t_user where user_id='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 停止服务 -->
+		<commands id="stop">
+			<command ><![CDATA[
+				UPDATE t_user SET USERSTATE='2' WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 恢复服务 -->
+		<commands id="res">
+			<command ><![CDATA[
+				UPDATE t_user SET USERSTATE='1' WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 设置带宽和到期日 -->
+		<commands id="set_band_expiry">
+			<command ><![CDATA[
+				UPDATE t_user SET group_id=#{speed}, LIMITDATE_END='#{expiry}' WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 设置带宽 -->
+		<commands id="set_band">
+			<command ><![CDATA[
+				UPDATE t_user SET group_id=#{speed} WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 设置到期日 -->
+		<commands id="set_expiry">
+			<command ><![CDATA[
+				UPDATE t_user SET LIMITDATE_END='#{expiry}' WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 修改用户信息，包括用户名、电话、区域、带宽、密码、绑定信息 -->
+		<commands id="mod_bind">
+			<command ><![CDATA[
+				UPDATE t_user SET 
+					user_name='#{name}',
+					phone='#{linkPhone}',
+					class_id=#{userArea}, 
+					group_id=#{speed},
+					passwd='#{pwd}',
+					userbindflag1='#{macFlag}', usermac1='#{macAddress}',
+					serverflag1='#{vlanFlag}', servervlan1='#{outerVlan}'
+				WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+		<!-- 移机 -->
+		<commands id="move">
+			<command ><![CDATA[
+				UPDATE t_user SET 
+					user_id='#{newBusinessKey}', 
+					address='#{newUserAddress}',
+					serverflag1='#{vlanFlag}', servervlan1='#{outerVlan}'
+				WHERE USER_ID='#{oldBusinessKey}'
+			]]></command>
+		</commands>
+		<!-- 过户 -->
+		<commands id="transfer">
+			<command ><![CDATA[
+				UPDATE t_user SET
+					user_name='#{name}', 
+					phone='#{linkPhone}', 
+				WHERE USER_ID='#{businessKey}'
+			]]></command>
+		</commands>
+	</ctrl-set>
+		 
+			<!-- 登出指令，将附加在每个指令集的最后 -->
+		<!-- 
+		<commands id="logout">
+			<command index="100" key="0"><![CDATA[
+				
+			]]></command>
+		</commands>
+		 -->
+
+</configuration>

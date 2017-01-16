@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by hukun (huawei) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:spg="http://www.huawei.com/SPG" targetNamespace="http://www.huawei.com/SPG">
+	<wsdl:import namespace="http://www.huawei.com/SPG" location="spg_schema.xsd"/>
+	<wsdl:types>
+		<xs:schema targetNamespace="http://new.webservice.namespace" elementFormDefault="qualified"/>
+	</wsdl:types>
+	<!-- Initialize account for calamity -->
+	<wsdl:message name="InitializeAccountRequest">
+		<wsdl:part name="body" element="spg:InitializeAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="InitializeAccountResponse">
+		<wsdl:part name="body" element="spg:InitializeAccountResponse"/>
+	</wsdl:message>	
+	<!-- Create contactor group for calamity -->
+	<wsdl:message name="ADD_CONTACTORGROUP_FORCALAMITY">
+		<wsdl:part name="body" element="spg:CreateContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ADD_CONTACTORGROUP_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:CreateContactorGroupResponse"/>
+	</wsdl:message>	
+	<!-- Modify contactor group for calamity -->
+	<wsdl:message name="MOD_CONTACTORGROUP_FORCALAMITY">
+		<wsdl:part name="body" element="spg:ModifyContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="MOD_CONTACTORGROUP_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:ModifyContactorGroupResponse"/>
+	</wsdl:message>
+	<!-- remove contactor group for calamity -->
+	<wsdl:message name="RMV_CONTACTORGROUP_FORCALAMITY">
+		<wsdl:part name="body" element="spg:RemoveContactorGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RMV_CONTACTORGROUP_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:RemoveContactorGroupResponse"/>
+	</wsdl:message>		
+	<!-- Create group for calamity -->
+	<wsdl:message name="ADD_GROUP_FORCALAMITY">
+		<wsdl:part name="body" element="spg:CreateGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ADD_GROUP_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:CreateGroupResponse"/>
+	</wsdl:message>	
+	<!-- Modify group for calamity -->
+	<wsdl:message name="MOD_GROUP_FORCALAMITY">
+		<wsdl:part name="body" element="spg:ModifyGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="MOD_GROUP_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:ModifyGroupResponse"/>
+	</wsdl:message>
+	<!-- remove group for calamity -->
+	<wsdl:message name="RMV_GROUP_FORCALAMITY">
+		<wsdl:part name="body" element="spg:RemoveGroupRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RMV_GROUP_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:RemoveGroupResponse"/>
+	</wsdl:message>	
+	<!-- create organization for calamity -->
+	<wsdl:message name="CreateOrganizationV2Request">
+		<wsdl:part name="body" element="spg:CreateOrganizationV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="CreateOrganizationV2Response">
+		<wsdl:part name="body" element="spg:CreateOrganizationV2Response"/>
+	</wsdl:message>	
+	<!-- Modify organization for calamity -->
+	<wsdl:message name="ModifyOrganizationV2Request">
+		<wsdl:part name="body" element="spg:ModifyOrganizationV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationV2Response">
+		<wsdl:part name="body" element="spg:ModifyOrganizationV2Response"/>
+	</wsdl:message>	
+	<!-- remove organization for calamity -->
+	<wsdl:message name="RemoveOrganizationRequest">
+		<wsdl:part name="body" element="spg:RemoveOrganizationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveOrganizationResponse">
+		<wsdl:part name="body" element="spg:RemoveOrganizationResponse"/>
+	</wsdl:message>	
+	<!-- create contactor for calamity -->
+	<wsdl:message name="ADD_CONTACTOR_FORCALAMITY">
+		<wsdl:part name="body" element="spg:CreateContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ADD_CONTACTOR_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:CreateContactorResponse"/>
+	</wsdl:message>	
+	<!-- Display contactor for calamity -->
+	<wsdl:message name="DSP_CONTACTOR_FORCALAMITY">
+		<wsdl:part name="body" element="spg:DisplayContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DSP_CONTACTOR_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:DisplayContactorResponse"/>
+	</wsdl:message>
+	<!-- modify contactor for calamity -->
+	<wsdl:message name="MOD_CONTACTOR_FORCALAMITY">
+		<wsdl:part name="body" element="spg:ModifyContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="MOD_CONTACTOR_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:ModifyContactorResponse"/>
+	</wsdl:message>
+	<!-- remove contactor for calamity -->
+	<wsdl:message name="RMV_CONTACTOR_FORCALAMITY">
+		<wsdl:part name="body" element="spg:RemoveContactorRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RMV_CONTACTOR_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:RemoveContactorResponse"/>
+	</wsdl:message>	
+	<!-- create role for calamity -->
+	<wsdl:message name="CreateRoleRequest">
+		<wsdl:part name="body" element="spg:CreateRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateRoleResponse">
+		<wsdl:part name="body" element="spg:CreateRoleResponse"/>
+	</wsdl:message>	
+	<!-- Modify role for calamity -->
+	<wsdl:message name="ModifyRoleRequest">
+		<wsdl:part name="body" element="spg:ModifyRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRoleResponse">
+		<wsdl:part name="body" element="spg:ModifyRoleResponse"/>
+	</wsdl:message>
+	<!-- remove role for calamity -->
+	<wsdl:message name="RemoveRoleRequest">
+		<wsdl:part name="body" element="spg:RemoveRoleRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveRoleResponse">
+		<wsdl:part name="body" element="spg:RemoveRoleResponse"/>
+	</wsdl:message>	
+	<!-- list user for calamity -->
+	<wsdl:message name="ListUserRequest">
+		<wsdl:part name="body" element="spg:ListUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListUserResponse">
+		<wsdl:part name="body" element="spg:ListUserResponse"/>
+	</wsdl:message>	
+	<!-- display user for calamity -->
+	<wsdl:message name="DisplayUserV2Request">
+		<wsdl:part name="body" element="spg:DisplayUserV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayUserV2Response">
+		<wsdl:part name="body" element="spg:DisplayUserV2Response"/>
+	</wsdl:message>	
+	<!-- modify user for calamity -->
+	<wsdl:message name="ModifyUserV2Request">
+		<wsdl:part name="body" element="spg:ModifyUserV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyUserV2Response">
+		<wsdl:part name="body" element="spg:ModifyUserV2Response"/>
+	</wsdl:message>	
+	<!-- remove user for calamity -->
+	<wsdl:message name="RemoveUserV2Request">
+		<wsdl:part name="body" element="spg:RemoveUserV2Request"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveUserV2Response">
+		<wsdl:part name="body" element="spg:RemoveUserV2Response"/>
+	</wsdl:message>
+	<!-- create user for calamity -->
+	<wsdl:message name="CreateUserRequest">
+		<wsdl:part name="body" element="spg:CreateUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateUserResponse">
+		<wsdl:part name="body" element="spg:CreateUserResponse"/>
+	</wsdl:message>
+	
+	<!-- 8.2新增接口 start -->
+	<!--ListRegionRelation for calamity -->
+	<wsdl:message name="ListRegionRelationRequest">
+		<wsdl:part name="body" element="spg:ListRegionRelationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListRegionRelationResponse">
+		<wsdl:part name="body" element="spg:ListRegionRelationResponse"/>
+	</wsdl:message>
+	<!-- ModifyRegionRelation for calamity -->
+	<wsdl:message name="ModifyRegionRelationRequest">
+		<wsdl:part name="body" element="spg:ModifyRegionRelationRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyRegionRelationResponse">
+		<wsdl:part name="body" element="spg:ModifyRegionRelationResponse"/>
+	</wsdl:message>
+	<!-- ModifyAuthorTermialToOrg for calamity -->
+	<wsdl:message name="ModifyAuthorTermialToOrgRequest">
+		<wsdl:part name="body" element="spg:ModifyAuthorTermialToOrgRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyAuthorTermialToOrgResponse">
+		<wsdl:part name="body" element="spg:ModifyAuthorTermialToOrgResponse"/>
+	</wsdl:message>
+	<!-- DisplayAuthorTermialToOrg for calamity -->
+	<wsdl:message name="DisplayAuthorTermialToOrgRequest">
+		<wsdl:part name="body" element="spg:DisplayAuthorTermialToOrgRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayAuthorTermialToOrgResponse">
+		<wsdl:part name="body" element="spg:DisplayAuthorTermialToOrgResponse"/>
+	</wsdl:message>
+	<!-- CreateTerminal for calamity -->
+	<wsdl:message name="CreateTerminalRequest">
+		<wsdl:part name="body" element="spg:CreateTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateTerminalResponse">
+		<wsdl:part name="body" element="spg:CreateTerminalResponse"/>
+	</wsdl:message>
+	<!-- ModifyTerminal for calamity -->
+	<wsdl:message name="ModifyTerminalRequest">
+		<wsdl:part name="body" element="spg:ModifyTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyTerminalResponse">
+		<wsdl:part name="body" element="spg:ModifyTerminalResponse"/>
+	</wsdl:message>
+	<!-- RemoveTerminal for calamity -->
+	<wsdl:message name="RemoveTerminalRequest">
+		<wsdl:part name="body" element="spg:RemoveTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveTerminalResponse">
+		<wsdl:part name="body" element="spg:RemoveTerminalResponse"/>
+	</wsdl:message>
+	<!-- DisplayTerminal for calamity -->
+	<wsdl:message name="DisplayTerminalRequest">
+		<wsdl:part name="body" element="spg:DisplayTerminalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayTerminalResponse">
+		<wsdl:part name="body" element="spg:DisplayTerminalResponse"/>
+	</wsdl:message>
+	<!-- CreateDirectory for calamity -->
+	<wsdl:message name="CreateDirectoryRequest">
+		<wsdl:part name="body" element="spg:CreateDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateDirectoryResponse">
+		<wsdl:part name="body" element="spg:CreateDirectoryResponse"/>
+	</wsdl:message>
+	<!-- ModifyDirectory for calamity -->
+	<wsdl:message name="ModifyDirectoryRequest">
+		<wsdl:part name="body" element="spg:ModifyDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyDirectoryResponse">
+		<wsdl:part name="body" element="spg:ModifyDirectoryResponse"/>
+	</wsdl:message>
+	<!-- RemoveDirectory for calamity -->
+	<wsdl:message name="RemoveDirectoryRequest">
+		<wsdl:part name="body" element="spg:RemoveDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveDirectoryResponse">
+		<wsdl:part name="body" element="spg:RemoveDirectoryResponse"/>
+	</wsdl:message>
+	<!-- DisplayDirectory for calamity -->
+	<wsdl:message name="DSP_DIRECTORY_FORCALAMITY">
+		<wsdl:part name="body" element="spg:DisplayDirectoryRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DSP_DIRECTORY_FORCALAMITYResponse">
+		<wsdl:part name="body" element="spg:DisplayDirectoryResponse"/>
+	</wsdl:message>
+	
+	<!-- 8.2新增接口 end -->
+	<wsdl:message name="GenericHeader">
+		<wsdl:part name="header" element="spg:Authentication"/>
+	</wsdl:message>
+	<!-- 其它spg需要的头域信息 start -->
+	<wsdl:message name="MessageIDHeader">
+		<wsdl:part name="header" element="spg:MessageID"/>
+	</wsdl:message>
+	<wsdl:message name="ResendFlagHeader">
+		<wsdl:part name="header" element="spg:ResendFlag"/>
+	</wsdl:message>
+	<!-- 其它spg需要的头域信息 end -->
+	
+	<!-- 9.0容灾新增start -->
+	<!-- CreateWebUEAccount for calamity -->
+	<wsdl:message name="CreateWebUEAccountRequest">
+		<wsdl:part name="body" element="spg:CreateWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateWebUEAccountResponse">
+		<wsdl:part name="body" element="spg:CreateWebUEAccountResponse"/>
+	</wsdl:message>	
+	<!-- ModifyWebUEAccount for calamity -->
+	<wsdl:message name="ModifyWebUEAccountRequest">
+		<wsdl:part name="body" element="spg:ModifyWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyWebUEAccountResponse">
+		<wsdl:part name="body" element="spg:ModifyWebUEAccountResponse"/>
+	</wsdl:message>
+	<!-- RemoveWebUEAccount for calamity -->
+	<wsdl:message name="RemoveWebUEAccountRequest">
+		<wsdl:part name="body" element="spg:RemoveWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveWebUEAccountResponse">
+		<wsdl:part name="body" element="spg:RemoveWebUEAccountResponse"/>
+	</wsdl:message>
+	<!-- ListWebUEAccount for calamity -->
+	<wsdl:message name="ListWebUEAccountRequest">
+		<wsdl:part name="body" element="spg:ListWebUEAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ListWebUEAccountResponse">
+		<wsdl:part name="body" element="spg:ListWebUEAccountResponse"/>
+	</wsdl:message>	
+	<!-- DisplayOrganizationVideoLevel for calamity -->
+	<wsdl:message name="DisplayOrganizationVideoLevelRequest">
+		<wsdl:part name="body" element="spg:DisplayOrganizationVideoLevelRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DisplayOrganizationVideoLevelResponse">
+		<wsdl:part name="body" element="spg:DisplayOrganizationVideoLevelResponse"/>
+	</wsdl:message>	
+	<!-- ModifyOrganizationVideoLevel for calamity -->
+	<wsdl:message name="ModifyOrganizationVideoLevelRequest">
+		<wsdl:part name="body" element="spg:ModifyOrganizationVideoLevelRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ModifyOrganizationVideoLevelResponse">
+		<wsdl:part name="body" element="spg:ModifyOrganizationVideoLevelResponse"/>
+	</wsdl:message>	
+		
+	<!-- 9.0容灾新增     end -->
+	
+	<wsdl:portType name="SPG2800Port">
+		<!-- Initialize account for calamity -->
+		<wsdl:operation name="InitializeAccount">
+			<wsdl:input message="spg:InitializeAccountRequest"/>
+			<wsdl:output message="spg:InitializeAccountResponse"/>
+		</wsdl:operation>	
+		<!-- Create contactor group for calamity -->
+		<wsdl:operation name="ADD_CONTACTORGROUP_FORCALAMITY">
+			<wsdl:input message="spg:ADD_CONTACTORGROUP_FORCALAMITY"/>
+			<wsdl:output message="spg:ADD_CONTACTORGROUP_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- Modify contactor group for calamity -->
+		<wsdl:operation name="MOD_CONTACTORGROUP_FORCALAMITY">
+			<wsdl:input message="spg:MOD_CONTACTORGROUP_FORCALAMITY"/>
+			<wsdl:output message="spg:MOD_CONTACTORGROUP_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- remove contactor group for calamity -->
+		<wsdl:operation name="RMV_CONTACTORGROUP_FORCALAMITY">
+			<wsdl:input message="spg:RMV_CONTACTORGROUP_FORCALAMITY"/>
+			<wsdl:output message="spg:RMV_CONTACTORGROUP_FORCALAMITYResponse"/>
+		</wsdl:operation>	
+		<!-- remove group for calamity -->
+		<wsdl:operation name="RMV_GROUP_FORCALAMITY">
+			<wsdl:input message="spg:RMV_GROUP_FORCALAMITY"/>
+			<wsdl:output message="spg:RMV_GROUP_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- Modify organization for calamity -->
+		<wsdl:operation name="ModifyOrganizationV2">
+			<wsdl:input message="spg:ModifyOrganizationV2Request"/>
+			<wsdl:output message="spg:ModifyOrganizationV2Response"/>
+		</wsdl:operation>
+		<!-- create organization for calamity -->
+		<wsdl:operation name="CreateOrganizationV2">
+			<wsdl:input message="spg:CreateOrganizationV2Request"/>
+			<wsdl:output message="spg:CreateOrganizationV2Response"/>
+		</wsdl:operation>
+		<!-- Create organization for calamity -->
+		<wsdl:operation name="ADD_GROUP_FORCALAMITY">
+			<wsdl:input message="spg:ADD_GROUP_FORCALAMITY"/>
+			<wsdl:output message="spg:ADD_GROUP_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- MOD organization for calamity -->
+		<wsdl:operation name="MOD_GROUP_FORCALAMITY">
+			<wsdl:input message="spg:MOD_GROUP_FORCALAMITY"/>
+			<wsdl:output message="spg:MOD_GROUP_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- remove organization for calamity -->
+		<wsdl:operation name="RemoveOrganization">
+			<wsdl:input message="spg:RemoveOrganizationRequest"/>
+			<wsdl:output message="spg:RemoveOrganizationResponse"/>
+		</wsdl:operation>
+		<!-- modify user for calamity -->
+		<wsdl:operation name="ModifyUserV2">
+			<wsdl:input message="spg:ModifyUserV2Request"/>
+			<wsdl:output message="spg:ModifyUserV2Response"/>
+		</wsdl:operation>
+		<!-- Display contactor for calamity -->
+		<wsdl:operation name="DSP_CONTACTOR_FORCALAMITY">
+			<wsdl:input message="spg:DSP_CONTACTOR_FORCALAMITY"/>
+			<wsdl:output message="spg:DSP_CONTACTOR_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- create contactor for calamity -->
+		<wsdl:operation name="ADD_CONTACTOR_FORCALAMITY">
+			<wsdl:input message="spg:ADD_CONTACTOR_FORCALAMITY"/>
+			<wsdl:output message="spg:ADD_CONTACTOR_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- modify contactor for calamity -->
+		<wsdl:operation name="MOD_CONTACTOR_FORCALAMITY">
+			<wsdl:input message="spg:MOD_CONTACTOR_FORCALAMITY"/>
+			<wsdl:output message="spg:MOD_CONTACTOR_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- remove contactor for calamity -->
+		<wsdl:operation name="RMV_CONTACTOR_FORCALAMITY">
+			<wsdl:input message="spg:RMV_CONTACTOR_FORCALAMITY"/>
+			<wsdl:output message="spg:RMV_CONTACTOR_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- create role for calamity -->
+		<wsdl:operation name="CreateRole">
+			<wsdl:input message="spg:CreateRoleRequest"/>
+			<wsdl:output message="spg:CreateRoleResponse"/>
+		</wsdl:operation>
+		<!-- Modify role for calamity -->
+		<wsdl:operation name="ModifyRole">
+			<wsdl:input message="spg:ModifyRoleRequest"/>
+			<wsdl:output message="spg:ModifyRoleResponse"/>
+		</wsdl:operation>
+		<!-- remove role for calamity -->
+		<wsdl:operation name="RemoveRole">
+			<wsdl:input message="spg:RemoveRoleRequest"/>
+			<wsdl:output message="spg:RemoveRoleResponse"/>
+		</wsdl:operation>	
+		<!-- list user for calamity -->
+		<wsdl:operation name="ListUser">
+			<wsdl:input message="spg:ListUserRequest"/>
+			<wsdl:output message="spg:ListUserResponse"/>
+		</wsdl:operation>
+		<!-- display user for calamity -->
+		<wsdl:operation name="DisplayUserV2">
+			<wsdl:input message="spg:DisplayUserV2Request"/>
+			<wsdl:output message="spg:DisplayUserV2Response"/>
+		</wsdl:operation>
+		<!-- remove user for calamity -->
+		<wsdl:operation name="RemoveUserV2">
+			<wsdl:input message="spg:RemoveUserV2Request"/>
+			<wsdl:output message="spg:RemoveUserV2Response"/>
+		</wsdl:operation>
+		<!-- create user for calamity -->
+		<wsdl:operation name="CreateUser">
+			<wsdl:input message="spg:CreateUserRequest"/>
+			<wsdl:output message="spg:CreateUserResponse"/>
+		</wsdl:operation>
+		
+		<!-- 8.2新增接口 start -->
+		<!-- ListRegionRelation for calamity -->
+		<wsdl:operation name="ListRegionRelation">
+			<wsdl:input message="spg:ListRegionRelationRequest"/>
+			<wsdl:output message="spg:ListRegionRelationResponse"/>
+		</wsdl:operation>
+		<!-- ModifyRegionRelation for calamity -->
+		<wsdl:operation name="ModifyRegionRelation">
+			<wsdl:input message="spg:ModifyRegionRelationRequest"/>
+			<wsdl:output message="spg:ModifyRegionRelationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyAuthorTermialToOrg">
+			<wsdl:input message="spg:ModifyAuthorTermialToOrgRequest"/>
+			<wsdl:output message="spg:ModifyAuthorTermialToOrgResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayAuthorTermialToOrg">
+			<wsdl:input message="spg:DisplayAuthorTermialToOrgRequest"/>
+			<wsdl:output message="spg:DisplayAuthorTermialToOrgResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTerminal">
+			<wsdl:input message="spg:CreateTerminalRequest"/>
+			<wsdl:output message="spg:CreateTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminal">
+			<wsdl:input message="spg:ModifyTerminalRequest"/>
+			<wsdl:output message="spg:ModifyTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveTerminal">
+			<wsdl:input message="spg:RemoveTerminalRequest"/>
+			<wsdl:output message="spg:RemoveTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayTerminal">
+			<wsdl:input message="spg:DisplayTerminalRequest"/>
+			<wsdl:output message="spg:DisplayTerminalResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateDirectory">
+			<wsdl:input message="spg:CreateDirectoryRequest"/>
+			<wsdl:output message="spg:CreateDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyDirectory">
+			<wsdl:input message="spg:ModifyDirectoryRequest"/>
+			<wsdl:output message="spg:ModifyDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveDirectory">
+			<wsdl:input message="spg:RemoveDirectoryRequest"/>
+			<wsdl:output message="spg:RemoveDirectoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DSP_DIRECTORY_FORCALAMITY">
+			<wsdl:input message="spg:DSP_DIRECTORY_FORCALAMITY"/>
+			<wsdl:output message="spg:DSP_DIRECTORY_FORCALAMITYResponse"/>
+		</wsdl:operation>
+		<!-- 8.2新增接口 end -->
+		
+		<!-- 9.0容灾新增 start -->
+		<wsdl:operation name="CreateWebUEAccount">
+			<wsdl:input message="spg:CreateWebUEAccountRequest"/>
+			<wsdl:output message="spg:CreateWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyWebUEAccount">
+			<wsdl:input message="spg:ModifyWebUEAccountRequest"/>
+			<wsdl:output message="spg:ModifyWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveWebUEAccount">
+			<wsdl:input message="spg:RemoveWebUEAccountRequest"/>
+			<wsdl:output message="spg:RemoveWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ListWebUEAccount">
+			<wsdl:input message="spg:ListWebUEAccountRequest"/>
+			<wsdl:output message="spg:ListWebUEAccountResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayOrganizationVideoLevel">
+			<wsdl:input message="spg:DisplayOrganizationVideoLevelRequest"/>
+			<wsdl:output message="spg:DisplayOrganizationVideoLevelResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganizationVideoLevel">
+			<wsdl:input message="spg:ModifyOrganizationVideoLevelRequest"/>
+			<wsdl:output message="spg:ModifyOrganizationVideoLevelResponse"/>
+		</wsdl:operation>
+		
+		<!-- 9.0容灾新增      end -->
+	</wsdl:portType>
+	<wsdl:binding name="SPG2800Binding" type="spg:SPG2800Port">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- Initialize account for calamity -->
+		<wsdl:operation name="InitializeAccount">
+			<soap:operation soapAction="urn:#InitializeAccount"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- create contactor group for calamity -->
+		<wsdl:operation name="ADD_CONTACTORGROUP_FORCALAMITY">
+			<soap:operation soapAction="urn:#ADD_CONTACTORGROUP_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- modify contactor group for calamity -->
+		<wsdl:operation name="MOD_CONTACTORGROUP_FORCALAMITY">
+			<soap:operation soapAction="urn:#MOD_CONTACTORGROUP_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- remove contactor group for calamity -->
+		<wsdl:operation name="RMV_CONTACTORGROUP_FORCALAMITY">
+			<soap:operation soapAction="urn:#RMV_CONTACTORGROUP_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- Create group for calamity -->
+		<wsdl:operation name="ADD_GROUP_FORCALAMITY">
+			<soap:operation soapAction="urn:#ADD_GROUP_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- Modify group for calamity -->
+		<wsdl:operation name="MOD_GROUP_FORCALAMITY">
+			<soap:operation soapAction="urn:#MOD_GROUP_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- remove group for calamity -->
+		<wsdl:operation name="RMV_GROUP_FORCALAMITY">
+			<soap:operation soapAction="urn:#RMV_GROUP_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- create organization for calamity -->
+		<wsdl:operation name="CreateOrganizationV2">
+			<soap:operation soapAction="urn:#CreateOrganizationV2"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- Modify organization for calamity -->
+		<wsdl:operation name="ModifyOrganizationV2">
+			<soap:operation soapAction="urn:#ModifyOrganizationV2"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- remove organization for calamity -->
+		<wsdl:operation name="RemoveOrganization">
+			<soap:operation soapAction="urn:#RemoveOrganization"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- modify user for calamity -->
+		<wsdl:operation name="ModifyUserV2">
+			<soap:operation soapAction="urn:#ModifyUserV2"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- display contactor for calamity -->
+		<wsdl:operation name="DSP_CONTACTOR_FORCALAMITY">
+			<soap:operation soapAction="urn:#DSP_CONTACTOR_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- create contactor for calamity -->
+		<wsdl:operation name="ADD_CONTACTOR_FORCALAMITY">
+			<soap:operation soapAction="urn:#ADD_CONTACTOR_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- modify contactor for calamity -->
+		<wsdl:operation name="MOD_CONTACTOR_FORCALAMITY">
+			<soap:operation soapAction="urn:#MOD_CONTACTOR_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- remove contactor for calamity -->
+		<wsdl:operation name="RMV_CONTACTOR_FORCALAMITY">
+			<soap:operation soapAction="urn:#RMV_CONTACTOR_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- create role for calamity -->
+		<wsdl:operation name="CreateRole">
+			<soap:operation soapAction="urn:#CreateRole"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- Modify role for calamity -->
+		<wsdl:operation name="ModifyRole">
+			<soap:operation soapAction="urn:#ModifyRole"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- remove role for calamity -->
+		<wsdl:operation name="RemoveRole">
+			<soap:operation soapAction="urn:#RemoveRole"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- list user for calamity -->
+		<wsdl:operation name="ListUser">
+			<soap:operation soapAction="urn:#ListUser"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- display user for calamity -->
+		<wsdl:operation name="DisplayUserV2">
+			<soap:operation soapAction="urn:#DisplayUserV2"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- remove user for calamity -->
+		<wsdl:operation name="RemoveUserV2">
+			<soap:operation soapAction="urn:#RemoveUserV2"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- create user for calamity -->
+		<wsdl:operation name="CreateUser">
+			<soap:operation soapAction="urn:#CreateUser"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<!-- 8.2新增接口 start -->
+		<!-- ListRegionRelation for calamity -->
+		<wsdl:operation name="ListRegionRelation">
+			<soap:operation soapAction="urn:#ListRegionRelation"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- ModifyRegionRelation for calamity -->
+		<wsdl:operation name="ModifyRegionRelation">
+			<soap:operation soapAction="urn:#ModifyRegionRelation"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyAuthorTermialToOrg">
+			<soap:operation soapAction="urn:#ModifyAuthorTermialToOrg"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayAuthorTermialToOrg">
+			<soap:operation soapAction="urn:#DisplayAuthorTermialToOrg"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTerminal">
+			<soap:operation soapAction="urn:#CreateTerminal"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyTerminal">
+			<soap:operation soapAction="urn:#ModifyTerminal"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveTerminal">
+			<soap:operation soapAction="urn:#RemoveTerminal"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DisplayTerminal">
+			<soap:operation soapAction="urn:#DisplayTerminal"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateDirectory">
+			<soap:operation soapAction="urn:#CreateDirectory"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyDirectory">
+			<soap:operation soapAction="urn:#ModifyDirectory"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveDirectory">
+			<soap:operation soapAction="urn:#RemoveDirectory"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DSP_DIRECTORY_FORCALAMITY">
+			<soap:operation soapAction="urn:#DSP_DIRECTORY_FORCALAMITY"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 8.2新增接口 end -->
+		<!-- 9.0容灾新增 start -->
+		<wsdl:operation name="CreateWebUEAccount">
+			<soap:operation soapAction="urn:#CreateWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="ModifyWebUEAccount">
+			<soap:operation soapAction="urn:#ModifyWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="RemoveWebUEAccount">
+			<soap:operation soapAction="urn:#RemoveWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="ListWebUEAccount">
+			<soap:operation soapAction="urn:#ListWebUEAccount"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="DisplayOrganizationVideoLevel">
+			<soap:operation soapAction="urn:#DisplayOrganizationVideoLevel"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ModifyOrganizationVideoLevel">
+			<soap:operation soapAction="urn:#ModifyOrganizationVideoLevel"/>
+			<wsdl:input>
+				<soap:header message="spg:GenericHeader" part="header" use="literal"/>
+				<soap:header message="spg:ResendFlagHeader" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 9.0容灾新增      end -->
+	</wsdl:binding>
+	<wsdl:service name="SPG2800Service">
+		<wsdl:port name="SPG2800Port" binding="spg:SPG2800Binding">
+			<soap:address location="http://www.huawei.com/spg"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

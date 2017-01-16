@@ -1,0 +1,2766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://amtium.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://amtium.com" xmlns:intf="http://amtium.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+
+   <wsdl:message name="CardRemainFeeRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardFixFeeRecordResponse">
+
+      <wsdl:part name="CardFixFeeRecordReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="offLineUserRequest">
+
+      <wsdl:part name="userip" type="xsd:string"/>
+
+      <wsdl:part name="usermac" type="xsd:string"/>
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoRequest1">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMonthMailRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="syncCrmResponse">
+
+      <wsdl:part name="syncCrmReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendLackFeeMialRequest">
+
+      <wsdl:part name="startDate" type="xsd:string"/>
+
+      <wsdl:part name="endDate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserIdFromTicketRequest">
+
+      <wsdl:part name="userip" type="xsd:string"/>
+
+      <wsdl:part name="onlinetime" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoRequest3">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+      <wsdl:part name="certType" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="elect_card_no" type="xsd:string"/>
+
+      <wsdl:part name="dxId" type="xsd:string"/>
+
+      <wsdl:part name="dxNo" type="xsd:string"/>
+
+      <wsdl:part name="dxName" type="xsd:string"/>
+
+      <wsdl:part name="wtId" type="xsd:string"/>
+
+      <wsdl:part name="wtName" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser5Response">
+
+      <wsdl:part name="CardNewUser5Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="check_tradeResponse">
+
+      <wsdl:part name="check_tradeReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="query_tradeResponse">
+
+      <wsdl:part name="query_tradeReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser2Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBillForCBMSResponse">
+
+      <wsdl:part name="getBillForCBMSReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrePolicyListResponse">
+
+      <wsdl:part name="getPrePolicyListReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserRequest4">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="certType" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="elect_card_no" type="xsd:string"/>
+
+      <wsdl:part name="dxId" type="xsd:string"/>
+
+      <wsdl:part name="dxNo" type="xsd:string"/>
+
+      <wsdl:part name="dxName" type="xsd:string"/>
+
+      <wsdl:part name="wtId" type="xsd:string"/>
+
+      <wsdl:part name="wtName" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryChargeRecordResponse">
+
+      <wsdl:part name="queryChargeRecordReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="syncLdapRequest">
+
+      <wsdl:part name="startDate" type="xsd:string"/>
+
+      <wsdl:part name="endDate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserInfo1Response">
+
+      <wsdl:part name="getUserInfo1Return" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoResponse3">
+
+      <wsdl:part name="ModifyUserInfoReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFixedRecordRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="beginDate" type="xsd:string"/>
+
+      <wsdl:part name="endDate" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="classid" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser5Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="certType" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="elect_card_no" type="xsd:string"/>
+
+      <wsdl:part name="dxId" type="xsd:string"/>
+
+      <wsdl:part name="dxNo" type="xsd:string"/>
+
+      <wsdl:part name="dxName" type="xsd:string"/>
+
+      <wsdl:part name="wtId" type="xsd:string"/>
+
+      <wsdl:part name="wtName" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFeeRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoRequest2">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWDResponse">
+
+      <wsdl:part name="CardChangePWDReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFee2Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+      <wsdl:part name="seq" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserResponse3">
+
+      <wsdl:part name="CardNewUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardDelUserResponse">
+
+      <wsdl:part name="CardDelUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoResponse">
+
+      <wsdl:part name="ModifyUserInfoReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser2Response">
+
+      <wsdl:part name="CardNewUser2Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPrePolicyResponse">
+
+      <wsdl:part name="modifyPrePolicyReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo4Response">
+
+      <wsdl:part name="ModifyUserInfo4Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardDelUserRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWDRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="sourpwd" type="xsd:string"/>
+
+      <wsdl:part name="destpwd" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo1Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="userstatus" type="xsd:string"/>
+
+      <wsdl:part name="limitdatedate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserPassWordRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserRequest1">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo4Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+      <wsdl:part name="certType" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="elect_card_no" type="xsd:string"/>
+
+      <wsdl:part name="dxId" type="xsd:string"/>
+
+      <wsdl:part name="dxNo" type="xsd:string"/>
+
+      <wsdl:part name="dxName" type="xsd:string"/>
+
+      <wsdl:part name="wtId" type="xsd:string"/>
+
+      <wsdl:part name="wtName" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserIdFromOnlineRequest">
+
+      <wsdl:part name="userip" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoResponse1">
+
+      <wsdl:part name="ModifyUserInfoReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardFixFeeRecordRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+      <wsdl:part name="fixDate" type="xsd:string"/>
+
+      <wsdl:part name="opDate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserRequest3">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWD1Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="sourpwd" type="xsd:string"/>
+
+      <wsdl:part name="destpwd" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardCheckFeeRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="seq" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWD2Response">
+
+      <wsdl:part name="CardChangePWD2Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFixedRecordResponse">
+
+      <wsdl:part name="getFixedRecordReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser3Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFeeResponse1">
+
+      <wsdl:part name="CardAddFeeReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardRemainFeeResponse">
+
+      <wsdl:part name="CardRemainFeeReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWDResponse1">
+
+      <wsdl:part name="CardChangePWDReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPrePolicyRequest">
+
+      <wsdl:part name="userID" type="xsd:string"/>
+
+      <wsdl:part name="userGroupID" type="xsd:int"/>
+
+      <wsdl:part name="prDate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoResponse2">
+
+      <wsdl:part name="ModifyUserInfoReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserInfoResponse">
+
+      <wsdl:part name="getUserInfoReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser3Response">
+
+      <wsdl:part name="CardNewUser3Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryChargeRecordRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="seq" type="xsd:string"/>
+
+      <wsdl:part name="beginDate" type="xsd:string"/>
+
+      <wsdl:part name="endDate" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+      <wsdl:part name="chargeType" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserIdFromTicketResponse">
+
+      <wsdl:part name="getUserIdFromTicketReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ResumeUserInfoRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo5Response">
+
+      <wsdl:part name="ModifyUserInfo5Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWD2Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="destpwd" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser1Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="bindCrmRequest">
+
+      <wsdl:part name="userId" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="type" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFee1Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo5Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+      <wsdl:part name="certType" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="elect_card_no" type="xsd:string"/>
+
+      <wsdl:part name="dxId" type="xsd:string"/>
+
+      <wsdl:part name="dxNo" type="xsd:string"/>
+
+      <wsdl:part name="dxName" type="xsd:string"/>
+
+      <wsdl:part name="wtId" type="xsd:string"/>
+
+      <wsdl:part name="wtName" type="xsd:string"/>
+
+      <wsdl:part name="userbindflag1" type="xsd:string"/>
+
+      <wsdl:part name="useriptype1" type="xsd:string"/>
+
+      <wsdl:part name="userip1" type="xsd:string"/>
+
+      <wsdl:part name="useripnum1" type="xsd:int"/>
+
+      <wsdl:part name="usermac1" type="xsd:string"/>
+
+      <wsdl:part name="userbindflag2" type="xsd:string"/>
+
+      <wsdl:part name="useriptype2" type="xsd:string"/>
+
+      <wsdl:part name="userip2" type="xsd:string"/>
+
+      <wsdl:part name="useripnum2" type="xsd:int"/>
+
+      <wsdl:part name="usermac2" type="xsd:string"/>
+
+      <wsdl:part name="serverflag1" type="xsd:string"/>
+
+      <wsdl:part name="serverip1" type="xsd:string"/>
+
+      <wsdl:part name="serverport1" type="xsd:int"/>
+
+      <wsdl:part name="servervlan1" type="xsd:int"/>
+
+      <wsdl:part name="serverflag2" type="xsd:string"/>
+
+      <wsdl:part name="serverip2" type="xsd:string"/>
+
+      <wsdl:part name="serverport2" type="xsd:int"/>
+
+      <wsdl:part name="servervlan2" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="check_tradeRequest">
+
+      <wsdl:part name="beg" type="xsd:dateTime"/>
+
+      <wsdl:part name="end" type="xsd:dateTime"/>
+
+      <wsdl:part name="count" type="xsd:int"/>
+
+      <wsdl:part name="total" type="xsd:double"/>
+
+      <wsdl:part name="client_ip" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserIdFromOnlineResponse">
+
+      <wsdl:part name="getUserIdFromOnlineReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserResponse2">
+
+      <wsdl:part name="CardNewUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFeeRecordResponse">
+
+      <wsdl:part name="CardAddFeeRecordReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFeeRequest1">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+      <wsdl:part name="seq" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAuthCodeResponse">
+
+      <wsdl:part name="modifyAuthCodeReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="add_feeRequest">
+
+      <wsdl:part name="user_name" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:double"/>
+
+      <wsdl:part name="seq" type="xsd:string"/>
+
+      <wsdl:part name="seq2" type="xsd:string"/>
+
+      <wsdl:part name="client_ip" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfoRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="userstatus" type="xsd:string"/>
+
+      <wsdl:part name="limitdatedate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo2Response">
+
+      <wsdl:part name="ModifyUserInfo2Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBillForCBMSRequest">
+
+      <wsdl:part name="roomid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser6Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="certType" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="elect_card_no" type="xsd:string"/>
+
+      <wsdl:part name="dxId" type="xsd:string"/>
+
+      <wsdl:part name="dxNo" type="xsd:string"/>
+
+      <wsdl:part name="dxName" type="xsd:string"/>
+
+      <wsdl:part name="wtId" type="xsd:string"/>
+
+      <wsdl:part name="wtName" type="xsd:string"/>
+
+      <wsdl:part name="userbindflag1" type="xsd:string"/>
+
+      <wsdl:part name="useriptype1" type="xsd:string"/>
+
+      <wsdl:part name="userip1" type="xsd:string"/>
+
+      <wsdl:part name="useripnum1" type="xsd:int"/>
+
+      <wsdl:part name="usermac1" type="xsd:string"/>
+
+      <wsdl:part name="userbindflag2" type="xsd:string"/>
+
+      <wsdl:part name="useriptype2" type="xsd:string"/>
+
+      <wsdl:part name="userip2" type="xsd:string"/>
+
+      <wsdl:part name="useripnum2" type="xsd:int"/>
+
+      <wsdl:part name="usermac2" type="xsd:string"/>
+
+      <wsdl:part name="serverflag1" type="xsd:string"/>
+
+      <wsdl:part name="serverip1" type="xsd:string"/>
+
+      <wsdl:part name="serverport1" type="xsd:int"/>
+
+      <wsdl:part name="servervlan1" type="xsd:int"/>
+
+      <wsdl:part name="serverflag2" type="xsd:string"/>
+
+      <wsdl:part name="serverip2" type="xsd:string"/>
+
+      <wsdl:part name="serverport2" type="xsd:int"/>
+
+      <wsdl:part name="servervlan2" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWDRequest1">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="destpwd" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserLimitEndDateResponse">
+
+      <wsdl:part name="getUserLimitEndDateReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserResponse1">
+
+      <wsdl:part name="CardNewUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserLimitEndDateRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser4Response">
+
+      <wsdl:part name="CardNewUser4Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFee1Response">
+
+      <wsdl:part name="CardAddFee1Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserInfo1Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="classid" type="xsd:int"/>
+
+      <wsdl:part name="dxid" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ResumeUserInfoResponse">
+
+      <wsdl:part name="ResumeUserInfoReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFeeResponse">
+
+      <wsdl:part name="CardAddFeeReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="add_feeResponse">
+
+      <wsdl:part name="add_feeReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser4Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="query_tradeRequest">
+
+      <wsdl:part name="user_name" type="xsd:string"/>
+
+      <wsdl:part name="seq" type="xsd:string"/>
+
+      <wsdl:part name="client_ip" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="syncCrmRequest">
+
+      <wsdl:part name="userId" type="xsd:string"/>
+
+      <wsdl:part name="type" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser1Response">
+
+      <wsdl:part name="CardNewUser1Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="bindCrmResponse">
+
+      <wsdl:part name="bindCrmReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo1Response">
+
+      <wsdl:part name="ModifyUserInfo1Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="offLineUserResponse">
+
+      <wsdl:part name="offLineUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserInfoRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrePolicyListRequest">
+
+      <wsdl:part name="userGroupID" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo3Response">
+
+      <wsdl:part name="ModifyUserInfo3Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="query_userResponse">
+
+      <wsdl:part name="query_userReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMonthMailResponse">
+
+      <wsdl:part name="sendMonthMailReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo2Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserResponse">
+
+      <wsdl:part name="CardNewUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserPassWordResponse">
+
+      <wsdl:part name="getUserPassWordReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserResponse4">
+
+      <wsdl:part name="CardNewUserReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardChangePWD1Response">
+
+      <wsdl:part name="CardChangePWD1Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserRequest2">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModifyUserInfo3Request">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+      <wsdl:part name="pwd" type="xsd:string"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="phone" type="xsd:string"/>
+
+      <wsdl:part name="address" type="xsd:string"/>
+
+      <wsdl:part name="limitdate_end" type="xsd:string"/>
+
+      <wsdl:part name="userstate" type="xsd:string"/>
+
+      <wsdl:part name="opendate" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="remain_fee" type="xsd:float"/>
+
+      <wsdl:part name="certNum" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFee2Response">
+
+      <wsdl:part name="CardAddFee2Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUser6Response">
+
+      <wsdl:part name="CardNewUser6Return" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardNewUserRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="groupid" type="xsd:int"/>
+
+      <wsdl:part name="teamid" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendLackFeeMialResponse">
+
+      <wsdl:part name="sendLackFeeMialReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAuthCodeRequest">
+
+      <wsdl:part name="mobile" type="xsd:string"/>
+
+      <wsdl:part name="limitdate" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardCheckFeeResponse">
+
+      <wsdl:part name="CardCheckFeeReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CardAddFeeRecordRequest">
+
+      <wsdl:part name="userid" type="xsd:string"/>
+
+      <wsdl:part name="fee" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="syncLdapResponse">
+
+      <wsdl:part name="syncLdapReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="query_userRequest">
+
+      <wsdl:part name="user_name" type="xsd:string"/>
+
+      <wsdl:part name="client_ip" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CardCharge">
+
+      <wsdl:operation name="getUserInfo" parameterOrder="userid">
+
+         <wsdl:input message="impl:getUserInfoRequest" name="getUserInfoRequest"/>
+
+         <wsdl:output message="impl:getUserInfoResponse" name="getUserInfoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD" parameterOrder="userid sourpwd destpwd">
+
+         <wsdl:input message="impl:CardChangePWDRequest" name="CardChangePWDRequest"/>
+
+         <wsdl:output message="impl:CardChangePWDResponse" name="CardChangePWDResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD" parameterOrder="userid destpwd">
+
+         <wsdl:input message="impl:CardChangePWDRequest1" name="CardChangePWDRequest1"/>
+
+         <wsdl:output message="impl:CardChangePWDResponse1" name="CardChangePWDResponse1"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="syncLdap" parameterOrder="startDate endDate">
+
+         <wsdl:input message="impl:syncLdapRequest" name="syncLdapRequest"/>
+
+         <wsdl:output message="impl:syncLdapResponse" name="syncLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendLackFeeMial" parameterOrder="startDate endDate">
+
+         <wsdl:input message="impl:sendLackFeeMialRequest" name="sendLackFeeMialRequest"/>
+
+         <wsdl:output message="impl:sendLackFeeMialResponse" name="sendLackFeeMialResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendMonthMail">
+
+         <wsdl:input message="impl:sendMonthMailRequest" name="sendMonthMailRequest"/>
+
+         <wsdl:output message="impl:sendMonthMailResponse" name="sendMonthMailResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bindCrm" parameterOrder="userId mobile type">
+
+         <wsdl:input message="impl:bindCrmRequest" name="bindCrmRequest"/>
+
+         <wsdl:output message="impl:bindCrmResponse" name="bindCrmResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardFixFeeRecord" parameterOrder="userid fee fixDate opDate">
+
+         <wsdl:input message="impl:CardFixFeeRecordRequest" name="CardFixFeeRecordRequest"/>
+
+         <wsdl:output message="impl:CardFixFeeRecordResponse" name="CardFixFeeRecordResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFeeRecord" parameterOrder="userid fee">
+
+         <wsdl:input message="impl:CardAddFeeRecordRequest" name="CardAddFeeRecordRequest"/>
+
+         <wsdl:output message="impl:CardAddFeeRecordResponse" name="CardAddFeeRecordResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee" parameterOrder="userid fee">
+
+         <wsdl:input message="impl:CardAddFeeRequest" name="CardAddFeeRequest"/>
+
+         <wsdl:output message="impl:CardAddFeeResponse" name="CardAddFeeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee" parameterOrder="userid fee seq">
+
+         <wsdl:input message="impl:CardAddFeeRequest1" name="CardAddFeeRequest1"/>
+
+         <wsdl:output message="impl:CardAddFeeResponse1" name="CardAddFeeResponse1"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee1" parameterOrder="userid fee">
+
+         <wsdl:input message="impl:CardAddFee1Request" name="CardAddFee1Request"/>
+
+         <wsdl:output message="impl:CardAddFee1Response" name="CardAddFee1Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee2" parameterOrder="userid fee seq">
+
+         <wsdl:input message="impl:CardAddFee2Request" name="CardAddFee2Request"/>
+
+         <wsdl:output message="impl:CardAddFee2Response" name="CardAddFee2Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardCheckFee" parameterOrder="userid seq">
+
+         <wsdl:input message="impl:CardCheckFeeRequest" name="CardCheckFeeRequest"/>
+
+         <wsdl:output message="impl:CardCheckFeeResponse" name="CardCheckFeeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser" parameterOrder="userid groupid teamid">
+
+         <wsdl:input message="impl:CardNewUserRequest" name="CardNewUserRequest"/>
+
+         <wsdl:output message="impl:CardNewUserResponse" name="CardNewUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser" parameterOrder="userid groupid teamid pwd">
+
+         <wsdl:input message="impl:CardNewUserRequest1" name="CardNewUserRequest1"/>
+
+         <wsdl:output message="impl:CardNewUserResponse1" name="CardNewUserResponse1"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes">
+
+         <wsdl:input message="impl:CardNewUserRequest2" name="CardNewUserRequest2"/>
+
+         <wsdl:output message="impl:CardNewUserResponse2" name="CardNewUserResponse2"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes certNum">
+
+         <wsdl:input message="impl:CardNewUserRequest3" name="CardNewUserRequest3"/>
+
+         <wsdl:output message="impl:CardNewUserResponse3" name="CardNewUserResponse3"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes certType certNum mobile elect_card_no dxId dxNo dxName wtId wtName">
+
+         <wsdl:input message="impl:CardNewUserRequest4" name="CardNewUserRequest4"/>
+
+         <wsdl:output message="impl:CardNewUserResponse4" name="CardNewUserResponse4"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser1" parameterOrder="userid groupid teamid">
+
+         <wsdl:input message="impl:CardNewUser1Request" name="CardNewUser1Request"/>
+
+         <wsdl:output message="impl:CardNewUser1Response" name="CardNewUser1Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser2" parameterOrder="userid groupid teamid pwd">
+
+         <wsdl:input message="impl:CardNewUser2Request" name="CardNewUser2Request"/>
+
+         <wsdl:output message="impl:CardNewUser2Response" name="CardNewUser2Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser3" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes">
+
+         <wsdl:input message="impl:CardNewUser3Request" name="CardNewUser3Request"/>
+
+         <wsdl:output message="impl:CardNewUser3Response" name="CardNewUser3Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser4" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes certNum">
+
+         <wsdl:input message="impl:CardNewUser4Request" name="CardNewUser4Request"/>
+
+         <wsdl:output message="impl:CardNewUser4Response" name="CardNewUser4Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser5" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes certType certNum mobile elect_card_no dxId dxNo dxName wtId wtName">
+
+         <wsdl:input message="impl:CardNewUser5Request" name="CardNewUser5Request"/>
+
+         <wsdl:output message="impl:CardNewUser5Response" name="CardNewUser5Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser6" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes certType certNum mobile elect_card_no dxId dxNo dxName wtId wtName userbindflag1 useriptype1 userip1 useripnum1 usermac1 userbindflag2 useriptype2 userip2 useripnum2 usermac2 serverflag1 serverip1 serverport1 servervlan1 serverflag2 serverip2 serverport2 servervlan2">
+
+         <wsdl:input message="impl:CardNewUser6Request" name="CardNewUser6Request"/>
+
+         <wsdl:output message="impl:CardNewUser6Response" name="CardNewUser6Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardDelUser" parameterOrder="userid">
+
+         <wsdl:input message="impl:CardDelUserRequest" name="CardDelUserRequest"/>
+
+         <wsdl:output message="impl:CardDelUserResponse" name="CardDelUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD1" parameterOrder="userid sourpwd destpwd">
+
+         <wsdl:input message="impl:CardChangePWD1Request" name="CardChangePWD1Request"/>
+
+         <wsdl:output message="impl:CardChangePWD1Response" name="CardChangePWD1Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD2" parameterOrder="userid destpwd">
+
+         <wsdl:input message="impl:CardChangePWD2Request" name="CardChangePWD2Request"/>
+
+         <wsdl:output message="impl:CardChangePWD2Response" name="CardChangePWD2Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserPassWord" parameterOrder="userid">
+
+         <wsdl:input message="impl:getUserPassWordRequest" name="getUserPassWordRequest"/>
+
+         <wsdl:output message="impl:getUserPassWordResponse" name="getUserPassWordResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserLimitEndDate" parameterOrder="userid">
+
+         <wsdl:input message="impl:getUserLimitEndDateRequest" name="getUserLimitEndDateRequest"/>
+
+         <wsdl:output message="impl:getUserLimitEndDateResponse" name="getUserLimitEndDateResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserInfo1" parameterOrder="userid groupid classid dxid userstate">
+
+         <wsdl:input message="impl:getUserInfo1Request" name="getUserInfo1Request"/>
+
+         <wsdl:output message="impl:getUserInfo1Response" name="getUserInfo1Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo" parameterOrder="userid userstatus limitdatedate">
+
+         <wsdl:input message="impl:ModifyUserInfoRequest" name="ModifyUserInfoRequest"/>
+
+         <wsdl:output message="impl:ModifyUserInfoResponse" name="ModifyUserInfoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee">
+
+         <wsdl:input message="impl:ModifyUserInfoRequest1" name="ModifyUserInfoRequest1"/>
+
+         <wsdl:output message="impl:ModifyUserInfoResponse1" name="ModifyUserInfoResponse1"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee certNum">
+
+         <wsdl:input message="impl:ModifyUserInfoRequest2" name="ModifyUserInfoRequest2"/>
+
+         <wsdl:output message="impl:ModifyUserInfoResponse2" name="ModifyUserInfoResponse2"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee certType certNum mobile elect_card_no dxId dxNo dxName wtId wtName">
+
+         <wsdl:input message="impl:ModifyUserInfoRequest3" name="ModifyUserInfoRequest3"/>
+
+         <wsdl:output message="impl:ModifyUserInfoResponse3" name="ModifyUserInfoResponse3"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo1" parameterOrder="userid userstatus limitdatedate">
+
+         <wsdl:input message="impl:ModifyUserInfo1Request" name="ModifyUserInfo1Request"/>
+
+         <wsdl:output message="impl:ModifyUserInfo1Response" name="ModifyUserInfo1Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo2" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee">
+
+         <wsdl:input message="impl:ModifyUserInfo2Request" name="ModifyUserInfo2Request"/>
+
+         <wsdl:output message="impl:ModifyUserInfo2Response" name="ModifyUserInfo2Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo3" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee certNum">
+
+         <wsdl:input message="impl:ModifyUserInfo3Request" name="ModifyUserInfo3Request"/>
+
+         <wsdl:output message="impl:ModifyUserInfo3Response" name="ModifyUserInfo3Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo4" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee certType certNum mobile elect_card_no dxId dxNo dxName wtId wtName">
+
+         <wsdl:input message="impl:ModifyUserInfo4Request" name="ModifyUserInfo4Request"/>
+
+         <wsdl:output message="impl:ModifyUserInfo4Response" name="ModifyUserInfo4Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo5" parameterOrder="userid groupid teamid pwd username phone address limitdate_end userstate opendate notes remain_fee certType certNum mobile elect_card_no dxId dxNo dxName wtId wtName userbindflag1 useriptype1 userip1 useripnum1 usermac1 userbindflag2 useriptype2 userip2 useripnum2 usermac2 serverflag1 serverip1 serverport1 servervlan1 serverflag2 serverip2 serverport2 servervlan2">
+
+         <wsdl:input message="impl:ModifyUserInfo5Request" name="ModifyUserInfo5Request"/>
+
+         <wsdl:output message="impl:ModifyUserInfo5Response" name="ModifyUserInfo5Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ResumeUserInfo" parameterOrder="userid">
+
+         <wsdl:input message="impl:ResumeUserInfoRequest" name="ResumeUserInfoRequest"/>
+
+         <wsdl:output message="impl:ResumeUserInfoResponse" name="ResumeUserInfoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardRemainFee" parameterOrder="userid">
+
+         <wsdl:input message="impl:CardRemainFeeRequest" name="CardRemainFeeRequest"/>
+
+         <wsdl:output message="impl:CardRemainFeeResponse" name="CardRemainFeeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="query_user" parameterOrder="user_name client_ip">
+
+         <wsdl:input message="impl:query_userRequest" name="query_userRequest"/>
+
+         <wsdl:output message="impl:query_userResponse" name="query_userResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add_fee" parameterOrder="user_name fee seq seq2 client_ip">
+
+         <wsdl:input message="impl:add_feeRequest" name="add_feeRequest"/>
+
+         <wsdl:output message="impl:add_feeResponse" name="add_feeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="query_trade" parameterOrder="user_name seq client_ip">
+
+         <wsdl:input message="impl:query_tradeRequest" name="query_tradeRequest"/>
+
+         <wsdl:output message="impl:query_tradeResponse" name="query_tradeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="check_trade" parameterOrder="beg end count total client_ip">
+
+         <wsdl:input message="impl:check_tradeRequest" name="check_tradeRequest"/>
+
+         <wsdl:output message="impl:check_tradeResponse" name="check_tradeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBillForCBMS" parameterOrder="roomid">
+
+         <wsdl:input message="impl:getBillForCBMSRequest" name="getBillForCBMSRequest"/>
+
+         <wsdl:output message="impl:getBillForCBMSResponse" name="getBillForCBMSResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserIdFromOnline" parameterOrder="userip">
+
+         <wsdl:input message="impl:getUserIdFromOnlineRequest" name="getUserIdFromOnlineRequest"/>
+
+         <wsdl:output message="impl:getUserIdFromOnlineResponse" name="getUserIdFromOnlineResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserIdFromTicket" parameterOrder="userip onlinetime">
+
+         <wsdl:input message="impl:getUserIdFromTicketRequest" name="getUserIdFromTicketRequest"/>
+
+         <wsdl:output message="impl:getUserIdFromTicketResponse" name="getUserIdFromTicketResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="offLineUser" parameterOrder="userip usermac userid">
+
+         <wsdl:input message="impl:offLineUserRequest" name="offLineUserRequest"/>
+
+         <wsdl:output message="impl:offLineUserResponse" name="offLineUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrePolicyList" parameterOrder="userGroupID">
+
+         <wsdl:input message="impl:getPrePolicyListRequest" name="getPrePolicyListRequest"/>
+
+         <wsdl:output message="impl:getPrePolicyListResponse" name="getPrePolicyListResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPrePolicy" parameterOrder="userID userGroupID prDate">
+
+         <wsdl:input message="impl:modifyPrePolicyRequest" name="modifyPrePolicyRequest"/>
+
+         <wsdl:output message="impl:modifyPrePolicyResponse" name="modifyPrePolicyResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="syncCrm" parameterOrder="userId type">
+
+         <wsdl:input message="impl:syncCrmRequest" name="syncCrmRequest"/>
+
+         <wsdl:output message="impl:syncCrmResponse" name="syncCrmResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryChargeRecord" parameterOrder="userid seq beginDate endDate fee chargeType">
+
+         <wsdl:input message="impl:queryChargeRecordRequest" name="queryChargeRecordRequest"/>
+
+         <wsdl:output message="impl:queryChargeRecordResponse" name="queryChargeRecordResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAuthCode" parameterOrder="mobile limitdate">
+
+         <wsdl:input message="impl:modifyAuthCodeRequest" name="modifyAuthCodeRequest"/>
+
+         <wsdl:output message="impl:modifyAuthCodeResponse" name="modifyAuthCodeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFixedRecord" parameterOrder="userid beginDate endDate groupid classid">
+
+         <wsdl:input message="impl:getFixedRecordRequest" name="getFixedRecordRequest"/>
+
+         <wsdl:output message="impl:getFixedRecordResponse" name="getFixedRecordResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CardChargeSoapBinding" type="impl:CardCharge">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardChangePWDRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardChangePWDResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardChangePWDRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardChangePWDResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="syncLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="syncLdapRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="syncLdapResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendLackFeeMial">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendLackFeeMialRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendLackFeeMialResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendMonthMail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendMonthMailRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendMonthMailResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bindCrm">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bindCrmRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bindCrmResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardFixFeeRecord">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardFixFeeRecordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardFixFeeRecordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFeeRecord">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardAddFeeRecordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardAddFeeRecordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardAddFeeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardAddFeeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardAddFeeRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardAddFeeResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee1">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardAddFee1Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardAddFee1Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardAddFee2">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardAddFee2Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardAddFee2Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardCheckFee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardCheckFeeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardCheckFeeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUserRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUserResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUserRequest2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUserResponse2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUserRequest3">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUserResponse3">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUserRequest4">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUserResponse4">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser1">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUser1Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUser1Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser2">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUser2Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUser2Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser3">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUser3Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUser3Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser4">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUser4Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUser4Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser5">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUser5Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUser5Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardNewUser6">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardNewUser6Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardNewUser6Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardDelUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardDelUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardDelUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD1">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardChangePWD1Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardChangePWD1Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardChangePWD2">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardChangePWD2Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardChangePWD2Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserPassWord">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserPassWordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserPassWordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserLimitEndDate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserLimitEndDateRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserLimitEndDateResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserInfo1">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserInfo1Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserInfo1Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfoRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfoResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfoRequest2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfoResponse2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfoRequest3">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfoResponse3">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo1">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfo1Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfo1Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo2">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfo2Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfo2Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo3">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfo3Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfo3Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo4">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfo4Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfo4Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModifyUserInfo5">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ModifyUserInfo5Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModifyUserInfo5Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ResumeUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ResumeUserInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ResumeUserInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CardRemainFee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CardRemainFeeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CardRemainFeeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="query_user">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="query_userRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="query_userResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add_fee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="add_feeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="add_feeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="query_trade">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="query_tradeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="query_tradeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="check_trade">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="check_tradeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="check_tradeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBillForCBMS">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBillForCBMSRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBillForCBMSResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserIdFromOnline">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserIdFromOnlineRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserIdFromOnlineResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserIdFromTicket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserIdFromTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserIdFromTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="offLineUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="offLineUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="offLineUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrePolicyList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrePolicyListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrePolicyListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPrePolicy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyPrePolicyRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyPrePolicyResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="syncCrm">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="syncCrmRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="syncCrmResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryChargeRecord">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryChargeRecordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryChargeRecordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAuthCode">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAuthCodeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAuthCodeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFixedRecord">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFixedRecordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFixedRecordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://amtium.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CardChargeService">
+
+      <wsdl:port binding="impl:CardChargeSoapBinding" name="CardCharge">
+
+         <wsdlsoap:address location="http://192.168.1.5/services/CardCharge"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

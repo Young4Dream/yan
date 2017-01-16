@@ -1,0 +1,10 @@
+1.BOSS侧IP地址 188.2.64.226
+2.BSS接入管理
+用户名：BSS_kongguanju
+密码：Kongguanju@12
+密码AES加密方式 56DDBF1E5D96B730C032D82B829FA9C9
+3.SPG提供的北向URI
+http://129.9.9.8:8080/spg
+4.网元名称
+HSS、mediaX、ATS
+

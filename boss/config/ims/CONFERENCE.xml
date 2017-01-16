@@ -1,0 +1,17 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<Authentication>
+			<Username>#{user}</Username>
+			<Password>#{password}</Password>
+		</Authentication>
+		<MessageID>#{seq}</MessageID>
+	</soap:Header>
+	<soap:Body>
+		<MOD_SBR xmlns="http://www.huawei.com/SPG">
+			<IMPU>sip:+8620#{businessKey}@ims.kongguanju.com</IMPU>
+			<NSCW>1</NSCW>
+			<NSNPTY>1</NSNPTY>
+			<NSHOLD>1</NSHOLD>
+		</MOD_SBR>
+	</soap:Body>
+</soap:Envelope> 

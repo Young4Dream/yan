@@ -1,0 +1,2953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.huawei.com/ims/mediax" targetNamespace="http://www.huawei.com/ims/mediax" elementFormDefault="qualified">
+	<!--
+		============================header=============================
+	-->         
+	<element name="Header" type="tns:Header"/>
+	<complexType name="Header">
+		<sequence>
+			<element name="MessageID" type="string" nillable="true" minOccurs="0"/>
+			<element name="MEName" type="string" nillable="true" minOccurs="0"/>
+			<element name="Authentication" type="tns:Authentication" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+  <complexType name="Authentication">
+    <sequence>
+      <element name="Username" type="string"/>
+      <element name="Password" type="string"/>
+    </sequence>
+  </complexType>
+	<!--
+		=============================Login =============================
+	-->
+	<element name="LoginRequest" type="tns:LoginRequest"/>
+	<complexType name="LoginRequest">
+		<sequence>
+			<element name="Account" type="tns:Account"/>
+		</sequence>
+	</complexType>
+	<complexType name="Account">
+		<sequence>
+			<element name="USERNAME" type="string"/>
+			<element name="PASSWORD" type="string"/>
+			<element name="ipaddr" type="string" nillable="true"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<element name="LoginResponse" type="tns:LoginResponse"/>
+	<complexType name="LoginResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="SessionID" type="string"/>
+			<element name="pwdExpireTime" type="int" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================Logout=============================
+	-->
+	<element name="LogoutRequest" type="string" nillable="true"/>
+	<element name="LogoutResponse" type="tns:LogoutResponse"/>
+	<complexType name="LogoutResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<complexType name="GeneralResultType">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateUser=============================
+	-->
+	<element name="CreateUserRequest" type="tns:CreateUserRequest"/>
+	<complexType name="CreateUserRequest">
+		<sequence>
+			<element name="user" type="tns:User"/>
+		</sequence>
+	</complexType>
+	<complexType name="User">
+		<sequence>
+			<element name="id" type="string" nillable="true" minOccurs="0"/>
+			<element name="organizationID" type="string" nillable="true" minOccurs="0"/>
+			<element name="accounts" type="tns:AccountInfo" maxOccurs="unbounded"/>
+			<element name="name" type="string"/>
+			<element name="email" type="string" nillable="true" minOccurs="0"/>
+			<element name="mobile" type="string" nillable="true" minOccurs="0"/>
+			<element name="telephone" type="string" nillable="true" minOccurs="0"/>
+			<element name="isActive" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="chargeType" type="tns:ChargeType" nillable="true" minOccurs="0"/>
+			<element name="parentGroupIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="roleIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="purviewIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="profile" type="string" nillable="true" minOccurs="0"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="resourceID" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="audioResourceID" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="sdResourceID" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="telepresence" type="tns:Telepresence" nillable="true" minOccurs="0"/>
+			<element name="privateConferenceId" type="string" nillable="true" minOccurs="0"/>
+			<element name="privateConfGuestPwd" type="string" nillable="true" minOccurs="0"/>
+			<!-- 9.0 begin-->
+			<element name="maxOnlineConfs" type="int" nillable="true" minOccurs="0"/>
+			<element name="maxParties" type="int" nillable="true" minOccurs="0"/>
+			<element name="logicResource" type="tns:LogicResource" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="recordCapability" type="int" nillable="true" minOccurs="0"/>
+			<!-- 9.0 end-->
+			<!-- 9.1 begin-->
+			<element name="isConfAss" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="confAssAccessNumberID" type="string" nillable="true" minOccurs="0"/>
+			<element name="pinCode" type="string" nillable="true" minOccurs="0"/>
+			<element name="position" type="string" nillable="true" minOccurs="0"/>
+			<!-- 9.1 end-->
+			<!-- 9.2 begin-->
+			<element name="payAccount" type="string" nillable="true" minOccurs="0"/>
+			<element name="userLocationId" type="string" nillable="true" minOccurs="0"/>
+			<element name="userCategory" type="int" nillable="true" minOccurs="0"/>
+			<!-- 9.2 end-->
+		</sequence>
+	</complexType>
+	<complexType name="AccountInfo">
+		<sequence>
+			<element name="name" type="string"/>
+			<element name="type" type="tns:LoginType" nillable="true" minOccurs="0"/>
+			<element name="password" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="LoginType">
+		<restriction base="string">
+			<enumeration value="ConferenceID"/>
+			<enumeration value="PhoneNumber"/>
+			<enumeration value="terminalNumber"/>
+			<enumeration value="WEB"/>
+			<enumeration value="Mobile"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ChargeType">
+		<restriction base="string">
+			<enumeration value="PREPAID"/>
+			<enumeration value="POSTPAID"/>
+			<enumeration value="FORBIDDEN"/>
+			<enumeration value="UNSPECIFIED"/>
+		</restriction>
+	</simpleType>
+	<complexType name="Telepresence">
+		<sequence>
+			<element name="phone" type="string" nillable="false"/>
+			<element name="leftPhone" type="string" nillable="true" minOccurs="0"/>
+			<element name="rightPhone" type="string" nillable="true" minOccurs="0"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!-- 9.0 begin-->
+	<complexType name="LogicResource">
+		<sequence>
+			<element name="count" type="int" nillable="true" minOccurs="0"/>
+			<element name="type" type="tns:ResourceType"/>
+            <element name="levelID" type="int" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+	<!-- 9.0 end-->
+	<element name="CreateUserResponse" type="tns:CreateUserResponse"/>
+	<complexType name="CreateUserResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListUser=============================
+	-->
+	<element name="ListUserRequest" type="tns:ListUserRequest"/>
+	<complexType name="ListUserRequest">
+		<sequence>
+			<element name="userFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<complexType name="Filter">
+		<sequence>
+			<element name="resultFields" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="conditions" type="tns:Condition" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="isAscend" type="boolean"/>
+			<element name="sortField" type="string" nillable="true" minOccurs="0"/>
+			<element name="pageIndex" type="int"/>
+			<element name="pageSize" type="int"/>
+		</sequence>
+	</complexType>
+	<complexType name="Condition">
+		<sequence>
+			<element name="key" type="string" nillable="false" minOccurs="1" maxOccurs="20"/>
+			<element name="value" type="string"/>
+			<element name="matching" type="tns:MatchType" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="MatchType">
+		<restriction base="string">
+			<enumeration value="equal"/>
+			<enumeration value="unequal"/>
+			<enumeration value="more"/>
+			<enumeration value="less"/>
+			<enumeration value="like"/>
+		</restriction>
+	</simpleType>
+	<element name="ListUserResponse" type="tns:ListUserResponse"/>
+	<complexType name="ListUserResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="PageResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="page" type="tns:Page" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Page">
+		<sequence>
+			<element name="index" type="int"/>
+			<element name="total" type="int"/>
+			<element name="hasPrev" type="boolean"/>
+			<element name="hasNext" type="boolean"/>
+			<element name="hasFirst" type="boolean"/>
+			<element name="hasLast" type="boolean"/>
+			<element name="data" type="tns:Properties" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="Properties">
+		<sequence>
+			<element name="entry" type="tns:Entry" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="Entry">
+		<sequence>
+			<element name="key" type="string" nillable="false"/>
+			<element name="value" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="UserIDType">
+		<restriction base="string">
+			<enumeration value="ID"/>
+			<enumeration value="WEBACCOUNT"/>
+		</restriction>
+	</simpleType>
+	<!--
+		=============================DisplayUser=============================
+	-->
+	<element name="DisplayUserRequest" type="tns:DisplayUserRequest"/>
+	<complexType name="DisplayUserRequest">
+		<sequence>
+			<element name="userID" type="string" nillable="true" minOccurs="0"/>
+			<element name="userIDType" type="tns:UserIDType" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayUserResponse" type="tns:DisplayUserResponse"/>
+	<complexType name="DisplayUserResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayUserResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayUserResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="user" type="tns:User" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyUser=============================
+	-->
+	<element name="ModifyUserRequest" type="tns:ModifyUserRequest"/>
+	<complexType name="ModifyUserRequest">
+		<sequence>
+			<element name="user" type="tns:User" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyUserResponse" type="tns:ModifyUserResponse"/>
+	<complexType name="ModifyUserResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveUser=============================
+	-->
+	<element name="RemoveUserRequest" type="tns:RemoveUserRequest"/>
+	<complexType name="RemoveUserRequest">
+		<sequence>
+			<element name="userID" type="string" nillable="false"/>
+			<element name="userIDType" type="tns:UserIDType" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveUserResponse" type="tns:RemoveUserResponse"/>
+	<complexType name="RemoveUserResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		========================CreateRegionArea=========================
+	-->
+	<element name="CreateRegionAreaRequest" type="tns:CreateRegionAreaRequest"/>
+	<complexType name="CreateRegionAreaRequest">
+		<sequence>
+			<element name="regionArea" type="tns:RegionArea"/>
+		</sequence>
+	</complexType>
+	<complexType name="RegionArea">
+		<sequence>
+			<element name="areaCode" type="string"/>
+			<element name="areaName" type="string" nillable="true" minOccurs="0"/>			
+			<element name="voiceRegionID" type="int" nillable="true" minOccurs="0"/>
+			<element name="sdRegionID" type="int" nillable="true" minOccurs="0"/>
+			<element name="hdRegionID" type="int" nillable="true" minOccurs="0"/>			
+		</sequence>
+	</complexType>
+	
+	<element name="CreateRegionAreaResponse" type="tns:CreateRegionAreaResponse"/>
+	<complexType name="CreateRegionAreaResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		========================ListRegionArea=========================
+	-->
+	<element name="ListRegionAreaRequest" type="tns:ListRegionAreaRequest"/>
+	<complexType name="ListRegionAreaRequest">
+		<sequence>
+			<element name="regionAreaFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>	
+	<element name="ListRegionAreaResponse" type="tns:ListRegionAreaResponse"/>
+	<complexType name="ListRegionAreaResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		========================ModifyRegionArea=========================
+	-->
+	<element name="ModifyRegionAreaRequest" type="tns:ModifyRegionAreaRequest"/>
+	<complexType name="ModifyRegionAreaRequest">
+		<sequence>
+			<element name="regionArea" type="tns:RegionArea" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyRegionAreaResponse" type="tns:ModifyRegionAreaResponse"/>
+	<complexType name="ModifyRegionAreaResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveRegionArea=============================
+	-->
+	<element name="RemoveRegionAreaRequest" type="tns:RemoveRegionAreaRequest"/>
+	<complexType name="RemoveRegionAreaRequest">
+		<sequence>
+			<element name="areaCode" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveRegionAreaResponse" type="tns:RemoveRegionAreaResponse"/>
+	<complexType name="RemoveRegionAreaResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================InitializeAccount=============================
+	-->
+	<element name="InitializeAccountRequest" type="tns:InitializeAccountRequest"/>
+	<complexType name="InitializeAccountRequest">
+		<sequence>
+			<element name="name" type="string" nillable="false"/>
+			<element name="email" type="string" nillable="false"/>
+			<element name="accountType" type="tns:LoginType" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="InitializeAccountResponse" type="tns:InitializeAccountResponse"/>
+	<complexType name="InitializeAccountResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================UnlockAccount=============================
+	-->
+	<element name="UnlockAccountRequest" type="tns:UnlockAccountRequest"/>
+	<complexType name="UnlockAccountRequest">
+		<sequence>
+			<element name="name" type="string" nillable="false"/>
+			<element name="accountType" type="tns:LoginType" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="UnlockAccountResponse" type="tns:UnlockAccountResponse"/>
+	<complexType name="UnlockAccountResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>		
+	<!--
+		=============================CreateGroup=============================
+	-->
+	<element name="CreateGroupRequest" type="tns:CreateGroupRequest"/>
+	<complexType name="CreateGroupRequest">
+		<sequence>
+			<element name="group" type="tns:Group"/>
+		</sequence>
+	</complexType>
+	<complexType name="Group">
+		<sequence>
+			<element name="id" type="string" nillable="true" minOccurs="0"/>
+			<element name="name" type="string" nillable="true" minOccurs="0"/>
+			<element name="parentGroupIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="roleIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="purviewIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="profile" type="string" nillable="true" minOccurs="0"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="CreateGroupResponse" type="tns:CreateGroupResponse"/>
+	<complexType name="CreateGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyGroup=============================
+	-->
+	<element name="ModifyGroupRequest" type="tns:ModifyGroupRequest"/>
+	<complexType name="ModifyGroupRequest">
+		<sequence>
+			<element name="group" type="tns:Group"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyGroupResponse" type="tns:ModifyGroupResponse"/>
+	<complexType name="ModifyGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveGroup=============================
+	-->
+	<element name="RemoveGroupRequest" type="tns:RemoveGroupRequest"/>
+	<complexType name="RemoveGroupRequest">
+		<sequence>
+			<element name="groupID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveGroupResponse" type="tns:RemoveGroupResponse"/>
+	<complexType name="RemoveGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListGroup=============================
+	-->
+	<element name="ListGroupRequest" type="tns:ListGroupRequest"/>
+	<complexType name="ListGroupRequest">
+		<sequence>
+			<element name="groupFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListGroupResponse" type="tns:ListGroupResponse"/>
+	<complexType name="ListGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayGroup=============================
+	-->
+	<element name="DisplayGroupRequest" type="tns:DisplayGroupRequest"/>
+	<complexType name="DisplayGroupRequest">
+		<sequence>
+			<element name="groupID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayGroupResponse" type="tns:DisplayGroupResponse"/>
+	<complexType name="DisplayGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayGroupResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayGroupResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="group" type="tns:Group" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateRole=============================
+	-->
+	<element name="CreateRoleRequest" type="tns:CreateRoleRequest"/>
+	<complexType name="CreateRoleRequest">
+		<sequence>
+			<element name="role" type="tns:Role"/>
+		</sequence>
+	</complexType>
+	<complexType name="Role">
+		<sequence>
+			<element name="id" type="string"/>
+			<element name="name" type="string"/>
+			<element name="purviewIDs" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="profile" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="CreateRoleResponse" type="tns:CreateRoleResponse"/>
+	<complexType name="CreateRoleResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyRole=============================
+	-->
+	<element name="ModifyRoleRequest" type="tns:ModifyRoleRequest"/>
+	<complexType name="ModifyRoleRequest">
+		<sequence>
+			<element name="role" type="tns:Role"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyRoleResponse" type="tns:ModifyRoleResponse"/>
+	<complexType name="ModifyRoleResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveRole=============================
+	-->
+	<element name="RemoveRoleRequest" type="tns:RemoveRoleRequest"/>
+	<complexType name="RemoveRoleRequest">
+		<sequence>
+			<element name="roleID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveRoleResponse" type="tns:RemoveRoleResponse"/>
+	<complexType name="RemoveRoleResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListRole=============================
+	-->
+	<element name="ListRoleRequest" type="tns:ListRoleRequest"/>
+	<complexType name="ListRoleRequest">
+		<sequence>
+			<element name="roleFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListRoleResponse" type="tns:ListRoleResponse"/>
+	<complexType name="ListRoleResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayRole=============================
+	-->
+	<element name="DisplayRoleRequest" type="tns:DisplayRoleRequest"/>
+	<complexType name="DisplayRoleRequest">
+		<sequence>
+			<element name="roleID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayRoleResponse" type="tns:DisplayRoleResponse"/>
+	<complexType name="DisplayRoleResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayRoleResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayRoleResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="role" type="tns:Role" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListPurview=============================
+	-->
+	<element name="ListPurviewRequest" type="tns:ListPurviewRequest"/>
+	<complexType name="ListPurviewRequest">
+		<sequence>
+			<element name="purviewFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListPurviewResponse" type="tns:ListPurviewResponse"/>
+	<complexType name="ListPurviewResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayPurview=============================
+	-->
+	<element name="DisplayPurviewRequest" type="tns:DisplayPurviewRequest"/>
+	<complexType name="DisplayPurviewRequest">
+		<sequence>
+			<element name="purviewID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayPurviewResponse" type="tns:DisplayPurviewResponse"/>
+	<complexType name="DisplayPurviewResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayPurviewResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayPurviewResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="purview" type="tns:Purview" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Purview">
+		<sequence>
+			<element name="id" type="string"/>
+			<element name="name" type="string"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListLog=============================
+	-->
+	<element name="ListLogRequest" type="tns:ListLogRequest"/>
+	<complexType name="ListLogRequest">
+		<sequence>
+			<element name="logFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListLogResponse" type="tns:ListLogResponse"/>
+	<complexType name="ListLogResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayLog=============================
+	-->
+	<element name="DisplayLogRequest" type="tns:DisplayLogRequest"/>
+	<complexType name="DisplayLogRequest">
+		<sequence>
+			<element name="logID" type="long"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayLogResponse" type="tns:DisplayLogResponse"/>
+	<complexType name="DisplayLogResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayLogResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayLogResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="log" type="tns:Log" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Log">
+		<sequence>
+			<element name="logID" type="long" nillable="true" minOccurs="0"/>
+			<element name="time" type="long" nillable="true" minOccurs="0"/>
+			<element name="operator" type="string" nillable="true" minOccurs="0"/>
+			<element name="clientIP" type="string" nillable="true" minOccurs="0"/>
+			<element name="organizationName" type="string" nillable="true" minOccurs="0"/>
+			<element name="operate" type="string" nillable="true" minOccurs="0"/>
+			<element name="result" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="memo" type="string" nillable="true" minOccurs="0"/>
+			<element name="account" type="string" nillable="true" minOccurs="0"/>
+			<element name="username" type="string" nillable="true" minOccurs="0"/>
+			<element name="organizationID" type="string" nillable="true" minOccurs="0"/>
+			<element name="opObject" type="string" nillable="true" minOccurs="0"/>
+			<element name="detailInfo" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateOrganization=============================
+	-->
+	<element name="CreateOrganizationRequest" type="tns:CreateOrganizationRequest"/>
+	<complexType name="CreateOrganizationRequest">
+		<sequence>
+			<element name="organization" type="tns:Organization"/>
+		</sequence>
+	</complexType>
+	<complexType name="Organization">
+		<sequence>
+			<element name="id" type="string" nillable="false"/>
+			<element name="parent" type="string" nillable="true" minOccurs="0"/>
+			<element name="name" type="string"/>
+			<element name="ports" type="tns:Port" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="maxTelepresence" type="int" nillable="true" minOccurs="0"/>
+			<element name="maxUserNum" type="int" nillable="true" minOccurs="0"/>
+			<element name="maxSubOrg" type="int" nillable="true" minOccurs="0"/>
+			<element name="accessNumber" type="tns:AccessNumber" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="profile" type="string" nillable="true" minOccurs="0"/>
+			<element name="isActive" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="orgRealTimePortPercent" type="string" nillable="true" minOccurs="0"/>
+			<element name="resource" type="tns:Resource" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="subscriptionDate" type="int" nillable="true" minOccurs="0"/>
+			<element name="isTenancyType" type="boolean" nillable="true" minOccurs="0"/>
+			<!-- 9.0 begin-->
+			<element name="maxParties" type="int" nillable="true" minOccurs="0"/>
+			<element name="logicResource" type="tns:LogicResource" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="recordCapability" type="int" nillable="true" minOccurs="0"/>
+			<element name="totalPort" type="tns:Port" nillable="true" minOccurs="0"/>
+			<element name="totalResource" type="tns:Resource" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="organizationPath" type="string" nillable="true" minOccurs="0"/>
+			<!-- 9.0 end-->
+			<!-- 9.1 begin-->
+			<element name="maxControlConsoleNum" type="int" nillable="true" minOccurs="0"/>
+			<element name="leftQuota" type="tns:Properties" nillable="true" minOccurs="0"/>
+			<element name="organizationDN" type="string" nillable="true" minOccurs="0"/>
+			<element name="enterpriseAddressBookType" type="string" nillable="true" minOccurs="0"/>
+			<element name="enterpriseAddressBookServerAddress" type="string" nillable="true" minOccurs="0"/>
+			<element name="enterpriseAddressBookServerPort" type="int" nillable="true" minOccurs="0"/>
+			<element name="ldapAccount" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapPassword" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapRoot" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapAuthenticationType" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapUserAccountField" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapUserNameField" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapUserPositionField" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapUserPhoneNumberField" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapUserSMSNumberField" type="string" nillable="true" minOccurs="0"/>
+			<element name="ldapUserEmailAddressField" type="string" nillable="true" minOccurs="0"/>	
+			<!-- 9.1 end-->
+			<!-- 9.2 begin-->
+			<element name="proxyServer" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="svnMode" type="int" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<element name="svnSrvAddress" type="string" nillable="true" minOccurs="0" maxOccurs="6"/>
+			<element name="svnCltName" type="string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<element name="svnCltPassword" type="string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			
+			<element name="corpcode" type="string" nillable="true" minOccurs="0"/>
+			<element name="chargeMode" type="int" nillable="true" minOccurs="0"/>
+			<element name="serviceStatus" type="int" nillable="true" minOccurs="0"/>
+			<element name="switchTime" type="unsignedLong" nillable="true" minOccurs="0"/>
+			<element name="newchargeMode" type="int" nillable="true" minOccurs="0"/>
+			<element name="newlogicResource" type="tns:LogicResource" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="terminalLevelSwitch" type="int" nillable="true" minOccurs="0"/>
+			<element name="emailServiceInfo" type="tns:EmailServiceInfo" nillable="true" minOccurs="0"/>
+			<!-- 9.2 end-->
+		</sequence>
+	</complexType>
+	<complexType name="Port">
+		<sequence>
+			<element name="count" type="int"/>
+			<element name="type" type="tns:MediaType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="MediaType">
+		<restriction base="string">
+			<enumeration value="Voice"/>
+			<enumeration value="Video"/>
+			<enumeration value="Data"/>
+			<enumeration value="HDVideo"/>
+			<enumeration value="Telepresence"/>
+		</restriction>
+	</simpleType>
+	<complexType name="AccessNumber">
+		<sequence>
+			<element name="interPrfx" type="string" nillable="true" minOccurs="0"/>
+			<element name="countryCode" type="string" nillable="true" minOccurs="0"/>
+			<element name="localPrfx" type="string" nillable="true" minOccurs="0"/>
+			<element name="countryRegion" type="string" nillable="true" minOccurs="0"/>
+			<element name="accessNumberID" type="string"/>
+			<element name="sipFormatAccessNumberID" type="string" nillable="true" minOccurs="0"/>
+			<element name="conferenceIDPrefix" type="string" nillable="true" minOccurs="0"/>
+			<element name="conferenceType" type="tns:ConferenceType"/>
+			<element name="authType" type="int"/>
+			<element name="confrenceConfigPath" type="string"/>
+			<element name="accNumAlias1" type="string" nillable="true" minOccurs="0"/>
+			<element name="accNumAlias2" type="string" nillable="true" minOccurs="0"/>
+			<element name="accNumAlias3" type="string" nillable="true" minOccurs="0"/>
+			<element name="accNumAlias4" type="string" nillable="true" minOccurs="0"/>
+			<element name="accNumAlias5" type="string" nillable="true" minOccurs="0"/>
+			<element name="callingPartyCategoryType" type="string" nillable="true" minOccurs="0"/>
+			<element name="callingPartyCategoryValue" type="string" nillable="true" minOccurs="0"/>
+			<element name="crjionconfmode" type="int" nillable="true" minOccurs="0"/>
+			<element name="suffixLen" type="int" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<element name="conferenceOnOffMode" type="string" nillable="true" minOccurs="0"/>
+			<element name="ipPrefix" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ConferenceType">
+		<restriction base="string">
+			<enumeration value="ScheduleConference"/>
+			<enumeration value="MassConference"/>
+			<enumeration value="SelfConference"/>
+			<enumeration value="AdhocConference"/>
+			<enumeration value="MCUConference"/>
+			<enumeration value="Telepresence"/>
+			<enumeration value="GroupCall"/>
+			<enumeration value="SMSGroup"/>
+			<enumeration value="PrivateConference"/>
+			<enumeration value="GroupBroadcast"/>
+			<enumeration value="GroupPlayback"/>
+			<enumeration value="GroupAlarm"/>
+			<enumeration value="ConfPlayBack"/>
+			<enumeration value="ConfAssistant"/>
+		</restriction>
+	</simpleType>
+	<complexType name="Resource">
+		<sequence>
+			<element name="index" type="int" nillable="true" minOccurs="0"/>
+			<element name="resourceID" type="int"/>
+			<element name="resourceName" type="string" nillable="true" minOccurs="0"/>
+			<element name="mrsType" type="tns:MrsType"/>
+			<element name="videoPort" type="int"/>
+			<element name="audioPort" type="int"/>
+			<element name="aacLDPort" type="int" nillable="true" minOccurs="0"/>
+			<element name="bandWidth" type="int"/>
+			<element name="videoAdapter" type="int"/>
+			<element name="multiPic" type="int"/>
+			<element name="dataPort" type="int"/>
+			<element name="sdVideoPort" type="int" nillable="true" minOccurs="0"/>
+			<element name="hdVideoPort" type="int" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="MrsType">
+		<restriction base="string">
+			<enumeration value="MRS6100"/>
+			<enumeration value="MRS6200"/>
+			<enumeration value="MCU"/>
+			<enumeration value="MRS6600"/>
+			<enumeration value="DATA"/>
+			<enumeration value="MCU_AM"/>
+		</restriction>
+	</simpleType>
+	<!-- 9.2 begin-->
+	<complexType name="EmailServiceInfo">
+		<sequence>
+			<element name="smtpServerAddress" type="string"/>
+			<element name="smtpServerPort" type="int"/>
+			<element name="smtpAccount" type="string"/>
+			<element name="smtpPassword" type="string"/>
+			<element name="senderName" type="string"/>
+			<element name="senderEmailAddress" type="string"/>
+		</sequence>
+	</complexType>
+	<!-- 9.2 end-->
+	<element name="CreateOrganizationResponse" type="tns:CreateOrganizationResponse"/>
+	<complexType name="CreateOrganizationResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateOrganizationV2=============================
+	-->
+	<element name="CreateOrganizationV2Request" type="tns:CreateOrganizationV2Request"/>
+	<complexType name="CreateOrganizationV2Request">
+		<sequence>
+			<element name="organization" type="tns:Organization"/>
+		</sequence>
+	</complexType>
+	<element name="CreateOrganizationV2Response" type="tns:CreateOrganizationV2Response"/>
+	<complexType name="CreateOrganizationV2Response">
+		<sequence>
+			<element name="Result" type="tns:CreateOrganizationV2Result"/>
+		</sequence>
+	</complexType>
+	<complexType name="CreateOrganizationV2Result">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="ParameterList" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyOrganization=============================
+	-->
+	<element name="ModifyOrganizationRequest" type="tns:ModifyOrganizationRequest"/>
+	<complexType name="ModifyOrganizationRequest">
+		<sequence>
+			<element name="organization" type="tns:Organization"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyOrganizationResponse" type="tns:ModifyOrganizationResponse"/>
+	<complexType name="ModifyOrganizationResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyOrganizationV2=============================
+	-->
+	<element name="ModifyOrganizationV2Request" type="tns:ModifyOrganizationV2Request"/>
+	<complexType name="ModifyOrganizationV2Request">
+		<sequence>
+			<element name="organization" type="tns:Organization"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyOrganizationV2Response" type="tns:ModifyOrganizationV2Response"/>
+	<complexType name="ModifyOrganizationV2Response">
+		<sequence>
+			<element name="Result" type="tns:ModifyOrganizationV2Result"/>
+		</sequence>
+	</complexType>
+	<complexType name="ModifyOrganizationV2Result">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="ParameterList" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveOrganization=============================
+	-->
+	<element name="RemoveOrganizationRequest" type="tns:RemoveOrganizationRequest"/>
+	<complexType name="RemoveOrganizationRequest">
+		<sequence>
+			<element name="organizationID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveOrganizationResponse" type="tns:RemoveOrganizationResponse"/>
+	<complexType name="RemoveOrganizationResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListOrganization=============================
+	-->
+	<element name="ListOrganizationRequest" type="tns:ListOrganizationRequest"/>
+	<complexType name="ListOrganizationRequest">
+		<sequence>
+			<element name="organizationFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListOrganizationResponse" type="tns:ListOrganizationResponse"/>
+	<complexType name="ListOrganizationResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayOrganization=============================
+	-->
+	<element name="DisplayOrganizationRequest" type="tns:DisplayOrganizationRequest"/>
+	<complexType name="DisplayOrganizationRequest">
+		<sequence>
+			<element name="organizationID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayOrganizationResponse" type="tns:DisplayOrganizationResponse"/>
+	<complexType name="DisplayOrganizationResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayOrganizationResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayOrganizationResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="organization" type="tns:Organization" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayOrganizationV2=============================
+	-->
+	<element name="DisplayOrganizationV2Request" type="tns:DisplayOrganizationV2Request"/>
+	<complexType name="DisplayOrganizationV2Request">
+		<sequence>
+			<element name="organizationID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayOrganizationV2Response" type="tns:DisplayOrganizationV2Response"/>
+	<complexType name="DisplayOrganizationV2Response">
+		<sequence>
+			<element name="Result" type="tns:DisplayOrganizationResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateAccessNumber=============================
+	-->
+	<element name="CreateAccessNumberRequest" type="tns:CreateAccessNumberRequest"/>
+	<complexType name="CreateAccessNumberRequest">
+		<sequence>
+			<element name="accessNumber" type="tns:AccessNumber" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="CreateAccessNumberResponse" type="tns:CreateAccessNumberResponse"/>
+	<complexType name="CreateAccessNumberResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyAccessNumber=============================
+	-->
+	<element name="ModifyAccessNumberRequest" type="tns:ModifyAccessNumberRequest"/>
+	<complexType name="ModifyAccessNumberRequest">
+		<sequence>
+			<element name="accessNumber" type="tns:AccessNumber"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyAccessNumberResponse" type="tns:ModifyAccessNumberResponse"/>
+	<complexType name="ModifyAccessNumberResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListAccessNumber=============================
+	-->
+	<element name="ListAccessNumberRequest" type="tns:ListAccessNumberRequest"/>
+	<complexType name="ListAccessNumberRequest">
+		<sequence>
+			<element name="accessNumberFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListAccessNumberResponse" type="tns:ListAccessNumberResponse"/>
+	<complexType name="ListAccessNumberResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveAccessNumber=============================
+	-->
+	<element name="RemoveAccessNumberRequest" type="tns:RemoveAccessNumberRequest"/>
+	<complexType name="RemoveAccessNumberRequest">
+		<sequence>
+			<element name="accessNumber" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveAccessNumberResponse" type="tns:RemoveAccessNumberResponse"/>
+	<complexType name="RemoveAccessNumberResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayAccessNumber=============================
+	-->
+	<element name="DisplayAccessNumberRequest" type="tns:DisplayAccessNumberRequest"/>
+	<complexType name="DisplayAccessNumberRequest">
+		<sequence>
+			<element name="accessNumber" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayAccessNumberResponse" type="tns:DisplayAccessNumberResponse"/>
+	<complexType name="DisplayAccessNumberResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayAccessNumberResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayAccessNumberResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="accessNumber" type="tns:AccessNumber" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplaySystemInfomation=============================
+	-->
+	<element name="DisplaySystemInfomationRequest" type="string" nillable="true"/>
+	<element name="DisplaySystemInfomationResponse" type="tns:DisplaySystemInfomationResponse"/>
+	<complexType name="DisplaySystemInfomationResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplaySystemInfomationResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplaySystemInfomationResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="systemInfomation" type="tns:SystemInfomation" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="SystemInfomation">
+		<sequence>
+			<element name="resources" type="tns:Resource" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="capability" type="tns:Capability" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="supportConfAss" type="boolean" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Capability">
+		<sequence>
+			<element name="mrsType" type="tns:MrsType"/>
+			<element name="conferenceTypes" type="tns:ConferenceMediaType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ConferenceMediaType">
+		<sequence>
+			<element name="type" type="tns:MediaType"/>
+			<element name="sysConferenceMaxPort" type="int"/>
+			<element name="videoType" type="tns:VideoType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="audioCodec" type="tns:AudioCodec" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="imageType" type="tns:ImageType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="VideoType">
+		<sequence>
+			<element name="type" type="tns:VideoCodec"/>
+			<element name="resolutionRatio" type="tns:ResolutionRatioType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ResolutionRatioType">
+		<sequence>
+			<element name="type" type="tns:ResolutionRatio"/>
+			<element name="bandWidth" type="tns:BandWidth" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<simpleType name="VideoCodec">
+		<restriction base="string">
+			<enumeration value="H261"/>
+			<enumeration value="H263"/>
+			<enumeration value="H264"/>
+			<enumeration value="MPEG4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="AudioCodec">
+		<restriction base="string">
+			<enumeration value="G711A"/>
+			<enumeration value="G722"/>
+			<enumeration value="G728"/>
+			<enumeration value="ALSINGLE"/>
+			<enumeration value="ALDOUBLE"/>
+			<enumeration value="G711U"/>
+			<enumeration value="G711"/>
+			<enumeration value="G729"/>
+			<enumeration value="AMR"/>
+			<enumeration value="AMRWB"/>
+			<enumeration value="EVRC"/>
+			<enumeration value="EVRCB"/>
+			<enumeration value="G723"/>
+			<enumeration value="ALTREBLE"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="BandWidth">
+		<restriction base="string">
+			<enumeration value="128K"/>
+			<enumeration value="384K"/>
+			<enumeration value="512K"/>
+			<enumeration value="1M"/>
+			<enumeration value="2M"/>
+			<enumeration value="4M"/>
+			<enumeration value="8M"/>
+			<enumeration value="768K"/>
+			<enumeration value="64K"/>
+			<enumeration value="192K"/>
+			<enumeration value="256K"/>
+			<enumeration value="1.5M"/>
+			<enumeration value="6M"/>
+			<enumeration value="3M"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ResolutionRatio">
+		<restriction base="string">
+			<enumeration value="QCIF"/>
+			<enumeration value="CIF"/>
+			<enumeration value="4CIF"/>
+			<enumeration value="720P"/>
+			<enumeration value="1080P"/>
+			<enumeration value="720P60F"/>
+			<enumeration value="1080P60F"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ImageType">
+		<restriction base="string">
+			<enumeration value="Single"/>
+			<enumeration value="Two"/>
+			<enumeration value="Three"/>
+			<enumeration value="Four"/>
+			<enumeration value="Six"/>
+			<enumeration value="Eight"/>
+			<enumeration value="Nine"/>
+			<enumeration value="ThirteenR"/>
+			<enumeration value="ThirteenM"/>
+			<enumeration value="Sixteen"/>
+		</restriction>
+	</simpleType>
+	<!--
+		=============================HEARTBEAT=============================
+	-->
+	<element name="HEARTBEAT" type="string" nillable="true"/>
+	<element name="HEARTBEATResponse" type="tns:HEARTBEATResponse"/>
+	<complexType name="HEARTBEATResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================GetMobilePwd=============================
+	-->
+	<element name="GetMobilePwdRequest" type="tns:GetMobilePwdRequest"/>
+	<complexType name="GetMobilePwdRequest">
+		<sequence>
+			<element name="mobile" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="GetMobilePwdResponse" type="tns:GetMobilePwdResponse"/>
+	<complexType name="GetMobilePwdResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--=====================================================-->
+	<!--=======the operation of System config================-->
+	<!--=====================================================-->
+	<!--
+		=============================UpdateConfigParams=============================
+	-->
+	<element name="UpdateConfigParamsRequest" type="tns:UpdateConfigParamsRequest"/>
+	<complexType name="UpdateConfigParamsRequest">
+		<sequence>
+			<element name="configParams" type="tns:ConfigParams" nillable="false" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ConfigParams">
+		<sequence>
+			<element name="name" type="string"/>
+			<element name="value" type="string"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="paramType" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="UpdateConfigParamsResponse" type="tns:UpdateConfigParamsResponse"/>
+	<complexType name="UpdateConfigParamsResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateConfigParams=============================
+	-->
+	<element name="CreateConfigParamsRequest" type="tns:CreateConfigParamsRequest"/>
+	<complexType name="CreateConfigParamsRequest">
+		<sequence>
+			<element name="configParams" type="tns:ConfigParams" nillable="false" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="CreateConfigParamsResponse" type="tns:CreateConfigParamsResponse"/>
+	<complexType name="CreateConfigParamsResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListConfigParams=============================
+	-->
+	<element name="ListConfigParamsRequest" type="tns:ListConfigParamsRequest"/>
+	<complexType name="ListConfigParamsRequest">
+		<sequence>
+			<element name="configParamsFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListConfigParamsResponse" type="tns:ListConfigParamsResponse"/>
+	<complexType name="ListConfigParamsResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayConfigParams=============================
+	-->
+	<element name="DisplayConfigParamsRequest" type="tns:DisplayConfigParamsRequest"/>
+	<complexType name="DisplayConfigParamsRequest">
+		<sequence>
+			<element name="paramID" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayConfigParamsResponse" type="tns:DisplayConfigParamsResponse"/>
+	<complexType name="DisplayConfigParamsResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="configParam" type="tns:ConfigParams" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveConfigParams=============================
+	-->
+	<element name="RemoveConfigParamsRequest" type="tns:RemoveConfigParamsRequest"/>
+	<complexType name="RemoveConfigParamsRequest">
+		<sequence>
+			<element name="paramID" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveConfigParamsResponse" type="tns:RemoveConfigParamsResponse"/>
+	<complexType name="RemoveConfigParamsResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--=====================================================-->
+	<!--=======the operation of Contactor    ================-->
+	<!--=====================================================-->
+	<!--
+		=============================CreateContactor=============================
+	-->
+	<element name="CreateContactorRequest" type="tns:CreateContactorRequest"/>
+	<complexType name="CreateContactorRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="groupID" type="string" nillable="true" minOccurs="0"/>
+			<element name="contactor" type="tns:Contactor"/>
+		</sequence>
+	</complexType>
+	<complexType name="Contactor">
+		<sequence>
+			<element name="id" type="string"/>
+			<element name="name" type="string"/>
+			<element name="phone" type="string" nillable="true" minOccurs="0"/>
+			<element name="telepresence" type="tns:Telepresence" nillable="true" minOccurs="0"/>
+			<element name="mobile" type="string" nillable="true" minOccurs="0"/>
+			<element name="email" type="string" nillable="true" minOccurs="0"/>
+			<element name="impu" type="string" nillable="true" minOccurs="0"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="AddressBookType">
+		<restriction base="string">
+			<enumeration value="Person"/>
+			<enumeration value="Enterprise"/>
+		</restriction>
+	</simpleType>
+	<element name="CreateContactorResponse" type="tns:CreateContactorResponse"/>
+	<complexType name="CreateContactorResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListContactorRequest=============================
+	-->
+	<element name="ListContactorRequest" type="tns:ListContactorRequest"/>
+	<complexType name="ListContactorRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="groupID" type="string" nillable="true" minOccurs="0"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+			<element name="contactorFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListContactorResponse" type="tns:ListContactorResponse"/>
+	<complexType name="ListContactorResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayContactorRequest=============================
+	-->
+	<element name="DisplayContactorRequest" type="tns:DisplayContactorRequest"/>
+	<complexType name="DisplayContactorRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="contactorID" type="string"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayContactorResponse" type="tns:DisplayContactorResponse"/>
+	<complexType name="DisplayContactorResponse">
+		<sequence>
+			<element name="ResultCode" type="int"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="contactor" type="tns:Contactor"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveContactorRequest=============================
+	-->
+	<element name="RemoveContactorRequest" type="tns:RemoveContactorRequest"/>
+	<complexType name="RemoveContactorRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="contactorID" type="string"/>
+			<element name="AddressBookType" type="tns:AddressBookType"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveContactorResponse" type="tns:RemoveContactorResponse"/>
+	<complexType name="RemoveContactorResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyContactorRequest=============================
+	-->
+	<element name="ModifyContactorRequest" type="tns:ModifyContactorRequest"/>
+	<complexType name="ModifyContactorRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="contactor" type="tns:Contactor"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyContactorResponse" type="tns:ModifyContactorResponse"/>
+	<complexType name="ModifyContactorResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--=====================================================-->
+	<!--=======the operation of ContactorRequest    ================-->
+	<!--=====================================================-->
+	<!--
+		=============================CreateContactorGroupRequest=============================
+	-->
+	<element name="CreateContactorGroupRequest" type="tns:CreateContactorGroupRequest"/>
+	<complexType name="CreateContactorGroupRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="contactorGroup" type="tns:ContactorGroup"/>
+		</sequence>
+	</complexType>
+	<complexType name="ContactorGroup">
+		<sequence>
+			<element name="groupID" type="int"/>
+			<element name="groupName" type="string"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="contactorName" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+			<element name="groupCallID" type="string" nillable="true" minOccurs="0"/>
+			<element name="smsCallID" type="string" nillable="true" minOccurs="0"/>
+			<element name="terminationModeforGroupCall" type="string" nillable="true" minOccurs="0"/>
+			<element name="initiatorsOfCallGroup" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="initiatorsOfSMSGroup" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="criticalUserOfCallGroup" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="timeLimitOfMonth" type="int" nillable="true" minOccurs="0"/>
+			<element name="monthTimeUsed" type="int" nillable="true" minOccurs="0"/>
+			<element name="timeLimitOfCall" type="int" nillable="true" minOccurs="0"/>
+			<element name="groupMode" type="tns:GroupMode" nillable="true" minOccurs="0"/>
+			<element name="maxMumbers" type="int" nillable="true" minOccurs="0"/>
+			<element name="broadcastLimit" type="int" nillable="true" minOccurs="0"/>
+			<element name="broadcastUsed" type="int" nillable="true" minOccurs="0"/>
+			<element name="minMembersToCall" type="int" nillable="true" minOccurs="0"/>
+			<element name="minMembersToLeft" type="int" nillable="true" minOccurs="0"/>
+			<element name="modifyType" type="tns:ModifyType" nillable="true" minOccurs="0"/>
+			<element name="addedMember" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="deletedMember" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="modifiedMember" type="tns:ModifiedMember" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="GroupMode">
+		<restriction base="string">
+			<enumeration value="Call_Only"/>
+			<enumeration value="SMS_Only"/>
+			<enumeration value="Call_SMS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ModifyType">
+		<restriction base="string">
+			<enumeration value="Basic"/>
+			<enumeration value="Member"/>
+		</restriction>
+	</simpleType>
+	<complexType name="ModifiedMember">
+		<sequence>
+			<element name="contactId" type="string"/>
+			<element name="isInitiatorOfCallGroup" type="boolean"/>
+			<element name="isInitiatorOfSMSGroup" type="boolean"/>
+			<element name="isCriticalUserOfCallGroup" type="boolean"/>
+		</sequence>
+	</complexType>
+	<element name="CreateContactorGroupResponse" type="tns:CreateContactorGroupResponse"/>
+	<complexType name="CreateContactorGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveContactorGroupRequest=============================
+	-->
+	<element name="RemoveContactorGroupRequest" type="tns:RemoveContactorGroupRequest"/>
+	<complexType name="RemoveContactorGroupRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="groupID" type="int"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveContactorGroupResponse" type="tns:RemoveContactorGroupResponse"/>
+	<complexType name="RemoveContactorGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyContactorGroupRequest=============================
+	-->
+	<element name="ModifyContactorGroupRequest" type="tns:ModifyContactorGroupRequest"/>
+	<complexType name="ModifyContactorGroupRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="contactorGroup" type="tns:ContactorGroup"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyContactorGroupResponse" type="tns:ModifyContactorGroupResponse"/>
+	<complexType name="ModifyContactorGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListContactorGroupRequest=============================
+	-->
+	<element name="ListContactorGroupRequest" type="tns:ListContactorGroupRequest"/>
+	<complexType name="ListContactorGroupRequest">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+			<element name="contactorGroupFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListContactorGroupResponse" type="tns:ListContactorGroupResponse"/>
+	<complexType name="ListContactorGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayContactorGroupRequest=============================
+	-->
+	<element name="DisplayContactorGroupRequest" type="tns:DisplayContactorGroupRequest"/>
+	<complexType name="DisplayContactorGroupRequest">
+		<sequence>
+			<element name="groupID" type="int"/>
+			<element name="userID" type="string"/>
+			<element name="addressBookType" type="tns:AddressBookType"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayContactorGroupResponse" type="tns:DisplayContactorGroupResponse"/>
+	<complexType name="DisplayContactorGroupResponse">
+		<sequence>
+			<element name="ResultCode" type="int"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="contactorGroup" type="tns:ContactorGroup"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateMobilePrefixInfo=============================
+	-->
+	<element name="CreateMobilePrefixInfoRequest" type="tns:CreateMobilePrefixInfoRequest"/>
+	<complexType name="CreateMobilePrefixInfoRequest">
+		<sequence>
+			<element name="mobilePrefixInfos" type="tns:MobilePrefixInfo" nillable="false" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="MobilePrefixInfo">
+		<sequence>
+			<element name="countryCode" type="string" nillable="false"/>
+			<element name="countryRegion" type="string" nillable="false"/>
+			<element name="mobilePrefix" type="string" nillable="false" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="CreateMobilePrefixInfoResponse" type="tns:CreateMobilePrefixInfoResponse"/>
+	<complexType name="CreateMobilePrefixInfoResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListMobilePrefixInfo=============================
+	-->
+	<element name="ListMobilePrefixInfoRequest" type="tns:ListMobilePrefixInfoRequest"/>
+	<complexType name="ListMobilePrefixInfoRequest">
+		<sequence>
+			<element name="mobilePrefixInfoFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListMobilePrefixInfoResponse" type="tns:ListMobilePrefixInfoResponse"/>
+	<complexType name="ListMobilePrefixInfoResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================SetOrgAccessNoPool=============================
+	-->
+	<element name="SetOrgAccessNoPoolRequest" type="tns:SetOrgAccessNoPoolRequest"/>
+	<complexType name="SetOrgAccessNoPoolRequest">
+		<sequence>
+			<element name="organizationID" type="string"/>
+			<element name="accessNumber" type="tns:AccessNumber" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="SetOrgAccessNoPoolResponse" type="tns:SetOrgAccessNoPoolResponse"/>
+	<complexType name="SetOrgAccessNoPoolResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================GetOrgAccessNoPool=============================
+	-->
+	<element name="GetOrgAccessNoPoolRequest" type="tns:GetOrgAccessNoPoolRequest"/>
+	<complexType name="GetOrgAccessNoPoolRequest">
+		<sequence>
+			<element name="organizationID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="GetOrgAccessNoPoolResponse" type="tns:GetOrgAccessNoPoolResponse"/>
+	<complexType name="GetOrgAccessNoPoolResponse">
+		<sequence>
+			<element name="Result" type="tns:GetOrgAccessNoPoolResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetOrgAccessNoPoolResult">
+		<sequence>
+			<element name="ResultCode" type="int"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="accessNumber" type="tns:AccessNumber" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyPassword=============================
+	-->
+	<element name="ModifyPasswordRequest" type="tns:ModifyPasswordRequest"/>
+	<complexType name="ModifyPasswordRequest">
+		<sequence>
+			<element name="accounts" type="tns:AccountInfo" nillable="false"/>
+			<element name="newPassWord" type="string" nillable="false"/>
+			<element name="newPassWordAffirm" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyPasswordResponse" type="tns:ModifyPasswordResponse"/>
+	<complexType name="ModifyPasswordResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================GetCurrUserProfile=============================
+	-->
+	<element name="GetCurrUserProfileRequest" type="string" nillable="true"/>
+	<element name="GetCurrUserProfileResponse" type="tns:GetCurrUserProfileResponse"/>
+	<complexType name="GetCurrUserProfileResponse">
+		<sequence>
+			<element name="Result" type="tns:GetCurrUserProfileResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetCurrUserProfileResult">
+		<sequence>
+			<element name="ResultCode" type="int"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="profile" type="tns:Profile"/>
+		</sequence>
+	</complexType>
+	<complexType name="Profile">
+		<sequence>
+			<element name="userID" type="string"/>
+			<element name="purviewIDs" type="string" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayUserV2=============================
+	-->
+	<element name="DisplayUserV2Request" type="tns:DisplayUserV2Request"/>
+	<complexType name="DisplayUserV2Request">
+		<sequence>
+			<element name="webAccount" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayUserV2Response" type="tns:DisplayUserV2Response"/>
+	<complexType name="DisplayUserV2Response">
+		<sequence>
+			<element name="Result" type="tns:DisplayUserResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyUserV2=============================
+	-->
+	<element name="ModifyUserV2Request" type="tns:ModifyUserV2Request"/>
+	<complexType name="ModifyUserV2Request">
+		<sequence>
+			<element name="user" type="tns:User" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyUserV2Response" type="tns:ModifyUserV2Response"/>
+	<complexType name="ModifyUserV2Response">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveUserV2=============================
+	-->
+	<element name="RemoveUserV2Request" type="tns:RemoveUserV2Request"/>
+	<complexType name="RemoveUserV2Request">
+		<sequence>
+			<element name="webAccount" type="string" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveUserV2Response" type="tns:RemoveUserV2Response"/>
+	<complexType name="RemoveUserV2Response">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateDirectory=============================
+	-->
+	<element name="CreateDirectoryRequest" type="tns:CreateDirectoryRequest"/>
+	<element name="CreateDirectoryResponse" type="tns:CreateDirectoryResponse"/>
+	<complexType name="CreateDirectoryRequest">
+		<sequence>
+			<element name="id" type="int" nillable="true" minOccurs="0"/>
+			<element name="name" type="string"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="CreateDirectoryResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+			<element name="id" type="int" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Directory">
+		<sequence>
+			<element name="id" type="int"/>
+			<element name="name" type="string"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="terminals" type="tns:Terminal" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="Terminal">
+		<sequence>
+			<element name="id" type="string" nillable="true" minOccurs="0"/>
+			<element name="name" type="string"/>
+			<element name="regionID" type="int"/>
+			<element name="terminalType" type="tns:TerminalType" nillable="true" minOccurs="0"/>
+			<element name="regionType" type="tns:RegionType" nillable="true"  minOccurs="0" default="commonRegion"/>
+			<element name="phone" type="string"/>
+			<element name="leftPhone" type="string" nillable="true" minOccurs="0"/>
+			<element name="rightPhone" type="string" nillable="true" minOccurs="0"/>
+			<element name="bandWidth" type="tns:TerminalBandWidth" nillable="true" minOccurs="0"/>
+			<element name="VideoCode261" type="tns:VideoCode261" nillable="true" minOccurs="0"/>
+			<element name="VideoCode263" type="tns:VideoCode263" nillable="true" minOccurs="0"/>
+			<element name="VideoCode264" type="tns:VideoCode264" nillable="true" minOccurs="0"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyDirectory=============================
+	-->
+	<element name="ModifyDirectoryRequest" type="tns:ModifyDirectoryRequest"/>
+	<element name="ModifyDirectoryResponse" type="tns:ModifyDirectoryResponse"/>
+	<complexType name="ModifyDirectoryRequest">
+		<sequence>
+			<element name="id" type="int"/>
+			<element name="name" type="string"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="addTerminalList" type="tns:TerminalList" nillable="true" minOccurs="0"/>
+			<element name="delTerminalList" type="tns:TerminalList" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="TerminalList">
+		<sequence>
+			<element name="phone" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ModifyDirectoryResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListDirectory=============================
+	-->
+	<element name="ListDirectoryRequest" type="tns:ListDirectoryRequest"/>
+	<element name="ListDirectoryResponse" type="tns:ListDirectoryResponse"/>
+	<complexType name="ListDirectoryRequest">
+		<sequence>
+			<element name="DirectoryFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<complexType name="ListDirectoryResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveDirectory=============================
+	-->
+	<element name="RemoveDirectoryRequest" type="tns:RemoveDirectoryRequest"/>
+	<element name="RemoveDirectoryResponse" type="tns:RemoveDirectoryResponse"/>
+	<complexType name="RemoveDirectoryRequest">
+		<sequence>
+			<element name="id" type="int"/>
+		</sequence>
+	</complexType>
+	<complexType name="RemoveDirectoryResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayDirectory=============================
+	-->
+	<element name="DisplayDirectoryRequest" type="tns:DisplayDirectoryRequest"/>
+	<element name="DisplayDirectoryResponse" type="tns:DisplayDirectoryResponse"/>
+	<complexType name="DisplayDirectoryRequest">
+		<sequence>
+			<element name="id" type="int"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayDirectoryResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+			<element name="Directory" type="tns:Directory" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateTerminal=============================
+	-->
+	<element name="CreateTerminalRequest" type="tns:CreateTerminalRequest"/>
+	<element name="CreateTerminalResponse" type="tns:CreateTerminalResponse"/>
+	<complexType name="CreateTerminalRequest">
+		<sequence>
+			<element name="terminal" type="tns:TerminalStruct"/>
+		</sequence>
+	</complexType>
+	<complexType name="CreateTerminalResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TerminalStruct">
+		<sequence>
+			<element name="id" type="string" nillable="true" minOccurs="0"/>
+			<element name="name" type="string"/>
+			<element name="regionID" type="int"/>		 
+			<element name="regionType" type="tns:RegionType" nillable="true"  minOccurs="0" default="commonRegion"/>
+			<element name="terminalType" type="tns:TerminalType"/>
+			<element name="phone" type="string"/>
+			<element name="leftPhone" type="string" nillable="true" minOccurs="0"/>
+			<element name="rightPhone" type="string" nillable="true" minOccurs="0"/>
+			<element name="bandWidth" type="tns:TerminalBandWidth" nillable="true" minOccurs="0"/>
+			<element name="VideoCode261" type="tns:VideoCode261" nillable="true" minOccurs="0"/>
+			<element name="VideoCode263" type="tns:VideoCode263" nillable="true" minOccurs="0"/>
+			<element name="VideoCode264" type="tns:VideoCode264" nillable="true" minOccurs="0"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="TerminalBandWidth">
+		<restriction base="string">
+			<enumeration value="1M"/>
+			<enumeration value="1.5M"/>
+			<enumeration value="2M"/>
+			<enumeration value="3M"/>
+			<enumeration value="4M"/>
+			<enumeration value="6M"/>
+			<enumeration value="8M"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TerminalType">
+		<restriction base="string">
+			<enumeration value="singleTP"/>
+			<enumeration value="threeTP"/>
+			<enumeration value="singleCiscoTP"/>
+			<enumeration value="threeCiscoTP"/>
+			<enumeration value="highVideo"/>
+			<enumeration value="h323"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="VideoCode261">
+		<restriction base="string">
+			<enumeration value="QCIF"/>
+			<enumeration value="CIF"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="VideoCode263">
+		<restriction base="string">
+			<enumeration value="QCIF"/>
+			<enumeration value="CIF"/>
+			<enumeration value="4CIF"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="VideoCode264">
+		<restriction base="string">
+			<enumeration value="CIF"/>
+			<enumeration value="4CIF"/>
+			<enumeration value="720P"/>
+			<enumeration value="1080P"/>
+		</restriction>
+	</simpleType>
+	<!--
+		=============================ModifyTerminal=============================
+	-->
+	<element name="ModifyTerminalRequest" type="tns:ModifyTerminalRequest"/>
+	<element name="ModifyTerminalResponse" type="tns:ModifyTerminalResponse"/>
+	<complexType name="ModifyTerminalRequest">
+		<sequence>
+			<element name="terminal" type="tns:TerminalStruct"/>
+		</sequence>
+	</complexType>
+	<complexType name="ModifyTerminalResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListTerminal=============================
+	-->
+	<element name="ListTerminalRequest" type="tns:ListTerminalRequest"/>
+	<element name="ListTerminalResponse" type="tns:ListTerminalResponse"/>
+	<complexType name="ListTerminalRequest">
+		<sequence>
+			<element name="TerminalFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<complexType name="ListTerminalResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveTerminal=============================
+	-->
+	<element name="RemoveTerminalRequest" type="tns:RemoveTerminalRequest"/>
+	<element name="RemoveTerminalResponse" type="tns:RemoveTerminalResponse"/>
+	<complexType name="RemoveTerminalRequest">
+		<sequence>
+			<element name="phone" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="RemoveTerminalResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayTerminal=============================
+	-->
+	<element name="DisplayTerminalRequest" type="tns:DisplayTerminalRequest"/>
+	<element name="DisplayTerminalResponse" type="tns:DisplayTerminalResponse"/>
+	<complexType name="DisplayTerminalRequest">
+		<sequence>
+			<element name="phone" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayTerminalResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+			<element name="Terminal" type="tns:TerminalStruct" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyTerminalVerInfo=============================
+	-->
+	<element name="ModifyTerminalVerInfoRequest" type="tns:ModifyTerminalVerInfoRequest"/>
+	<element name="ModifyTerminalVerInfoResponse" type="tns:ModifyTerminalVerInfoResponse"/>
+	<complexType name="ModifyTerminalVerInfoRequest">
+		<sequence>
+			<element name="terminalVerInfo" type="tns:TerminalVerInfo"/>
+		</sequence>
+	</complexType>
+	<complexType name="ModifyTerminalVerInfoResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TerminalVerInfo">
+		<sequence>
+			<element name="hardwarePlatform" type="tns:HardwarePlatform"/>
+			<element name="operatingSystem" type="tns:OperatingSystem"/>
+			<element name="updateVersion" type="string" nillable="true"  minOccurs="0"/>		 
+			<element name="updateTime" type="long" nillable="true"  minOccurs="0"/>
+			<element name="updateDescription" type="string" nillable="true"  minOccurs="0"/>
+			<element name="downloadAddr" type="string" nillable="true" minOccurs="0"/>
+			<element name="acceptVersion" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="HardwarePlatform">
+		<restriction base="string">
+			<enumeration value="Phone"/>
+			<enumeration value="Pad"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperatingSystem">
+		<restriction base="string">
+			<enumeration value="IOS"/>
+			<enumeration value="Android"/>
+			<enumeration value="Windows"/>
+		</restriction>
+	</simpleType>
+	<!--
+		=============================ListTerminalVerInfo=============================
+	-->
+	<element name="ListTerminalVerInfoRequest" type="string" nillable="true"/>
+	<element name="ListTerminalVerInfoResponse" type="tns:ListTerminalVerInfoResponse"/>	
+	<complexType name="ListTerminalVerInfoResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+			<element name="terminalVerInfo" type="tns:TerminalVerInfo" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyTerminalConfigInfo=============================
+	-->
+	<element name="ModifyTerminalConfigInfoRequest" type="tns:ModifyTerminalConfigInfoRequest"/>
+	<element name="ModifyTerminalConfigInfoResponse" type="tns:ModifyTerminalConfigInfoResponse"/>
+	<complexType name="ModifyTerminalConfigInfoRequest">
+		<sequence>
+			<element name="terminalConfigInfo" type="tns:TerminalConfigInfo"/>
+		</sequence>
+	</complexType>
+	<complexType name="ModifyTerminalConfigInfoResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TerminalConfigInfo">
+		<sequence>
+			<element name="recvEmailAddr" type="string" nillable="true" minOccurs="0"/>
+			<element name="sendEmailServer" type="string" nillable="true" minOccurs="0"/>
+			<element name="sendEmailAddr" type="string" nillable="true" minOccurs="0" />		 
+			<element name="sendEmailPwd" type="string" nillable="true"  minOccurs="0" />
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayTerminalConfigInfo=============================
+	-->
+	<element name="DisplayTerminalConfigInfoRequest" type="string" nillable="true"/>
+	<element name="DisplayTerminalConfigInfoResponse" type="tns:DisplayTerminalConfigInfoResponse"/>	
+	<complexType name="DisplayTerminalConfigInfoResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+			<element name="terminalConfigInfo" type="tns:TerminalConfigInfo" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyAuthorTermialToOrg=============================
+	-->
+	<element name="ModifyAuthorTermialToOrgRequest" type="tns:ModifyAuthorTermialToOrgRequest"/>
+	<element name="ModifyAuthorTermialToOrgResponse" type="tns:ModifyAuthorTermialToOrgResponse"/>
+	<complexType name="ModifyAuthorTermialToOrgRequest">
+		<sequence>		
+			<element name="organizationID" type="string"/>
+			<element name="addDirectoryList" type="tns:DirectoryList"/>
+			<element name="delDirectoryList" type="tns:DirectoryList"/>
+		</sequence>
+	</complexType>
+	<complexType name="DirectoryList">
+		<sequence>
+			<element name="id" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ModifyAuthorTermialToOrgResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+
+	<!--
+		=============================DisplayAuthorTermialToOrg=============================
+	-->
+	
+	<element name="DisplayAuthorTermialToOrgRequest" type="tns:DisplayAuthorTermialToOrgRequest"/>
+	<element name="DisplayAuthorTermialToOrgResponse" type="tns:DisplayAuthorTermialToOrgResponse"/>
+	<complexType name="DisplayAuthorTermialToOrgRequest">
+		<sequence>
+			<element name="organizationID" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayAuthorTermialToOrgResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+			<element name="Directory" type="tns:Directory" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListRegionRelation(查询地区资源关系)=============================
+	-->
+	<element name="ListRegionRelationRequest" type="tns:ListRegionRelationRequest"/>
+	<element name="ListRegionRelationResponse" type="tns:ListRegionRelationResponse"/>
+	<complexType name="ListRegionRelationRequest">
+		<sequence>
+			<element name="RegionResourceFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<complexType name="ListRegionRelationResponse">
+		<sequence>
+			<element name="result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyRegionRelation(修改地区资源关系)=============================
+	-->
+	<element name="ModifyRegionRelationRequest" type="tns:ModifyRegionRelationRequest"/>
+	<element name="ModifyRegionRelationResponse" type="tns:ModifyRegionRelationResponse"/>
+	<complexType name="ModifyRegionRelationRequest">
+		<sequence>
+			<element name="RegionResources" type="tns:RegionResource" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="RegionResource">
+		<sequence>
+			<element name="regionId" type="int"/>
+			<element name="name" type="string"/>
+			<element name="regionType" type="tns:RegionType" nillable="true"  minOccurs="0" default="commonRegion"/>
+			<element name="description" type="string" nillable="true" minOccurs="0"/>
+			<element name="parentId" type="int"/>
+		</sequence>
+	</complexType>
+	<simpleType name="RegionType">
+		<restriction base="string">
+			<enumeration value="commonRegion"/>
+			<enumeration value="openRegion"/>
+			<enumeration value="secretRegion"/>
+		</restriction>
+	</simpleType>
+	<complexType name="ModifyRegionRelationResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+
+	<!-- 8.3 begin -->
+	<!--
+		=============================CreateWebUEAccount=============================
+	-->
+	<element name="CreateWebUEAccountRequest" type="tns:CreateWebUEAccountRequest"/>
+	<complexType name="CreateWebUEAccountRequest">
+		<sequence>
+			<element name="webUEBean" type="tns:WebUEBean"/>
+		</sequence>
+	</complexType>
+	<complexType name="WebUEBean">
+		<sequence>
+			<element name="id" type="string" nillable="true" minOccurs="0"/>
+			<element name="startNum" type="string"/>
+			<element name="endNum" type="string" nillable="true"/>
+			<element name="password" type="string"/>
+			<element name="serviceDomain" type="string"/>
+			<element name="proxyServer" type="string"/>
+			<element name="startAuthorized" type="string"/>
+			<element name="endAuthorized" type="string"/>
+			<element name="postFix" type="string" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="CreateWebUEAccountResponse" type="tns:CreateWebUEAccountResponse"/>
+	<complexType name="CreateWebUEAccountResponse">
+		<sequence>
+		    <element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListWebUEAccount=============================
+	-->
+	<element name="ListWebUEAccountRequest" type="tns:ListWebUEAccountRequest"/>
+	<complexType name="ListWebUEAccountRequest">
+		<sequence>
+			<element name="webUEAccountFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListWebUEAccountResponse" type="tns:ListWebUEAccountResponse"/>
+	<complexType name="ListWebUEAccountResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyWebUEAccount=============================
+	-->
+	<element name="ModifyWebUEAccountRequest" type="tns:ModifyWebUEAccountRequest"/>
+	<complexType name="ModifyWebUEAccountRequest">
+		<sequence>
+			<element name="webUEBean" type="tns:WebUEBean" nillable="false"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyWebUEAccountResponse" type="tns:ModifyWebUEAccountResponse"/>
+	<complexType name="ModifyWebUEAccountResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveWebUEAccount=============================
+	-->
+	<element name="RemoveWebUEAccountRequest" type="tns:RemoveWebUEAccountRequest"/>
+	<complexType name="RemoveWebUEAccountRequest">
+		<sequence>
+			<element name="id" type="string"/>
+		</sequence>
+	</complexType>
+
+	<element name="RemoveWebUEAccountResponse" type="tns:RemoveWebUEAccountResponse"/>
+	<complexType name="RemoveWebUEAccountResponse">
+		<sequence>
+		    <element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayOrganizationVideoLevel=============================
+	-->
+	
+	<element name="DisplayOrganizationVideoLevelRequest" type="tns:DisplayOrganizationVideoLevelRequest">
+	</element>
+
+	<complexType name="DisplayOrganizationVideoLevelRequest">
+		<sequence>
+			<element name="organizationID" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<element name="DisplayOrganizationVideoLevelResponse"
+		type="tns:DisplayOrganizationVideoLevelResponse">
+	</element>
+
+	<complexType name="DisplayOrganizationVideoLevelResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="organizationVideoLevel" type="tns:OrganizationVideoLevel"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="OrganizationVideoLevel">
+		<sequence>
+			<element name="organizationID" type="string"></element>
+			<element name="hdvideoLevel" type="tns:VideoTemplate" nillable="true" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="sdvideoLevel" type="tns:VideoTemplate" nillable="true" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="tpvideoLevel" type="tns:VideoTemplate" nillable="true" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="assistantMediaParams" type="tns:AssistantMedia" nillable="true"></element>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================ModifyOrganizationVideoLevel=============================
+	-->
+	
+	<element name="ModifyOrganizationVideoLevelRequest" type="tns:ModifyOrganizationVideoLevelRequest">
+	</element>
+	
+	<complexType name="ModifyOrganizationVideoLevelRequest">
+		<sequence>
+			<element name="organizationVideoLevel" type="tns:OrganizationVideoLevel"></element>
+		</sequence>
+	</complexType>
+	
+	<element name="ModifyOrganizationVideoLevelResponse" type="tns:ModifyOrganizationVideoLevelResponse">
+	</element>
+	
+	<complexType name="ModifyOrganizationVideoLevelResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="VideoTemplate">
+		<sequence>
+			<element name="terminalType" type="string"></element>
+			<element name="videoCodec" type="tns:VideoCodec"></element>
+			<element name="audioCodec" type="tns:AudioCodec"></element>
+			<element name="bandWidth" type="tns:BandWidth"></element>
+			<element name="resolutionRatio" type="tns:ResolutionRatio">
+			</element>
+			<element name="isDefaultSelected" type="boolean"></element>
+			<element name="type" type="tns:MediaType" nillable="true" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AssistantMedia">
+		<sequence>
+			<element name="type" type="tns:AssistantMediaType" default="0"
+				nillable="true" minOccurs="0" />
+			<element name="code" type="tns:VideoCodec" nillable="true"
+				minOccurs="0" />
+			<element name="mpi" type="int" default="1" nillable="true"
+				minOccurs="0" />
+			<element name="bandWidth" type="tns:BandWidth" nillable="true"
+				minOccurs="0" />
+			<element name="size" type="tns:ResolutionRatio" nillable="true"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+
+	<simpleType name="AssistantMediaType">
+		<restriction base="string">
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+		</restriction>
+	</simpleType>
+	
+	<!--
+		=============================ListResourceScheduleInfo=============================
+	-->
+	
+	<element name="ListResourceScheduleInfoRequest" type="tns:ListResourceScheduleInfoRequest">
+	</element>
+	<complexType name="ListResourceScheduleInfoRequest">
+		<sequence>
+			<element name="orgnizationID" type="string" nillable="true"
+				minOccurs="0" />
+			<element name="resourceType" type="tns:ResourceType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="startTime" type="long" />
+			<element name="endTime" type="long" />
+		</sequence>
+	</complexType>
+	<simpleType name="ResourceType">
+		<restriction base="string">
+			<enumeration value="audioport" />
+			<enumeration value="sdVideo" />
+			<enumeration value="hdVideo" />
+			<enumeration value="sdMultiPic" />
+			<enumeration value="hdMultiPic" />
+			<enumeration value="sdBand" />
+			<enumeration value="hdBand" />
+			<enumeration value="tpPort" />
+			<enumeration value="sdAdapt" />
+			<enumeration value="hdAdapt" />
+			<enumeration value="dataPort" />
+			<enumeration value="hdVideo_2M" />
+			<enumeration value="hdVideo_4M" />
+		</restriction>
+	</simpleType>
+	<element name="ListResourceScheduleInfoResponse" type="tns:ListResourceScheduleInfoResponse">
+	</element>
+	<complexType name="ListResourceScheduleInfoResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="orgnizationID" type="string" nillable="true"
+				minOccurs="0" />
+			<element name="resourceOccupyRatios" type="tns:resourceOccupyRatios"
+				minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="resourceOccupyRatios">
+		<sequence>
+			<element name="resourceType" type="string" default="voicePort" />
+			<element name="resourceOccupyRatio" type="tns:resourceOccupyRatio"
+				minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="resourceOccupyRatio">
+		<sequence>
+			<element name="minute" type="long" default="0" nillable="true"
+				minOccurs="0" />
+			<element name="ration" type="long" default="0" nillable="true"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<!-- 8.3 end -->
+	
+	<!-- 9.0 begin -->
+	<!--
+		=============================DisplayBoardRuntimeInfo=============================
+	-->
+	<element name="DisplayBoardRuntimeInfoRequest" type="string" nillable="true"/>	
+	<element name="DisplayBoardRuntimeInfoResponse"
+		type="tns:DisplayBoardRuntimeInfoResponse">
+	</element>
+
+	<complexType name="DisplayBoardRuntimeInfoResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="boardRuntimeInfo" type="tns:BoardRuntimeInfo" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="BoardRuntimeInfo">
+		<sequence>
+			<element name="bid" type="string" nillable="true"/>
+			<element name="subrack" type="long" nillable="true"/>
+			<element name="slot" type="long" nillable="true"/>
+			<element name="confUserNum" type="long" nillable="true"/>
+			<element name="webUserNum" type="long" nillable="true"/>
+			<element name="confNum" type="long" nillable="true"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================DisplayConferenceRuntimeInfo=============================
+	-->
+	<element name="DisplayConferenceRuntimeInfoRequest" type="tns:DisplayConferenceRuntimeInfoRequest">
+	</element>
+
+	<complexType name="DisplayConferenceRuntimeInfoRequest">
+		<sequence>
+			<element name="conferenceID" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<element name="DisplayConferenceRuntimeInfoResponse"
+		type="tns:DisplayConferenceRuntimeInfoResponse">
+	</element>
+
+	<complexType name="DisplayConferenceRuntimeInfoResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="conferenceRuntimeInfo" type="tns:ConferenceRuntimeInfo"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="ConferenceRuntimeInfo">
+		<sequence>
+			<element name="conferenceID" type="string" nillable="true"/>
+			<element name="bid" type="string" nillable="true"/>
+			<element name="subrack" type="long" nillable="true"/>
+			<element name="slot" type="long" nillable="true"/>
+			<element name="participantMediaInfo" type="tns:ParticipantMediaInfo" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="ParticipantMediaInfo">
+		<sequence>
+			<element name="number" type="string" nillable="true"/>
+			<element name="conferenceID" type="string" nillable="true"/>
+			<element name="offerVoiceIP" type="string" nillable="true"/>
+			<element name="offerVoicePort" type="string" nillable="true"/>
+			<element name="answerVoiceIP" type="string" nillable="true"/>
+			<element name="answerVoicePort" type="string" nillable="true"/>
+			<element name="offerVideoIP" type="string" nillable="true"/>
+			<element name="offerVideoPort" type="string" nillable="true"/>
+			<element name="answerVideoIP" type="string" nillable="true"/>
+			<element name="answeVideoPort" type="string" nillable="true"/>
+			<element name="offerAddStreamIP" type="string" nillable="true"/>
+			<element name="offerAddStreamPort" type="string" nillable="true"/>
+			<element name="answerAddStreamIP" type="string" nillable="true"/>
+			<element name="answerAddStreamPort" type="string" nillable="true"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================DisplayWebCountRuntimeInfo=============================
+	-->
+	<element name="DisplayWebCountRuntimeInfoRequest" type="string" nillable="true"/>
+	<element name="DisplayWebCountRuntimeInfoResponse"
+		type="tns:DisplayWebCountRuntimeInfoResponse">
+	</element>
+
+	<complexType name="DisplayWebCountRuntimeInfoResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="webCountRuntimeInfo" type="tns:WebCountRuntimeInfo"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="WebCountRuntimeInfo">
+		<sequence>
+			<element name="webCountUseNum" type="long" nillable="true"/>
+			<element name="webCountTotalNum" type="long" nillable="true"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================DisplayNrsRuntimeInfo=============================
+	-->
+	<element name="DisplayNrsRuntimeInfoRequest" type="string" nillable="true"/>
+	<element name="DisplayNrsRuntimeInfoResponse"
+		type="tns:DisplayNrsRuntimeInfoResponse">
+	</element>
+
+	<complexType name="DisplayNrsRuntimeInfoResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="nrsRuntimeInfo" type="tns:NrsRuntimeInfo"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="NrsRuntimeInfo">
+		<sequence>
+			<element name="nrsIP" type="string" nillable="true"/>
+			<element name="nrsPort" type="long" nillable="true"/>
+			<element name="linkState" type="string" nillable="true"/>
+			<element name="voiceUseNum" type="long" nillable="true"/>
+			<element name="voiceTotalNum" type="long" nillable="true"/>
+			<element name="sdVideoUseNum" type="long" nillable="true"/>
+			<element name="sdVideoTotalNum" type="long" nillable="true"/>
+			<element name="hdVideoUseNum" type="long" nillable="true"/>
+			<element name="hdVideoTotalNum" type="long" nillable="true"/>
+			<element name="restSpace" type="long" nillable="true"/>
+			<element name="restSpacePercent" type="long" nillable="true"/>
+			<element name="spaceThreshold" type="long" nillable="true"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================DisplayMrsRuntimeInfo=============================
+	-->
+	<element name="DisplayMrsRuntimeInfoRequest" type="string" nillable="true"/>
+	<element name="DisplayMrsRuntimeInfoResponse"
+		type="tns:DisplayMrsRuntimeInfoResponse">
+	</element>
+
+	<complexType name="DisplayMrsRuntimeInfoResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="mrsRuntimeInfo" type="tns:MrsRuntimeInfo" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="MrsRuntimeInfo">
+		<sequence>
+			<element name="resourceID" type="long" nillable="true"/>
+			<element name="resourceName" type="string" nillable="true"/>
+			<element name="resourceType" type="string" nillable="true"/>
+			<element name="voiceINum" type="long" nillable="true"/>
+			<element name="voiceUNum" type="long" nillable="true"/>
+			<element name="voiceTNum" type="long" nillable="true"/>
+			<element name="videoINum" type="long" nillable="true"/>
+			<element name="videoUNum" type="long" nillable="true"/>
+			<element name="videoTNum" type="long" nillable="true"/>
+			<element name="sdVideoINum" type="long" nillable="true"/>
+			<element name="sdVideoUNum" type="long" nillable="true"/>
+			<element name="sdVideoTNum" type="long" nillable="true"/>
+			<element name="hdVideoINum" type="long" nillable="true"/>
+			<element name="hdVideoUNum" type="long" nillable="true"/>
+			<element name="hdVideoTNum" type="long" nillable="true"/>
+			<element name="dataINum" type="long" nillable="true"/>
+			<element name="dataUNum" type="long" nillable="true"/>
+			<element name="dataTNum" type="long" nillable="true"/>
+			<element name="bandwidthsINum" type="long" nillable="true"/>
+			<element name="bandWidthsUNum" type="long" nillable="true"/>
+			<element name="bandWidthsTNum" type="long" nillable="true"/>
+			<element name="multiPicsINum" type="long" nillable="true"/>
+			<element name="multiPicsUNum" type="long" nillable="true"/>
+			<element name="multiPicsTNum" type="long" nillable="true"/>
+			<element name="adapterINum" type="long" nillable="true"/>
+			<element name="adapterUNum" type="long" nillable="true"/>
+			<element name="adapterTNum" type="long" nillable="true"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================ListStatisticData=============================
+	-->
+	<element name="ListStatisticDataRequest" type="tns:ListStatisticDataRequest">
+	</element>
+	<complexType name="ListStatisticDataRequest">
+		<sequence>
+			<element name="organizationID" type="string"/>
+			<element name="includeSub" type="boolean"/>
+			<element name="startTime" type="long" />
+			<element name="endTime" type="long" />
+			<element name="statisticDataFilter" type="tns:Filter" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="ListStatisticDataResponse" type="tns:ListStatisticDataResponse"/>
+	<complexType name="ListStatisticDataResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	
+	<!--
+		=============================ListTerminalWithoutDirectory=============================
+	-->
+	<element name="ListTerminalWithoutDirectoryRequest" type="tns:ListTerminalWithoutDirectoryRequest"/>
+	<element name="ListTerminalWithoutDirectoryResponse" type="tns:ListTerminalWithoutDirectoryResponse"/>
+		<complexType name="ListTerminalWithoutDirectoryRequest">
+		<sequence>
+			<element name="TerminalFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<complexType name="ListTerminalWithoutDirectoryResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>	
+	<!-- 9.0 end -->
+	<!-- 9.1 begin -->
+	<!--
+		=============================CreateOrgGroup=============================
+	-->
+  <element name="CreateOrgGroupRequest" type="tns:CreateOrgGroupRequest"/>
+	<complexType name="CreateOrgGroupRequest">
+		<sequence>
+			<element name="orgGroup" type="tns:OrgGroup"/>
+		</sequence>
+	</complexType>
+	<complexType name="OrgGroup">
+		<sequence>
+			<element name="groupID" type="string"/>
+			<element name="groupName" type="string" nillable="true" minOccurs="0"/>
+			<element name="orgID" type="string"/>
+			<element name="groupMode" type="int"/>
+			<element name="accessNumber" type="string"/>
+			<element name="mediaType" type="int" nillable="true" minOccurs="0"/>
+			<element name="owner" type="string"/>
+			<element name="chairmanPasswd" type="string" nillable="true" minOccurs="0"/>
+			<element name="guestPasswd" type="string" nillable="true" minOccurs="0"/>
+			<element name="isCallerAuth" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="isAllowRecord" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="isAutoRecord" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="isForceRecord" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="isInitiatorExit" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="outoingVoice" type="string" nillable="true" minOccurs="0"/>
+			<element name="incomingVoice" type="string" nillable="true" minOccurs="0"/>
+			<element name="pbAccessNumber" type="string" nillable="true" minOccurs="0"/>
+			<element name="recallTimes" type="int" nillable="true" minOccurs="0"/>
+			<element name="recallInterval" type="int" nillable="true" minOccurs="0"/>
+			<element name="isCalleePinAuth" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="displayNumber" type="string" nillable="true" minOccurs="0"/>
+			<element name="welcomeVoiceID" type="long" nillable="true" minOccurs="0"/>
+			<!-- 9.2 begin -->
+			<element name="firstAttendeeVoiceID" type="long" nillable="true" minOccurs="0"/>
+			<!-- 9.2 end -->
+			<element name="enterVoiceID" type="long" nillable="true" minOccurs="0"/>
+			<element name="leaveVoiceID" type="long" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<element name="CreateOrgGroupResponse" type="tns:CreateOrgGroupResponse"/>
+	<complexType name="CreateOrgGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================RemoveOrgGroup=============================
+	-->
+	<element name="RemoveOrgGroupRequest" type="tns:RemoveOrgGroupRequest"/>
+	<complexType name="RemoveOrgGroupRequest">
+		<sequence>
+			<element name="groupID" type="string"/>
+		</sequence>
+	</complexType>	
+	<element name="RemoveOrgGroupResponse" type="tns:RemoveOrgGroupResponse"/>
+	<complexType name="RemoveOrgGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyOrgGroup=============================
+	-->
+	<element name="ModifyOrgGroupRequest" type="tns:ModifyOrgGroupRequest"/>
+	<complexType name="ModifyOrgGroupRequest">
+		<sequence>
+			<element name="orgGroup" type="tns:OrgGroup"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyOrgGroupResponse" type="tns:ModifyOrgGroupResponse"/>
+	<complexType name="ModifyOrgGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayOrgGroup=============================
+	-->
+	<element name="DisplayOrgGroupRequest" type="tns:DisplayOrgGroupRequest"/>
+	<complexType name="DisplayOrgGroupRequest">
+		<sequence>
+			<element name="groupID" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayOrgGroupResponse" type="tns:DisplayOrgGroupResponse"/>
+	<complexType name="DisplayOrgGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayOrgGroupResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayOrgGroupResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="orgGroup" type="tns:OrgGroup" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================ListOrgGroup=============================
+	-->
+	<element name="ListOrgGroupRequest" type="tns:ListOrgGroupRequest"/>
+	<complexType name="ListOrgGroupRequest">
+		<sequence>
+			<element name="orgID" type="string"/> 
+		  <element name="isListChild" type="boolean" nillable="true" minOccurs="0"/>
+			<element name="orgGroupFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListOrgGroupResponse" type="tns:ListOrgGroupResponse"/>
+	<complexType name="ListOrgGroupResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================CreateOrgGroupMember=============================
+	-->
+	<element name="CreateOrgGroupMemberRequest" type="tns:CreateOrgGroupMemberRequest"/>
+	<complexType name="CreateOrgGroupMemberRequest">
+		<sequence>
+			<element name="orgGroupMember" type="tns:OrgGroupMember"/>
+		</sequence>
+	</complexType>
+	<complexType name="OrgGroupMember">
+		<sequence>
+			<element name="id" type="long" nillable="true" minOccurs="0"/>
+			<element name="groupID" type="string"/>
+			<element name="account" type="string"/>
+			<element name="memberType" type="int"/>
+			<element name="memberRole" type="int"/>
+			<element name="memberName" type="string" nillable="true" minOccurs="0"/>
+			<element name="isSilence" type="boolean" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="CreateOrgGroupMemberResponse" type="tns:CreateOrgGroupMemberResponse"/>
+	<complexType name="CreateOrgGroupMemberResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================RemoveOrgGroupMember=============================
+	-->
+	<element name="RemoveOrgGroupMemberRequest" type="tns:RemoveOrgGroupMemberRequest"/>
+	<complexType name="RemoveOrgGroupMemberRequest">
+		<sequence>
+			<element name="id" type="long"/>
+		</sequence>
+	</complexType>	
+	<element name="RemoveOrgGroupMemberResponse" type="tns:RemoveOrgGroupMemberResponse"/>
+	<complexType name="RemoveOrgGroupMemberResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================ModifyOrgGroupMember=============================
+	-->
+	<element name="ModifyOrgGroupMemberRequest" type="tns:ModifyOrgGroupMemberRequest"/>
+	<complexType name="ModifyOrgGroupMemberRequest">
+		<sequence>
+			<element name="orgGroupMember" type="tns:OrgGroupMember"/>
+		</sequence>
+	</complexType>	
+	<element name="ModifyOrgGroupMemberResponse" type="tns:ModifyOrgGroupMemberResponse"/>
+	<complexType name="ModifyOrgGroupMemberResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================ListOrgGroupMember=============================
+	-->
+	<element name="ListOrgGroupMemberRequest" type="tns:ListOrgGroupMemberRequest"/>
+	<complexType name="ListOrgGroupMemberRequest">
+		<sequence>
+			<element name="groupID" type="string"/>
+			<element name="orgGroupMemberFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListOrgGroupMemberResponse" type="tns:ListOrgGroupMemberResponse"/>
+	<complexType name="ListOrgGroupMemberResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================CreateOrgSound=============================
+	-->
+  <element name="CreateOrgSoundRequest" type="tns:CreateOrgSoundRequest"/>
+	<complexType name="CreateOrgSoundRequest">
+		<sequence>
+			<element name="orgSound" type="tns:OrgSound"/>
+		</sequence>
+	</complexType>
+	<complexType name="OrgSound">
+		<sequence>
+			<element name="id" type="long" nillable="true" minOccurs="0"/>
+			<element name="orgID" type="string"/>
+			<element name="soundName" type="string"/>
+			<element name="fileName" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="CreateOrgSoundResponse" type="tns:CreateOrgSoundResponse"/>
+	<complexType name="CreateOrgSoundResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================RemoveOrgSound=============================
+	-->
+	<element name="RemoveOrgSoundRequest" type="tns:RemoveOrgSoundRequest"/>
+	<complexType name="RemoveOrgSoundRequest">
+		<sequence>
+			<element name="id" type="long"/>
+		</sequence>
+	</complexType>	
+	<element name="RemoveOrgSoundResponse" type="tns:RemoveOrgSoundResponse"/>
+	<complexType name="RemoveOrgSoundResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ModifyOrgSound=============================
+	-->
+	<element name="ModifyOrgSoundRequest" type="tns:ModifyOrgSoundRequest"/>
+	<complexType name="ModifyOrgSoundRequest">
+		<sequence>
+			<element name="orgSound" type="tns:OrgSound"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyOrgSoundResponse" type="tns:ModifyOrgSoundResponse"/>
+	<complexType name="ModifyOrgSoundResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayOrgSound=============================
+	-->
+	<element name="DisplayOrgSoundRequest" type="tns:DisplayOrgSoundRequest"/>
+	<complexType name="DisplayOrgSoundRequest">
+		<sequence>
+			<element name="id" type="long"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayOrgSoundResponse" type="tns:DisplayOrgSoundResponse"/>
+	<complexType name="DisplayOrgSoundResponse">
+		<sequence>
+			<element name="Result" type="tns:DisplayOrgSoundResult"/>
+		</sequence>
+	</complexType>
+	<complexType name="DisplayOrgSoundResult">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="orgSound" type="tns:OrgSound" nillable="true" minOccurs="0"/>
+		</sequence>
+	</complexType>	
+	<!--
+		=============================ListOrgSound=============================
+	-->
+	<element name="ListOrgSoundRequest" type="tns:ListOrgSoundRequest"/>
+	<complexType name="ListOrgSoundRequest">
+		<sequence>
+			<element name="orgID" type="string"/>
+			<element name="orgSoundFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListOrgSoundResponse" type="tns:ListOrgSoundResponse"/>
+	<complexType name="ListOrgSoundResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================ListAbnormalAccessData=============================
+	-->
+	<element name="ListAbnormalAccessDataRequest" type="tns:ListAbnormalAccessDataRequest"/>
+	<complexType name="ListAbnormalAccessDataRequest">
+		<sequence>
+			<element name="accessNumber" type="string"/>
+			<element name="abnormalAccessDataFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListAbnormalAccessDataResponse" type="tns:ListAbnormalAccessDataResponse"/>
+	<complexType name="ListAbnormalAccessDataResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>
+	<!--
+		=============================DisplayDataSyncProgress=============================
+	-->
+	<element name="DisplayDataSyncProgressRequest" type="tns:DisplayDataSyncProgressRequest"/>
+	<complexType name="DisplayDataSyncProgressRequest">
+		<sequence>
+			<element name="syncQueryType" type="string"/>
+		</sequence>
+	</complexType>
+	<element name="DisplayDataSyncProgressResponse" type="tns:DisplayDataSyncProgressResponse"/>
+	<complexType name="DisplayDataSyncProgressResponse">
+		<sequence>
+			<element name="ResultCode" type="unsignedLong"/>
+			<element name="ResultDesc" type="string"/>
+			<element name="syncProgress" type="int"/>
+		</sequence>
+	</complexType>
+	<!-- 9.1 end -->
+    
+    <!-- 9.2 begin -->
+    <!--
+		=============================CreateLevelIDPercentage=============================
+	-->
+    <element name="CreateLevelIDPercentageRequest" type="tns:CreateLevelIDPercentageRequest"/>
+	<complexType name="CreateLevelIDPercentageRequest">
+		<sequence>
+			<element name="LevelIDPercentage" type="tns:LevelIDPercentage"/>
+		</sequence>
+	</complexType>
+	<complexType name="LevelIDPercentage">
+		<sequence>
+			<element name="levelID" type="int" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<element name="levelDescription" type="string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<element name="percentage" type="int" nillable="false"  minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+	<element name="CreateLevelIDPercentageResponse" type="tns:CreateLevelIDPercentageResponse"/>
+	<complexType name="CreateLevelIDPercentageResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+    <!--
+		=============================ModifyLevelIDPercentage=============================
+	-->
+    <element name="ModifyLevelIDPercentageRequest" type="tns:ModifyLevelIDPercentageRequest"/>
+	<complexType name="ModifyLevelIDPercentageRequest">
+		<sequence>
+			<element name="LevelIDPercentage" type="tns:LevelIDPercentage"/>
+		</sequence>
+	</complexType>
+	<element name="ModifyLevelIDPercentageResponse" type="tns:ModifyLevelIDPercentageResponse"/>
+	<complexType name="ModifyLevelIDPercentageResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>		
+    <!--
+		=============================RemoveLevelIDPercentage=============================
+	-->
+    <element name="RemoveLevelIDPercentageRequest" type="tns:RemoveLevelIDPercentageRequest"/>
+	<complexType name="RemoveLevelIDPercentageRequest">
+		<sequence>
+			<element name="levelID" type="int" nillable="false" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+	<element name="RemoveLevelIDPercentageResponse" type="tns:RemoveLevelIDPercentageResponse"/>
+	<complexType name="RemoveLevelIDPercentageResponse">
+		<sequence>
+			<element name="Result" type="tns:GeneralResultType"/>
+		</sequence>
+	</complexType>
+    <!--
+		=============================ListLevelIDPercentage=============================
+	-->
+    <element name="ListLevelIDPercentageRequest" type="tns:ListLevelIDPercentageRequest"/>
+	<complexType name="ListLevelIDPercentageRequest">
+		<sequence>
+			<element name="levelIDPercentageFilter" type="tns:Filter"/>
+		</sequence>
+	</complexType>
+	<element name="ListLevelIDPercentageResponse" type="tns:ListLevelIDPercentageResponse"/>
+	<complexType name="ListLevelIDPercentageResponse">
+		<sequence>
+			<element name="Result" type="tns:PageResult"/>
+		</sequence>
+	</complexType>	    
+    <!-- 9.2 end -->
+    
+</schema>
