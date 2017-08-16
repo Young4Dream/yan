@@ -16,7 +16,7 @@
 		</jdbcConnection> -->
 		<jdbcConnection 
 			driverClass="oracle.jdbc.OracleDriver"
-			connectionURL="jdbc:oracle:thin:@192.168.44.128:1521:orcl" 
+			connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" 
 			userId="scott"
 			password="orcl">
 		</jdbcConnection>

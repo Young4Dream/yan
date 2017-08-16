@@ -2,7 +2,9 @@ package com.yan.ssm.dao.mapper;
 
 import com.yan.ssm.pojo.Dept;
 import com.yan.ssm.pojo.DeptExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 @Repository
