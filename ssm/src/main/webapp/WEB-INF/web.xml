@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name></display-name>	
+  <display-name>ssm</display-name>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -12,17 +12,17 @@
    <param-name>log4jConfigLocation</param-name>   
    <param-value>classpath:log4j.properties</param-value>   
 </context-param>
+  <listener>   
+     <listener-class>   
+          org.springframework.web.context.ContextLoaderListener   
+     </listener-class>   
+</listener>
 <!-- 定义LOG4J监听器 -->
 <listener>   
    <listener-class>   
 		org.springframework.web.util.Log4jConfigListener   
    </listener-class>   
 </listener> 
-  <listener>   
-     <listener-class>   
-          org.springframework.web.context.ContextLoaderListener   
-     </listener-class>   
-</listener>
 <!-- 加载指定位置的上下文配置文件 -->
   <context-param>
   	<param-name>contextConfigLocation</param-name>
@@ -41,7 +41,7 @@
   	<servlet-mapping>
   		<servlet-name>Spring</servlet-name>
   		<!-- 表示哪些请求需要交给Spring Web MVC处理，/是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求 -->
-  		<url-pattern>*.do</url-pattern>
+  		<url-pattern>/*</url-pattern>
   	</servlet-mapping>
     <!-- 使用spring解决中文乱码 -->
   	  <filter>

@@ -3,8 +3,6 @@ package com.yan.ssm.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
-
 import com.yan.ssm.pojo.Dept;
 import com.yan.ssm.pojo.DeptExample;
 

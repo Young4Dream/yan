@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tstar.res.mapper.ResBillingAreaMapper">
+  <resultMap id="BaseResultMap" type="com.tstar.res.model.ResBillingArea">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BILLING_AREA" jdbcType="VARCHAR" property="billingArea" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BILLING_AREA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from res_billing_area
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+ 
+</mapper>

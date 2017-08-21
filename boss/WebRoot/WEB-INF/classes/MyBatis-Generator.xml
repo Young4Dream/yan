@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+  
+<generatorConfiguration>  
+    <context id="caigouTables" targetRuntime="MyBatis3">  
+        <commentGenerator>  
+            <property name="suppressAllComments" value="true" />  
+        </commentGenerator>  
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->  
+         <jdbcConnection 
+         	driverClass="com.mysql.jdbc.Driver"  
+            connectionURL="jdbc:mysql://localhost:3306/boss" 
+            userId="root"  
+            password="mysql">  
+        </jdbcConnection>  
+  
+        <!-- targetProject:生成PO类的位置 -->  
+        <javaModelGenerator targetPackage="com.tstar.res.model"  
+            targetProject=".\src">  
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->  
+            <property name="enableSubPackages" value="false" />  
+            <!-- 从数据库返回的值被清理前后的空格 -->  
+            <property name="trimStrings" value="true" />  
+        </javaModelGenerator>  
+        <!-- targetPackage:mapper映射文件生成的位置 -->  
+        <sqlMapGenerator targetPackage="com.tstar.res.mapping"   
+            targetProject=".\src">  
+            <property name="enableSubPackages" value="false" />  
+        </sqlMapGenerator>  
+        <!-- targetPackage：mapper接口的生成位置 -->  
+        <javaClientGenerator type="XMLMAPPER"  
+            targetPackage="com.tstar.res.mapper"   
+            targetProject=".\src">  
+            <property name="enableSubPackages" value="false" />  
+        </javaClientGenerator>  
+          
+        <!-- 指定表  
+        这里不指定schema，逆向工程会查询sysuser都有哪些schema，对每个schema生成对象-->  
+        <table schema="boss" tableName="res_billing_area">  
+            <!-- <columnOverride column=""></columnOverride> -->  
+        </table>  
+        <table schema="boss" tableName="ref_business_area"/> 
+  
+    </context>  
+</generatorConfiguration> 
