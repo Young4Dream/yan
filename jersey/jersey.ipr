@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactManager">
+    <artifact type="war" name="jersey:war">
+      <output-path>$PROJECT_DIR$/target</output-path>
+      <root id="archive" name="jersey.war">
+        <element id="artifact" artifact-name="jersey:war exploded" />
+      </root>
+    </artifact>
+    <artifact type="exploded-war" name="jersey:war exploded">
+      <output-path>$PROJECT_DIR$/target/jersey</output-path>
+      <root id="root">
+        <element id="directory" name="WEB-INF">
+          <element id="directory" name="classes">
+            <element id="module-output" name="jersey" />
+          </element>
+          <element id="directory" name="lib">
+            <element id="library" level="project" name="Maven: com.sun.jersey:jersey-client:1.19.4" />
+            <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.19.4" />
+            <element id="library" level="project" name="Maven: com.sun.jersey:jersey-server:1.19.4" />
+            <element id="library" level="project" name="Maven: com.sun.jersey:jersey-bundle:1.19.4" />
+            <element id="library" level="project" name="Maven: javax.ws.rs:jsr311-api:1.1.1" />
+            <element id="library" level="project" name="Maven: asm:asm:3.3.1" />
+            <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" />
+            <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
+            <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.13" />
+          </element>
+        </element>
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/target/jersey/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="javaee-facet-resources" facet="jersey/web/Web" />
+      </root>
+    </artifact>
+  </component>
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jersey" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jersey" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="InspectionProjectProfileManager">
+    <profile version="1.0">
+      <option name="myName" value="Project Default" />
+    </profile>
+    <version value="1.0" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jersey.iml" filepath="$PROJECT_DIR$/jersey.iml" />
+    </modules>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" project-jdk-name="9" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path" value="F:/Program Files/nodejs/node" />
+  </component>
+  <component name="libraryTable">
+    <library name="Maven: asm:asm:3.3.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.3.1/asm-3.3.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.3.1/asm-3.3.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.3.1/asm-3.3.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.sun.jersey:jersey-bundle:1.19.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.19.4/jersey-bundle-1.19.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.19.4/jersey-bundle-1.19.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.19.4/jersey-bundle-1.19.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.sun.jersey:jersey-client:1.19.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-client/1.19.4/jersey-client-1.19.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-client/1.19.4/jersey-client-1.19.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-client/1.19.4/jersey-client-1.19.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.sun.jersey:jersey-core:1.19.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-core/1.19.4/jersey-core-1.19.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-core/1.19.4/jersey-core-1.19.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-core/1.19.4/jersey-core-1.19.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.sun.jersey:jersey-server:1.19.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-server/1.19.4/jersey-server-1.19.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-server/1.19.4/jersey-server-1.19.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-server/1.19.4/jersey-server-1.19.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.ws.rs:jsr311-api:1.1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: junit:junit:3.8.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.13">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-jaxrs/1.9.13/jackson-jaxrs-1.9.13.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-jaxrs/1.9.13/jackson-jaxrs-1.9.13-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-jaxrs/1.9.13/jackson-jaxrs-1.9.13-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13-sources.jar!/" />
+      </SOURCES>
+    </library>
+  </component>
+</project>
