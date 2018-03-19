@@ -1,4 +1,0 @@
-name: id
-title: 学生编号
-script: |
-  stu.id
